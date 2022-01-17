@@ -19,6 +19,8 @@
 		4C0DBBF327954762005DBE66 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBF227954762005DBE66 /* FirebaseDatabase */; };
 		4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBF427954762005DBE66 /* FirebaseFirestore */; };
 		4C0DBBF727954762005DBE66 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBF627954762005DBE66 /* FirebaseMessaging */; };
+		4C0DBBFD27954DD7005DBE66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBFC27954DD7005DBE66 /* GoogleService-Info.plist */; };
+		4C0DBC0027955935005DBE66 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBFF27955935005DBE66 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		4C0DBBDE279529DA005DBE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C0DBBE1279529DA005DBE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C0DBBE3279529DA005DBE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C0DBBFA27954C3A005DBE66 /* usKet_Friend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = usKet_Friend.entitlements; sourceTree = "<group>"; };
+		4C0DBBFC27954DD7005DBE66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0DBBF327954762005DBE66 /* FirebaseDatabase in Frameworks */,
+				4C0DBC0027955935005DBE66 /* SnapKit in Frameworks */,
 				4C0DBBEB27954762005DBE66 /* FirebaseAnalytics in Frameworks */,
 				4C0DBBF727954762005DBE66 /* FirebaseMessaging in Frameworks */,
 				4C0DBBF127954762005DBE66 /* FirebaseCrashlytics in Frameworks */,
@@ -68,6 +73,8 @@
 		4C0DBBD4279529D8005DBE66 /* usKet_Friend */ = {
 			isa = PBXGroup;
 			children = (
+				4C0DBBFC27954DD7005DBE66 /* GoogleService-Info.plist */,
+				4C0DBBFA27954C3A005DBE66 /* usKet_Friend.entitlements */,
 				4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */,
 				4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */,
 				4C0DBBD9279529D8005DBE66 /* ViewController.swift */,
@@ -102,6 +109,7 @@
 				4C0DBBF227954762005DBE66 /* FirebaseDatabase */,
 				4C0DBBF427954762005DBE66 /* FirebaseFirestore */,
 				4C0DBBF627954762005DBE66 /* FirebaseMessaging */,
+				4C0DBBFF27955935005DBE66 /* SnapKit */,
 			);
 			productName = usKet_Friend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_Friend.app */;
@@ -133,6 +141,7 @@
 			mainGroup = 4C0DBBC9279529D8005DBE66;
 			packageReferences = (
 				4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -150,6 +159,7 @@
 			files = (
 				4C0DBBE2279529DA005DBE66 /* LaunchScreen.storyboard in Resources */,
 				4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */,
+				4C0DBBFD27954DD7005DBE66 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = usKet_Friend/usKet_Friend.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 46QF7GBZH7;
@@ -328,6 +339,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = usKet_Friend/usKet_Friend.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 46QF7GBZH7;
@@ -382,6 +394,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -419,6 +439,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		4C0DBBFF27955935005DBE66 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
