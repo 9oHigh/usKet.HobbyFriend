@@ -23,6 +23,7 @@
 		4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
+		4CF7756B27971EF6009CC655 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756A27971EF6009CC655 /* TextFieldEffects */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 				4CF7756227970B26009CC655 /* Rswift in Frameworks */,
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
 				4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */,
+				4CF7756B27971EF6009CC655 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +141,7 @@
 				4C0DBBF627954762005DBE66 /* FirebaseMessaging */,
 				4C0DBBFF27955935005DBE66 /* SnapKit */,
 				4CF7756127970B26009CC655 /* Rswift */,
+				4CF7756A27971EF6009CC655 /* TextFieldEffects */,
 			);
 			productName = usKet_HobbyFriend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
@@ -172,6 +175,7 @@
 				4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
+				4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -464,6 +468,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -511,6 +523,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
+		};
+		4CF7756A27971EF6009CC655 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
