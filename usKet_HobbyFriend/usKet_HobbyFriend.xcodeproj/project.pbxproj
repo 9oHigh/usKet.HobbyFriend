@@ -19,20 +19,22 @@
 		4C0DBBF327954762005DBE66 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBF227954762005DBE66 /* FirebaseDatabase */; };
 		4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBF427954762005DBE66 /* FirebaseFirestore */; };
 		4C0DBBF727954762005DBE66 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBF627954762005DBE66 /* FirebaseMessaging */; };
-		4C0DBBFD27954DD7005DBE66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBFC27954DD7005DBE66 /* GoogleService-Info.plist */; };
 		4C0DBC0027955935005DBE66 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBFF27955935005DBE66 /* SnapKit */; };
+		4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */; };
+		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
+		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C0DBBD2279529D8005DBE66 /* usKet_Friend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = usKet_Friend.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = usKet_HobbyFriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4C0DBBD9279529D8005DBE66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C0DBBDE279529DA005DBE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C0DBBE1279529DA005DBE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C0DBBE3279529DA005DBE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C0DBBFA27954C3A005DBE66 /* usKet_Friend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = usKet_Friend.entitlements; sourceTree = "<group>"; };
-		4C0DBBFC27954DD7005DBE66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../SeSAC_자료/17주차/SeSAC_SPL/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4CF7756727970FDC009CC655 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 				4C0DBBF727954762005DBE66 /* FirebaseMessaging in Frameworks */,
 				4C0DBBF127954762005DBE66 /* FirebaseCrashlytics in Frameworks */,
 				4C0DBBEF27954762005DBE66 /* FirebaseAuthCombine-Community in Frameworks */,
+				4CF7756227970B26009CC655 /* Rswift in Frameworks */,
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
 				4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */,
 			);
@@ -57,7 +60,7 @@
 		4C0DBBC9279529D8005DBE66 = {
 			isa = PBXGroup;
 			children = (
-				4C0DBBD4279529D8005DBE66 /* usKet_Friend */,
+				4C0DBBD4279529D8005DBE66 /* usKet_HobbyFriend */,
 				4C0DBBD3279529D8005DBE66 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,33 +68,58 @@
 		4C0DBBD3279529D8005DBE66 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C0DBBD2279529D8005DBE66 /* usKet_Friend.app */,
+				4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C0DBBD4279529D8005DBE66 /* usKet_Friend */ = {
+		4C0DBBD4279529D8005DBE66 /* usKet_HobbyFriend */ = {
 			isa = PBXGroup;
 			children = (
-				4C0DBBFC27954DD7005DBE66 /* GoogleService-Info.plist */,
-				4C0DBBFA27954C3A005DBE66 /* usKet_Friend.entitlements */,
+				4CF7756727970FDC009CC655 /* R.generated.swift */,
+				4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */,
+				4C0DBBE3279529DA005DBE66 /* Info.plist */,
+				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
 				4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */,
 				4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */,
-				4C0DBBD9279529D8005DBE66 /* ViewController.swift */,
-				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
 				4C0DBBE0279529DA005DBE66 /* LaunchScreen.storyboard */,
-				4C0DBBE3279529DA005DBE66 /* Info.plist */,
+				4C0DBC032796E53C005DBE66 /* Model */,
+				4C0DBC052796E54C005DBE66 /* View */,
+				4C0DBC042796E543005DBE66 /* ViewModel */,
 			);
-			path = usKet_Friend;
+			path = usKet_HobbyFriend;
+			sourceTree = "<group>";
+		};
+		4C0DBC032796E53C005DBE66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4C0DBC042796E543005DBE66 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4C0DBC052796E54C005DBE66 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C0DBBD9279529D8005DBE66 /* ViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C0DBBD1279529D8005DBE66 /* usKet_Friend */ = {
+		4C0DBBD1279529D8005DBE66 /* usKet_HobbyFriend */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C0DBBE6279529DA005DBE66 /* Build configuration list for PBXNativeTarget "usKet_Friend" */;
+			buildConfigurationList = 4C0DBBE6279529DA005DBE66 /* Build configuration list for PBXNativeTarget "usKet_HobbyFriend" */;
 			buildPhases = (
+				4CF7755F27970724009CC655 /* ShellScript */,
 				4C0DBBCE279529D8005DBE66 /* Sources */,
 				4C0DBBCF279529D8005DBE66 /* Frameworks */,
 				4C0DBBD0279529D8005DBE66 /* Resources */,
@@ -100,7 +128,7 @@
 			);
 			dependencies = (
 			);
-			name = usKet_Friend;
+			name = usKet_HobbyFriend;
 			packageProductDependencies = (
 				4C0DBBEA27954762005DBE66 /* FirebaseAnalytics */,
 				4C0DBBEC27954762005DBE66 /* FirebaseAuth */,
@@ -110,9 +138,10 @@
 				4C0DBBF427954762005DBE66 /* FirebaseFirestore */,
 				4C0DBBF627954762005DBE66 /* FirebaseMessaging */,
 				4C0DBBFF27955935005DBE66 /* SnapKit */,
+				4CF7756127970B26009CC655 /* Rswift */,
 			);
-			productName = usKet_Friend;
-			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_Friend.app */;
+			productName = usKet_HobbyFriend;
+			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -130,7 +159,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4C0DBBCD279529D8005DBE66 /* Build configuration list for PBXProject "usKet_Friend" */;
+			buildConfigurationList = 4C0DBBCD279529D8005DBE66 /* Build configuration list for PBXProject "usKet_HobbyFriend" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,12 +171,13 @@
 			packageReferences = (
 				4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4C0DBBD1279529D8005DBE66 /* usKet_Friend */,
+				4C0DBBD1279529D8005DBE66 /* usKet_HobbyFriend */,
 			);
 		};
 /* End PBXProject section */
@@ -159,11 +189,34 @@
 			files = (
 				4C0DBBE2279529DA005DBE66 /* LaunchScreen.storyboard in Resources */,
 				4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */,
-				4C0DBBFD27954DD7005DBE66 /* GoogleService-Info.plist in Resources */,
+				4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4CF7755F27970724009CC655 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rswift generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C0DBBCE279529D8005DBE66 /* Sources */ = {
@@ -173,6 +226,7 @@
 				4C0DBBDA279529D8005DBE66 /* ViewController.swift in Sources */,
 				4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */,
 				4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */,
+				4CF7756827970FDC009CC655 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,12 +365,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = usKet_Friend/usKet_Friend.entitlements;
+				CODE_SIGN_ENTITLEMENTS = usKet_HobbyFriend/usKet_HobbyFriend.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 46QF7GBZH7;
+				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = usKet_Friend/Info.plist;
+				INFOPLIST_FILE = usKet_HobbyFriend/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -326,7 +380,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "usKet.usKet-Friend";
+				PRODUCT_BUNDLE_IDENTIFIER = com.memolease.sesac1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -339,12 +393,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = usKet_Friend/usKet_Friend.entitlements;
+				CODE_SIGN_ENTITLEMENTS = usKet_HobbyFriend/usKet_HobbyFriend.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 46QF7GBZH7;
+				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = usKet_Friend/Info.plist;
+				INFOPLIST_FILE = usKet_HobbyFriend/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -354,7 +408,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "usKet.usKet-Friend";
+				PRODUCT_BUNDLE_IDENTIFIER = com.memolease.sesac1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -365,7 +419,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C0DBBCD279529D8005DBE66 /* Build configuration list for PBXProject "usKet_Friend" */ = {
+		4C0DBBCD279529D8005DBE66 /* Build configuration list for PBXProject "usKet_HobbyFriend" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C0DBBE4279529DA005DBE66 /* Debug */,
@@ -374,7 +428,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C0DBBE6279529DA005DBE66 /* Build configuration list for PBXNativeTarget "usKet_Friend" */ = {
+		4C0DBBE6279529DA005DBE66 /* Build configuration list for PBXNativeTarget "usKet_HobbyFriend" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C0DBBE7279529DA005DBE66 /* Debug */,
@@ -397,6 +451,14 @@
 		4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
@@ -444,6 +506,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4CF7756127970B26009CC655 /* Rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = Rswift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
