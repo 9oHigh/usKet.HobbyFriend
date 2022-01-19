@@ -85,6 +85,7 @@ struct R: Rswift.Validatable {
   }
 
   static func validate() throws {
+    try font.validate()
     try intern.validate()
   }
 
@@ -105,10 +106,40 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 1 colors.
+  /// This `R.color` struct is generated, and contains static references to 16 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
+    /// Color `basicBlack`.
+    static let basicBlack = Rswift.ColorResource(bundle: R.hostingBundle, name: "basicBlack")
+    /// Color `basicWhite`.
+    static let basicWhite = Rswift.ColorResource(bundle: R.hostingBundle, name: "basicWhite")
+    /// Color `brandGreen`.
+    static let brandGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "brandGreen")
+    /// Color `brandWhitegreen`.
+    static let brandWhitegreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "brandWhitegreen")
+    /// Color `brandYellowgreen`.
+    static let brandYellowgreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "brandYellowgreen")
+    /// Color `gray1`.
+    static let gray1 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray1")
+    /// Color `gray2`.
+    static let gray2 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray2")
+    /// Color `gray3`.
+    static let gray3 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray3")
+    /// Color `gray4`.
+    static let gray4 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray4")
+    /// Color `gray5`.
+    static let gray5 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray5")
+    /// Color `gray6`.
+    static let gray6 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray6")
+    /// Color `gray7`.
+    static let gray7 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray7")
+    /// Color `systemError`.
+    static let systemError = Rswift.ColorResource(bundle: R.hostingBundle, name: "systemError")
+    /// Color `systemFocus`.
+    static let systemFocus = Rswift.ColorResource(bundle: R.hostingBundle, name: "systemFocus")
+    /// Color `systemSuccess`.
+    static let systemSuccess = Rswift.ColorResource(bundle: R.hostingBundle, name: "systemSuccess")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
@@ -116,6 +147,141 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func accentColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.accentColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "basicBlack", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func basicBlack(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.basicBlack, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "basicWhite", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func basicWhite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.basicWhite, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "brandGreen", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func brandGreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.brandGreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "brandWhitegreen", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func brandWhitegreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.brandWhitegreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "brandYellowgreen", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func brandYellowgreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.brandYellowgreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray1", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gray1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray2", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gray2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray3", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gray3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray4", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gray4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray4, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray5", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gray5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray5, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray6", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gray6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray6, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gray7", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gray7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gray7, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "systemError", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func systemError(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.systemError, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "systemFocus", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func systemFocus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.systemFocus, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "systemSuccess", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func systemSuccess(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.systemSuccess, compatibleWith: traitCollection)
     }
     #endif
 
@@ -127,19 +293,437 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(watchOS)
+    /// `UIColor(named: "basicBlack", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func basicBlack(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.basicBlack.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "basicWhite", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func basicWhite(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.basicWhite.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "brandGreen", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func brandGreen(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.brandGreen.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "brandWhitegreen", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func brandWhitegreen(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.brandWhitegreen.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "brandYellowgreen", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func brandYellowgreen(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.brandYellowgreen.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "gray1", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func gray1(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray1.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "gray2", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func gray2(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray2.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "gray3", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func gray3(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray3.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "gray4", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func gray4(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray4.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "gray5", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func gray5(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray5.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "gray6", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func gray6(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray6.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "gray7", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func gray7(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.gray7.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "systemError", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func systemError(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.systemError.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "systemFocus", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func systemFocus(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.systemFocus.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "systemSuccess", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func systemSuccess(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.systemSuccess.name)
+    }
+    #endif
+
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 4 files.
   struct file {
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
+    /// Resource file `NotoSansKR-Medium.otf`.
+    static let notoSansKRMediumOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "NotoSansKR-Medium", pathExtension: "otf")
+    /// Resource file `NotoSansKR-Regular.otf`.
+    static let notoSansKRRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "NotoSansKR-Regular", pathExtension: "otf")
+    /// Resource file `OFL.txt`.
+    static let oflTxt = Rswift.FileResource(bundle: R.hostingBundle, name: "OFL", pathExtension: "txt")
 
     /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
     static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.googleServiceInfoPlist
       return fileResource.bundle.url(forResource: fileResource)
     }
+
+    /// `bundle.url(forResource: "NotoSansKR-Medium", withExtension: "otf")`
+    static func notoSansKRMediumOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.notoSansKRMediumOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "NotoSansKR-Regular", withExtension: "otf")`
+    static func notoSansKRRegularOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.notoSansKRRegularOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "OFL", withExtension: "txt")`
+    static func oflTxt(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.oflTxt
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.font` struct is generated, and contains static references to 2 fonts.
+  struct font: Rswift.Validatable {
+    /// Font `NotoSansKR-Medium`.
+    static let notoSansKRMedium = Rswift.FontResource(fontName: "NotoSansKR-Medium")
+    /// Font `NotoSansKR-Regular`.
+    static let notoSansKRRegular = Rswift.FontResource(fontName: "NotoSansKR-Regular")
+
+    /// `UIFont(name: "NotoSansKR-Medium", size: ...)`
+    static func notoSansKRMedium(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: notoSansKRMedium, size: size)
+    }
+
+    /// `UIFont(name: "NotoSansKR-Regular", size: ...)`
+    static func notoSansKRRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: notoSansKRRegular, size: size)
+    }
+
+    static func validate() throws {
+      if R.font.notoSansKRMedium(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'NotoSansKR-Medium' could not be loaded, is 'NotoSansKR-Medium.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.notoSansKRRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'NotoSansKR-Regular' could not be loaded, is 'NotoSansKR-Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.image` struct is generated, and contains static references to 27 images.
+  struct image {
+    /// Image `addFriend`.
+    static let addFriend = Rswift.ImageResource(bundle: R.hostingBundle, name: "addFriend")
+    /// Image `bell`.
+    static let bell = Rswift.ImageResource(bundle: R.hostingBundle, name: "bell")
+    /// Image `cancelMatch`.
+    static let cancelMatch = Rswift.ImageResource(bundle: R.hostingBundle, name: "cancelMatch")
+    /// Image `check`.
+    static let check = Rswift.ImageResource(bundle: R.hostingBundle, name: "check")
+    /// Image `close`.
+    static let close = Rswift.ImageResource(bundle: R.hostingBundle, name: "close")
+    /// Image `filterControl`.
+    static let filterControl = Rswift.ImageResource(bundle: R.hostingBundle, name: "filterControl")
+    /// Image `letfArrow`.
+    static let letfArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "letfArrow")
+    /// Image `man`.
+    static let man = Rswift.ImageResource(bundle: R.hostingBundle, name: "man")
+    /// Image `message`.
+    static let message = Rswift.ImageResource(bundle: R.hostingBundle, name: "message")
+    /// Image `more`.
+    static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "more")
+    /// Image `newBadge`.
+    static let newBadge = Rswift.ImageResource(bundle: R.hostingBundle, name: "newBadge")
+    /// Image `onboardFirst`.
+    static let onboardFirst = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboardFirst")
+    /// Image `onboardSecond`.
+    static let onboardSecond = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboardSecond")
+    /// Image `onboardThird`.
+    static let onboardThird = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboardThird")
+    /// Image `place`.
+    static let place = Rswift.ImageResource(bundle: R.hostingBundle, name: "place")
+    /// Image `plus`.
+    static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
+    /// Image `rightArrow`.
+    static let rightArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "rightArrow")
+    /// Image `search`.
+    static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
+    /// Image `sesac`.
+    static let sesac = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac")
+    /// Image `siren`.
+    static let siren = Rswift.ImageResource(bundle: R.hostingBundle, name: "siren")
+    /// Image `tabGift`.
+    static let tabGift = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabGift")
+    /// Image `tabHome`.
+    static let tabHome = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabHome")
+    /// Image `tabPerson`.
+    static let tabPerson = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabPerson")
+    /// Image `tabSeSAC`.
+    static let tabSeSAC = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabSeSAC")
+    /// Image `woman`.
+    static let woman = Rswift.ImageResource(bundle: R.hostingBundle, name: "woman")
+    /// Image `write`.
+    static let write = Rswift.ImageResource(bundle: R.hostingBundle, name: "write")
+    /// Image `xmark`.
+    static let xmark = Rswift.ImageResource(bundle: R.hostingBundle, name: "xmark")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "addFriend", bundle: ..., traitCollection: ...)`
+    static func addFriend(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.addFriend, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "bell", bundle: ..., traitCollection: ...)`
+    static func bell(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.bell, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "cancelMatch", bundle: ..., traitCollection: ...)`
+    static func cancelMatch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cancelMatch, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "check", bundle: ..., traitCollection: ...)`
+    static func check(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.check, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "close", bundle: ..., traitCollection: ...)`
+    static func close(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.close, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "filterControl", bundle: ..., traitCollection: ...)`
+    static func filterControl(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.filterControl, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "letfArrow", bundle: ..., traitCollection: ...)`
+    static func letfArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.letfArrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "man", bundle: ..., traitCollection: ...)`
+    static func man(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.man, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "message", bundle: ..., traitCollection: ...)`
+    static func message(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.message, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "more", bundle: ..., traitCollection: ...)`
+    static func more(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.more, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "newBadge", bundle: ..., traitCollection: ...)`
+    static func newBadge(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.newBadge, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "onboardFirst", bundle: ..., traitCollection: ...)`
+    static func onboardFirst(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardFirst, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "onboardSecond", bundle: ..., traitCollection: ...)`
+    static func onboardSecond(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardSecond, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "onboardThird", bundle: ..., traitCollection: ...)`
+    static func onboardThird(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardThird, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "place", bundle: ..., traitCollection: ...)`
+    static func place(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.place, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "plus", bundle: ..., traitCollection: ...)`
+    static func plus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.plus, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "rightArrow", bundle: ..., traitCollection: ...)`
+    static func rightArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rightArrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "search", bundle: ..., traitCollection: ...)`
+    static func search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac", bundle: ..., traitCollection: ...)`
+    static func sesac(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "siren", bundle: ..., traitCollection: ...)`
+    static func siren(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.siren, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabGift", bundle: ..., traitCollection: ...)`
+    static func tabGift(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabGift, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabHome", bundle: ..., traitCollection: ...)`
+    static func tabHome(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabHome, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabPerson", bundle: ..., traitCollection: ...)`
+    static func tabPerson(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabPerson, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabSeSAC", bundle: ..., traitCollection: ...)`
+    static func tabSeSAC(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabSeSAC, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "woman", bundle: ..., traitCollection: ...)`
+    static func woman(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.woman, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "write", bundle: ..., traitCollection: ...)`
+    static func write(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.write, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "xmark", bundle: ..., traitCollection: ...)`
+    static func xmark(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.xmark, compatibleWith: traitCollection)
+    }
+    #endif
 
     fileprivate init() {}
   }

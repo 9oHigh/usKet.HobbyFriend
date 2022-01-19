@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */; };
 		4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */; };
-		4C0DBBDA279529D8005DBE66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD9279529D8005DBE66 /* ViewController.swift */; };
 		4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBDE279529DA005DBE66 /* Assets.xcassets */; };
 		4C0DBBE2279529DA005DBE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBE0279529DA005DBE66 /* LaunchScreen.storyboard */; };
 		4C0DBBEB27954762005DBE66 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBEA27954762005DBE66 /* FirebaseAnalytics */; };
@@ -24,18 +23,54 @@
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
 		4CF7756B27971EF6009CC655 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756A27971EF6009CC655 /* TextFieldEffects */; };
+		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
+		4CF775712797B16A009CC655 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */; };
+		4CF775722797B16A009CC655 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756F2797B16A009CC655 /* OFL.txt */; };
+		4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF775732797CD8F009CC655 /* OnboardViewController.swift */; };
+		4CF775782797E7B5009CC655 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF775772797E7B5009CC655 /* UILabel + Extension.swift */; };
+		4CF7757A2797E7CC009CC655 /* UITextView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF775792797E7CB009CC655 /* UITextView + Extension.swift */; };
+		4CF7757C2797EF15009CC655 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7757B2797EF15009CC655 /* UIFont + Extension.swift */; };
+		4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7757D2797F19E009CC655 /* String + Extension.swift */; };
+		4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7757F2797FB20009CC655 /* BaseViewController.swift */; };
+		4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758427982B45009CC655 /* CertificationViewController.swift */; };
+		4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758627982D44009CC655 /* CertificationViewModel.swift */; };
+		4CF7758A27982D87009CC655 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758927982D87009CC655 /* Observable.swift */; };
+		4CF7758E27982EE1009CC655 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758D27982EE1009CC655 /* APIService.swift */; };
+		4CF7759027982EF4009CC655 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758F27982EF4009CC655 /* EndPoint.swift */; };
+		4CF775922798316F009CC655 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF775912798316F009CC655 /* HomeViewController.swift */; };
+		4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF77593279831AE009CC655 /* CerMessageViewController.swift */; };
+		4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF77595279834A0009CC655 /* UIButton + Extension.swift */; };
+		4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */; };
+		4CF7759B27983BB5009CC655 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = usKet_HobbyFriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4C0DBBD9279529D8005DBE66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C0DBBDE279529DA005DBE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C0DBBE1279529DA005DBE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C0DBBE3279529DA005DBE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../SeSAC_자료/17주차/SeSAC_SPL/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CF7756727970FDC009CC655 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		4CF7756F2797B16A009CC655 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../Downloads/Noto_Sans_KR/OFL.txt; sourceTree = "<group>"; };
+		4CF775732797CD8F009CC655 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
+		4CF775772797E7B5009CC655 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		4CF775792797E7CB009CC655 /* UITextView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extension.swift"; sourceTree = "<group>"; };
+		4CF7757B2797EF15009CC655 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
+		4CF7757D2797F19E009CC655 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		4CF7757F2797FB20009CC655 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		4CF7758427982B45009CC655 /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
+		4CF7758627982D44009CC655 /* CertificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewModel.swift; sourceTree = "<group>"; };
+		4CF7758927982D87009CC655 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		4CF7758D27982EE1009CC655 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		4CF7758F27982EF4009CC655 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		4CF775912798316F009CC655 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4CF77593279831AE009CC655 /* CerMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CerMessageViewController.swift; sourceTree = "<group>"; };
+		4CF77595279834A0009CC655 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
+		4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +87,7 @@
 				4CF7756227970B26009CC655 /* Rswift in Frameworks */,
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
 				4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */,
+				4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */,
 				4CF7756B27971EF6009CC655 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,14 +114,19 @@
 		4C0DBBD4279529D8005DBE66 /* usKet_HobbyFriend */ = {
 			isa = PBXGroup;
 			children = (
-				4CF7756727970FDC009CC655 /* R.generated.swift */,
 				4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */,
 				4C0DBBE3279529DA005DBE66 /* Info.plist */,
-				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
-				4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */,
-				4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */,
 				4C0DBBE0279529DA005DBE66 /* LaunchScreen.storyboard */,
+				4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */,
+				4CF7758927982D87009CC655 /* Observable.swift */,
+				4CF7756727970FDC009CC655 /* R.generated.swift */,
+				4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */,
+				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
+				4CF7758C27982EBF009CC655 /* APIService */,
+				4CF775762797E78D009CC655 /* Extension */,
 				4C0DBC032796E53C005DBE66 /* Model */,
+				4CF775752797CD9E009CC655 /* Onboard + Auth */,
+				4CF7756C2797B156009CC655 /* Resource */,
 				4C0DBC052796E54C005DBE66 /* View */,
 				4C0DBC042796E543005DBE66 /* ViewModel */,
 			);
@@ -109,9 +150,77 @@
 		4C0DBC052796E54C005DBE66 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C0DBBD9279529D8005DBE66 /* ViewController.swift */,
+				4CF7757F2797FB20009CC655 /* BaseViewController.swift */,
+				4CF775912798316F009CC655 /* HomeViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4CF7756C2797B156009CC655 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */,
+				4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */,
+				4CF7756F2797B16A009CC655 /* OFL.txt */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		4CF775752797CD9E009CC655 /* Onboard + Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4CF7758227982A9F009CC655 /* Model */,
+				4CF7758127982A83009CC655 /* View */,
+				4CF7758327982AA6009CC655 /* ViewModel */,
+			);
+			path = "Onboard + Auth";
+			sourceTree = "<group>";
+		};
+		4CF775762797E78D009CC655 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4CF775772797E7B5009CC655 /* UILabel + Extension.swift */,
+				4CF775792797E7CB009CC655 /* UITextView + Extension.swift */,
+				4CF7757B2797EF15009CC655 /* UIFont + Extension.swift */,
+				4CF7757D2797F19E009CC655 /* String + Extension.swift */,
+				4CF77595279834A0009CC655 /* UIButton + Extension.swift */,
+				4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4CF7758127982A83009CC655 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4CF775732797CD8F009CC655 /* OnboardViewController.swift */,
+				4CF7758427982B45009CC655 /* CertificationViewController.swift */,
+				4CF77593279831AE009CC655 /* CerMessageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4CF7758227982A9F009CC655 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4CF7758327982AA6009CC655 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4CF7758627982D44009CC655 /* CertificationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4CF7758C27982EBF009CC655 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+				4CF7758D27982EE1009CC655 /* APIService.swift */,
+				4CF7758F27982EF4009CC655 /* EndPoint.swift */,
+			);
+			path = APIService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +251,7 @@
 				4C0DBBFF27955935005DBE66 /* SnapKit */,
 				4CF7756127970B26009CC655 /* Rswift */,
 				4CF7756A27971EF6009CC655 /* TextFieldEffects */,
+				4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */,
 			);
 			productName = usKet_HobbyFriend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
@@ -176,6 +286,7 @@
 				4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
 				4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+				4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -191,9 +302,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF775722797B16A009CC655 /* OFL.txt in Resources */,
+				4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */,
 				4C0DBBE2279529DA005DBE66 /* LaunchScreen.storyboard in Resources */,
 				4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */,
 				4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */,
+				4CF775712797B16A009CC655 /* NotoSansKR-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,9 +341,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0DBBDA279529D8005DBE66 /* ViewController.swift in Sources */,
+				4CF7757C2797EF15009CC655 /* UIFont + Extension.swift in Sources */,
+				4CF775782797E7B5009CC655 /* UILabel + Extension.swift in Sources */,
 				4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */,
+				4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */,
+				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
+				4CF775922798316F009CC655 /* HomeViewController.swift in Sources */,
+				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
+				4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */,
+				4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */,
+				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
+				4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */,
+				4CF7759B27983BB5009CC655 /* UITextField + Extension.swift in Sources */,
+				4CF7758E27982EE1009CC655 /* APIService.swift in Sources */,
 				4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */,
+				4CF7757A2797E7CC009CC655 /* UITextView + Extension.swift in Sources */,
+				4CF7759027982EF4009CC655 /* EndPoint.swift in Sources */,
+				4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */,
 				4CF7756827970FDC009CC655 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,7 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = usKet_HobbyFriend/usKet_HobbyFriend.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
@@ -397,7 +525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = usKet_HobbyFriend/usKet_HobbyFriend.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2EZ5QWFYX2;
@@ -476,6 +604,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -528,6 +664,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
 			productName = TextFieldEffects;
+		};
+		4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
