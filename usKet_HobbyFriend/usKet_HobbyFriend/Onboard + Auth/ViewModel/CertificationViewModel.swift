@@ -87,193 +87,33 @@ class CertificationViewModel {
     }
     //Firebase idToken
     func getIdToken() {
+        
         let credential = PhoneAuthProvider.provider().credential(
             withVerificationID: UserDefaults.standard.string(forKey: "authVerificationID")!,
             verificationCode: validText.value
         )
-        
+        //로그인을 해야 idToken을 받아 올 수 있음!
         Auth.auth().signIn(with: credential) { authResult, error in
-            
-            if let errCode = AuthErrorCode(rawValue: error!._code) {
+            //에러가 있다면 바로 리턴
+            if let error = error {
+                
+                print("AuthError(getIdToken): ",error.localizedDescription)
+                self.errorMessage.value = "다시 시도해주세요"
+                return
 
-                switch errCode {
-                  
-                case .invalidCustomToken:
-                    <#code#>
-                case .customTokenMismatch:
-                    <#code#>
-                case .invalidCredential:
-                    <#code#>
-                case .userDisabled:
-                    <#code#>
-                case .operationNotAllowed:
-                    <#code#>
-                case .emailAlreadyInUse:
-                    <#code#>
-                case .invalidEmail:
-                    <#code#>
-                case .wrongPassword:
-                    <#code#>
-                case .tooManyRequests:
-                    <#code#>
-                case .userNotFound:
-                    <#code#>
-                case .accountExistsWithDifferentCredential:
-                    <#code#>
-                case .requiresRecentLogin:
-                    <#code#>
-                case .providerAlreadyLinked:
-                    <#code#>
-                case .noSuchProvider:
-                    <#code#>
-                case .invalidUserToken:
-                    <#code#>
-                case .networkError:
-                    <#code#>
-                case .userTokenExpired:
-                    <#code#>
-                case .invalidAPIKey:
-                    <#code#>
-                case .userMismatch:
-                    <#code#>
-                case .credentialAlreadyInUse:
-                    <#code#>
-                case .weakPassword:
-                    <#code#>
-                case .appNotAuthorized:
-                    <#code#>
-                case .expiredActionCode:
-                    <#code#>
-                case .invalidActionCode:
-                    <#code#>
-                case .invalidMessagePayload:
-                    <#code#>
-                case .invalidSender:
-                    <#code#>
-                case .invalidRecipientEmail:
-                    <#code#>
-                case .missingEmail:
-                    <#code#>
-                case .missingIosBundleID:
-                    <#code#>
-                case .missingAndroidPackageName:
-                    <#code#>
-                case .unauthorizedDomain:
-                    <#code#>
-                case .invalidContinueURI:
-                    <#code#>
-                case .missingContinueURI:
-                    <#code#>
-                case .missingPhoneNumber:
-                    <#code#>
-                case .invalidPhoneNumber:
-                    <#code#>
-                case .missingVerificationCode:
-                    <#code#>
-                case .invalidVerificationCode:
-                    <#code#>
-                case .missingVerificationID:
-                    <#code#>
-                case .invalidVerificationID:
-                    <#code#>
-                case .missingAppCredential:
-                    <#code#>
-                case .invalidAppCredential:
-                    <#code#>
-                case .sessionExpired:
-                    <#code#>
-                case .quotaExceeded:
-                    <#code#>
-                case .missingAppToken:
-                    <#code#>
-                case .notificationNotForwarded:
-                    <#code#>
-                case .appNotVerified:
-                    <#code#>
-                case .captchaCheckFailed:
-                    <#code#>
-                case .webContextAlreadyPresented:
-                    <#code#>
-                case .webContextCancelled:
-                    <#code#>
-                case .appVerificationUserInteractionFailure:
-                    <#code#>
-                case .invalidClientID:
-                    <#code#>
-                case .webNetworkRequestFailed:
-                    <#code#>
-                case .webInternalError:
-                    <#code#>
-                case .webSignInUserInteractionFailure:
-                    <#code#>
-                case .localPlayerNotAuthenticated:
-                    <#code#>
-                case .nullUser:
-                    <#code#>
-                case .dynamicLinkNotActivated:
-                    <#code#>
-                case .invalidProviderID:
-                    <#code#>
-                case .tenantIDMismatch:
-                    <#code#>
-                case .unsupportedTenantOperation:
-                    <#code#>
-                case .invalidDynamicLinkDomain:
-                    <#code#>
-                case .rejectedCredential:
-                    <#code#>
-                case .gameKitNotLinked:
-                    <#code#>
-                case .secondFactorRequired:
-                    <#code#>
-                case .missingMultiFactorSession:
-                    <#code#>
-                case .missingMultiFactorInfo:
-                    <#code#>
-                case .invalidMultiFactorSession:
-                    <#code#>
-                case .multiFactorInfoNotFound:
-                    <#code#>
-                case .adminRestrictedOperation:
-                    <#code#>
-                case .unverifiedEmail:
-                    <#code#>
-                case .secondFactorAlreadyEnrolled:
-                    <#code#>
-                case .maximumSecondFactorCountExceeded:
-                    <#code#>
-                case .unsupportedFirstFactor:
-                    <#code#>
-                case .emailChangeNeedsVerification:
-                    <#code#>
-                case .missingOrInvalidNonce:
-                    <#code#>
-                case .missingClientIdentifier:
-                    <#code#>
-                case .keychainError:
-                    <#code#>
-                case .internalError:
-                    <#code#>
-                case .malformedJWT:
-                    <#code#>
-                @unknown default:
-                    <#code#>
-                }
-            if let errorCode : AuthErrorCode = AuthErrorCode(rawValue:  )
+            } else {
+                
                 let currentUser = Auth.auth().currentUser
                 
                 currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-                if let error = error {
-                    switch error{
-                        
-                    default:
-                        <#code#>
+                    if let error = error {
+                        print("AuthError(getIdTokenForcing): ",error)
+                        self.errorMessage.value = "다시 시도해주세요"
+                        return
                     }
-                    return
+                    // Send token to your backend via HTTPS
+                    //MARK: 여기서 서버로부터 사용자의 정보를 확인(get, /user)
                 }
-                
-                // Send token to your backend via HTTPS
-                // ...
             }
         }
     }

@@ -184,6 +184,7 @@ class CerMessageViewController : BaseViewController {
     
     @objc
     func toHomeOrSign(_ sender : UIButton){
+        //MARK: ID토큰을 요청 -> (성공, 실패) 분기처리 / 성공시 서버에서 정보확인에 대해 성공일경우와 201 경우 분기처리
         
         
     }
