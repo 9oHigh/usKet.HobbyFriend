@@ -8,6 +8,7 @@
 import UIKit
 
 extension UILabel {
+    
     //MARK: multiple 적용
     func getLineHeightMultiple(text: String?, lineHeight: CGFloat, multiple : CGFloat) {
         
@@ -42,8 +43,17 @@ extension UILabel {
         self.numberOfLines = 0
         self.text = text
         self.textAlignment = .center
-        self.tintColor = .black
+        self.tintColor = UIColor(resource: R.color.basicBlack)
         self.font = UIFont.DisplayR20
+    }
+    
+    func subfitToLogin(text: String){
+        
+        self.numberOfLines = 0
+        self.text = text
+        self.textAlignment = .center
+        self.tintColor = UIColor(resource: R.color.gray7)
+        self.font = UIFont.toTitleR16
     }
     
 }

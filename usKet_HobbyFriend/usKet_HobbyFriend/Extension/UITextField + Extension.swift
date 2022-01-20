@@ -24,6 +24,7 @@ extension UITextField {
     func fitToLogin(color : UIColor){
         
         addBottomLine(color: color)
+        backgroundColor = UIColor(resource: R.color.basicWhite)
         textColor = .black
         font = UIFont.toTitleR14
     }

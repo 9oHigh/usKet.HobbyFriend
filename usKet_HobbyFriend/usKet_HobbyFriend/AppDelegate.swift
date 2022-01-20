@@ -15,12 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //Firebase
         FirebaseApp.configure()
         
+        //Notification
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in }
         
         application.registerForRemoteNotifications()
+        
+        //Keyboard
         IQKeyboardManager.shared.enable = true
+        
+        //UIAppearence - NavigationBar
+        UINavigationBar.appearance().backIndicatorImage = R.image.letfArrow()
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = R.image.letfArrow()
+        UINavigationBar.appearance().tintColor = UIColor(resource:R.color.basicBlack)
+
         return true
     }
 

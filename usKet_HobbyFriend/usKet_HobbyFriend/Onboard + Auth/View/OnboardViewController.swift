@@ -189,10 +189,13 @@ class OnboardViewController : UIViewController {
     
     @objc
     func toLoginPage(_ sender : UIButton){
-            
+        
         let loginVC = CertificationViewController()
-        self.view.window?.rootViewController = UINavigationController(rootViewController: loginVC)
-        self.view.window?.makeKeyAndVisible()
+        
+        UIView.transition(with: self.view.window!, duration: 0.3, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+            self.view.window?.rootViewController = UINavigationController(rootViewController: loginVC)
+            self.view.window?.makeKeyAndVisible()
+        }, completion: nil)
     }
 }
 extension OnboardViewController : UIScrollViewDelegate {

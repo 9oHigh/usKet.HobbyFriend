@@ -22,7 +22,6 @@
 		4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
-		4CF7756B27971EF6009CC655 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756A27971EF6009CC655 /* TextFieldEffects */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
 		4CF775712797B16A009CC655 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */; };
 		4CF775722797B16A009CC655 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756F2797B16A009CC655 /* OFL.txt */; };
@@ -42,6 +41,7 @@
 		4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF77595279834A0009CC655 /* UIButton + Extension.swift */; };
 		4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */; };
 		4CF7759B27983BB5009CC655 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */; };
+		4CF7759E279877AD009CC655 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7759D279877AD009CC655 /* UIViewController + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +71,7 @@
 		4CF77593279831AE009CC655 /* CerMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CerMessageViewController.swift; sourceTree = "<group>"; };
 		4CF77595279834A0009CC655 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
+		4CF7759D279877AD009CC655 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +89,6 @@
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
 				4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */,
 				4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */,
-				4CF7756B27971EF6009CC655 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,8 +124,8 @@
 				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
 				4CF7758C27982EBF009CC655 /* APIService */,
 				4CF775762797E78D009CC655 /* Extension */,
-				4C0DBC032796E53C005DBE66 /* Model */,
 				4CF775752797CD9E009CC655 /* Onboard + Auth */,
+				4C0DBC032796E53C005DBE66 /* Model */,
 				4CF7756C2797B156009CC655 /* Resource */,
 				4C0DBC052796E54C005DBE66 /* View */,
 				4C0DBC042796E543005DBE66 /* ViewModel */,
@@ -185,6 +185,7 @@
 				4CF7757D2797F19E009CC655 /* String + Extension.swift */,
 				4CF77595279834A0009CC655 /* UIButton + Extension.swift */,
 				4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */,
+				4CF7759D279877AD009CC655 /* UIViewController + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -250,7 +251,6 @@
 				4C0DBBF627954762005DBE66 /* FirebaseMessaging */,
 				4C0DBBFF27955935005DBE66 /* SnapKit */,
 				4CF7756127970B26009CC655 /* Rswift */,
-				4CF7756A27971EF6009CC655 /* TextFieldEffects */,
 				4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */,
 			);
 			productName = usKet_HobbyFriend;
@@ -285,7 +285,6 @@
 				4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
-				4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
@@ -356,6 +355,7 @@
 				4CF7758E27982EE1009CC655 /* APIService.swift in Sources */,
 				4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */,
 				4CF7757A2797E7CC009CC655 /* UITextView + Extension.swift in Sources */,
+				4CF7759E279877AD009CC655 /* UIViewController + Extension.swift in Sources */,
 				4CF7759027982EF4009CC655 /* EndPoint.swift in Sources */,
 				4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */,
 				4CF7756827970FDC009CC655 /* R.generated.swift in Sources */,
@@ -596,14 +596,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
@@ -659,11 +651,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
-		};
-		4CF7756A27971EF6009CC655 /* TextFieldEffects */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4CF7756927971EF6009CC655 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
-			productName = TextFieldEffects;
 		};
 		4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

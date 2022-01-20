@@ -110,36 +110,36 @@ struct R: Rswift.Validatable {
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
-    /// Color `basicBlack`.
-    static let basicBlack = Rswift.ColorResource(bundle: R.hostingBundle, name: "basicBlack")
-    /// Color `basicWhite`.
-    static let basicWhite = Rswift.ColorResource(bundle: R.hostingBundle, name: "basicWhite")
-    /// Color `brandGreen`.
-    static let brandGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "brandGreen")
-    /// Color `brandWhitegreen`.
-    static let brandWhitegreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "brandWhitegreen")
-    /// Color `brandYellowgreen`.
-    static let brandYellowgreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "brandYellowgreen")
-    /// Color `gray1`.
-    static let gray1 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray1")
-    /// Color `gray2`.
-    static let gray2 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray2")
-    /// Color `gray3`.
-    static let gray3 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray3")
-    /// Color `gray4`.
-    static let gray4 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray4")
-    /// Color `gray5`.
-    static let gray5 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray5")
-    /// Color `gray6`.
-    static let gray6 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray6")
-    /// Color `gray7`.
-    static let gray7 = Rswift.ColorResource(bundle: R.hostingBundle, name: "gray7")
-    /// Color `systemError`.
-    static let systemError = Rswift.ColorResource(bundle: R.hostingBundle, name: "systemError")
-    /// Color `systemFocus`.
-    static let systemFocus = Rswift.ColorResource(bundle: R.hostingBundle, name: "systemFocus")
-    /// Color `systemSuccess`.
-    static let systemSuccess = Rswift.ColorResource(bundle: R.hostingBundle, name: "systemSuccess")
+    /// Color `BasicBlack`.
+    static let basicBlack = Rswift.ColorResource(bundle: R.hostingBundle, name: "BasicBlack")
+    /// Color `BasicWhite`.
+    static let basicWhite = Rswift.ColorResource(bundle: R.hostingBundle, name: "BasicWhite")
+    /// Color `BrandGreen`.
+    static let brandGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "BrandGreen")
+    /// Color `BrandWhitegreen`.
+    static let brandWhitegreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "BrandWhitegreen")
+    /// Color `BrandYellowgreen`.
+    static let brandYellowgreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "BrandYellowgreen")
+    /// Color `Gray1`.
+    static let gray1 = Rswift.ColorResource(bundle: R.hostingBundle, name: "Gray1")
+    /// Color `Gray2`.
+    static let gray2 = Rswift.ColorResource(bundle: R.hostingBundle, name: "Gray2")
+    /// Color `Gray3`.
+    static let gray3 = Rswift.ColorResource(bundle: R.hostingBundle, name: "Gray3")
+    /// Color `Gray4`.
+    static let gray4 = Rswift.ColorResource(bundle: R.hostingBundle, name: "Gray4")
+    /// Color `Gray5`.
+    static let gray5 = Rswift.ColorResource(bundle: R.hostingBundle, name: "Gray5")
+    /// Color `Gray6`.
+    static let gray6 = Rswift.ColorResource(bundle: R.hostingBundle, name: "Gray6")
+    /// Color `Gray7`.
+    static let gray7 = Rswift.ColorResource(bundle: R.hostingBundle, name: "Gray7")
+    /// Color `SystemError`.
+    static let systemError = Rswift.ColorResource(bundle: R.hostingBundle, name: "SystemError")
+    /// Color `SystemFocus`.
+    static let systemFocus = Rswift.ColorResource(bundle: R.hostingBundle, name: "SystemFocus")
+    /// Color `SystemSuccess`.
+    static let systemSuccess = Rswift.ColorResource(bundle: R.hostingBundle, name: "SystemSuccess")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
@@ -151,7 +151,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "basicBlack", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BasicBlack", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func basicBlack(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -160,7 +160,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "basicWhite", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BasicWhite", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func basicWhite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -169,7 +169,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "brandGreen", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BrandGreen", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func brandGreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -178,7 +178,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "brandWhitegreen", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BrandWhitegreen", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func brandWhitegreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -187,7 +187,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "brandYellowgreen", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BrandYellowgreen", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func brandYellowgreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -196,7 +196,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray1", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray1", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func gray1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -205,7 +205,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray2", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray2", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func gray2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -214,7 +214,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray3", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray3", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func gray3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -223,7 +223,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray4", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray4", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func gray4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -232,7 +232,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray5", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray5", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func gray5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -241,7 +241,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray6", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray6", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func gray6(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -250,7 +250,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "gray7", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray7", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func gray7(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -259,7 +259,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "systemError", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "SystemError", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func systemError(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -268,7 +268,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "systemFocus", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "SystemFocus", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func systemFocus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -277,7 +277,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "systemSuccess", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "SystemSuccess", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func systemSuccess(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -294,7 +294,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "basicBlack", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BasicBlack", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func basicBlack(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.basicBlack.name)
@@ -302,7 +302,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "basicWhite", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BasicWhite", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func basicWhite(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.basicWhite.name)
@@ -310,7 +310,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "brandGreen", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BrandGreen", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func brandGreen(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.brandGreen.name)
@@ -318,7 +318,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "brandWhitegreen", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BrandWhitegreen", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func brandWhitegreen(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.brandWhitegreen.name)
@@ -326,7 +326,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "brandYellowgreen", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "BrandYellowgreen", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func brandYellowgreen(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.brandYellowgreen.name)
@@ -334,7 +334,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray1", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray1", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func gray1(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.gray1.name)
@@ -342,7 +342,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray2", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray2", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func gray2(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.gray2.name)
@@ -350,7 +350,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray3", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray3", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func gray3(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.gray3.name)
@@ -358,7 +358,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray4", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray4", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func gray4(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.gray4.name)
@@ -366,7 +366,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray5", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray5", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func gray5(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.gray5.name)
@@ -374,7 +374,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray6", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray6", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func gray6(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.gray6.name)
@@ -382,7 +382,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "gray7", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "Gray7", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func gray7(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.gray7.name)
@@ -390,7 +390,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "systemError", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "SystemError", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func systemError(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.systemError.name)
@@ -398,7 +398,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "systemFocus", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "SystemFocus", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func systemFocus(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.systemFocus.name)
@@ -406,7 +406,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "systemSuccess", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "SystemSuccess", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func systemSuccess(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.systemSuccess.name)
@@ -515,10 +515,10 @@ struct R: Rswift.Validatable {
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
     /// Image `rightArrow`.
     static let rightArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "rightArrow")
+    /// Image `seSAC`.
+    static let seSAC = Rswift.ImageResource(bundle: R.hostingBundle, name: "seSAC")
     /// Image `search`.
     static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
-    /// Image `sesac`.
-    static let sesac = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac")
     /// Image `siren`.
     static let siren = Rswift.ImageResource(bundle: R.hostingBundle, name: "siren")
     /// Image `tabGift`.
@@ -656,16 +656,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "search", bundle: ..., traitCollection: ...)`
-    static func search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
+    /// `UIImage(named: "seSAC", bundle: ..., traitCollection: ...)`
+    static func seSAC(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.seSAC, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "sesac", bundle: ..., traitCollection: ...)`
-    static func sesac(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.sesac, compatibleWith: traitCollection)
+    /// `UIImage(named: "search", bundle: ..., traitCollection: ...)`
+    static func search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
     }
     #endif
 
