@@ -11,8 +11,16 @@ import Rswift
 class BirthViewController : BaseViewController {
     
     var informationLabel = UILabel()
-    var textField = UITextField()
-    var reciveButton = UIButton()
+    //middle View
+    var dateFieldView = UIView()
+    //스택뷰로 넣어보자 다음에는!
+    var yearView = DateTextView()
+    var monthView = DateTextView()
+    var dayView = DateTextView()
+    
+    var nextButton = UIButton()
+    var datePicker = UIDatePicker()
+    
     var viewModel = CertificationViewModel()
     var errorMessage : String = ""
     
@@ -30,25 +38,38 @@ class BirthViewController : BaseViewController {
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
         //Information Label
-        informationLabel.fitToLogin(text: "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요")
+        informationLabel.fitToLogin(text: "생년월일을 알려주세요")
 
-        //TextField
-        textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
-        textField.placeholder = "휴대전화 번호(-없이 숫자만 입력)"
-
-        //TextField Target
-        textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
+        //dateFieldView
+        dateFieldView.backgroundColor = UIColor(resource: R.color.basicWhite)
+        yearView.dateLabel.text = "년"
+        monthView.dateLabel.text = "월"
+        dayView.dateLabel.text = "일"
+        
+        datePicker.backgroundColor = UIColor(resource: R.color.gray4)
+        datePicker.becomeFirstResponder()
+        datePicker.locale = .current
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.date = Date()
+        datePicker.addTarget(self, action: #selector(dateFieldChanged(_:)), for: .valueChanged)
 
         //Button
-        reciveButton.fitToLogin(title: "인증문자 받기")
-        reciveButton.addTarget(self, action: #selector(toReciveMessage), for: .touchUpInside)
+        nextButton.fitToLogin(title: "다음")
+        nextButton.addTarget(self, action: #selector(nextPage(_:)), for: .touchUpInside)
     }
     
     override func setUI() {
         
         view.addSubview(informationLabel)
-        view.addSubview(textField)
-        view.addSubview(reciveButton)
+        
+        view.addSubview(dateFieldView)
+        dateFieldView.addSubview(yearView)
+        dateFieldView.addSubview(monthView)
+        dateFieldView.addSubview(dayView)
+        
+        view.addSubview(nextButton)
+        view.addSubview(datePicker)
     }
     
     override func setConstraints() {
@@ -58,78 +79,85 @@ class BirthViewController : BaseViewController {
             make.centerY.equalToSuperview().multipliedBy(0.5)
         }
 
-        textField.snp.makeConstraints { make in
+        dateFieldView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().multipliedBy(0.75)
             make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(48)
         }
-
-        reciveButton.snp.makeConstraints { make in
+        //스택뷰로 넣을걸!
+        yearView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.height.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.33)
+            make.trailing.equalTo(monthView.snp.leading)
+        }
+        
+        monthView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.height.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.33)
+            make.leading.equalTo(yearView.snp.trailing)
+            make.trailing.equalTo(dayView.snp.leading)
+        }
+        
+        dayView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.33)
+            make.leading.equalTo(monthView.snp.trailing)
+        }
+        
+        nextButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().multipliedBy(1)
-            make.width.equalToSuperview().multipliedBy(0.9)
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.height.equalTo(48)
         }
+        
+        datePicker.snp.makeConstraints { make in
+            
+            make.leading.bottom.trailing.equalToSuperview()
+            make.top.equalTo(nextButton.snp.bottom).offset(50)
+        }
+        
     }
     
     override func bind() {
         
-        viewModel.validText.bind { [weak self] phoneNumber in
-            //유효성검사
-            self?.viewModel.phoneValidate(phoneNumber: phoneNumber)
-
-            //텍스트필드 확인
-            phoneNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
-        }
-
-        viewModel.validFlag.bind { [weak self] sign in
-            self?.reciveButton.backgroundColor = sign ?
-            UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
-        }
-
-        viewModel.errorMessage.bind { [weak self] error in
-            self?.errorMessage = error
-        }
+//        viewModel.validText.bind { [weak self] phoneNumber in
+//            //유효성검사
+//            self?.viewModel.phoneValidate(phoneNumber: phoneNumber)
+//
+//            //텍스트필드 확인
+//            phoneNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
+//        }
+//
+//        viewModel.validFlag.bind { [weak self] sign in
+//            self?.nextButton.backgroundColor = sign ?
+//            UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
+//        }
+//
+//        viewModel.errorMessage.bind { [weak self] error in
+//            self?.errorMessage = error
+//        }
     }
     
     @objc
-    func textFieldEditingChanged(_ textField : UITextField) {
+    func dateFieldChanged(_ datePicker : UIDatePicker) {
+        //유저디포트에 저장할 값
+        viewModel.validText.value = datePicker.date.toOriginalString()
+        //화면에 보여줄 값
 
-        guard let phoneNumber = textField.text else { return }
-
-        textField.text = phoneNumber.count <= 12 ? phoneNumber.toPhoneNumberPattern(pattern: "###-###-####", replacmentCharacter: "#") :
-        phoneNumber.toPhoneNumberPattern(pattern: "###-####-####", replacmentCharacter: "#")
-
-        viewModel.validText.value = textField.text!.replacingOccurrences(of: "-", with: "")
+       
     }
 
     @objc
-    func toReciveMessage(){
-        //유효한 형식인가
-        switch viewModel.validFlag.value {
-            //유효한 케이스
-        case true:
-            //인증문자 메소드 수행
-            viewModel.certificationPhone {
-                //바인딩되어있는 에러메세지가 값이 없다면
-                if self.errorMessage == ""{
-
-                    self.showToast(message: "번호 인증을 시작합니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.transViewController(nextType: .push, controller: CerMessageViewController())
-                    }
-                } else {
-                    //에러 발생
-                    self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-                }
-            }
-            //유효하지 않은 케이스
-        case false:
-            print("toReciveMessage NO: ",self.viewModel.validFlag.value)
-            self.showToast(message: "잘못된 전화번호 형식입니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-        }
+    func nextPage(_ sender: UIButton){
+        //self.transViewController(nextType: .push, controller: EmailViewController())
     }
     
 }

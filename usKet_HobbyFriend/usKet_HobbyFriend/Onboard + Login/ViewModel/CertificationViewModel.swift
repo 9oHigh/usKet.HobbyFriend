@@ -170,6 +170,17 @@ class CertificationViewModel {
         validFlag.value = result
     }
     
+    //MARK: Birth
+    //추가 변수 3개 ( 년, 월, 일 )
+    var year : Observable<String> = Observable("")
+    var month : Observable<String> = Observable("")
+    var day : Observable<String> = Observable("")
+    
+    //생일 유효성
+    func birthValidate(){
+        //만 17세 이상인가
+    }
+    
     //MARK: Email
     //이메일 유효성
     func emailVlidate(){
