@@ -11,6 +11,8 @@ import SnapKit
 
 class OnboardViewController : UIViewController {
     
+    lazy var toSignUp = LoginSingleTon()
+    
     lazy var locationView : UIView = {
         //반환할 뷰
         let view = UIView()
@@ -157,6 +159,8 @@ class OnboardViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //온보딩 저장 - 필요없지만 확실한 구분을 위해 해두기
+        toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "onboard")
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         

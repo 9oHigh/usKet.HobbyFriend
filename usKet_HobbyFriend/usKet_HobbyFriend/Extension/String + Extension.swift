@@ -52,7 +52,6 @@ extension String {
         
         return pureNumber
     }
-    
 }
 
 

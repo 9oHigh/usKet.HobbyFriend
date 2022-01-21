@@ -34,6 +34,11 @@ class CerMessageViewController : BaseViewController {
         bind()
         //타이머 시작
         viewModel.startTimer()
+        self.showToast(message: "인증번호를 보냈습니다.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.startTimer()
     }
     
     override func setConfigure() {
@@ -52,6 +57,7 @@ class CerMessageViewController : BaseViewController {
         //TextField + FirstResponder : 키보드 바로 올라오게
         textField.becomeFirstResponder()
         textField.textContentType = .oneTimeCode //자동완성
+        textField.keyboardType = .numberPad // 숫자패드
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
         textField.placeholder = "인증번호 입력"
         textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
@@ -138,8 +144,10 @@ class CerMessageViewController : BaseViewController {
         }
         
         viewModel.validFlag.bind { [weak self] sign in
-            //유효하다면
+            
             self?.certiButton.backgroundColor = sign ? UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
+            
+            self?.certiButton.isEnabled = sign ? true : false
         }
         
         viewModel.errorMessage.bind { [weak self] error in
@@ -166,6 +174,7 @@ class CerMessageViewController : BaseViewController {
     
     @objc
     func resendMessage(_ sender : UIButton){
+        
         viewModel.certificationPhone {
             
             if self.errorMessage == ""{
@@ -173,6 +182,7 @@ class CerMessageViewController : BaseViewController {
                 //타이머도 다시
                 self.viewModel.timer.value = 60
                 self.viewModel.startTimer()
+                self.viewModel.validText.value = ""
                 self.showToast(message: "인증번호를 재전송합니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
                 
             } else {
@@ -185,7 +195,37 @@ class CerMessageViewController : BaseViewController {
     @objc
     func toHomeOrSign(_ sender : UIButton){
         //MARK: ID토큰을 요청 -> (성공, 실패) 분기처리 / 성공시 서버에서 정보확인에 대해 성공일경우와 201 경우 분기처리
-        
+        viewModel.loginToFIR { success in
+            
+            guard success != nil else {
+                self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
+                return
+            }
+            self.viewModel.getIdToken { statusCode in
+                
+                DispatchQueue.main.async {
+                    print("새싹가는중..2")
+                    switch statusCode {
+                    case 200: //To Home
+                        print("To Home")
+                        UIView.transition(with: self.view.window!, duration: 0.2, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+                            self.view.window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+                            self.view.window?.makeKeyAndVisible()
+                        }, completion: nil)
+                        
+                    case 201: //To Nickname
+                        print("To Nick")
+                        UIView.transition(with: self.view.window!, duration: 0.2, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+                            self.view.window?.rootViewController = NicknameViewController()
+                            self.view.window?.makeKeyAndVisible()
+                        }, completion: nil)
+                    default :
+                        self.showToast(message: "오류 발생, 다시 시도해주세요.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
+                    }
+                }
+                
+            }
+        }
         
     }
 }

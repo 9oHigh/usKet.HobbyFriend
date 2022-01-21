@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0D759F279A734000566CC0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D759E279A734000566CC0 /* UserModel.swift */; };
+		4C0D75A1279A8AAE00566CC0 /* LoginSingleTon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A0279A8AAE00566CC0 /* LoginSingleTon.swift */; };
+		4C0D75A3279AD88600566CC0 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */; };
+		4C0D75A5279AD8F400566CC0 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */; };
+		4C0D75A7279AD90000566CC0 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A6279AD90000566CC0 /* EmailViewController.swift */; };
+		4C0D75A9279AD90E00566CC0 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A8279AD90E00566CC0 /* GenderViewController.swift */; };
 		4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */; };
 		4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */; };
 		4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBDE279529DA005DBE66 /* Assets.xcassets */; };
@@ -45,6 +51,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0D759E279A734000566CC0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		4C0D75A0279A8AAE00566CC0 /* LoginSingleTon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSingleTon.swift; sourceTree = "<group>"; };
+		4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
+		4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
+		4C0D75A6279AD90000566CC0 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		4C0D75A8279AD90E00566CC0 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
 		4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = usKet_HobbyFriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,13 +130,14 @@
 				4C0DBBE3279529DA005DBE66 /* Info.plist */,
 				4C0DBBE0279529DA005DBE66 /* LaunchScreen.storyboard */,
 				4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */,
-				4CF7758927982D87009CC655 /* Observable.swift */,
-				4CF7756727970FDC009CC655 /* R.generated.swift */,
 				4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */,
+				4CF7758927982D87009CC655 /* Observable.swift */,
+				4C0D75A0279A8AAE00566CC0 /* LoginSingleTon.swift */,
+				4CF7756727970FDC009CC655 /* R.generated.swift */,
 				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
 				4CF7758C27982EBF009CC655 /* APIService */,
 				4CF775762797E78D009CC655 /* Extension */,
-				4CF775752797CD9E009CC655 /* Onboard + Auth */,
+				4CF775752797CD9E009CC655 /* Onboard + Login */,
 				4C0DBC032796E53C005DBE66 /* Model */,
 				4CF7756C2797B156009CC655 /* Resource */,
 				4C0DBC052796E54C005DBE66 /* View */,
@@ -166,14 +179,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		4CF775752797CD9E009CC655 /* Onboard + Auth */ = {
+		4CF775752797CD9E009CC655 /* Onboard + Login */ = {
 			isa = PBXGroup;
 			children = (
 				4CF7758227982A9F009CC655 /* Model */,
 				4CF7758127982A83009CC655 /* View */,
 				4CF7758327982AA6009CC655 /* ViewModel */,
 			);
-			path = "Onboard + Auth";
+			path = "Onboard + Login";
 			sourceTree = "<group>";
 		};
 		4CF775762797E78D009CC655 /* Extension */ = {
@@ -196,6 +209,10 @@
 				4CF775732797CD8F009CC655 /* OnboardViewController.swift */,
 				4CF7758427982B45009CC655 /* CertificationViewController.swift */,
 				4CF77593279831AE009CC655 /* CerMessageViewController.swift */,
+				4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */,
+				4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */,
+				4C0D75A6279AD90000566CC0 /* EmailViewController.swift */,
+				4C0D75A8279AD90E00566CC0 /* GenderViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +220,7 @@
 		4CF7758227982A9F009CC655 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4C0D759E279A734000566CC0 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,14 +358,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0D75A3279AD88600566CC0 /* NickNameViewController.swift in Sources */,
 				4CF7757C2797EF15009CC655 /* UIFont + Extension.swift in Sources */,
 				4CF775782797E7B5009CC655 /* UILabel + Extension.swift in Sources */,
 				4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */,
 				4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */,
 				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
+				4C0D75A1279A8AAE00566CC0 /* LoginSingleTon.swift in Sources */,
 				4CF775922798316F009CC655 /* HomeViewController.swift in Sources */,
 				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
 				4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */,
+				4C0D75A5279AD8F400566CC0 /* BirthViewController.swift in Sources */,
+				4C0D75A9279AD90E00566CC0 /* GenderViewController.swift in Sources */,
 				4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */,
 				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
 				4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */,
@@ -356,8 +378,10 @@
 				4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */,
 				4CF7757A2797E7CC009CC655 /* UITextView + Extension.swift in Sources */,
 				4CF7759E279877AD009CC655 /* UIViewController + Extension.swift in Sources */,
+				4C0D75A7279AD90000566CC0 /* EmailViewController.swift in Sources */,
 				4CF7759027982EF4009CC655 /* EndPoint.swift in Sources */,
 				4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */,
+				4C0D759F279A734000566CC0 /* UserModel.swift in Sources */,
 				4CF7756827970FDC009CC655 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

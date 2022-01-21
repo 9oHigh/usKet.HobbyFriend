@@ -13,60 +13,56 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        lazy var toSignUp = LoginSingleTon()
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        window?.windowScene = windowScene
         
-        //첫 로그인이 아닌 회원가입 여부를 판단해야함
-//        if isFirstLogin() {
-            window?.windowScene = windowScene
+        switch toSignUp.userState() {
+        //온보딩
+        case "onboard" :
+            print(toSignUp.userState())
             window?.rootViewController = OnboardViewController()
             window?.makeKeyAndVisible()
-            
-//        } else {
-//            //바로 메인으로 진입
-//            window?.windowScene = windowScene
-//            window?.rootViewController = UITabViewController(rootViewController: ViewController())
-//            window?.makeKeyAndVisible()
-//        }
+        //닉네임
+        case "nickName":
+            print(toSignUp.userState())
+            window?.rootViewController = UINavigationController(rootViewController:  NicknameViewController())
+            window?.makeKeyAndVisible()
+        //home
+        case "home":
+            print(toSignUp.userState())
+            window?.rootViewController = HomeViewController()
+            window?.makeKeyAndVisible()
+        //처음 + 오류
+        default :
+            print(toSignUp.userState())
+            window?.rootViewController = OnboardViewController()
+            window?.makeKeyAndVisible()
+        }
+
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+     
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+       
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
+       
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
+       
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
+        
     }
-    
-    //처음 로그인 체크
-    func isFirstLogin() -> Bool{
-        if UserDefaults.standard.bool(forKey: "First Launch") {
-            return false
-        } else {
-            UserDefaults.standard.set(true, forKey: "First Launch")
-            return true
-        }
-    }
-    
 }
 

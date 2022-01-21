@@ -41,7 +41,7 @@ extension UIViewController {
     }
     
     func transViewController(nextType : NextType, controller : UIViewController){
-        
+
         switch nextType {
             
         case .push:
