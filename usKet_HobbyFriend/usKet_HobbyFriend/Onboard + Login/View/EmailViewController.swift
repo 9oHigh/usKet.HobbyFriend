@@ -23,6 +23,7 @@ class EmailViewController : BaseViewController {
         if UserDefaults.standard.string(forKey: "email") != nil {
             let email = UserDefaults.standard.string(forKey: "email")
             viewModel.validText.value = email!
+            print("여기는 이메일:",email)
         }
         setConfigure()
         setUI()

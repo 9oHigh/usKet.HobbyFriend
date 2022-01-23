@@ -23,22 +23,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         switch toSignUp.userState() {
         //온보딩
         case "onboard" :
-            print(toSignUp.userState())
+            print("온보드 :",toSignUp.userState())
             window?.rootViewController = OnboardViewController()
             window?.makeKeyAndVisible()
         //닉네임
         case "nickName":
-            print(toSignUp.userState())
+            print("니크네임 :",toSignUp.userState())
             window?.rootViewController = UINavigationController(rootViewController:  NicknameViewController())
             window?.makeKeyAndVisible()
         //home
         case "home":
-            print(toSignUp.userState())
+            print("호오옴:",toSignUp.userState())
             window?.rootViewController = HomeViewController()
             window?.makeKeyAndVisible()
         //처음 + 오류
         default :
-            print(toSignUp.userState())
+            print("디이포올트 :",toSignUp.userState())
             window?.rootViewController = OnboardViewController()
             window?.makeKeyAndVisible()
         }

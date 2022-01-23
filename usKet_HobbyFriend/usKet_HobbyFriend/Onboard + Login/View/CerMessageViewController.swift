@@ -209,6 +209,7 @@ class CerMessageViewController : BaseViewController {
                 DispatchQueue.main.async {
                     switch statusCode {
                     case 200: //To Home
+                        LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                         self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
                     case 201: //To Nickname
                         self.transViewWithAnimation(isNavigation: true, controller: NicknameViewController())

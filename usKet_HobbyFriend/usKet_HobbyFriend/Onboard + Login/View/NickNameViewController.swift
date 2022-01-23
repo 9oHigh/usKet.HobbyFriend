@@ -21,6 +21,7 @@ class NicknameViewController : BaseViewController {
         
         //MARK: 닉네임 인증 실패시 토스트 메세지 알림
         if errorMessage != "" {
+            viewModel.refreshFCMtoken()
             self.showToast(message: errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
         }
         setConfigure()

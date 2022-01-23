@@ -31,6 +31,7 @@ class BirthViewController : BaseViewController {
             let birthDate : Date = UserDefaults.standard.string(forKey: "birth")!.toDate()
             viewModel.validText.value = birthDate.toOriginalString()
             viewModel.birthDate.value = birthDate.toStringEach()
+            print("여기는 생일:",viewModel.validText.value,viewModel.birthDate.value)
         }
         setConfigure()
         setUI()

@@ -24,10 +24,7 @@ class GenderViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.integer(forKey: "gender") != 2 {
-            let gender = UserDefaults.standard.integer(forKey: "gender")
-            viewModel.validText.value = String(gender)
-        }
+        //흠 없으면 0을 반환해버림.. 다시 줘보자...
         setConfigure()
         setUI()
         setConstraints()
@@ -165,21 +162,22 @@ class GenderViewController : BaseViewController {
     @objc
     private func toNextPage(){
         viewModel.signupToSeSAC { statusCode in
+            
             DispatchQueue.main.async {
                 
-                print("스테이터스 코드:",statusCode)
+                print("SIGNUP CODE:",statusCode)
                 switch statusCode{
                     
                 case 200 : //회원가입 성공, To home
-                    LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                     self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
                 case 201 : //이미 회원가입 되어있는 상태
-                    LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                     self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
                 case 202 : //닉네임 오류
                     let nickNameViewController = NicknameViewController()
                     nickNameViewController.showToast(message: "다른 닉네임으로 변경해주세요", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
                     self.transViewWithAnimation(isNavigation: true, controller: nickNameViewController)
+                case 401 :
+                    self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
                 default :
                     self.showToast(message: "오류 발생, 다시 시도해주세요.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
                 }

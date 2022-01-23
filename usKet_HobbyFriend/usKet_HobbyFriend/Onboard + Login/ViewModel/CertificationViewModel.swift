@@ -125,7 +125,7 @@ class CertificationViewModel {
         let currentUser = Auth.auth().currentUser
         
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-        
+            
             if error != nil {
                 self.errorMessage.value = "오류 발생, 다시 시도해주세요."
                 return
@@ -134,20 +134,26 @@ class CertificationViewModel {
             
             //MARK: 서버로부터 사용자의 정보를 확인(get, /user)
             APIService.getUser(idToken: idToken) { user, statusCode in
-                print("IDTOKEN",idToken)
-                print("FCMTOKEN",UserDefaults.standard.string(forKey: "FCMtoken") ?? "")
+                
                 switch statusCode {
                 case 201 :
                     self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "nickName")
                     onCompletion(201)
                     return
                 case 401 :
-                    self.errorMessage.value = "오류 발생, 다시 시도해주세요"
-                    print("갱신 예정")
+                    self.errorMessage.value = "갱신중.. 잠시만 기다려주세요"
+                    DispatchQueue.main.async {
+                        APIService.updateFCMtoken(idToken: idToken) { statusCode in
+                            if statusCode == 200 {
+                                self.errorMessage.value = "갱신이 완료되었습니다. 다시 시도하세요"
+                            } else {
+                                self.errorMessage.value = "갱신에 실패했습니다. 다시 시도하세요"
+                            }
+                        }
+                    }
                 default :
                     self.errorMessage.value = "오류 발생, 다시 시도해주세요"
                 }
-                self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                 onCompletion(200)
             }
         }
@@ -178,7 +184,7 @@ class CertificationViewModel {
         
         let today = Date().toStringEach() // 오늘을 기준
         let age : Int = abs(Int(birthDate.value.0)! - Int(today.0)!)
-
+        
         if westernAge(age: age, birthMonth: Int(birthDate.value.1)!, birthDay: Int(birthDate.value.2)!) {
             
             self.errorMessage.value = ""
@@ -201,10 +207,10 @@ class CertificationViewModel {
             // 오늘의 달보다 생일 달이 작으면 무조건 17세 미만
             if birthMonth > Int(today.1)! {
                 return false
-            //같으면 일까지 검사
+                //같으면 일까지 검사
             } else if birthMonth == Int(today.1)!{
                 return  birthDay <= Int(today.2)! ? true : false
-            //크다면 만 17세 이상
+                //크다면 만 17세 이상
             } else {
                 return true
             }
@@ -212,9 +218,9 @@ class CertificationViewModel {
     }
     //모든 값이 변환되었나
     public func checkFullDate() -> Bool{
-    if birthDate.value.0 != "" && birthDate.value.1 != "" &&  birthDate.value.2 != ""{
+        if birthDate.value.0 != "" && birthDate.value.1 != "" &&  birthDate.value.2 != ""{
             validFlag.value = true
-        self.errorMessage.value = ""
+            self.errorMessage.value = ""
             return true
         } else {
             validFlag.value = false
@@ -231,14 +237,14 @@ class CertificationViewModel {
         let testEmail = NSPredicate(format: "SELF MATCHES %@", validRegex)
         //반환
         let result = testEmail.evaluate(with: email)
-            
+        
         self.errorMessage.value = result ?
         "" : "형식이 옳바르지 않습니다"
         
         toSignUp.registerUserData(userDataType: .email, variableType: String.self, variable: email)
         
         validFlag.value = result
-    
+        
     }
     //MARK: Gender
     //값가지고오깅
@@ -266,23 +272,84 @@ class CertificationViewModel {
             }
             
             APIService.signUpUser(idToken: idToken) { statusCode in
-                print("IN SIGNUP : ",statusCode)
+                print("IN SIGNUP : ",statusCode!)
                 switch statusCode {
+                case 200 :
+                    onCompletion(200)
+                    self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                 case 201 :
+                    self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                     self.errorMessage.value = "이미 가입이 완료되었습니다"
                     onCompletion(statusCode!)
+                    return
                 case 202 :
+                    self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "nickName")
                     self.errorMessage.value = "사용할 수 없는 닉네임입니다"
                     onCompletion(statusCode!)
+                    return
                 case 401 :
-                    self.errorMessage.value = "갱신 필요"
+                    self.errorMessage.value = "갱신중.. 잠시만 기다려주세요"
+                    DispatchQueue.main.async {
+                        APIService.updateFCMtoken(idToken: idToken) { statusCode in
+                            if statusCode == 200 {
+                                self.errorMessage.value = "갱신이 완료되었습니다. 다시 시도하세요"
+                            } else {
+                                self.errorMessage.value = "갱신에 실패했습니다. 다시 시도하세요"
+                            }
+                        }
+                    }
                     onCompletion(statusCode!)
+                    return
                 default :
                     self.errorMessage.value = "오류 발생, 잠시후 다시 시도해주세요"
                     onCompletion(statusCode!)
+                    return
                 }
-                onCompletion(200)
             }
         }
     }
+    func refreshFCMtoken(){
+        
+        let currentUser = Auth.auth().currentUser
+        
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            
+            guard let idToken = idToken else {
+                self.errorMessage.value = "오류 발생, 잠시후 다시 시도해주세요"
+                return
+            }
+            
+            APIService.signUpUser(idToken: idToken) { statusCode in
+                print("IN SIGNUP : ",statusCode!)
+                switch statusCode {
+                case 201 :
+                    self.errorMessage.value = "이미 가입이 완료되었습니다"
+                   
+                case 202 :
+                    self.errorMessage.value = "사용할 수 없는 닉네임입니다"
+                   
+                case 401 :
+                    self.errorMessage.value = "갱신중.. 잠시만 기다려주세요"
+                    DispatchQueue.main.async {
+                        APIService.updateFCMtoken(idToken: idToken) { statusCode in
+                            if statusCode == 200 {
+                                self.errorMessage.value = "갱신이 완료되었습니다. 다시 시도하세요"
+                                print("갱신완료!")
+                            } else {
+                                self.errorMessage.value = "갱신에 실패했습니다. 다시 시도하세요"
+                                print("갱신실패!")
+                            }
+                        }
+                    }
+                   
+                default :
+                    self.errorMessage.value = "오류 발생, 잠시후 다시 시도해주세요"
+                   
+                }
+                
+            }
+        }
+    }
+
 }
+

@@ -63,6 +63,8 @@ class MyInfoViewController : UIViewController {
                 if statusCode == 200 {
                     LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "onboard")
                     self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
+                } else {
+                    self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
                 }
             }
         }

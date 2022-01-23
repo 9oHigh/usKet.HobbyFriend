@@ -45,6 +45,7 @@ class LoginSingleTon {
     }
     
     func userReset(){
+        
         userDefaults.removeObject(forKey: "phoneNumber")
         userDefaults.removeObject(forKey: "FCMtoken")
         userDefaults.removeObject(forKey: "nick")
