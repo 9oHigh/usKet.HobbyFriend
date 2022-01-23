@@ -32,13 +32,16 @@ class CerMessageViewController : BaseViewController {
         setUI()
         setConstraints()
         bind()
+        monitorNetwork()
         //타이머 시작
         viewModel.startTimer()
         self.showToast(message: "인증번호를 보냈습니다.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.startTimer()
+        monitorNetwork()
     }
     
     override func setConfigure() {
@@ -88,7 +91,7 @@ class CerMessageViewController : BaseViewController {
         
         informationLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(0.5)
+            make.centerY.equalToSuperview().multipliedBy(0.4)
         }
         
         subInfomationLabel.snp.makeConstraints { make in
@@ -167,13 +170,13 @@ class CerMessageViewController : BaseViewController {
     }
     
     @objc
-    func textFieldEditingChanged(_ textField : UITextField) {
+    private func textFieldEditingChanged(_ textField : UITextField) {
         guard let certiText = textField.text else { return }
         viewModel.validText.value = certiText.toCertiPattern(pattern: "######", replacmentCharacter: "#")
     }
     
     @objc
-    func resendMessage(_ sender : UIButton){
+    private func resendMessage(_ sender : UIButton){
         
         viewModel.certificationPhone {
             
@@ -193,7 +196,7 @@ class CerMessageViewController : BaseViewController {
     }
     
     @objc
-    func toHomeOrSign(_ sender : UIButton){
+    private func toHomeOrSign(_ sender : UIButton){
         //MARK: ID토큰을 요청 -> (성공, 실패) 분기처리 / 성공시 서버에서 정보확인에 대해 성공일경우와 201 경우 분기처리
         viewModel.loginToFIR { success in
             
@@ -204,21 +207,11 @@ class CerMessageViewController : BaseViewController {
             self.viewModel.getIdToken { statusCode in
                 
                 DispatchQueue.main.async {
-                    print("새싹가는중..2")
                     switch statusCode {
                     case 200: //To Home
-                        print("To Home")
-                        UIView.transition(with: self.view.window!, duration: 0.2, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
-                            self.view.window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
-                            self.view.window?.makeKeyAndVisible()
-                        }, completion: nil)
-                        
+                        self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
                     case 201: //To Nickname
-                        print("To Nick")
-                        UIView.transition(with: self.view.window!, duration: 0.2, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
-                            self.view.window?.rootViewController = NicknameViewController()
-                            self.view.window?.makeKeyAndVisible()
-                        }, completion: nil)
+                        self.transViewWithAnimation(isNavigation: true, controller: NicknameViewController())
                     default :
                         self.showToast(message: "오류 발생, 다시 시도해주세요.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
                     }

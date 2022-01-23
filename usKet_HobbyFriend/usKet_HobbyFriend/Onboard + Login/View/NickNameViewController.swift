@@ -10,8 +10,6 @@ import Rswift
 
 class NicknameViewController : BaseViewController {
     
-    lazy var toSignUp = LoginSingleTon()
-    
     var informationLabel = UILabel()
     var textField = UITextField()
     var nextButton = UIButton()
@@ -20,11 +18,21 @@ class NicknameViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //MARK: 닉네임 인증 실패시 토스트 메세지 알림
+        if errorMessage != "" {
+            self.showToast(message: errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
+        }
         setConfigure()
         setUI()
         setConstraints()
         bind()
+        monitorNetwork()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monitorNetwork()
     }
     
     override func setConfigure() {
@@ -60,7 +68,7 @@ class NicknameViewController : BaseViewController {
         
         informationLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(0.5)
+            make.centerY.equalToSuperview().multipliedBy(0.4)
         }
         
         textField.snp.makeConstraints { make in
@@ -101,7 +109,7 @@ class NicknameViewController : BaseViewController {
     }
     
     @objc
-    func textFieldEditingChanged(_ textField : UITextField) {
+    private func textFieldEditingChanged(_ textField : UITextField) {
         
         guard let nickName = textField.text else { return }
         
@@ -109,8 +117,8 @@ class NicknameViewController : BaseViewController {
     }
     
     @objc
-    func toNextPage(_ sender: UIButton){
-        toSignUp.registerUserData(userDataType: .nickName, variableType: String.self, variable: viewModel.validText.value)
+    private func toNextPage(_ sender: UIButton){
+        
         self.transViewController(nextType: .push, controller: BirthViewController())
     }
 }

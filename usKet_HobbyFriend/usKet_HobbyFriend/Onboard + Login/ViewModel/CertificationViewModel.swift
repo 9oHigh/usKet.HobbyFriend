@@ -10,20 +10,16 @@ import Foundation
 
 class CertificationViewModel {
     
-    lazy var toSignUp = LoginSingleTon()
+    private lazy var toSignUp = LoginSingleTon()
     
     //전화번호, 인증번호, 닉네임, 이메일, 생년월일, 성별
     var validText : Observable<String> = Observable("")
     var validFlag : Observable<Bool> = Observable(false)
     var errorMessage : Observable<String> = Observable("")
-    var error : String = ""
-    
-    // + Timer
-    var timer : Observable<Int> = Observable(60)
     
     //MARK: Phone
     //전화번호 유효성
-    func phoneValidate(phoneNumber : String){
+    internal func phoneValidate(phoneNumber : String){
         
         //정규식 활용
         let phoneRegex = "^01[0-1, 7][0-9]{7,8}$"
@@ -42,7 +38,7 @@ class CertificationViewModel {
         result ? toSignUp.registerUserData(userDataType: .phoneNumber, variableType: String.self, variable: phone) : toSignUp.registerUserData(userDataType: .phoneNumber, variableType: String.self, variable: "None")
     }
     //휴대폰 인증문자 받기, 에러를 넘겨줄까 하다가 바인딩 시켜서 사용해보기로 함.
-    func certificationPhone(onComplete : @escaping ()-> Void){
+    internal func certificationPhone(onComplete : @escaping ()-> Void){
         
         //저장되어있는 번호 가지고오기
         let phoneNumber : String = UserDefaults.standard.string(forKey: "phoneNumber")!
@@ -67,8 +63,11 @@ class CertificationViewModel {
     }
     
     //MARK: Certification
+    // Timer 변수 추가
+    var timer : Observable<Int> = Observable(60)
+    
     //인증번호 유효성
-    func cerValidate(validNumber : String){
+    internal func cerValidate(validNumber : String){
         
         let validRegex = "^[0-9]{6}$"
         //정규식 매칭
@@ -79,7 +78,7 @@ class CertificationViewModel {
         validFlag.value = result
     }
     //타이머 함수
-    func startTimer(){
+    public func startTimer(){
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { Timer in
             if self.timer.value > 0 {
                 self.timer.value -= 1
@@ -89,7 +88,7 @@ class CertificationViewModel {
         }
     }
     //Firebase Login
-    func loginToFIR (onCompletion : @escaping (String?) -> Void) {
+    internal func loginToFIR (onCompletion : @escaping (String?) -> Void) {
         
         let credential = PhoneAuthProvider.provider().credential(
             withVerificationID: UserDefaults.standard.string(forKey: "authVerificationID")!,
@@ -121,37 +120,34 @@ class CertificationViewModel {
         }
     }
     //Firebase idToken
-    func getIdToken(onCompletion : @escaping (Int) -> Void) {
-        print(#function)
+    internal func getIdToken(onCompletion : @escaping (Int) -> Void) {
+        
         let currentUser = Auth.auth().currentUser
         
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            print("새싹에서 오래!")
+        
             if error != nil {
                 self.errorMessage.value = "오류 발생, 다시 시도해주세요."
                 return
             }
             guard let idToken = idToken else { return }
             
-            print("새싹가는중..0")
             //MARK: 서버로부터 사용자의 정보를 확인(get, /user)
-            APIService.getUserData(token: idToken) { user, error in
-                print("새싹가는중..1")
-                //에러
-                if let error = error {
-                    switch error {
-                    case .NotUser:
-                        //이제부터 닉네임부터 시작!
-                        print("역시 닉네임")
-                        self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "nickName")
-                        print("STATUS_CODEN",error.statusCode)
-                        onCompletion(201)
-                        return
-                    default :
-                        print("개사기")
-                        self.errorMessage.value = "오류 발생, 다시 시도해주세요."
-                    }
+            APIService.getUser(idToken: idToken) { user, statusCode in
+                print("IDTOKEN",idToken)
+                print("FCMTOKEN",UserDefaults.standard.string(forKey: "FCMtoken") ?? "")
+                switch statusCode {
+                case 201 :
+                    self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "nickName")
+                    onCompletion(201)
+                    return
+                case 401 :
+                    self.errorMessage.value = "오류 발생, 다시 시도해주세요"
+                    print("갱신 예정")
+                default :
+                    self.errorMessage.value = "오류 발생, 다시 시도해주세요"
                 }
+                self.toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                 onCompletion(200)
             }
         }
@@ -159,32 +155,134 @@ class CertificationViewModel {
     
     //MARK: Nicname
     //닉네임 유효성
-    func nickValidate(nickName : String){
+    internal func nickValidate(nickName : String){
         
         let validRegex = "^[가-힣A-Za-z0-9]{1,9}$"
         //정규식 매칭
-        let testNumber = NSPredicate(format: "SELF MATCHES %@", validRegex)
+        let testName = NSPredicate(format: "SELF MATCHES %@", validRegex)
         //반환
-        let result = testNumber.evaluate(with: nickName)
+        let result = testName.evaluate(with: nickName)
+        
+        self.toSignUp.registerUserData(userDataType: .nick, variableType: String.self, variable: validText.value)
         
         validFlag.value = result
     }
     
     //MARK: Birth
     //추가 변수 3개 ( 년, 월, 일 )
-    var year : Observable<String> = Observable("")
-    var month : Observable<String> = Observable("")
-    var day : Observable<String> = Observable("")
+    var prevDate : Observable<(String,String,String)> = Observable((Date().toStringEach().0,Date().toStringEach().1,Date().toStringEach().2))
+    var birthDate : Observable<(String,String,String)> = Observable(("","",""))
     
     //생일 유효성
-    func birthValidate(){
-        //만 17세 이상인가
+    internal func birthValidate(){
+        
+        let today = Date().toStringEach() // 오늘을 기준
+        let age : Int = abs(Int(birthDate.value.0)! - Int(today.0)!)
+
+        if westernAge(age: age, birthMonth: Int(birthDate.value.1)!, birthDay: Int(birthDate.value.2)!) {
+            
+            self.errorMessage.value = ""
+            toSignUp.registerUserData(userDataType: .birth, variableType: String.self, variable: self.validText.value)
+        } else {
+            self.errorMessage.value = "만 17세 이상만 가입가능합니다."
+        }
     }
-    
+    //만나이 계산
+    public func westernAge(age: Int, birthMonth: Int,birthDay: Int) -> Bool{
+        
+        // 만 17세 이상
+        if age >= 18 { return true }
+        // 만 17세 미만
+        else if age < 17 { return false }
+        // 검사요망 ( 17세 )
+        else {
+            //오늘 날짜를 기준
+            let today = Date().toStringEach()
+            // 오늘의 달보다 생일 달이 작으면 무조건 17세 미만
+            if birthMonth > Int(today.1)! {
+                return false
+            //같으면 일까지 검사
+            } else if birthMonth == Int(today.1)!{
+                return  birthDay <= Int(today.2)! ? true : false
+            //크다면 만 17세 이상
+            } else {
+                return true
+            }
+        }
+    }
+    //모든 값이 변환되었나
+    public func checkFullDate() -> Bool{
+    if birthDate.value.0 != "" && birthDate.value.1 != "" &&  birthDate.value.2 != ""{
+            validFlag.value = true
+        self.errorMessage.value = ""
+            return true
+        } else {
+            validFlag.value = false
+            self.errorMessage.value = "년/월/일 모두 선택해주세요"
+            return false
+        }
+    }
     //MARK: Email
     //이메일 유효성
-    func emailVlidate(){
+    internal func emailValidate(email : String){
         
+        let validRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        //정규식 매칭
+        let testEmail = NSPredicate(format: "SELF MATCHES %@", validRegex)
+        //반환
+        let result = testEmail.evaluate(with: email)
+            
+        self.errorMessage.value = result ?
+        "" : "형식이 옳바르지 않습니다"
+        
+        toSignUp.registerUserData(userDataType: .email, variableType: String.self, variable: email)
+        
+        validFlag.value = result
+    
+    }
+    //MARK: Gender
+    //값가지고오깅
+    internal func genderValidate(){
+        
+        if validText.value != "" && validText.value != "2"{
+            toSignUp.registerUserData(userDataType: .gender, variableType: Int.self, variable: validText.value)
+            validFlag.value = true
+        } else {
+            toSignUp.registerUserData(userDataType: .gender, variableType: Int.self, variable: validText.value)
+            validFlag.value = false
+        }
     }
     
+    //MARK: Signup
+    internal func signupToSeSAC(onCompletion : @escaping (Int)->Void ){
+        
+        let currentUser = Auth.auth().currentUser
+        
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            
+            guard let idToken = idToken else {
+                self.errorMessage.value = "오류 발생, 잠시후 다시 시도해주세요"
+                return
+            }
+            
+            APIService.signUpUser(idToken: idToken) { statusCode in
+                print("IN SIGNUP : ",statusCode)
+                switch statusCode {
+                case 201 :
+                    self.errorMessage.value = "이미 가입이 완료되었습니다"
+                    onCompletion(statusCode!)
+                case 202 :
+                    self.errorMessage.value = "사용할 수 없는 닉네임입니다"
+                    onCompletion(statusCode!)
+                case 401 :
+                    self.errorMessage.value = "갱신 필요"
+                    onCompletion(statusCode!)
+                default :
+                    self.errorMessage.value = "오류 발생, 잠시후 다시 시도해주세요"
+                    onCompletion(statusCode!)
+                }
+                onCompletion(200)
+            }
+        }
+    }
 }

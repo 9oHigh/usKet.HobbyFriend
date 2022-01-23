@@ -18,4 +18,32 @@ extension UIButton {
         setTitle(title, for: .normal)
         layer.cornerRadius = 10
     }
+    
+    func fitToGenderBorder(){
+        
+        layer.cornerRadius = 10
+        layer.borderWidth = 1
+        layer.borderColor = UIColor(red: 0.887, green: 0.887, blue: 0.887, alpha: 1).cgColor
+        
+        // + Font / backgound
+        titleLabel?.font = UIFont.toTitleR16
+        backgroundColor = UIColor(resource: R.color.basicWhite)
+    }
+}
+
+extension UIButton.Configuration {
+    
+    static func genderStyle(title : String, image : UIImage) -> UIButton.Configuration {
+        var config = UIButton.Configuration.plain()
+        
+        config.title = title
+        config.baseForegroundColor = UIColor(resource: R.color.basicBlack)
+        config.titleAlignment = .center
+        
+        config.image = image
+        config.imagePlacement = .top
+        config.cornerStyle = .medium
+        
+        return config
+    }
 }

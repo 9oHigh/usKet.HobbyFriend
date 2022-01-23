@@ -11,8 +11,8 @@ import UIKit
 enum UserDataType : String {
     
     case phoneNumber
-    case FCMToken
-    case nickName
+    case FCMtoken
+    case nick
     case birth
     case email
     case gender
@@ -40,9 +40,18 @@ class LoginSingleTon {
         guard let startPosition =  self.userDefaults.string(forKey: "startPosition") else {
             return "None"
         }
-        print("HERE: ",startPosition)
         //저장되어 있다면
         return startPosition
+    }
+    
+    func userReset(){
+        userDefaults.removeObject(forKey: "phoneNumber")
+        userDefaults.removeObject(forKey: "FCMtoken")
+        userDefaults.removeObject(forKey: "nick")
+        userDefaults.removeObject(forKey: "birth")
+        userDefaults.removeObject(forKey: "email")
+        userDefaults.removeObject(forKey: "gender")
+        userDefaults.removeObject(forKey: "startPosition")
     }
 
 }

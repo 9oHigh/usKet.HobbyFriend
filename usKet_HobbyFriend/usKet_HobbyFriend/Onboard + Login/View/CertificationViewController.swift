@@ -23,6 +23,12 @@ class CertificationViewController : BaseViewController {
         setUI()
         setConstraints()
         bind()
+        monitorNetwork()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monitorNetwork()
     }
     
     override func setConfigure() {
@@ -55,7 +61,7 @@ class CertificationViewController : BaseViewController {
         
         informationLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(0.5)
+            make.centerY.equalToSuperview().multipliedBy(0.4)
         }
         
         textField.snp.makeConstraints { make in
@@ -94,7 +100,7 @@ class CertificationViewController : BaseViewController {
     }
     
     @objc
-    func textFieldEditingChanged(_ textField : UITextField) {
+    private func textFieldEditingChanged(_ textField : UITextField) {
         
         guard let phoneNumber = textField.text else { return }
         
@@ -105,7 +111,7 @@ class CertificationViewController : BaseViewController {
     }
     
     @objc
-    func toReciveMessage(){
+    private func toReciveMessage(){
         //유효한 형식인가
         switch viewModel.validFlag.value {
             //유효한 케이스

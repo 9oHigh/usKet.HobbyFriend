@@ -25,7 +25,7 @@ extension UILabel {
             .paragraphStyle: style,
             .baselineOffset: (lineHeight - font.lineHeight) / 4
         ]
-
+        
         let attrString = NSAttributedString(string: text,
                                             attributes: attributes)
         self.attributedText = attrString
@@ -43,7 +43,7 @@ extension UILabel {
         self.numberOfLines = 0
         self.text = text
         self.textAlignment = .center
-        self.tintColor = UIColor(resource: R.color.basicBlack)
+        self.textColor = UIColor(resource: R.color.basicBlack)
         self.font = UIFont.DisplayR20
     }
     
@@ -52,7 +52,7 @@ extension UILabel {
         self.numberOfLines = 0
         self.text = text
         self.textAlignment = .center
-        self.tintColor = UIColor(resource: R.color.gray7)
+        self.textColor = UIColor(resource: R.color.gray7)
         self.font = UIFont.toTitleR16
     }
     

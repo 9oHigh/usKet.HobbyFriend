@@ -28,6 +28,7 @@ class DateTextView : UIView {
     func setConfigure(){
         backgroundColor = UIColor(resource: R.color.basicWhite)
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
+        textField.isEnabled = false
         
         dateLabel.textColor = UIColor(resource: R.color.basicBlack)
         dateLabel.backgroundColor = UIColor(resource: R.color.basicWhite)
@@ -46,7 +47,9 @@ class DateTextView : UIView {
         
         textField.snp.makeConstraints { make in
             
-            make.top.left.bottom.equalToSuperview()
+            make.top.left.equalToSuperview()
+            make.bottom.equalTo(-5)
+            make.width.equalToSuperview().multipliedBy(0.75)
             make.trailing.equalTo(dateLabel.snp.leading)
         }
         

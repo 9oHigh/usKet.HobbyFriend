@@ -1,136 +1,189 @@
-////
-////  CertificationViewController.swift
-////  usKet_HobbyFriend
-////
-////  Created by 이경후 on 2022/01/19.
-////
 //
-//import UIKit
-//import Rswift
+//  CertificationViewController.swift
+//  usKet_HobbyFriend
 //
-//class GenderViewController : BaseViewController {
-//    
-//    var informationLabel = UILabel()
-//    var textField = UITextField()
-//    var reciveButton = UIButton()
-//    var viewModel = CertificationViewModel()
-//    var errorMessage : String = ""
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        setConfigure()
-//        setUI()
-//        setConstraints()
-//        bind()
-//    }
-//    
-//    override func setConfigure() {
-//        //View
-//        view.backgroundColor = UIColor(resource: R.color.basicWhite)
-//        
-//        //Information Label
-//        informationLabel.fitToLogin(text: "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요")
-//        
-//        //TextField
-//        textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
-//        textField.placeholder = "휴대전화 번호(-없이 숫자만 입력)"
-//        
-//        //TextField Target
-//        textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
-//        
-//        //Button
-//        reciveButton.fitToLogin(title: "인증문자 받기")
-//        reciveButton.addTarget(self, action: #selector(toNextPage), for: .touchUpInside)
-//    }
-//    
-//    override func setUI() {
-//        
-//        view.addSubview(informationLabel)
-//        view.addSubview(textField)
-//        view.addSubview(reciveButton)
-//    }
-//    
-//    override func setConstraints() {
-//        
-//        informationLabel.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.centerY.equalToSuperview().multipliedBy(0.5)
-//        }
-//        
-//        textField.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.centerY.equalToSuperview().multipliedBy(0.75)
-//            make.width.equalToSuperview().multipliedBy(0.9)
-//            make.height.equalTo(48)
-//        }
-//        
-//        reciveButton.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.centerY.equalToSuperview().multipliedBy(1)
-//            make.width.equalToSuperview().multipliedBy(0.9)
-//            make.height.equalTo(48)
-//        }
-//    }
-//    
-//    override func bind() {
-//        
-//        viewModel.validText.bind { [weak self] phoneNumber in
-//            //유효성검사
-//            self?.viewModel.phoneValidate(phoneNumber: phoneNumber)
-//            
-//            //텍스트필드 확인
-//            phoneNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
-//        }
-//        
-//        viewModel.validFlag.bind { [weak self] sign in
-//            self?.reciveButton.backgroundColor = sign ?
-//            UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
-//        }
-//        
-//        viewModel.errorMessage.bind { [weak self] error in
-//            self?.errorMessage = error
-//        }
-//    }
-//    
-//    @objc
-//    func textFieldEditingChanged(_ textField : UITextField) {
-//        
-//        guard let phoneNumber = textField.text else { return }
-//        
-//        textField.text = phoneNumber.count <= 12 ? phoneNumber.toPhoneNumberPattern(pattern: "###-###-####", replacmentCharacter: "#") :
-//        phoneNumber.toPhoneNumberPattern(pattern: "###-####-####", replacmentCharacter: "#")
-//        
-//        viewModel.validText.value = textField.text!.replacingOccurrences(of: "-", with: "")
-//    }
-//    
-//    @objc
-//    func toReciveMessage(){
-//        //유효한 형식인가
-//        switch viewModel.validFlag.value {
-//            //유효한 케이스
-//        case true:
-//            //인증문자 메소드 수행
-//            viewModel.certificationPhone {
-//                //바인딩되어있는 에러메세지가 값이 없다면
-//                if self.errorMessage == ""{
-//                    
-//                    self.showToast(message: "번호 인증을 시작합니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-//                    
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                        self.transViewController(nextType: .push, controller: CerMessageViewController())
-//                    }
-//                } else {
-//                    //에러 발생
-//                    self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-//                }
-//            }
-//            //유효하지 않은 케이스
-//        case false:
-//            print("toReciveMessage NO: ",self.viewModel.validFlag.value)
-//            self.showToast(message: "잘못된 전화번호 형식입니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-//        }
-//    }
-//    
-//}
+//  Created by 이경후 on 2022/01/19.
 //
+
+import UIKit
+import Rswift
+import Firebase
+
+class GenderViewController : BaseViewController {
+    
+    var informationLabel = UILabel()
+    var subInformationLabel = UILabel()
+    
+    var buttonView = UIView()
+    var manButton = UIButton()
+    var womanButton = UIButton()
+    var nextButton = UIButton()
+    
+    var viewModel = CertificationViewModel()
+    var errorMessage : String = ""
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if UserDefaults.standard.integer(forKey: "gender") != 2 {
+            let gender = UserDefaults.standard.integer(forKey: "gender")
+            viewModel.validText.value = String(gender)
+        }
+        setConfigure()
+        setUI()
+        setConstraints()
+        bind()
+        monitorNetwork()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        monitorNetwork()
+    }
+    
+    override func setConfigure() {
+        //View
+        view.backgroundColor = UIColor(resource: R.color.basicWhite)
+        
+        //Information Label
+        informationLabel.fitToLogin(text: "성별을 선택해주세요.")
+        
+        //subInform
+        subInformationLabel.subfitToLogin(text: "새싹 찾기 기능을 이용하기 위해서 필요해요!")
+        
+        //buttonView
+        buttonView.backgroundColor = UIColor(resource: R.color.basicWhite)
+        
+        //Gender Buttons
+        manButton.configuration  = .genderStyle(title: "남자", image: UIImage(resource: R.image.man)!)
+        manButton.fitToGenderBorder()
+        manButton.addTarget(self, action: #selector(backgourndColorChange(_:)), for: .touchUpInside)
+        
+        
+        womanButton.configuration  = .genderStyle(title: "여자", image: UIImage(resource: R.image.woman)!)
+        womanButton.fitToGenderBorder()
+        womanButton.addTarget(self, action: #selector(backgourndColorChange(_:)), for: .touchUpInside)
+        
+        //Button
+        nextButton.fitToLogin(title: "다음")
+        nextButton.addTarget(self, action: #selector(toNextPage), for: .touchUpInside)
+    }
+    
+    override func setUI() {
+        
+        view.addSubview(informationLabel)
+        view.addSubview(subInformationLabel)
+        
+        view.addSubview(buttonView)
+        buttonView.addSubview(manButton)
+        buttonView.addSubview(womanButton)
+        
+        view.addSubview(nextButton)
+    }
+    
+    override func setConstraints() {
+        
+        informationLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().multipliedBy(0.4)
+        }
+        
+        subInformationLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(informationLabel.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        buttonView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.height.equalTo(115)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.bottom.equalTo(nextButton.snp.top).offset(-20)
+        }
+        
+        manButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().multipliedBy(0.5)
+            make.centerY.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.95)
+            make.width.equalToSuperview().multipliedBy(0.45)
+        }
+        
+        womanButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview().multipliedBy(1.5)
+            make.centerY.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.95)
+            make.width.equalToSuperview().multipliedBy(0.45)
+        }
+        
+        nextButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().multipliedBy(1)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(48)
+        }
+    }
+    
+    override func bind() {
+        
+        viewModel.validText.bind { [weak self] gender in
+            self?.viewModel.genderValidate()
+            if gender == "0"{
+                self?.womanButton.backgroundColor = UIColor(resource: R.color.brandWhitegreen)
+            } else if gender == "1"{
+                self?.manButton.backgroundColor = UIColor(resource: R.color.brandWhitegreen)
+            } else {
+                self?.womanButton.backgroundColor = UIColor(resource: R.color.basicWhite)
+                self?.manButton.backgroundColor = UIColor(resource: R.color.basicWhite)
+            }
+        }
+        
+        viewModel.validFlag.bind { [weak self] sign in
+            self?.nextButton.backgroundColor = sign ?
+            UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
+        }
+        
+        viewModel.errorMessage.bind { [weak self] error in
+            self?.errorMessage = error
+        }
+    }
+    
+    @objc
+    private func backgourndColorChange(_ sender : UIButton){
+        
+        if sender == manButton {
+            sender.backgroundColor = sender.backgroundColor == UIColor(resource: R.color.basicWhite) ? UIColor(resource: R.color.brandWhitegreen) : UIColor(resource: R.color.basicWhite)
+            womanButton.backgroundColor = UIColor(resource: R.color.basicWhite)
+            //바인딩
+            viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "1" : "2"
+        } else {
+            sender.backgroundColor = sender.backgroundColor == UIColor(resource: R.color.basicWhite) ? UIColor(resource: R.color.brandWhitegreen) : UIColor(resource: R.color.basicWhite)
+            manButton.backgroundColor = UIColor(resource: R.color.basicWhite)
+            //바인딩
+            viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "0" : "2"
+        }
+    }
+    
+    @objc
+    private func toNextPage(){
+        viewModel.signupToSeSAC { statusCode in
+            DispatchQueue.main.async {
+                
+                print("스테이터스 코드:",statusCode)
+                switch statusCode{
+                    
+                case 200 : //회원가입 성공, To home
+                    LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
+                    self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
+                case 201 : //이미 회원가입 되어있는 상태
+                    LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
+                    self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
+                case 202 : //닉네임 오류
+                    let nickNameViewController = NicknameViewController()
+                    nickNameViewController.showToast(message: "다른 닉네임으로 변경해주세요", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
+                    self.transViewWithAnimation(isNavigation: true, controller: nickNameViewController)
+                default :
+                    self.showToast(message: "오류 발생, 다시 시도해주세요.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
+                }
+            }
+        }
+    }
+}

@@ -63,10 +63,10 @@ extension AppDelegate : MessagingDelegate{
         lazy var toSignUp = LoginSingleTon()
         
         guard let fcmToken = fcmToken else {
-            toSignUp.registerUserData(userDataType: .FCMToken, variableType: String.self, variable: "None")
+            toSignUp.registerUserData(userDataType: .FCMtoken, variableType: String.self, variable: "None")
             return
         }
-        toSignUp.registerUserData(userDataType: .FCMToken, variableType: String.self, variable: fcmToken)
+        toSignUp.registerUserData(userDataType: .FCMtoken, variableType: String.self, variable: fcmToken)
 
     }
     

@@ -19,7 +19,7 @@ extension Date {
         format.dateFormat = "M"
         let month = format.string(from: self)
         
-        format.dateFormat = "D"
+        format.dateFormat = "d"
         let day = format.string(from: self)
         
         return (year,month,day)
