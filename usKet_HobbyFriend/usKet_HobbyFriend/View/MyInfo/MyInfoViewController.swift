@@ -7,9 +7,13 @@
 
 import UIKit
 import Firebase
-class MyInfoViewController : UIViewController {
+
+final class MyInfoViewController : UINavigationController {
     
+    //이건 내 상세정보로 이동할 예정
     var withdrawButton = UIButton()
+    
+    var tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +26,17 @@ class MyInfoViewController : UIViewController {
     
     func setConfigure(){
         
+        title = "내정보"
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
+        //스크롤 불가능
+        //tableView.alwaysBounceVertical = false
+        
+        //임시
         withdrawButton.setTitle("회원탈퇴", for: .normal)
         withdrawButton.tintColor = .blue
         withdrawButton.backgroundColor = .green
         withdrawButton.addTarget(self, action: #selector(withdrawButtonClicked(_:)), for: .touchUpInside)
-           
     }
     
     func setUI(){
@@ -36,6 +44,7 @@ class MyInfoViewController : UIViewController {
     }
     
     func setConstraints(){
+        //임시
         withdrawButton.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.2)
@@ -45,14 +54,18 @@ class MyInfoViewController : UIViewController {
     func bind(){
         
     }
+    
+    //임시
     @objc
     func withdrawButtonClicked(_ sender: UIButton){
         let currentUser = Auth.auth().currentUser
         
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             
+            guard error == nil else {
+                return
+            }
             guard let idToken = idToken else {
-               print("회원탈퇴 에러")
                 return
             }
             APIService.withdrawUser(idToken: idToken) { statusCode in
@@ -64,12 +77,13 @@ class MyInfoViewController : UIViewController {
                         SignupSingleton().registerUserData(userDataType: .startPosition, variable: "onboard")
                         self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
                         Messaging.messaging().token { fcmToken, error in
-                            
-                            if let error = error {
-                                print("fcm토큰 갱신오류",error.localizedDescription)
-                            } else {
-                                SignupSingleton().registerUserData(userDataType: .FCMtoken, variable: fcmToken!)
+                            guard error == nil else {
+                                return
                             }
+                            guard let fcmToken = fcmToken else {
+                                return
+                            }
+                            SignupSingleton().registerUserData(userDataType: .FCMtoken, variable: fcmToken)
                         }
                     } else {
                         self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())

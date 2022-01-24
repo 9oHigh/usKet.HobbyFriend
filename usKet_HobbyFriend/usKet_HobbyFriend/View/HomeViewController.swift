@@ -15,11 +15,8 @@ class HomeViewController : UITabBarController, UITabBarControllerDelegate {
         
         tabBar.tintColor = UIColor(resource: R.color.brandGreen)
         delegate = self
-        setConfigure()
-        setUI()
-        setConstraints()
-        bind()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -40,21 +37,5 @@ class HomeViewController : UITabBarController, UITabBarControllerDelegate {
         myinfo.tabBarItem = myinfoTabBarItem
         
         self.viewControllers = [home, shop, friends,myinfo]
-    }
-    func setConfigure(){
-        
-        
-    }
-    
-    func setUI(){
-        
-    }
-    
-    func setConstraints(){
-        
-    }
-    
-    func bind(){
-        
     }
 }

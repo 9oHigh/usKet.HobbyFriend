@@ -479,8 +479,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 27 images.
+  /// This `R.image` struct is generated, and contains static references to 30 images.
   struct image {
+    /// Image `Friends`.
+    static let friends = Rswift.ImageResource(bundle: R.hostingBundle, name: "Friends")
+    /// Image `SeSAC_Launch`.
+    static let seSAC_Launch = Rswift.ImageResource(bundle: R.hostingBundle, name: "SeSAC_Launch")
+    /// Image `SeSAC`.
+    static let seSAC = Rswift.ImageResource(bundle: R.hostingBundle, name: "SeSAC")
     /// Image `addFriend`.
     static let addFriend = Rswift.ImageResource(bundle: R.hostingBundle, name: "addFriend")
     /// Image `bell`.
@@ -513,10 +519,10 @@ struct R: Rswift.Validatable {
     static let place = Rswift.ImageResource(bundle: R.hostingBundle, name: "place")
     /// Image `plus`.
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
+    /// Image `profileImg`.
+    static let profileImg = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileImg")
     /// Image `rightArrow`.
     static let rightArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "rightArrow")
-    /// Image `seSAC`.
-    static let seSAC = Rswift.ImageResource(bundle: R.hostingBundle, name: "seSAC")
     /// Image `search`.
     static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
     /// Image `siren`.
@@ -535,6 +541,27 @@ struct R: Rswift.Validatable {
     static let write = Rswift.ImageResource(bundle: R.hostingBundle, name: "write")
     /// Image `xmark`.
     static let xmark = Rswift.ImageResource(bundle: R.hostingBundle, name: "xmark")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Friends", bundle: ..., traitCollection: ...)`
+    static func friends(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.friends, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "SeSAC", bundle: ..., traitCollection: ...)`
+    static func seSAC(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.seSAC, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "SeSAC_Launch", bundle: ..., traitCollection: ...)`
+    static func seSAC_Launch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.seSAC_Launch, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "addFriend", bundle: ..., traitCollection: ...)`
@@ -649,16 +676,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "rightArrow", bundle: ..., traitCollection: ...)`
-    static func rightArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.rightArrow, compatibleWith: traitCollection)
+    /// `UIImage(named: "profileImg", bundle: ..., traitCollection: ...)`
+    static func profileImg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.profileImg, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "seSAC", bundle: ..., traitCollection: ...)`
-    static func seSAC(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.seSAC, compatibleWith: traitCollection)
+    /// `UIImage(named: "rightArrow", bundle: ..., traitCollection: ...)`
+    static func rightArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rightArrow, compatibleWith: traitCollection)
     }
     #endif
 
@@ -794,6 +821,8 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
+        if UIKit.UIImage(named: "Friends", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Friends' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "SeSAC", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'SeSAC' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

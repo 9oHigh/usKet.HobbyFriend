@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import Rswift
 
-class EmailViewController : BaseViewController {
+final class EmailViewController : BaseViewController {
     
     var informationLabel = UILabel()
     var subInformationLabel = UILabel()

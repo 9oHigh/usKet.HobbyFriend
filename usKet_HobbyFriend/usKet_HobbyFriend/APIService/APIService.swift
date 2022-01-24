@@ -9,42 +9,7 @@ import Foundation
 import Alamofire
 import Firebase
 
-enum APIError : Error {
-    
-    case Failed
-    case EmptyData
-    case InvalidResponse
-    case TimeOut
-    case DecodeError
-    case NotUser    // 201
-    case NicknameError // 202
-    case UnAuthorized //401 : Firebase Id Token
-    case ServerError  //500
-    case ClientError //501 : API에서 Header, Request Body 값 확인 ( 비어있는 값 존재 )
-}
-
-extension APIError {
-    
-    var statusCode : Int {
-        
-        switch self {
-        case .NotUser :
-            return 201
-        case .NicknameError:
-            return 202
-        case .UnAuthorized:
-            return 401
-        case .ServerError :
-            return 500
-        case .ClientError:
-            return 501
-        default :
-            return 501
-        }
-    }
-}
-
-public class APIService {
+final class APIService {
     
     static func getUser(idToken : String, completion: @escaping (User?,Int?) -> Void){
         let headers = ["idtoken" : idToken ] as HTTPHeaders
@@ -108,11 +73,15 @@ public class APIService {
             switch response.result {
             case .success:
                 Messaging.messaging().token { token, error in
-                  if let error = error {
-                    print("FCMToken ReFresh Error : ",error)
-                  } else if let token = token {
-                      SignupSingleton().registerUserData(userDataType: .FCMtoken, variable: token)
-                  }
+                    guard error == nil else {
+                        completion(false)
+                        return
+                    }
+                    guard let token = token else {
+                        completion(false)
+                        return
+                    }
+                    SignupSingleton().registerUserData(userDataType: .FCMtoken, variable: token)
                 }
                 completion(true)
             case .failure:

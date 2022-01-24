@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import Rswift
 
-class NicknameViewController : BaseViewController {
+final class NicknameViewController : BaseViewController {
     
     var informationLabel = UILabel()
     var textField = UITextField()

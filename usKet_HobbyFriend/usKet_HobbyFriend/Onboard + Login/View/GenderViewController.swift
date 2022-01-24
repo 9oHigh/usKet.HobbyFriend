@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import Rswift
 import Firebase
 
-class GenderViewController : BaseViewController {
+final class GenderViewController : BaseViewController {
     
     var informationLabel = UILabel()
     var subInformationLabel = UILabel()
@@ -29,7 +28,6 @@ class GenderViewController : BaseViewController {
             viewModel.validText.value = gender
         }
         
-        //흠 없으면 0을 반환해버림.. 다시 줘보자...
         setConfigure()
         setUI()
         setConstraints()

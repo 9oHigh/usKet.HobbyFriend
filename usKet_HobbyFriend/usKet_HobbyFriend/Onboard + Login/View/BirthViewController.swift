@@ -6,10 +6,8 @@
 //
 
 import UIKit
-import Rswift
-import SwiftUI
 
-class BirthViewController : BaseViewController {
+final class BirthViewController : BaseViewController {
     
     var informationLabel = UILabel()
     //middle View

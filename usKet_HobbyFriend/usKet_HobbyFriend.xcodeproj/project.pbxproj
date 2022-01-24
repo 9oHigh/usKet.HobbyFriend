@@ -20,6 +20,9 @@
 		4C0D75B4279D89F200566CC0 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B3279D89F200566CC0 /* ShopViewController.swift */; };
 		4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */; };
 		4C0D75B8279D8A5E00566CC0 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */; };
+		4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C0279ED72700566CC0 /* RxCocoa */; };
+		4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C2279ED72700566CC0 /* RxRelay */; };
+		4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C4279ED72700566CC0 /* RxSwift */; };
 		4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */; };
 		4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */; };
 		4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBDE279529DA005DBE66 /* Assets.xcassets */; };
@@ -110,8 +113,11 @@
 				4C0DBBF727954762005DBE66 /* FirebaseMessaging in Frameworks */,
 				4C0DBBF127954762005DBE66 /* FirebaseCrashlytics in Frameworks */,
 				4C0D75B0279D623500566CC0 /* Alamofire in Frameworks */,
+				4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */,
+				4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */,
 				4C0DBBEF27954762005DBE66 /* FirebaseAuthCombine-Community in Frameworks */,
 				4CF7756227970B26009CC655 /* Rswift in Frameworks */,
+				4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */,
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
 				4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */,
 				4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */,
@@ -121,6 +127,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0D75B9279ECDEC00566CC0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4C0D75B1279D892A00566CC0 /* HomeTabViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4C0D75BA279ECDFF00566CC0 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				4C0D75B3279D89F200566CC0 /* ShopViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		4C0D75BB279ECE1B00566CC0 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		4C0D75BC279ECE2300566CC0 /* MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */,
+			);
+			path = MyInfo;
+			sourceTree = "<group>";
+		};
 		4C0DBBC9279529D8005DBE66 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +201,7 @@
 		4C0DBC032796E53C005DBE66 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4C0D759E279A734000566CC0 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,10 +218,10 @@
 			children = (
 				4CF7757F2797FB20009CC655 /* BaseViewController.swift */,
 				4CF775912798316F009CC655 /* HomeViewController.swift */,
-				4C0D75B1279D892A00566CC0 /* HomeTabViewController.swift */,
-				4C0D75B3279D89F200566CC0 /* ShopViewController.swift */,
-				4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */,
-				4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */,
+				4C0D75B9279ECDEC00566CC0 /* Home */,
+				4C0D75BA279ECDFF00566CC0 /* Shop */,
+				4C0D75BB279ECE1B00566CC0 /* Friends */,
+				4C0D75BC279ECE2300566CC0 /* MyInfo */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,7 +239,6 @@
 		4CF775752797CD9E009CC655 /* Onboard + Login */ = {
 			isa = PBXGroup;
 			children = (
-				4CF7758227982A9F009CC655 /* Model */,
 				4CF7758127982A83009CC655 /* View */,
 				4CF7758327982AA6009CC655 /* ViewModel */,
 			);
@@ -235,14 +273,6 @@
 				4C0D75A8279AD90E00566CC0 /* GenderViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		4CF7758227982A9F009CC655 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4C0D759E279A734000566CC0 /* UserModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		4CF7758327982AA6009CC655 /* ViewModel */ = {
@@ -291,6 +321,9 @@
 				4CF7756127970B26009CC655 /* Rswift */,
 				4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */,
 				4C0D75AF279D623500566CC0 /* Alamofire */,
+				4C0D75C0279ED72700566CC0 /* RxCocoa */,
+				4C0D75C2279ED72700566CC0 /* RxRelay */,
+				4C0D75C4279ED72700566CC0 /* RxSwift */,
 			);
 			productName = usKet_HobbyFriend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
@@ -326,6 +359,7 @@
 				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
 				4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				4C0D75AE279D623400566CC0 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -632,6 +666,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -671,6 +713,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C0D75AE279D623400566CC0 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		4C0D75C0279ED72700566CC0 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		4C0D75C2279ED72700566CC0 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		4C0D75C4279ED72700566CC0 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 		4C0DBBEA27954762005DBE66 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

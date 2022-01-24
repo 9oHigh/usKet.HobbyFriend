@@ -5,11 +5,10 @@
 //  Created by 이경후 on 2022/01/19.
 //
 
-import Foundation
 import UIKit
 import SnapKit
 
-class OnboardViewController : UIViewController {
+final class OnboardViewController : UIViewController {
     
     lazy var signup = SignupSingleton()
     

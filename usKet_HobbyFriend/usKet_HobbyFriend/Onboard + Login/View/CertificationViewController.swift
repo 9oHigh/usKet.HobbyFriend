@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import Rswift
 
-class CertificationViewController : BaseViewController {
+final class CertificationViewController : BaseViewController {
     
     var informationLabel = UILabel()
     var textField = UITextField()

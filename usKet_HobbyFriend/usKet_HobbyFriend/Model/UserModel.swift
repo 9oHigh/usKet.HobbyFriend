@@ -7,6 +7,7 @@
 
 // MARK: - User
 struct User: Codable {
+    
     let id: String
     let v: Int
     let uid, phoneNumber, email, fcMtoken: String

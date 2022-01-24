@@ -50,10 +50,8 @@ class CertificationViewModel {
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
                 //오류
-                if let error = error {
-                    print("Phone Certification Error :",error.localizedDescription)
-                    
-                    self.errorMessage.value = "다시 시도해 주세요😢"
+                guard error == nil else {
+                    self.errorMessage.value = "오류발생, 다시 시도해 주세요"
                     onComplete()
                     return
                 }
@@ -347,7 +345,7 @@ class CertificationViewModel {
             }
             
             APIService.signupUser(idToken: idToken) { statusCode in
-                print("IN SIGNUP : ",statusCode!)
+
                 switch statusCode {
                 case 201 :
                     self.errorMessage.value = "이미 가입이 완료되었습니다"
