@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C0D759F279A734000566CC0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D759E279A734000566CC0 /* UserModel.swift */; };
-		4C0D75A1279A8AAE00566CC0 /* LoginSingleTon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A0279A8AAE00566CC0 /* LoginSingleTon.swift */; };
+		4C0D75A1279A8AAE00566CC0 /* SignupSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A0279A8AAE00566CC0 /* SignupSingleton.swift */; };
 		4C0D75A3279AD88600566CC0 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */; };
 		4C0D75A5279AD8F400566CC0 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */; };
 		4C0D75A7279AD90000566CC0 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A6279AD90000566CC0 /* EmailViewController.swift */; };
@@ -59,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		4C0D759E279A734000566CC0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		4C0D75A0279A8AAE00566CC0 /* LoginSingleTon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSingleTon.swift; sourceTree = "<group>"; };
+		4C0D75A0279A8AAE00566CC0 /* SignupSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSingleton.swift; sourceTree = "<group>"; };
 		4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		4C0D75A6279AD90000566CC0 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */,
 				4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */,
 				4CF7758927982D87009CC655 /* Observable.swift */,
-				4C0D75A0279A8AAE00566CC0 /* LoginSingleTon.swift */,
+				4C0D75A0279A8AAE00566CC0 /* SignupSingleton.swift */,
 				4CF7756727970FDC009CC655 /* R.generated.swift */,
 				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
 				4CF7756C2797B156009CC655 /* Resource */,
@@ -387,7 +387,7 @@
 				4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */,
 				4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */,
 				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
-				4C0D75A1279A8AAE00566CC0 /* LoginSingleTon.swift in Sources */,
+				4C0D75A1279A8AAE00566CC0 /* SignupSingleton.swift in Sources */,
 				4CF775922798316F009CC655 /* HomeViewController.swift in Sources */,
 				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
 				4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */,

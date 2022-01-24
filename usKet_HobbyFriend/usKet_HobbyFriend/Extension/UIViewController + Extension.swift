@@ -15,7 +15,7 @@ enum NextType {
 
 extension UIViewController {
     
-    func showToast(message : String, font : UIFont , width: CGFloat, height : CGFloat) {
+    func showToast(message : String , width: CGFloat = UIScreen.main.bounds.width * 0.8, height : CGFloat = 50) {
         
         let toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - width/2, y: 50, width: width, height: height))
         
@@ -23,7 +23,7 @@ extension UIViewController {
         toastLabel.backgroundColor = UIColor(resource: R.color.basicBlack)?.withAlphaComponent(0.5)
         toastLabel.textColor = UIColor(resource: R.color.basicWhite)
         toastLabel.numberOfLines = 0
-        toastLabel.font = font
+        toastLabel.font = UIFont.toBodyM16!
         toastLabel.textAlignment = .center
         toastLabel.text = message
         toastLabel.alpha = 1.0
@@ -32,7 +32,7 @@ extension UIViewController {
         
         view.addSubview(toastLabel)
         //Animation
-        UIView.animate(withDuration: 3.0, delay: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 3.0, delay: 0.05, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
         },
             completion: { Completed in
@@ -82,8 +82,7 @@ extension UIViewController {
                 }
             } else {
                 DispatchQueue.main.async {
-                    
-                    self.showToast(message: "네트워크 연결 상태를 확인해주세요😭", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
+                    self.showToast(message: "네트워크 연결 상태를 확인해주세요😭")
                 }
             }
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShopViewController : UIViewController {
+class ShopViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,23 +18,20 @@ class ShopViewController : UIViewController {
         bind()
     }
     
-    func setConfigure(){
+    override func setConfigure(){
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
-        
-//        tabBarItem.image = UIImage(resource: R.image.tabGift)!
-//        tabBarItem.title = "새싹샵"
     }
     
-    func setUI(){
+    override func setUI(){
         
     }
     
-    func setConstraints(){
+    override func setConstraints(){
         
     }
     
-    func bind(){
+    override func bind(){
         
     }
 }

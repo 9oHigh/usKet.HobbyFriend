@@ -22,17 +22,18 @@ class BirthViewController : BaseViewController {
     var nextButton = UIButton()
     var datePicker = UIDatePicker()
     
-    var viewModel = CertificationViewModel()
-    var errorMessage : String = ""
+    private var viewModel = CertificationViewModel()
+    private var errorMessage : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.string(forKey: "birth") != nil {
-            let birthDate : Date = UserDefaults.standard.string(forKey: "birth")!.toDate()
+        //Before bind
+        if let birth = UserDefaults.standard.string(forKey: "birth"){
+            let birthDate = birth.toDate()
             viewModel.validText.value = birthDate.toOriginalString()
             viewModel.birthDate.value = birthDate.toStringEach()
-            print("여기는 생일:",viewModel.validText.value,viewModel.birthDate.value)
         }
+        
         setConfigure()
         setUI()
         setConstraints()
@@ -67,9 +68,10 @@ class BirthViewController : BaseViewController {
         
         datePicker.backgroundColor = UIColor(resource: R.color.gray4)
         datePicker.becomeFirstResponder()
-        datePicker.locale = .current
+        datePicker.locale = Locale(identifier: "ko-KR")
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
+        // 입력해 놓은 데이터가 있다면 그 날짜에 피커뷰 맞춰주기
         datePicker.date = viewModel.birthDate.value == ("","","") ? Date() : viewModel.validText.value.toDate()
         datePicker.addTarget(self, action: #selector(dateFieldChanged(_:)), for: .valueChanged)
         
@@ -147,22 +149,23 @@ class BirthViewController : BaseViewController {
     
     override func bind() {
         
-        viewModel.validText.bind { [weak self] date in
+        viewModel.validText.bind { [weak self] _ in
             //유효성 검사는 3개의 필드가 모두 변환되었을 때
             DispatchQueue.main.async {
-                if (self?.viewModel.checkFullDate()) ?? false {
-                    self?.viewModel.birthValidate()
-                }
+                (self?.viewModel.checkFullDate())! ? self?.viewModel.birthValidate() : ()
             }
         }
         
         viewModel.validFlag.bind { [weak self] sign in
+            
             self?.nextButton.backgroundColor = sign ?
             UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
+            
+            self?.nextButton.isEnabled = sign ? true : false
         }
         
         viewModel.birthDate.bind { [weak self] (year,month,day) in
-            
+            //각각 색이 바뀌게 만들어버렸다.. 그런거 없었는데.. 멍청..
             year != "" ? self?.yearView.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!) : self?.yearView.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
             month != "" ? self?.monthView.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!) : self?.monthView.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
             day != "" ? self?.dayView.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!) : self?.dayView.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
@@ -173,39 +176,31 @@ class BirthViewController : BaseViewController {
         }
         
         viewModel.errorMessage.bind { [weak self] error in
-            self?.errorMessage
-            = error
+            self?.errorMessage = error
         }
     }
     
     @objc
     private func dateFieldChanged(_ datePicker : UIDatePicker) {
+        //MARK: 하나로 할 수 있을 것 같은데.. 두개로 할 필요없지 않나
         //유저디포트에 저장할 값
         viewModel.validText.value = datePicker.date.toOriginalString()
         
         //화면에 보여줄 값
         let pickerDate = datePicker.date.toStringEach()
         
-        if viewModel.prevDate.value.0 != pickerDate.0{
-            viewModel.birthDate.value.0 = pickerDate.0
-        }
-        if viewModel.prevDate.value.1 != pickerDate.1{
-            viewModel.birthDate.value.1 = pickerDate.1
-        }
-        if viewModel.prevDate.value.2 != pickerDate.2{
-            viewModel.birthDate.value.2 = pickerDate.2
-        }
+        viewModel.prevDate.value.0 != pickerDate.0 ? viewModel.birthDate.value.0 = pickerDate.0 : ()
+        viewModel.prevDate.value.1 != pickerDate.1 ? viewModel.birthDate.value.1 = pickerDate.1 : ()
+        viewModel.prevDate.value.2 != pickerDate.2 ? viewModel.birthDate.value.2 = pickerDate.2 : ()
+
         //변경된 값을 넣어주고 다시 비교할 수 있게
         viewModel.prevDate.value = pickerDate
     }
     
     @objc
     private func toNextPage(_ sender: UIButton){
-        if self.errorMessage != ""{
-            self.showToast(message: self.viewModel.errorMessage.value, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.9, height: 50)
-        } else {
-        self.transViewController(nextType: .push, controller: EmailViewController())
-        }
+        
+        errorMessage != "" ? self.showToast(message: errorMessage) : self.transViewController(nextType: .push, controller: EmailViewController())
+        
     }
 }
-

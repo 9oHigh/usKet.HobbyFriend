@@ -15,16 +15,17 @@ class EmailViewController : BaseViewController {
     
     var textField = UITextField()
     var nextButton = UIButton()
-    var viewModel = CertificationViewModel()
-    var errorMessage : String = ""
+    
+    private var viewModel = CertificationViewModel()
+    private var errorMessage : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.standard.string(forKey: "email") != nil {
-            let email = UserDefaults.standard.string(forKey: "email")
-            viewModel.validText.value = email!
-            print("여기는 이메일:",email)
+        //Befor bind
+        if let email = UserDefaults.standard.string(forKey: "email"){
+            viewModel.validText.value = email
         }
+        
         setConfigure()
         setUI()
         setConstraints()
@@ -100,38 +101,35 @@ class EmailViewController : BaseViewController {
         
         viewModel.validText.bind { [weak self] email in
             //유효성검사
-            self?.viewModel.emailValidate(email: email)
+            self?.viewModel.emailValidate()
             
             //텍스트필드 확인
             email == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
+            
             self?.textField.text = email
         }
         
         viewModel.validFlag.bind { [weak self] sign in
+            
             self?.nextButton.backgroundColor = sign ?
             UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
         }
         
         viewModel.errorMessage.bind { [weak self] error in
+            
             self?.errorMessage = error
         }
     }
     
     @objc
     private func textFieldEditingChanged(_ textField : UITextField) {
-        
         guard let email = textField.text else { return }
-        
         viewModel.validText.value = email
     }
     
     @objc
     private func toNextPage(){
-        if self.errorMessage != ""{
-            self.showToast(message: self.viewModel.errorMessage.value, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.9, height: 50)
-        } else {
-        self.transViewController(nextType: .push, controller: GenderViewController())
-        }
+        errorMessage != "" ? self.showToast(message: errorMessage) : self.transViewController(nextType: .push, controller: GenderViewController())
     }
 }
 

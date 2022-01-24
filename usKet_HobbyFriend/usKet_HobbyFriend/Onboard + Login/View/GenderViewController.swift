@@ -24,6 +24,11 @@ class GenderViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let gender = UserDefaults.standard.string(forKey: "gender"){
+            viewModel.validText.value = gender
+        }
+        
         //흠 없으면 0을 반환해버림.. 다시 줘보자...
         setConfigure()
         setUI()
@@ -54,7 +59,6 @@ class GenderViewController : BaseViewController {
         manButton.configuration  = .genderStyle(title: "남자", image: UIImage(resource: R.image.man)!)
         manButton.fitToGenderBorder()
         manButton.addTarget(self, action: #selector(backgourndColorChange(_:)), for: .touchUpInside)
-        
         
         womanButton.configuration  = .genderStyle(title: "여자", image: UIImage(resource: R.image.woman)!)
         womanButton.fitToGenderBorder()
@@ -122,7 +126,9 @@ class GenderViewController : BaseViewController {
     override func bind() {
         
         viewModel.validText.bind { [weak self] gender in
+            
             self?.viewModel.genderValidate()
+            
             if gender == "0"{
                 self?.womanButton.backgroundColor = UIColor(resource: R.color.brandWhitegreen)
             } else if gender == "1"{
@@ -150,12 +156,12 @@ class GenderViewController : BaseViewController {
             sender.backgroundColor = sender.backgroundColor == UIColor(resource: R.color.basicWhite) ? UIColor(resource: R.color.brandWhitegreen) : UIColor(resource: R.color.basicWhite)
             womanButton.backgroundColor = UIColor(resource: R.color.basicWhite)
             //바인딩
-            viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "1" : "2"
+            viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "1" : "-1"
         } else {
             sender.backgroundColor = sender.backgroundColor == UIColor(resource: R.color.basicWhite) ? UIColor(resource: R.color.brandWhitegreen) : UIColor(resource: R.color.basicWhite)
             manButton.backgroundColor = UIColor(resource: R.color.basicWhite)
             //바인딩
-            viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "0" : "2"
+            viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "0" : "-1"
         }
     }
     
@@ -165,21 +171,24 @@ class GenderViewController : BaseViewController {
             
             DispatchQueue.main.async {
                 
-                print("SIGNUP CODE:",statusCode)
                 switch statusCode{
                     
                 case 200 : //회원가입 성공, To home
                     self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
-                case 201 : //이미 회원가입 되어있는 상태
+                    
+                case 201 : //이미 회원가입 되어있는 상태, To home
                     self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
+                    
                 case 202 : //닉네임 오류
                     let nickNameViewController = NicknameViewController()
-                    nickNameViewController.showToast(message: "다른 닉네임으로 변경해주세요", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
+                    nickNameViewController.showToast(message: "다른 닉네임으로 변경해주세요")
                     self.transViewWithAnimation(isNavigation: true, controller: nickNameViewController)
+                    
                 case 401 :
-                    self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
+                    self.showToast(message: self.errorMessage)
+                    
                 default :
-                    self.showToast(message: "오류 발생, 다시 시도해주세요.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
+                    self.showToast(message: "오류 발생, 다시 시도해주세요.")
                 }
             }
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FriendsViewController : UIViewController {
+class FriendsViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,24 +18,21 @@ class FriendsViewController : UIViewController {
         bind()
     }
     
-    func setConfigure(){
+    override func setConfigure(){
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-//        tabBarItem.image = UIImage(resource: R.image.tabSeSAC)!
-//        tabBarItem.title = "새싹친구"
+    }
+    
+    override func setUI(){
         
     }
     
-    func setUI(){
+    override func setConstraints(){
         
     }
     
-    func setConstraints(){
-        
-    }
-    
-    func bind(){
+    override func bind(){
         
     }
 }

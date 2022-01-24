@@ -21,9 +21,8 @@ class CerMessageViewController : BaseViewController {
     var certiButton = UIButton()
     var resendButton = UIButton()
     
-    var errorMessage : String = ""
-    
-    var viewModel = CertificationViewModel()
+    private var viewModel = CertificationViewModel()
+    private var errorMessage : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +32,14 @@ class CerMessageViewController : BaseViewController {
         setConstraints()
         bind()
         monitorNetwork()
+        
         //타이머 시작
         viewModel.startTimer()
-        self.showToast(message: "인증번호를 보냈습니다.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
+        showToast(message: "인증번호를 보냈습니다.")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.startTimer()
         monitorNetwork()
     }
     
@@ -139,10 +138,11 @@ class CerMessageViewController : BaseViewController {
         
         viewModel.validText.bind { [weak self] validNumber in
             //바뀔때 마다 유효성 검사 -> 버튼
-            self?.viewModel.cerValidate(validNumber: validNumber)
+            self?.viewModel.cerValidate()
             
             //텍스트필드 확인
             self?.textField.text = validNumber
+            
             validNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
         }
         
@@ -153,20 +153,22 @@ class CerMessageViewController : BaseViewController {
             self?.certiButton.isEnabled = sign ? true : false
         }
         
+        viewModel.timer.bind { [weak self] time in
+            //타이머 라벨
+            if time == 0 {
+                self?.timerLabel.text = "00:00"
+                self?.showToast(message: "전화번호 인증 실패")
+                self?.timerLabel.isHidden = true
+            }
+            else {
+                self?.timerLabel.text = "00:\(time)"
+            }
+        }
+        
         viewModel.errorMessage.bind { [weak self] error in
             self?.errorMessage = error
         }
         
-        viewModel.timer.bind { second in
-            //타이머 라벨
-            if second == 0 {
-                self.timerLabel.text = "00:00"
-                self.showToast(message: "전화번호 인증 실패", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-            }
-            else {
-                self.timerLabel.text = "00:\(second)"
-            }
-        }
     }
     
     @objc
@@ -175,51 +177,53 @@ class CerMessageViewController : BaseViewController {
         viewModel.validText.value = certiText.toCertiPattern(pattern: "######", replacmentCharacter: "#")
     }
     
+    //이런 addTarget같은 것들은 MVVM에서 사용하는게 맞는건가
+    //클릭이벤트 자체를 MVVM 패턴으로 활용할 수 있을까 그래서 RxSwift가 필요한건가 흐뮤뮤..
     @objc
     private func resendMessage(_ sender : UIButton){
         
         viewModel.certificationPhone {
             
             if self.errorMessage == ""{
-                //바인딩되어있는 에러메세지가 값이 없다면
-                //타이머도 다시
+                //타이머 재시작
                 self.viewModel.timer.value = 60
                 self.viewModel.startTimer()
                 self.viewModel.validText.value = ""
-                self.showToast(message: "인증번호를 재전송합니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-                
+                self.timerLabel.isHidden = false
+                self.showToast(message: "인증번호를 재전송합니다")
+    
             } else {
                 //에러 발생
-                self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
+                self.showToast(message: self.errorMessage)
             }
         }
     }
     
     @objc
     private func toHomeOrSign(_ sender : UIButton){
-        //MARK: ID토큰을 요청 -> (성공, 실패) 분기처리 / 성공시 서버에서 정보확인에 대해 성공일경우와 201 경우 분기처리
+        //MARK: ID토큰을 요청 -> (성공, 실패) / 성공시 서버에서 정보확인에 대해 성공과 미회원가입 처리
         viewModel.loginToFIR { success in
             
             guard success != nil else {
-                self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
+                self.showToast(message: self.errorMessage)
                 return
             }
             self.viewModel.getIdToken { statusCode in
                 
                 DispatchQueue.main.async {
                     switch statusCode {
+                        
                     case 200: //To Home
-                        LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "home")
                         self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
+                        
                     case 201: //To Nickname
                         self.transViewWithAnimation(isNavigation: true, controller: NicknameViewController())
+                        
                     default :
-                        self.showToast(message: "오류 발생, 다시 시도해주세요.", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width*0.8, height: 50)
+                        self.showToast(message: self.errorMessage)
                     }
                 }
-                
             }
         }
-        
     }
 }

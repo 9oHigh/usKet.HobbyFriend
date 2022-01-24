@@ -13,8 +13,9 @@ class CertificationViewController : BaseViewController {
     var informationLabel = UILabel()
     var textField = UITextField()
     var reciveButton = UIButton()
-    var viewModel = CertificationViewModel()
-    var errorMessage : String = ""
+    
+    private var viewModel = CertificationViewModel()
+    private var errorMessage : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,18 +84,20 @@ class CertificationViewController : BaseViewController {
         
         viewModel.validText.bind { [weak self] phoneNumber in
             //유효성검사
-            self?.viewModel.phoneValidate(phoneNumber: phoneNumber)
+            self?.viewModel.phoneValidate()
             
             //텍스트필드 확인
             phoneNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
         }
         
         viewModel.validFlag.bind { [weak self] sign in
+            
             self?.reciveButton.backgroundColor = sign ?
             UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
         }
         
         viewModel.errorMessage.bind { [weak self] error in
+            
             self?.errorMessage = error
         }
     }
@@ -107,7 +110,7 @@ class CertificationViewController : BaseViewController {
         textField.text = phoneNumber.count <= 12 ? phoneNumber.toPhoneNumberPattern(pattern: "###-###-####", replacmentCharacter: "#") :
         phoneNumber.toPhoneNumberPattern(pattern: "###-####-####", replacmentCharacter: "#")
         
-        viewModel.validText.value = textField.text!.replacingOccurrences(of: "-", with: "")
+        viewModel.validText.value = textField.text!
     }
     
     @objc
@@ -121,20 +124,20 @@ class CertificationViewController : BaseViewController {
                 //바인딩되어있는 에러메세지가 값이 없다면
                 if self.errorMessage == ""{
                     
-                    self.showToast(message: "번호 인증을 시작합니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.showToast(message: "번호 인증을 시작합니다")
+
+                    DispatchQueue.main.async {
+                        //문자인증화면으로 전환
                         self.transViewController(nextType: .push, controller: CerMessageViewController())
                     }
                 } else {
                     //에러 발생
-                    self.showToast(message: self.errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
+                    self.showToast(message: self.errorMessage)
                 }
             }
             //유효하지 않은 케이스
         case false:
-            print("toReciveMessage NO: ",self.viewModel.validFlag.value)
-            self.showToast(message: "잘못된 전화번호 형식입니다", font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.7, height: 50)
+            self.showToast(message: "잘못된 전화번호 형식입니다")
         }
     }
     

@@ -24,8 +24,6 @@ class MyInfoViewController : UIViewController {
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-//        tabBarItem.image = UIImage(resource: R.image.tabPerson)!
-//        tabBarItem.title = "내정보"
         withdrawButton.setTitle("회원탈퇴", for: .normal)
         withdrawButton.tintColor = .blue
         withdrawButton.backgroundColor = .green
@@ -58,14 +56,26 @@ class MyInfoViewController : UIViewController {
                 return
             }
             APIService.withdrawUser(idToken: idToken) { statusCode in
-                LoginSingleTon().userReset()
-                print("회원탈퇴 :",statusCode)
-                if statusCode == 200 {
-                    LoginSingleTon().registerUserData(userDataType: .startPosition, variableType: String.self, variable: "onboard")
-                    self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
-                } else {
-                    self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
+                SignupSingleton().userReset()
+                
+                DispatchQueue.main.async {
+                    
+                    if statusCode == 200 {
+                        SignupSingleton().registerUserData(userDataType: .startPosition, variable: "onboard")
+                        self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
+                        Messaging.messaging().token { fcmToken, error in
+                            
+                            if let error = error {
+                                print("fcm토큰 갱신오류",error.localizedDescription)
+                            } else {
+                                SignupSingleton().registerUserData(userDataType: .FCMtoken, variable: fcmToken!)
+                            }
+                        }
+                    } else {
+                        self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
+                    }
                 }
+                
             }
         }
     }

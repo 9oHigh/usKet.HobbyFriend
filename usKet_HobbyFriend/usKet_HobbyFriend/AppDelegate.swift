@@ -60,13 +60,13 @@ extension AppDelegate : MessagingDelegate{
     //토큰 받기
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
-        lazy var toSignUp = LoginSingleTon()
+        lazy var signup = SignupSingleton()
         
         guard let fcmToken = fcmToken else {
-            toSignUp.registerUserData(userDataType: .FCMtoken, variableType: String.self, variable: "None")
+            signup.registerUserData(userDataType: .FCMtoken, variable: "None")
             return
         }
-        toSignUp.registerUserData(userDataType: .FCMtoken, variableType: String.self, variable: fcmToken)
+        signup.registerUserData(userDataType: .FCMtoken, variable: fcmToken)
 
     }
     

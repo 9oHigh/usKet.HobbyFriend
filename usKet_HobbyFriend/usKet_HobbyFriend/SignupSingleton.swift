@@ -19,20 +19,16 @@ enum UserDataType : String {
     case startPosition
 }
 
-class LoginSingleTon {
+class SignupSingleton {
     
-    //싱글톤 - 유저디포트도 싱글톤이니까 싱싱글톤!
-    static let shared = LoginSingleTon()
+    //싱글톤 - 유저디포트도 싱글톤이니까 싱싱글톤! 익스텐션으로 만들면 더 좋으려나
+    static let shared = SignupSingleton()
     let userDefaults = UserDefaults.standard
     
-    //성별, 시작 포지션의 경우 Int값을 가지고 있으므로
-    func registerUserData<T>(userDataType : UserDataType, variableType : T, variable : String ){
+    //성별, 시작 포지션의 경우 Int값을 가지고 있으므로 -> 넘길 때 Int로 넘겨주자..
+    func registerUserData(userDataType : UserDataType, variable : String ){
         
-        if T.self == Int.self {
-            self.userDefaults.set(Int(variable), forKey: userDataType.rawValue)
-        } else {
             self.userDefaults.set(variable, forKey: userDataType.rawValue)
-        }
     }
     
     func userState() -> String {
@@ -44,6 +40,7 @@ class LoginSingleTon {
         return startPosition
     }
     
+    //회원탈퇴시 모든 값을 제거
     func userReset(){
         
         userDefaults.removeObject(forKey: "phoneNumber")

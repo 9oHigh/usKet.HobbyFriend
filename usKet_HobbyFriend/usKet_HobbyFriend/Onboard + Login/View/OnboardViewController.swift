@@ -11,7 +11,7 @@ import SnapKit
 
 class OnboardViewController : UIViewController {
     
-    lazy var toSignUp = LoginSingleTon()
+    lazy var signup = SignupSingleton()
     
     lazy var locationView : UIView = {
         //반환할 뷰
@@ -160,7 +160,7 @@ class OnboardViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //온보딩 저장 - 필요없지만 확실한 구분을 위해 해두기
-        toSignUp.registerUserData(userDataType: .startPosition, variableType: String.self, variable: "onboard")
+        signup.registerUserData(userDataType: .startPosition, variable: "onboard")
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
@@ -183,7 +183,6 @@ class OnboardViewController : UIViewController {
             make.bottom.equalTo(startButton.snp.top).offset(-30)
             make.leading.trailing.equalToSuperview()
         }
-        
     }
     
     @objc

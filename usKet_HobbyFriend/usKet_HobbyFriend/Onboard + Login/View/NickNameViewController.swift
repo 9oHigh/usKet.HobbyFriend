@@ -13,17 +13,16 @@ class NicknameViewController : BaseViewController {
     var informationLabel = UILabel()
     var textField = UITextField()
     var nextButton = UIButton()
-    var viewModel = CertificationViewModel()
     var errorMessage : String = ""
+    
+    private var viewModel = CertificationViewModel()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //닉네임 오류로 넘어왔을 경우
+        errorMessage != "" ? self.showToast(message: errorMessage) : ()
         
-        //MARK: 닉네임 인증 실패시 토스트 메세지 알림
-        if errorMessage != "" {
-            viewModel.refreshFCMtoken()
-            self.showToast(message: errorMessage, font: UIFont.toBodyM16!, width: UIScreen.main.bounds.width * 0.8, height: 50)
-        }
         setConfigure()
         setUI()
         setConstraints()
@@ -91,17 +90,15 @@ class NicknameViewController : BaseViewController {
         
         viewModel.validText.bind { [weak self] nickName in
             //유효성검사
-            self?.viewModel.nickValidate(nickName: nickName)
+            self?.viewModel.nickValidate()
             //텍스트필드 확인
             nickName == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
         }
         
         viewModel.validFlag.bind { [weak self] sign in
+        
             self?.nextButton.backgroundColor = sign ?
             UIColor(resource: R.color.brandGreen) : UIColor(resource: R.color.gray3)
-            
-            self?.nextButton.isEnabled = sign ?
-            true : false
         }
         
         viewModel.errorMessage.bind { [weak self] error in
@@ -111,21 +108,18 @@ class NicknameViewController : BaseViewController {
     
     @objc
     private func textFieldEditingChanged(_ textField : UITextField) {
-        
         guard let nickName = textField.text else { return }
-        
         viewModel.validText.value = nickName
     }
     
     @objc
     private func toNextPage(_ sender: UIButton){
-        
-        self.transViewController(nextType: .push, controller: BirthViewController())
+        errorMessage != "" ? self.showToast(message: errorMessage) : self.transViewController(nextType: .push, controller: BirthViewController())
     }
 }
 
 extension NicknameViewController : UITextFieldDelegate {
-    
+    //10자 제한
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let maxLength = (textField.text?.count)! + string.count - range.length
         return !(maxLength > 10)

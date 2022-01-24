@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeTabViewController : UIViewController {
+class HomeTabViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,23 +18,21 @@ class HomeTabViewController : UIViewController {
         bind()
     }
     
-    func setConfigure(){
+    override func setConfigure(){
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-//        tabBarItem.image = UIImage(resource: R.image.tabHome)!
-//        tabBarItem.title = "홈"
     }
     
-    func setUI(){
+    override func setUI(){
         
     }
     
-    func setConstraints(){
+    override func setConstraints(){
         
     }
     
-    func bind(){
+    override func bind(){
         
     }
 }

@@ -10,6 +10,7 @@ import Alamofire
 import Firebase
 
 enum APIError : Error {
+    
     case Failed
     case EmptyData
     case InvalidResponse
@@ -59,7 +60,7 @@ public class APIService {
         }
     }
     
-    static func signUpUser(idToken: String,completion: @escaping (Int?) -> Void) {
+    static func signupUser(idToken: String,completion: @escaping (Int?) -> Void) {
         
         let userDefault = UserDefaults.standard
         
@@ -68,18 +69,18 @@ public class APIService {
             "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
         
         let parameters : Parameters = [
-            //저장이 되어있는 상태기 때문에 강제해제 괜찮음
+            //저장이 되어있는 상태기 때문에 강제해제 괜찮지 않을까
             "phoneNumber" : userDefault.string(forKey: "phoneNumber")!,
             "FCMtoken" : userDefault.string(forKey: "FCMtoken")!,
             "nick" : userDefault.string(forKey: "nick")!,
             "birth" : userDefault.string(forKey: "birth")!,
             "email" : userDefault.string(forKey: "email")!,
-            //integer 값은 옵셔널 강제해제 필요없음
             "gender" : userDefault.integer(forKey: "gender")
         ]
         
         AF.request(Endpoint.toLogin.url.absoluteString,method: .post,parameters: parameters,headers: headers).responseString { response in
             //상태코드만 전달 -> 에러판별
+            //MARK: 여기서 바로 statusCode가 아니라 성공/ 실패로 나누어서 보내야 하나 고민고민
             completion(response.response?.statusCode)
         }
     }
@@ -92,12 +93,11 @@ public class APIService {
         ] as HTTPHeaders
         
         AF.request(Endpoint.toWithdraw.url.absoluteString,method: .post,headers: headers).responseString { response in
-            
             completion(response.response?.statusCode)
         }
     }
     
-    static func updateFCMtoken(idToken: String, completion : @escaping (Int?)->Void){
+    static func updateFCMtoken(idToken: String, completion : @escaping (Bool)->Void){
         
         let headers = [
             "idtoken" : idToken,
@@ -111,15 +111,13 @@ public class APIService {
                   if let error = error {
                     print("FCMToken ReFresh Error : ",error)
                   } else if let token = token {
-                      LoginSingleTon().registerUserData(userDataType: .FCMtoken, variableType: String.self, variable: token)
+                      SignupSingleton().registerUserData(userDataType: .FCMtoken, variable: token)
                   }
                 }
-                completion(response.response?.statusCode)
+                completion(true)
             case .failure:
-                completion(response.response?.statusCode)
+                completion(false)
             }
         }
     }
 }
-
-
