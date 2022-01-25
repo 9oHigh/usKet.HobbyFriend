@@ -479,7 +479,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 30 images.
+  /// This `R.image` struct is generated, and contains static references to 42 images.
   struct image {
     /// Image `Friends`.
     static let friends = Rswift.ImageResource(bundle: R.hostingBundle, name: "Friends")
@@ -497,6 +497,8 @@ struct R: Rswift.Validatable {
     static let check = Rswift.ImageResource(bundle: R.hostingBundle, name: "check")
     /// Image `close`.
     static let close = Rswift.ImageResource(bundle: R.hostingBundle, name: "close")
+    /// Image `faq`.
+    static let faq = Rswift.ImageResource(bundle: R.hostingBundle, name: "faq")
     /// Image `filterControl`.
     static let filterControl = Rswift.ImageResource(bundle: R.hostingBundle, name: "filterControl")
     /// Image `letfArrow`.
@@ -509,22 +511,44 @@ struct R: Rswift.Validatable {
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "more")
     /// Image `newBadge`.
     static let newBadge = Rswift.ImageResource(bundle: R.hostingBundle, name: "newBadge")
+    /// Image `notice`.
+    static let notice = Rswift.ImageResource(bundle: R.hostingBundle, name: "notice")
     /// Image `onboardFirst`.
     static let onboardFirst = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboardFirst")
     /// Image `onboardSecond`.
     static let onboardSecond = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboardSecond")
     /// Image `onboardThird`.
     static let onboardThird = Rswift.ImageResource(bundle: R.hostingBundle, name: "onboardThird")
+    /// Image `permit`.
+    static let permit = Rswift.ImageResource(bundle: R.hostingBundle, name: "permit")
     /// Image `place`.
     static let place = Rswift.ImageResource(bundle: R.hostingBundle, name: "place")
     /// Image `plus`.
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
     /// Image `profileImg`.
     static let profileImg = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileImg")
+    /// Image `qna`.
+    static let qna = Rswift.ImageResource(bundle: R.hostingBundle, name: "qna")
     /// Image `rightArrow`.
     static let rightArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "rightArrow")
     /// Image `search`.
     static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
+    /// Image `sesac_face_1`.
+    static let sesac_face_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac_face_1")
+    /// Image `sesac_face_2`.
+    static let sesac_face_2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac_face_2")
+    /// Image `sesac_face_3`.
+    static let sesac_face_3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac_face_3")
+    /// Image `sesac_face_4`.
+    static let sesac_face_4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac_face_4")
+    /// Image `sesac_face_5`.
+    static let sesac_face_5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac_face_5")
+    /// Image `sesacbackground1`.
+    static let sesacbackground1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesacbackground1")
+    /// Image `sesacbackground2`.
+    static let sesacbackground2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesacbackground2")
+    /// Image `setting_alarm`.
+    static let setting_alarm = Rswift.ImageResource(bundle: R.hostingBundle, name: "setting_alarm")
     /// Image `siren`.
     static let siren = Rswift.ImageResource(bundle: R.hostingBundle, name: "siren")
     /// Image `tabGift`.
@@ -599,6 +623,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "faq", bundle: ..., traitCollection: ...)`
+    static func faq(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.faq, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "filterControl", bundle: ..., traitCollection: ...)`
     static func filterControl(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.filterControl, compatibleWith: traitCollection)
@@ -641,6 +672,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "notice", bundle: ..., traitCollection: ...)`
+    static func notice(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.notice, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "onboardFirst", bundle: ..., traitCollection: ...)`
     static func onboardFirst(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.onboardFirst, compatibleWith: traitCollection)
@@ -658,6 +696,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "onboardThird", bundle: ..., traitCollection: ...)`
     static func onboardThird(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.onboardThird, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "permit", bundle: ..., traitCollection: ...)`
+    static func permit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.permit, compatibleWith: traitCollection)
     }
     #endif
 
@@ -683,6 +728,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "qna", bundle: ..., traitCollection: ...)`
+    static func qna(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.qna, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "rightArrow", bundle: ..., traitCollection: ...)`
     static func rightArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.rightArrow, compatibleWith: traitCollection)
@@ -693,6 +745,62 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "search", bundle: ..., traitCollection: ...)`
     static func search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac_face_1", bundle: ..., traitCollection: ...)`
+    static func sesac_face_1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac_face_1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac_face_2", bundle: ..., traitCollection: ...)`
+    static func sesac_face_2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac_face_2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac_face_3", bundle: ..., traitCollection: ...)`
+    static func sesac_face_3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac_face_3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac_face_4", bundle: ..., traitCollection: ...)`
+    static func sesac_face_4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac_face_4, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac_face_5", bundle: ..., traitCollection: ...)`
+    static func sesac_face_5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac_face_5, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesacbackground1", bundle: ..., traitCollection: ...)`
+    static func sesacbackground1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesacbackground1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesacbackground2", bundle: ..., traitCollection: ...)`
+    static func sesacbackground2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesacbackground2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "setting_alarm", bundle: ..., traitCollection: ...)`
+    static func setting_alarm(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.setting_alarm, compatibleWith: traitCollection)
     }
     #endif
 
@@ -822,7 +930,7 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if UIKit.UIImage(named: "Friends", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Friends' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "SeSAC", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'SeSAC' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "SeSAC_Launch", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'SeSAC_Launch' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

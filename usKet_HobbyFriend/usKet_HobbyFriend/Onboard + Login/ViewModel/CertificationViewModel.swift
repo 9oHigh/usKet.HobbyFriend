@@ -154,10 +154,11 @@ class CertificationViewModel {
             
             //MARK: 서버로부터 사용자의 정보를 확인(get, /user)
             APIService.getUser(idToken: idToken) { user, statusCode in
-                
+
                 switch statusCode {
                     //성공
                 case 200 :
+                    //MARK: 근데 이런 케이스는 다른 핸드폰으로 변경 -> 재설치 -> 인증인 케이스도 있으니까 userDefault에 값이 없으니 로그인 + 정보 가지고 오기 + 유저 디포트에 저장하는 과정이 필요할 듯
                     self.signup.registerUserData(userDataType: .startPosition, variable: "home")
                     onCompletion(200)
                     

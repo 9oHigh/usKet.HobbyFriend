@@ -55,5 +55,4 @@ extension UILabel {
         self.textColor = UIColor(resource: R.color.gray7)
         self.font = UIFont.toTitleR16
     }
-    
 }

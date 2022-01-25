@@ -19,7 +19,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friends" translatesAutoresizingMaskIntoConstraints="NO" id="wkG-6C-JFo">
                                 <rect key="frame" x="52" y="522" width="310" height="89"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeSAC" translatesAutoresizingMaskIntoConstraints="NO" id="r19-D0-Cfh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeSAC_Launch" translatesAutoresizingMaskIntoConstraints="NO" id="r19-D0-Cfh">
                                 <rect key="frame" x="60.5" y="153" width="293" height="317"/>
                             </imageView>
                         </subviews>
@@ -44,7 +44,7 @@
     </scenes>
     <resources>
         <image name="Friends" width="290" height="33"/>
-        <image name="SeSAC" width="219" height="263.5"/>
+        <image name="SeSAC_Launch" width="219" height="263.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

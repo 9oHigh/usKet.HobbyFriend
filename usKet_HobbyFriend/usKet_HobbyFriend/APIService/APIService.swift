@@ -16,7 +16,6 @@ final class APIService {
         
         AF.request(Endpoint.toLogin.url.absoluteString,method: .get, headers: headers).responseDecodable(of: User.self) { response in
             switch response.result {
-                
             case .success:
                 completion(response.value,response.response?.statusCode)
             case .failure:

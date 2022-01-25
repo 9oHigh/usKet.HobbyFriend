@@ -23,6 +23,8 @@
 		4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C0279ED72700566CC0 /* RxCocoa */; };
 		4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C2279ED72700566CC0 /* RxRelay */; };
 		4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C4279ED72700566CC0 /* RxSwift */; };
+		4C0D75C7279FF19B00566CC0 /* ProfileImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */; };
+		4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */; };
 		4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */; };
 		4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */; };
 		4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBDE279529DA005DBE66 /* Assets.xcassets */; };
@@ -73,6 +75,8 @@
 		4C0D75B3279D89F200566CC0 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageButtonView.swift; sourceTree = "<group>"; };
+		4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDetailVIewController.swift; sourceTree = "<group>"; };
 		4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = usKet_HobbyFriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +158,9 @@
 		4C0D75BC279ECE2300566CC0 /* MyInfo */ = {
 			isa = PBXGroup;
 			children = (
+				4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */,
 				4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */,
+				4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -423,7 +429,9 @@
 				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
 				4C0D75A1279A8AAE00566CC0 /* SignupSingleton.swift in Sources */,
 				4CF775922798316F009CC655 /* HomeViewController.swift in Sources */,
+				4C0D75C7279FF19B00566CC0 /* ProfileImageButtonView.swift in Sources */,
 				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
+				4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */,
 				4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */,
 				4C0D75A5279AD8F400566CC0 /* BirthViewController.swift in Sources */,
 				4C0D75A9279AD90E00566CC0 /* GenderViewController.swift in Sources */,

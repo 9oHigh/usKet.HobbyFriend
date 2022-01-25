@@ -36,6 +36,6 @@ class HomeViewController : UITabBarController, UITabBarControllerDelegate {
         let myinfoTabBarItem = UITabBarItem(title: "내정보", image: UIImage(resource: R.image.tabPerson),tag: 4)
         myinfo.tabBarItem = myinfoTabBarItem
         
-        self.viewControllers = [home, shop, friends,myinfo]
+        self.viewControllers = [home, shop, friends,UINavigationController(rootViewController: myinfo)]
     }
 }
