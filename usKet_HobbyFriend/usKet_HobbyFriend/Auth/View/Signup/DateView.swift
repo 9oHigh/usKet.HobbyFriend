@@ -26,6 +26,7 @@ class DateTextView : UIView {
     }
     
     func setConfigure(){
+        
         backgroundColor = UIColor(resource: R.color.basicWhite)
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
         textField.isEnabled = false
@@ -34,7 +35,6 @@ class DateTextView : UIView {
         dateLabel.backgroundColor = UIColor(resource: R.color.basicWhite)
         dateLabel.font = UIFont.toTitleR16
         dateLabel.textAlignment = .center
-        
     }
     
     func setUI(){

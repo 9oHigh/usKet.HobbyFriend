@@ -12,6 +12,7 @@ import Firebase
 final class APIService {
     
     static func getUser(idToken : String, completion: @escaping (User?,Int?) -> Void){
+        
         let headers = ["idtoken" : idToken ] as HTTPHeaders
         
         AF.request(Endpoint.toLogin.url.absoluteString,method: .get, headers: headers).responseDecodable(of: User.self) { response in

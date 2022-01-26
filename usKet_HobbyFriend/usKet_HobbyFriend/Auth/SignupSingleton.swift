@@ -5,7 +5,6 @@
 //  Created by 이경후 on 2022/01/21.
 //
 
-import Foundation
 import UIKit
 
 enum UserDataType : String {

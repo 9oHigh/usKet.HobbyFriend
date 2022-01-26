@@ -7,11 +7,10 @@
 
 import UIKit
 
-final class ProfileImageButtonView : UIView {
+final class ProfileNameView : UIView {
     
     var profileImageView = UIImageView()
     var nameLabel = UILabel()
-    var customButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,17 +25,22 @@ final class ProfileImageButtonView : UIView {
     }
     
     func setConfigure(){
-        
+        //SELF
         backgroundColor = UIColor(resource: R.color.basicWhite)
-        nameLabel.backgroundColor = UIColor(resource: R.color.basicWhite)
-        customButton.backgroundColor = UIColor(resource: R.color.basicWhite)
+        
+        //ImageView
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.clipsToBounds = true
+        profileImageView.isUserInteractionEnabled = true
+        
+        nameLabel.backgroundColor = R.color.basicWhite()
+        nameLabel.numberOfLines = 0
     }
     
     func setUI(){
         
         addSubview(profileImageView)
         addSubview(nameLabel)
-        addSubview(customButton)
     }
     
     func setConstraints(){
@@ -44,8 +48,6 @@ final class ProfileImageButtonView : UIView {
         profileImageView.snp.makeConstraints { make in
             
             make.centerY.equalToSuperview()
-            make.height.equalTo(50)
-            make.width.equalTo(50)
             make.leading.equalTo(15)
             make.trailing.equalTo(nameLabel.snp.leading).offset(-15)
         }
@@ -55,23 +57,8 @@ final class ProfileImageButtonView : UIView {
             make.centerY.equalTo(profileImageView)
             make.leading.equalTo(profileImageView.snp.trailing)
         }
-        
-        customButton.snp.makeConstraints { make in
-            
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(-15)
-        }
     }
-    
-    func buttonReSize(height: CGFloat, width: CGFloat){
-        
-        customButton.snp.makeConstraints { make in
-            
-            make.height.equalTo(height)
-            make.width.equalTo(width)
-        }
-    }
-    
+
     func imageReSize(height: CGFloat, width: CGFloat){
         
         profileImageView.snp.makeConstraints { make in
