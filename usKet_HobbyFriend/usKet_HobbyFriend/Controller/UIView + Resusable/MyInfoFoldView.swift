@@ -5,40 +5,44 @@
 //  Created by 이경후 on 2022/01/26.
 //
 
-//MARK: 전부 수정 해야함
-
 import UIKit
+import RxSwift
+import RxCocoa
 
-class UserTitleFoldView : UIView {
-    
-    
-    var fixedView : UIView = {
+class MyInfoFoldView : UIView {
+
+    let fixedView : UIView = {
        let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         return view
     }()
-    var nameLabel = UILabel()   //유저의 닉에임
-    var flipButton = UIButton() //펼치고 접을수 있는 버튼
+    let nameLabel = UILabel()   //유저의 닉에임
+    let flipButton = UIButton() //펼치고 접을수 있는 버튼
    
     //Heiht Constraint = collapse ? 0 : Value
-    var toHideView : UIView = {
+    let toHideView : UIView = {
        let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         return view
     }()
     
-    var titleLabel = UILabel()  //새싹 타이틀
-    var titleView = TitleStackView()
+    let titleLabel = UILabel()  //새싹 타이틀
+    let titleView : MyInfoCollectionVeiw = { //리뷰 타이틀 버튼
+           let reviewTitle = MyInfoCollectionVeiw()
+            reviewTitle.translatesAutoresizingMaskIntoConstraints = false
+            return reviewTitle
+        }()
     
-    var reviewLabel = UILabel() //새싹 리뷰
-    var reviewOpenButton = UIButton() // 리뷰목록으로 이동
-    var reviewTextView = UITextView() // 가장 먼저온 리뷰가 보일 곳
+    let reviewLabel = UILabel() //새싹 리뷰
+    let reviewOpenButton = UIButton() // 리뷰목록으로 이동
+    let reviewTextView = UITextView() // 가장 먼저온 리뷰가 보일 곳
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        layer.cornerRadius = 10
         layer.borderWidth = 1
-        layer.borderColor = R.color.gray6()?.cgColor
+        layer.borderColor = R.color.gray3()?.cgColor
         
         setConfigure()
         setUI()
@@ -54,11 +58,11 @@ class UserTitleFoldView : UIView {
         addSubview(fixedView)
         fixedView.addSubview(nameLabel)
         fixedView.addSubview(flipButton)
-        
+    
         addSubview(toHideView)
         toHideView.addSubview(titleLabel)
         toHideView.addSubview(titleView)
-        
+
         toHideView.addSubview(reviewLabel)
         toHideView.addSubview(reviewOpenButton)
         toHideView.addSubview(reviewTextView)
@@ -67,18 +71,24 @@ class UserTitleFoldView : UIView {
     func setConfigure(){
         
         nameLabel.text = UserDefaults.standard.string(forKey: "nick")
-        nameLabel.font = UIFont.toTitleM16
+        nameLabel.font = .toTitleM16
 
-        flipButton.setImage(R.image.rightArrow()!, for: .normal)
+        flipButton.setImage(UIImage(named: "noMoreArrow.svg")!, for: .normal)
         
-        titleLabel.font = UIFont.toTitleR12
+        titleLabel.font = .toTitleR12
         titleLabel.text = "새싹 타이틀"
         
+        reviewLabel.font = .toTitleR12
         reviewLabel.text = "새싹 리뷰"
-        reviewOpenButton.setImage(UIImage(resource: R.image.rightArrow), for: .normal)
+        
+        reviewOpenButton.setImage(UIImage(named: "noMoreArrow.svg")!, for: .normal)
         reviewOpenButton.isHidden = true
         
         reviewTextView.isEditable = false
+        
+        //MARK: RxSwift + TextView
+        //reviewTextView -> RxSwift로
+        //모델 -> 데이터(뷰모델에서 처리) -> 뷰
         reviewTextView.text = "첫리뷰를 기다리는 중이에요!"
         reviewTextView.textColor = UIColor(resource: R.color.gray6)
     }
@@ -86,10 +96,18 @@ class UserTitleFoldView : UIView {
     func setConstraints(){
         
         fixedView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(15)
-            make.bottom.equalTo(toHideView.snp.top).offset(15)
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.height.equalTo(60)
+            make.bottom.equalTo(toHideView.snp.top)
         }
         
+        toHideView.snp.makeConstraints { make in
+            make.top.equalTo(fixedView.snp.bottom)
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.height.equalTo(240)
+        }
+        //Fixed View
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(0)
@@ -99,13 +117,7 @@ class UserTitleFoldView : UIView {
             make.centerY.equalToSuperview()
             make.trailing.equalTo(0)
         }
-        
-        toHideView.snp.makeConstraints { make in
-            make.top.equalTo(fixedView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview().inset(15)
-            make.height.equalTo(250)
-        }
-        
+        //Hide View
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(5)
             make.leading.equalTo(0)
@@ -130,11 +142,8 @@ class UserTitleFoldView : UIView {
         
         reviewTextView.snp.makeConstraints { make in
             make.top.equalTo(reviewLabel.snp.bottom).offset(5)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-    }
-    
-    func setHideViewHeight(){ // bottomConstraints = 제거, hegiht = 0
-        
     }
 }

@@ -4,78 +4,89 @@
 //
 //  Created by 이경후 on 2022/01/26.
 //
-//MARK: 전부 수정 해야함
+
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MyInfoCollectionVeiw : UIView {
     
-    lazy var collectionView : UICollectionView = {
+    let collectionView : UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: CGRect.zero,collectionViewLayout: layout)
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(ButtonsCollectionViewCell.self,forCellWithReuseIdentifier: "ButtonsCollectionViewCell")
+        let collectionView = UICollectionView(frame: CGRect.zero,collectionViewLayout: layout)
+        collectionView.register(MyInfoTitleCollectionViewCell.self,forCellWithReuseIdentifier: MyInfoTitleCollectionViewCell.identifier)
         collectionView.backgroundColor = UIColor(resource: R.color.basicWhite)
         
         return collectionView
     }()
-    
-    var names = ["좋은 매너","정확한 시간 약속","빠른 응답","친절한 성격","능숙한 취미 실력","유익한 시간"]
+    let disposeBag = DisposeBag()
+    let viewModel = MyInfoViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor(resource: R.color.basicWhite)
-        
-        addSubview(collectionView)
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(10)
-        }
-        
-        collectionView.reloadData()
+        setConfigure()
+        setUI()
+        setConstraints()
+        bind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setUI(){
+        
+        addSubview(collectionView)
+    }
+    
+    func setConfigure(){
+        
+        backgroundColor = UIColor(resource: R.color.basicWhite)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setConstraints(){
+
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func bind(){
+        
+        collectionView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        //바로 셀을 등록하고 사용할 수 있음
+        //받아오는 모델이 String이 아닌 숫자이므로
+        //MARK: 모델 개선 + 뷰모델 컬러 부여 고민
+        viewModel.myInfoTitle
+            .observe(on: MainScheduler.instance)
+            .bind(to: collectionView.rx.items(cellIdentifier: MyInfoTitleCollectionViewCell.identifier, cellType: MyInfoTitleCollectionViewCell.self)){ index, item, cell in
+                
+                cell.backgroundColor = R.color.basicWhite()!
+                //item은 모델이 날라오는거 -> 따라서 모델에 컬러가 있어야 겠고 그 컬러는
+                //API 통신에서 숫자로 true/false로 저장해두자
+                //여기서는 조건만 달아서 색 변경
+                cell.setUpdate(myTitle: item)
+            }
+            .disposed(by: disposeBag)
+        
+    }
 }
-extension ButtonsView : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return names.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ButtonsCollectionViewCell.identifier, for: indexPath) as! ButtonsCollectionViewCell
-        
-        cell.titleButton.setTitle(names[indexPath.row], for: .normal)
-        
-        return cell
-    }
+extension MyInfoCollectionVeiw : UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = collectionView.frame.width / 2 - 16
+        let width = collectionView.bounds.width
+        let cellWidth = (width - 8) / 2
         
-        return CGSize(width: width, height: 35)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        return CGSize(width: cellWidth, height: cellWidth * 0.2)
     }
 }

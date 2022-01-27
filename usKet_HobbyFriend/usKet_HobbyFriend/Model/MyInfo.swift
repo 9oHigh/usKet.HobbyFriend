@@ -12,3 +12,8 @@ struct MyInfo {
     let image: UIImage
     let name: String
 }
+
+struct MyTitle {
+    
+    let title : String
+}

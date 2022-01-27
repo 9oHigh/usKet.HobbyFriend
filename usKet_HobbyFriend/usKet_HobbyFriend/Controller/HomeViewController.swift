@@ -12,7 +12,7 @@ class HomeViewController : UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tabBar.backgroundColor = R.color.basicWhite()!
         tabBar.tintColor = UIColor(resource: R.color.brandGreen)
         delegate = self
     }

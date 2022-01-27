@@ -26,13 +26,13 @@
 		4C0D75C7279FF19B00566CC0 /* ProfileImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */; };
 		4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */; };
 		4C0D75CF27A10EB400566CC0 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CE27A10EB300566CC0 /* MyInfoViewModel.swift */; };
-		4C0D75D727A123E900566CC0 /* BackgroundFoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D627A123E800566CC0 /* BackgroundFoldView.swift */; };
-		4C0D75D927A1266600566CC0 /* FoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D827A1266600566CC0 /* FoldView.swift */; };
-		4C0D75DB27A12A9400566CC0 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75DA27A12A9400566CC0 /* ButtonsView.swift */; };
-		4C0D75DF27A14AE400566CC0 /* ButtonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75DE27A14AE400566CC0 /* ButtonsCollectionViewCell.swift */; };
+		4C0D75D727A123E900566CC0 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D627A123E800566CC0 /* MyInfoView.swift */; };
+		4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */; };
 		4C0D75E127A1AA1A00566CC0 /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E027A1AA1900566CC0 /* MyInfo.swift */; };
 		4C0D75E427A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */; };
 		4C0D75E627A1B58800566CC0 /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */; };
+		4C0D75EC27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */; };
+		4C0D75EE27A27AA000566CC0 /* MyInfoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */; };
 		4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */; };
 		4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */; };
 		4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBBDE279529DA005DBE66 /* Assets.xcassets */; };
@@ -46,6 +46,8 @@
 		4C0DBBF727954762005DBE66 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBF627954762005DBE66 /* FirebaseMessaging */; };
 		4C0DBC0027955935005DBE66 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0DBBFF27955935005DBE66 /* SnapKit */; };
 		4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */; };
+		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
+		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
@@ -86,13 +88,13 @@
 		4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageButtonView.swift; sourceTree = "<group>"; };
 		4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDetailVIewController.swift; sourceTree = "<group>"; };
 		4C0D75CE27A10EB300566CC0 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
-		4C0D75D627A123E800566CC0 /* BackgroundFoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundFoldView.swift; sourceTree = "<group>"; };
-		4C0D75D827A1266600566CC0 /* FoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldView.swift; sourceTree = "<group>"; };
-		4C0D75DA27A12A9400566CC0 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
-		4C0D75DE27A14AE400566CC0 /* ButtonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C0D75D627A123E800566CC0 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
+		4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoFoldView.swift; sourceTree = "<group>"; };
 		4C0D75E027A1AA1900566CC0 /* MyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfo.swift; sourceTree = "<group>"; };
 		4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
+		4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCollectionView.swift; sourceTree = "<group>"; };
 		4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = usKet_HobbyFriend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,8 @@
 		4C0DBBE1279529DA005DBE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C0DBBE3279529DA005DBE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../SeSAC_자료/17주차/SeSAC_SPL/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
+		4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSpecificView.swift; sourceTree = "<group>"; };
 		4CF7756727970FDC009CC655 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -176,20 +180,21 @@
 			children = (
 				4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */,
 				4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */,
+				4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
 		};
-		4C0D75D027A1154400566CC0 /* ReusableUIView */ = {
+		4C0D75D027A1154400566CC0 /* UIView + Resusable */ = {
 			isa = PBXGroup;
 			children = (
 				4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */,
-				4C0D75DA27A12A9400566CC0 /* ButtonsView.swift */,
-				4C0D75D827A1266600566CC0 /* FoldView.swift */,
-				4C0D75D627A123E800566CC0 /* BackgroundFoldView.swift */,
-				4C0D75DE27A14AE400566CC0 /* ButtonsCollectionViewCell.swift */,
+				4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */,
+				4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */,
+				4C0D75D627A123E800566CC0 /* MyInfoView.swift */,
+				4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */,
 			);
-			path = ReusableUIView;
+			path = "UIView + Resusable";
 			sourceTree = "<group>";
 		};
 		4C0D75D127A116BC00566CC0 /* Onboard */ = {
@@ -226,6 +231,7 @@
 			children = (
 				4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */,
 				4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */,
+				4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -258,8 +264,8 @@
 				4CF7758C27982EBF009CC655 /* APIService */,
 				4CF775762797E78D009CC655 /* Extension */,
 				4CF775752797CD9E009CC655 /* Auth */,
-				4C0DBC052796E54C005DBE66 /* Controller */,
 				4C0DBC032796E53C005DBE66 /* Model */,
+				4C0DBC052796E54C005DBE66 /* Controller */,
 				4C0DBC042796E543005DBE66 /* ViewModel */,
 			);
 			path = usKet_HobbyFriend;
@@ -289,7 +295,7 @@
 				4CF7757F2797FB20009CC655 /* BaseViewController.swift */,
 				4CF775912798316F009CC655 /* HomeViewController.swift */,
 				4C0D75E227A1AE1C00566CC0 /* view */,
-				4C0D75D027A1154400566CC0 /* ReusableUIView */,
+				4C0D75D027A1154400566CC0 /* UIView + Resusable */,
 				4C0D75B9279ECDEC00566CC0 /* Home */,
 				4C0D75BA279ECDFF00566CC0 /* Shop */,
 				4C0D75BB279ECE1B00566CC0 /* Friends */,
@@ -484,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0D75EE27A27AA000566CC0 /* MyInfoCollectionView.swift in Sources */,
 				4C0D75E427A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift in Sources */,
 				4C0D75A3279AD88600566CC0 /* NickNameViewController.swift in Sources */,
 				4C0D75E127A1AA1A00566CC0 /* MyInfo.swift in Sources */,
@@ -497,33 +504,34 @@
 				4C0D75A1279A8AAE00566CC0 /* SignupSingleton.swift in Sources */,
 				4CF775922798316F009CC655 /* HomeViewController.swift in Sources */,
 				4C0D75C7279FF19B00566CC0 /* ProfileImageButtonView.swift in Sources */,
-				4C0D75D727A123E900566CC0 /* BackgroundFoldView.swift in Sources */,
+				4C0D75D727A123E900566CC0 /* MyInfoView.swift in Sources */,
 				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
 				4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */,
+				4C0D75EC27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift in Sources */,
 				4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */,
 				4C0D75A5279AD8F400566CC0 /* BirthViewController.swift in Sources */,
 				4C0D75E627A1B58800566CC0 /* MyInfoTableViewCell.swift in Sources */,
 				4C0D75A9279AD90E00566CC0 /* GenderViewController.swift in Sources */,
 				4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */,
 				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
-				4C0D75D927A1266600566CC0 /* FoldView.swift in Sources */,
+				4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */,
+				4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */,
 				4C0D75AB279B0D4100566CC0 /* DateView.swift in Sources */,
 				4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */,
 				4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */,
 				4C0D75B2279D892A00566CC0 /* HomeTabViewController.swift in Sources */,
 				4CF7759B27983BB5009CC655 /* UITextField + Extension.swift in Sources */,
 				4C0D75B8279D8A5E00566CC0 /* MyInfoViewController.swift in Sources */,
-				4C0D75DB27A12A9400566CC0 /* ButtonsView.swift in Sources */,
 				4C0D75B4279D89F200566CC0 /* ShopViewController.swift in Sources */,
 				4CF7758E27982EE1009CC655 /* APIService.swift in Sources */,
 				4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */,
 				4CF7757A2797E7CC009CC655 /* UITextView + Extension.swift in Sources */,
+				4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */,
 				4CF7759E279877AD009CC655 /* UIViewController + Extension.swift in Sources */,
 				4C0D75A7279AD90000566CC0 /* EmailViewController.swift in Sources */,
 				4CF7759027982EF4009CC655 /* EndPoint.swift in Sources */,
 				4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */,
 				4C0D759F279A734000566CC0 /* User.swift in Sources */,
-				4C0D75DF27A14AE400566CC0 /* ButtonsCollectionViewCell.swift in Sources */,
 				4CF7756827970FDC009CC655 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

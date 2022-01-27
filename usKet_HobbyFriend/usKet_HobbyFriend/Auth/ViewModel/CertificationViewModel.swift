@@ -193,7 +193,7 @@ class CertificationViewModel {
         
         validFlag.value = result
         self.errorMessage.value = result ? "" : "1자이상 10자이내로 입력해주세요"
-        
+
         result ? self.signup.registerUserData(userDataType: .nick, variable: validText.value) : ()
     }
     

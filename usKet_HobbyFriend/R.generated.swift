@@ -497,8 +497,6 @@ struct R: Rswift.Validatable {
     static let check = Rswift.ImageResource(bundle: R.hostingBundle, name: "check")
     /// Image `close`.
     static let close = Rswift.ImageResource(bundle: R.hostingBundle, name: "close")
-    /// Image `downbtn`.
-    static let downbtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "downbtn")
     /// Image `faq`.
     static let faq = Rswift.ImageResource(bundle: R.hostingBundle, name: "faq")
     /// Image `filterControl`.
@@ -509,10 +507,14 @@ struct R: Rswift.Validatable {
     static let man = Rswift.ImageResource(bundle: R.hostingBundle, name: "man")
     /// Image `message`.
     static let message = Rswift.ImageResource(bundle: R.hostingBundle, name: "message")
+    /// Image `moreArrow`.
+    static let moreArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "moreArrow")
     /// Image `more`.
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "more")
     /// Image `newBadge`.
     static let newBadge = Rswift.ImageResource(bundle: R.hostingBundle, name: "newBadge")
+    /// Image `noMoreArrow`.
+    static let noMoreArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "noMoreArrow")
     /// Image `notice`.
     static let notice = Rswift.ImageResource(bundle: R.hostingBundle, name: "notice")
     /// Image `onboardFirst`.
@@ -561,8 +563,6 @@ struct R: Rswift.Validatable {
     static let tabPerson = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabPerson")
     /// Image `tabSeSAC`.
     static let tabSeSAC = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabSeSAC")
-    /// Image `upbtn`.
-    static let upbtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "upbtn")
     /// Image `woman`.
     static let woman = Rswift.ImageResource(bundle: R.hostingBundle, name: "woman")
     /// Image `write`.
@@ -627,13 +627,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "downbtn", bundle: ..., traitCollection: ...)`
-    static func downbtn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.downbtn, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "faq", bundle: ..., traitCollection: ...)`
     static func faq(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.faq, compatibleWith: traitCollection)
@@ -676,9 +669,23 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "moreArrow", bundle: ..., traitCollection: ...)`
+    static func moreArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.moreArrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "newBadge", bundle: ..., traitCollection: ...)`
     static func newBadge(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.newBadge, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "noMoreArrow", bundle: ..., traitCollection: ...)`
+    static func noMoreArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.noMoreArrow, compatibleWith: traitCollection)
     }
     #endif
 
@@ -847,13 +854,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "tabSeSAC", bundle: ..., traitCollection: ...)`
     static func tabSeSAC(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.tabSeSAC, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "upbtn", bundle: ..., traitCollection: ...)`
-    static func upbtn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.upbtn, compatibleWith: traitCollection)
     }
     #endif
 
