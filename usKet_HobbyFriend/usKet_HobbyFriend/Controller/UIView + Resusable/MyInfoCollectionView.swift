@@ -4,12 +4,10 @@
 //
 //  Created by 이경후 on 2022/01/26.
 //
-
 //MARK: 전부 수정 해야함
-
 import UIKit
 
-class ButtonsView : UIView {
+class MyInfoCollectionVeiw : UIView {
     
     lazy var collectionView : UICollectionView = {
         

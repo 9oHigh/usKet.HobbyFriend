@@ -7,10 +7,18 @@
 
 import UIKit
 
-class BackgoundFoldView : UIView {
+class UserInfoView : UIView {
+    
+    let foldView = UserTitleFoldView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        addSubview(foldView)
+        
+        foldView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {
