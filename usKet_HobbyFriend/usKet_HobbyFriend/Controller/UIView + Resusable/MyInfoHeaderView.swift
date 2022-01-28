@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyInfoHeaderView : UIView{
+class MyInfoHeaderView : UIView {
     
     //MARK: ImageView + sesac
     //RxSwift 사용해서 바인딩 해둘것
@@ -37,8 +37,8 @@ class MyInfoHeaderView : UIView{
         sesac.snp.makeConstraints { make in
             make.centerY.equalToSuperview().multipliedBy(1.25)
             make.centerX.equalToSuperview()
-            make.height.equalTo(150)
-            make.width.equalTo(150)
+            make.height.equalTo(150) // 고정 높이
+            make.width.equalTo(150) // 고정 넓이
         }
     }
     

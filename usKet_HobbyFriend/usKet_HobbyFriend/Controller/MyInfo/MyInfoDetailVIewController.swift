@@ -7,21 +7,31 @@
 
 import UIKit
 import Firebase
+import RxSwift
+import RxCocoa
 
-class MyInfoDetailViewController : BaseViewController,UIScrollViewDelegate {
+class MyInfoDetailViewController : BaseViewController {
     //임시버튼
+    let contentView : UIView = {
+        let view = UIView()
+        view.backgroundColor = R.color.basicWhite()!
+        return view
+    }()
     let withdrawButton = UIButton()
     let scrollView: UIScrollView = {
-      let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.backgroundColor = R.color.basicWhite()!
-      scrollView.translatesAutoresizingMaskIntoConstraints = false
-      return scrollView
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
     }()
     let myinfoView = MyInfoView()
     let specificView = MyInfoSpecificView()
     
-    var collapse = false
-
+    let viewModel = MyInfoViewModel()
+    let disposeBag = DisposeBag()
+    var isCollapse : Bool = false //흠.. 뷰모델에서 만들어서 해야하나
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +44,7 @@ class MyInfoDetailViewController : BaseViewController,UIScrollViewDelegate {
         setConfigure()
         setUI()
         setConstraints()
+        bind()
         monitorNetwork()
     }
     
@@ -43,40 +54,49 @@ class MyInfoDetailViewController : BaseViewController,UIScrollViewDelegate {
     }
     
     override func setConfigure() {
-        //임시
+        
+        //delegate for CENTER.x
+        scrollView.delegate = self
+        
+        //withrawButton
         withdrawButton.backgroundColor = UIColor(resource: R.color.basicWhite)
         withdrawButton.setTitleColor(UIColor(resource: R.color.basicBlack), for: .normal)
         withdrawButton.setTitle("회원탈퇴", for: .normal)
         withdrawButton.titleLabel?.font = UIFont.toTitleR14
-        withdrawButton.addTarget(self, action: #selector(withdrawButtonClicked(_:)), for: .touchUpInside)
-        
-        myinfoView.foldView.flipButton.addTarget(self, action: #selector(heightchange), for: .touchUpInside)
-        
     }
     
     override func setUI() {
         
         view.addSubview(scrollView)
-        scrollView.addSubview(myinfoView)
-        scrollView.addSubview(specificView)
-        scrollView.addSubview(withdrawButton)
         
+        scrollView.addSubview(contentView)
+        
+        contentView.addSubview(myinfoView)
+        contentView.addSubview(specificView)
+        contentView.addSubview(withdrawButton)
     }
     
     override func setConstraints() {
-       
+        
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         myinfoView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.9)
+            // 고정높이 MyInfoView.foldview.height = 300
+            // 따라서 MyInfoView.bacground.height = 200
             make.height.equalTo(500)
         }
         
         specificView.snp.makeConstraints { make in
+            //왜 MyInfoView에는 안되는가
             make.top.equalTo(myinfoView.foldView.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.95)
@@ -84,99 +104,97 @@ class MyInfoDetailViewController : BaseViewController,UIScrollViewDelegate {
         }
         
         withdrawButton.snp.makeConstraints { make in
-            
+            //왜 SpecificView에는 안되는가
             make.top.equalTo(specificView.agesLabel.snp.bottom).offset(40)
             make.leading.equalTo(0)
             make.width.equalTo(100)
             make.height.equalTo(60)
+            make.bottom.equalToSuperview()
         }
     }
-
-    //임시
-    @objc
-    func withdrawButtonClicked(_ sender: UIButton){
-        let currentUser = Auth.auth().currentUser
+    override func bind() {
         
-        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            
-            guard error == nil else {
-                return
+        myinfoView.foldView.flipButton.rx.tap
+            .asDriver()
+            .drive(){ [weak self] _ in
+                self?.isCollapse = !self!.isCollapse
+                self?.updateConstraints(isCollapse: self!.isCollapse)
             }
-            guard let idToken = idToken else {
-                return
-            }
-            APIService.withdrawUser(idToken: idToken) { statusCode in
-                SignupSingleton().userReset()
+            .disposed(by: disposeBag)
+        
+        withdrawButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ _ in
                 
-                DispatchQueue.main.async {
-                    
-                    if statusCode == 200 {
-                        SignupSingleton().registerUserData(userDataType: .startPosition, variable: "onboard")
-                        self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
-                        Messaging.messaging().token { fcmToken, error in
-                            guard error == nil else {
-                                return
-                            }
-                            guard let fcmToken = fcmToken else {
-                                return
-                            }
-                            SignupSingleton().registerUserData(userDataType: .FCMtoken, variable: fcmToken)
+                let alertView = self.generateAlertView(inform: "정말로 탈퇴하시겠습니까?", subInform: "탈퇴하시면 새싹 프렌즈를 이용할 수 없어요!")
+                
+                alertView.okButton.rx.tap
+                    .observe(on: MainScheduler.instance)
+                    .subscribe({ [weak self] _ in
+                        self?.viewModel.resetUserInfo { status,message in
+                            status ? self?.transViewWithAnimation(isNavigation: false, controller: OnboardViewController()) : self?.showToast(message: message!)
                         }
-                    } else {
-                        self.transViewWithAnimation(isNavigation: false, controller: OnboardViewController())
-                    }
-                }
+                    })
+                    .disposed(by: self.disposeBag)
                 
-            }
+                alertView.cancelButton.rx.tap
+                    .observe(on: MainScheduler.instance)
+                    .subscribe { _ in
+                        alertView.dismiss(animated: true, completion: nil)
+                    }
+                    .disposed(by: self.disposeBag)
+                
+                self.transViewController(nextType: .present, controller: alertView)
+            })
+            .disposed(by: self.disposeBag)
+    }
+    
+    
+    func updateConstraints(isCollapse : Bool){
+        
+        isCollapse ? self.foldView() : self.unFoldView()
+    }
+    
+    func foldView(){
+        //왜 moreArrow랑 noMoreArrow는 R로 안될까
+        myinfoView.foldView.flipButton.setImage(UIImage(named: "moreArrow.svg"), for: .normal)
+        
+        self.myinfoView.foldView.titleView.snp.updateConstraints{ make in
+            make.height.equalTo(0)
+        }
+        self.myinfoView.foldView.toHideView.snp.updateConstraints { make in
+            make.height.equalTo(0)
+        }
+        self.myinfoView.foldView.snp.updateConstraints { make in
+            make.height.equalTo(60)
+        }
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
     }
     
-    @objc
-    func heightchange(){
-        print(collapse)
-        collapse = !collapse
+    func unFoldView(){
         
-        if collapse {
-            
-            myinfoView.foldView.flipButton.setImage(UIImage(named: "moreArrow.svg"), for: .normal)
-            
-            self.myinfoView.foldView.titleView.snp.updateConstraints{ make in
-                make.height.equalTo(0)
-                
-            }
-            self.myinfoView.foldView.toHideView.snp.updateConstraints { make in
-                make.height.equalTo(0)
-            }
-            self.myinfoView.foldView.snp.updateConstraints { make in
-                make.height.equalTo(60)
-                
-            }
-          
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-            }
+        myinfoView.foldView.flipButton.setImage(UIImage(named: "noMoreArrow.svg"), for: .normal)
+        
+        self.myinfoView.foldView.snp.updateConstraints { make in
+            make.height.equalTo(320)
         }
-        else {
-            myinfoView.foldView.flipButton.setImage(UIImage(named: "noMoreArrow.svg"), for: .normal)
-            
-            self.myinfoView.foldView.snp.updateConstraints { make in
-                make.height.equalTo(320)
-            }
-            
-            self.myinfoView.foldView.toHideView.snp.updateConstraints { make in
-                make.height.equalTo(240)
-            }
-            self.myinfoView.foldView.titleView.snp.updateConstraints{ make in
-                make.height.equalTo(120)
-                
-            }
-         
-            UIView.animate(withDuration: 0.5) {
-                self.view.layoutIfNeeded()
-            }
+        self.myinfoView.foldView.toHideView.snp.updateConstraints { make in
+            make.height.equalTo(240)
+        }
+        self.myinfoView.foldView.titleView.snp.updateConstraints{ make in
+            make.height.equalTo(120)
+        }
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
     }
 }
-//extension MyInfoDetailViewController : UIScrollViewDelegate {
-//
-//}
+extension MyInfoDetailViewController : UIScrollViewDelegate{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        scrollView.contentOffset.x = 0.0
+    }
+}

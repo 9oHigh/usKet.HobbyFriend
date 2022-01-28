@@ -27,7 +27,7 @@ class MyInfoView : UIView {
         foldView.snp.makeConstraints { make in
             make.top.equalTo(background.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(320)
+            make.height.equalTo(300) //Total height : 300
         }
     }
     

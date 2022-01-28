@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 class MyInfoFoldView : UIView {
 
+    //MARK: Fixed View
     let fixedView : UIView = {
        let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
@@ -19,7 +18,7 @@ class MyInfoFoldView : UIView {
     let nameLabel = UILabel()   //유저의 닉에임
     let flipButton = UIButton() //펼치고 접을수 있는 버튼
    
-    //Heiht Constraint = collapse ? 0 : Value
+    //MARK: Hide View
     let toHideView : UIView = {
        let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
@@ -39,10 +38,6 @@ class MyInfoFoldView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        layer.cornerRadius = 10
-        layer.borderWidth = 1
-        layer.borderColor = R.color.gray3()?.cgColor
         
         setConfigure()
         setUI()
@@ -70,6 +65,10 @@ class MyInfoFoldView : UIView {
     
     func setConfigure(){
         
+        layer.cornerRadius = 10
+        layer.borderWidth = 1
+        layer.borderColor = R.color.gray3()?.cgColor
+        
         nameLabel.text = UserDefaults.standard.string(forKey: "nick")
         nameLabel.font = .toTitleM16
 
@@ -93,20 +92,22 @@ class MyInfoFoldView : UIView {
         reviewTextView.textColor = UIColor(resource: R.color.gray6)
     }
     
+    //MARK: 테이블뷰로 할걸!!! 으아아아!!!!
     func setConstraints(){
-        
+        //Height : 300
         fixedView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(15)
-            make.height.equalTo(60)
+            make.height.equalTo(60) // 고정높이.. 괴장히 나쁜..
             make.bottom.equalTo(toHideView.snp.top)
         }
         
         toHideView.snp.makeConstraints { make in
             make.top.equalTo(fixedView.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(15)
-            make.height.equalTo(240)
+            make.height.equalTo(240) // 고정높이.. 굉장히 나쁘다그..
         }
+        
         //Fixed View
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -127,7 +128,7 @@ class MyInfoFoldView : UIView {
             make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(120)
+            make.height.equalTo(120) // 이친구도 고정높이네 👀
         }
         
         reviewLabel.snp.makeConstraints { make in

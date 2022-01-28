@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 enum UserDataType : String {
     
@@ -27,7 +28,7 @@ class SignupSingleton {
     //성별, 시작 포지션의 경우 Int값을 가지고 있으므로 -> 넘길 때 Int로 넘겨주자..
     func registerUserData(userDataType : UserDataType, variable : String ){
         
-            self.userDefaults.set(variable, forKey: userDataType.rawValue)
+        self.userDefaults.set(variable, forKey: userDataType.rawValue)
     }
     
     func userState() -> String {
@@ -50,5 +51,20 @@ class SignupSingleton {
         userDefaults.removeObject(forKey: "gender")
         userDefaults.removeObject(forKey: "startPosition")
     }
-
+    
+    func getIdToken(onCompletion : @escaping (String?)->Void){
+        let currentUser = Auth.auth().currentUser
+        
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            
+            guard error == nil else {
+                onCompletion(nil)
+                return
+            }
+            guard let idToken = idToken else {
+                return
+            }
+            onCompletion(idToken)
+        }
+    }
 }

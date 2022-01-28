@@ -23,12 +23,12 @@
 		4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C0279ED72700566CC0 /* RxCocoa */; };
 		4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C2279ED72700566CC0 /* RxRelay */; };
 		4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C4279ED72700566CC0 /* RxSwift */; };
-		4C0D75C7279FF19B00566CC0 /* ProfileImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */; };
+		4C0D75C7279FF19B00566CC0 /* ProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */; };
 		4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */; };
 		4C0D75CF27A10EB400566CC0 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CE27A10EB300566CC0 /* MyInfoViewModel.swift */; };
 		4C0D75D727A123E900566CC0 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D627A123E800566CC0 /* MyInfoView.swift */; };
 		4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */; };
-		4C0D75E127A1AA1A00566CC0 /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E027A1AA1900566CC0 /* MyInfo.swift */; };
+		4C0D75E127A1AA1A00566CC0 /* MyInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E027A1AA1900566CC0 /* MyInfoModel.swift */; };
 		4C0D75E427A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */; };
 		4C0D75E627A1B58800566CC0 /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */; };
 		4C0D75EC27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */; };
@@ -48,6 +48,7 @@
 		4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */; };
 		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
 		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
+		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
@@ -85,12 +86,12 @@
 		4C0D75B3279D89F200566CC0 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
-		4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageButtonView.swift; sourceTree = "<group>"; };
+		4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameView.swift; sourceTree = "<group>"; };
 		4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDetailVIewController.swift; sourceTree = "<group>"; };
 		4C0D75CE27A10EB300566CC0 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
 		4C0D75D627A123E800566CC0 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoFoldView.swift; sourceTree = "<group>"; };
-		4C0D75E027A1AA1900566CC0 /* MyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfo.swift; sourceTree = "<group>"; };
+		4C0D75E027A1AA1900566CC0 /* MyInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoModel.swift; sourceTree = "<group>"; };
 		4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
 		4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTitleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		4C0DBC012796E3D7005DBE66 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../SeSAC_자료/17주차/SeSAC_SPL/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
 		4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSpecificView.swift; sourceTree = "<group>"; };
+		4C62F7D627A40828004C5BEC /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		4CF7756727970FDC009CC655 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -188,11 +190,12 @@
 		4C0D75D027A1154400566CC0 /* UIView + Resusable */ = {
 			isa = PBXGroup;
 			children = (
-				4C0D75C6279FF19B00566CC0 /* ProfileImageButtonView.swift */,
+				4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */,
+				4C62F7D627A40828004C5BEC /* AlertView.swift */,
 				4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */,
 				4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */,
-				4C0D75D627A123E800566CC0 /* MyInfoView.swift */,
 				4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */,
+				4C0D75D627A123E800566CC0 /* MyInfoView.swift */,
 			);
 			path = "UIView + Resusable";
 			sourceTree = "<group>";
@@ -275,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				4C0D759E279A734000566CC0 /* User.swift */,
-				4C0D75E027A1AA1900566CC0 /* MyInfo.swift */,
+				4C0D75E027A1AA1900566CC0 /* MyInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -493,7 +496,7 @@
 				4C0D75EE27A27AA000566CC0 /* MyInfoCollectionView.swift in Sources */,
 				4C0D75E427A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift in Sources */,
 				4C0D75A3279AD88600566CC0 /* NickNameViewController.swift in Sources */,
-				4C0D75E127A1AA1A00566CC0 /* MyInfo.swift in Sources */,
+				4C0D75E127A1AA1A00566CC0 /* MyInfoModel.swift in Sources */,
 				4CF7757C2797EF15009CC655 /* UIFont + Extension.swift in Sources */,
 				4C0D75AD279B208300566CC0 /* Date + Extension.swift in Sources */,
 				4CF775782797E7B5009CC655 /* UILabel + Extension.swift in Sources */,
@@ -503,7 +506,7 @@
 				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
 				4C0D75A1279A8AAE00566CC0 /* SignupSingleton.swift in Sources */,
 				4CF775922798316F009CC655 /* HomeViewController.swift in Sources */,
-				4C0D75C7279FF19B00566CC0 /* ProfileImageButtonView.swift in Sources */,
+				4C0D75C7279FF19B00566CC0 /* ProfileNameView.swift in Sources */,
 				4C0D75D727A123E900566CC0 /* MyInfoView.swift in Sources */,
 				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
 				4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */,
@@ -515,6 +518,7 @@
 				4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */,
 				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
 				4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */,
+				4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */,
 				4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */,
 				4C0D75AB279B0D4100566CC0 /* DateView.swift in Sources */,
 				4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */,

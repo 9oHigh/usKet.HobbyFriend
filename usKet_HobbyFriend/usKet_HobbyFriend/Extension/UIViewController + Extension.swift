@@ -40,6 +40,16 @@ extension UIViewController {
         })
     }
     
+    func generateAlertView(inform : String, subInform : String) -> AlertView {
+        
+        let alertView = AlertView()
+        alertView.modalPresentationStyle = .overFullScreen
+        alertView.informLabel.text = inform
+        alertView.subInformLabel.text = subInform
+        
+        return alertView
+    }
+    
     func transViewController(nextType : NextType, controller : UIViewController){
 
         switch nextType {
