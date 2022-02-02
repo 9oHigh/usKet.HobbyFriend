@@ -347,9 +347,9 @@
 		4CF7758127982A83009CC655 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C0D75D127A116BC00566CC0 /* Onboard */,
 				4C0D75D227A116C700566CC0 /* Certification */,
 				4C0D75D327A116D100566CC0 /* Signup */,
-				4C0D75D127A116BC00566CC0 /* Onboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
