@@ -5,6 +5,9 @@
 //  Created by 이경후 on 2022/01/21.
 //
 
+import Foundation
+import RealmSwift
+
 // MARK: - User
 struct User: Codable {
     
@@ -27,7 +30,7 @@ struct User: Codable {
     let dodgepenaltyGetAt: String
     let dodgeNum, ageMin, ageMax, searchable: Int
     let createdAt: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case v = "__v"

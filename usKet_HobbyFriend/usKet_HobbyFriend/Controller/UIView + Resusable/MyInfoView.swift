@@ -9,23 +9,23 @@ import UIKit
 
 class MyInfoView : UIView {
     
-    let background = MyInfoHeaderView()
+    let backgroundView = MyInfoHeaderView()
     let foldView = MyInfoFoldView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        addSubview(background)
+
+        addSubview(backgroundView)
         addSubview(foldView)
         
-        background.snp.makeConstraints { make in
+        backgroundView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(foldView.snp.top)
         }
         
         foldView.snp.makeConstraints { make in
-            make.top.equalTo(background.snp.bottom)
+            make.top.equalTo(backgroundView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(300) //Total height : 300
         }

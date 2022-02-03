@@ -23,7 +23,12 @@ class MyInfoViewController : BaseViewController {
             .font : UIFont.toTitleM14!,
             .foregroundColor : UIColor(resource: R.color.basicBlack)!
         ]
-        
+        viewModel.getUserInfo { error in
+            guard error == nil else {
+                self.showToast(message: error!)
+                return
+            }
+        }
         setConfigure()
         setUI()
         setConstraints()
@@ -59,7 +64,7 @@ class MyInfoViewController : BaseViewController {
     }
     
     override func setConstraints(){
-
+        
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -93,7 +98,20 @@ class MyInfoViewController : BaseViewController {
             .subscribe(onNext:{ [weak self] indexPath in //구독 -> 이벤트 발생
                 //MARK: ViewModel + API
                 //중요한건 여기서 서버에 타야된다 ( 서버처리 )
-                indexPath.row == 0 ? self?.transViewController(nextType: .push, controller: MyInfoDetailViewController()) : self?.tableView.deselectRow(at: indexPath, animated: false)
+                if indexPath.row == 0 {
+                    let viewController = MyInfoDetailViewController()
+                    
+                    self?.viewModel.getUserInfo { [weak self] error in
+                        guard error == nil else {
+                            self?.showToast(message: error!)
+                            return
+                        }
+                    }
+                    self?.transViewController(nextType: .push, controller: viewController)
+                }
+                else {
+                    self?.tableView.deselectRow(at: indexPath, animated: false)
+                }
             })
             .disposed(by: disposeBag)
     }

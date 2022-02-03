@@ -8,13 +8,14 @@
 import UIKit
 import RxRelay
 import RxSwift
+import Realm
+import RealmSwift
 import Firebase
 
 final class MyInfoViewModel {
     
     var errorMessage = ""
-    let disposeBag = DisposeBag()
-    
+    var user : User? = nil
     //BehaviorSubject는 초기값을 가지고 있는 subject
     // +subscribe가 발생하면, 발생한 시점 이전에 발생한 이벤트 중 가장 최신의 이벤트를 전달받는다. (다시 말하면 지속적으로 이벤트를 하나이상은 가지고 있게 되는 케이스)
     
@@ -71,6 +72,39 @@ final class MyInfoViewModel {
                         onCompletion(false,self.errorMessage)
                     }
                 }
+            }
+        }
+    }
+    
+    func getUserInfo(onCompletion : @escaping (String?)->Void){
+        
+        var idToken : String = ""
+        SignupSingleton.shared.getIdToken { id in
+            guard let id = id else {
+                self.errorMessage = "정보를 가지고 오는데 실패했습니다."
+                return
+            }
+            idToken = id
+        }
+        
+        APIService.getUser(idToken: idToken) { user, statusCode in
+            
+            guard let statusCode = statusCode else {
+                return
+            }
+            guard let user = user else {
+                return
+            }
+
+            if statusCode == 200 {
+                onCompletion(nil)
+               
+            } else if statusCode == 401 {
+               
+                onCompletion(nil)
+            } else {
+                self.errorMessage = "정보를 가지고 오는데 실패했습니다."
+                onCompletion(self.errorMessage)
             }
         }
     }

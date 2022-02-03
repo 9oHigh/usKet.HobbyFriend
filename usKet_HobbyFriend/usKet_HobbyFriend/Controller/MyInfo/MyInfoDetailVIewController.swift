@@ -6,12 +6,11 @@
 //
 
 import UIKit
-import Firebase
 import RxSwift
 import RxCocoa
 
 class MyInfoDetailViewController : BaseViewController {
-    //임시버튼
+    
     let contentView : UIView = {
         let view = UIView()
         view.backgroundColor = R.color.basicWhite()!
@@ -148,7 +147,6 @@ class MyInfoDetailViewController : BaseViewController {
             })
             .disposed(by: self.disposeBag)
     }
-    
     
     func updateConstraints(isCollapse : Bool){
         

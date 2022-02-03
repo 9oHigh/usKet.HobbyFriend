@@ -49,6 +49,8 @@
 		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
 		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
 		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
+		4C62F7DA27AAA66D004C5BEC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4C62F7D927AAA66D004C5BEC /* Realm */; };
+		4C62F7DC27AAA66D004C5BEC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C62F7DB27AAA66D004C5BEC /* RealmSwift */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
@@ -141,7 +143,9 @@
 				4C0D75B0279D623500566CC0 /* Alamofire in Frameworks */,
 				4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */,
 				4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */,
+				4C62F7DC27AAA66D004C5BEC /* RealmSwift in Frameworks */,
 				4C0DBBEF27954762005DBE66 /* FirebaseAuthCombine-Community in Frameworks */,
+				4C62F7DA27AAA66D004C5BEC /* Realm in Frameworks */,
 				4CF7756227970B26009CC655 /* Rswift in Frameworks */,
 				4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */,
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
@@ -403,6 +407,8 @@
 				4C0D75C0279ED72700566CC0 /* RxCocoa */,
 				4C0D75C2279ED72700566CC0 /* RxRelay */,
 				4C0D75C4279ED72700566CC0 /* RxSwift */,
+				4C62F7D927AAA66D004C5BEC /* Realm */,
+				4C62F7DB27AAA66D004C5BEC /* RealmSwift */,
 			);
 			productName = usKet_HobbyFriend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
@@ -439,6 +445,7 @@
 				4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				4C0D75AE279D623400566CC0 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -782,6 +789,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
@@ -860,6 +875,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4C62F7D927AAA66D004C5BEC /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		4C62F7DB27AAA66D004C5BEC /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		4CF7756127970B26009CC655 /* Rswift */ = {
 			isa = XCSwiftPackageProductDependency;

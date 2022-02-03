@@ -9,6 +9,8 @@ import UIKit
 
 class MyInfoSpecificView : UIView {
     
+    let viewModel = MyInfoViewModel()
+    
     let views : [UIView] = {
         var views : [UIView] = []
         for item in 0...4 {
@@ -50,7 +52,8 @@ class MyInfoSpecificView : UIView {
     }()
     let hobbyTextField : UITextField = {
         let textField = UITextField()
-        textField.placeholder = "아직없어요😭"
+        textField.placeholder = "아직없어요."
+        textField.isEnabled = false
         textField.fitToLogin(color: R.color.gray3()!)
         return textField
     }()
@@ -90,7 +93,7 @@ class MyInfoSpecificView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         setUI()
         setConstraints()
     }

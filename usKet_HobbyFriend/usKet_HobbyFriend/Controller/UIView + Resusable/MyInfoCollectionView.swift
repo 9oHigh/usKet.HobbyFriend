@@ -8,6 +8,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Realm
+import RealmSwift
 
 class MyInfoCollectionVeiw : UIView {
     
@@ -23,6 +25,7 @@ class MyInfoCollectionVeiw : UIView {
         
         return collectionView
     }()
+    var reputation : [Int] = []
     let disposeBag = DisposeBag()
     let viewModel = MyInfoViewModel()
     
@@ -58,6 +61,14 @@ class MyInfoCollectionVeiw : UIView {
     }
     
     func bind(){
+        let container = try! Container()
+        let results = container.values(
+            User.self,
+            matching: .publisherName("reputation")
+        )
+        print(results)
+        print(reputation)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         collectionView.rx
             .setDelegate(self)
@@ -69,15 +80,15 @@ class MyInfoCollectionVeiw : UIView {
         viewModel.myInfoTitle
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items(cellIdentifier: MyInfoTitleCollectionViewCell.identifier, cellType: MyInfoTitleCollectionViewCell.self)){ index, item, cell in
-                
-                cell.backgroundColor = R.color.basicWhite()!
+                self.reputation.forEach { color in
+                    cell.backgroundColor = color == 0 ? R.color.basicWhite()! : R.color.brandGreen()!
+                }
                 //item은 모델이 날라오는거 -> 따라서 모델에 컬러가 있어야 겠고 그 컬러는
                 //API 통신에서 숫자로 true/false로 저장해두자
                 //여기서는 조건만 달아서 색 변경
                 cell.setUpdate(myTitle: item)
             }
             .disposed(by: disposeBag)
-        
     }
 }
 extension MyInfoCollectionVeiw : UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
