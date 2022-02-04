@@ -6,11 +6,9 @@
 //
 
 import Foundation
-import RealmSwift
 
 // MARK: - User
 struct User: Codable {
-    
     let id: String
     let v: Int
     let uid, phoneNumber, email, fcMtoken: String
@@ -26,9 +24,8 @@ struct User: Codable {
     let purchaseToken, transactionID, reviewedBefore: [String]
     let reportedNum: Int
     let reportedUser: [String]
-    let dodgepenalty: Int
-    let dodgepenaltyGetAt: String
-    let dodgeNum, ageMin, ageMax, searchable: Int
+    let dodgepenalty, dodgeNum, ageMin, ageMax: Int
+    let searchable: Int
     let createdAt: String
     
     enum CodingKeys: String, CodingKey {
@@ -38,8 +35,6 @@ struct User: Codable {
         case fcMtoken = "FCMtoken"
         case nick, birth, gender, hobby, comment, reputation, sesac, sesacCollection, background, backgroundCollection, purchaseToken
         case transactionID = "transactionId"
-        case reviewedBefore, reportedNum, reportedUser, dodgepenalty
-        case dodgepenaltyGetAt = "dodgepenalty_getAt"
-        case dodgeNum, ageMin, ageMax, searchable, createdAt
+        case reviewedBefore, reportedNum, reportedUser, dodgepenalty, dodgeNum, ageMin, ageMax, searchable, createdAt
     }
 }

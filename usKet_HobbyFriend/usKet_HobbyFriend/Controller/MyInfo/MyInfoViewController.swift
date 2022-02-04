@@ -23,12 +23,6 @@ class MyInfoViewController : BaseViewController {
             .font : UIFont.toTitleM14!,
             .foregroundColor : UIColor(resource: R.color.basicBlack)!
         ]
-        viewModel.getUserInfo { error in
-            guard error == nil else {
-                self.showToast(message: error!)
-                return
-            }
-        }
         setConfigure()
         setUI()
         setConstraints()
@@ -101,13 +95,22 @@ class MyInfoViewController : BaseViewController {
                 if indexPath.row == 0 {
                     let viewController = MyInfoDetailViewController()
                     
-                    self?.viewModel.getUserInfo { [weak self] error in
+                    self?.viewModel.getUserInfo { [weak self] user,error in
                         guard error == nil else {
-                            self?.showToast(message: error!)
+                            if error != "미가입 회원입니다."{
+                                self?.showToast(message: error!)
+                            } else {
+                                self?.view.window?.rootViewController = OnboardViewController()
+                                self?.view.window?.makeKeyAndVisible()
+                            }
                             return
                         }
+                        guard let user = user else {
+                            return
+                        }
+                        viewController.viewModel.user = user
+                        self?.transViewController(nextType: .push, controller: viewController)
                     }
-                    self?.transViewController(nextType: .push, controller: viewController)
                 }
                 else {
                     self?.tableView.deselectRow(at: indexPath, animated: false)

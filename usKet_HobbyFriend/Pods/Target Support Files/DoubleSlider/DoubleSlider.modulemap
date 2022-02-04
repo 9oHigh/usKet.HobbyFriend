@@ -1,0 +1,6 @@
+framework module DoubleSlider {
+  umbrella header "DoubleSlider-umbrella.h"
+
+  export *
+  module * { export * }
+}

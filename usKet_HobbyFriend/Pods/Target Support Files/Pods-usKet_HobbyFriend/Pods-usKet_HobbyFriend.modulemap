@@ -1,0 +1,6 @@
+framework module Pods_usKet_HobbyFriend {
+  umbrella header "Pods-usKet_HobbyFriend-umbrella.h"
+
+  export *
+  module * { export * }
+}

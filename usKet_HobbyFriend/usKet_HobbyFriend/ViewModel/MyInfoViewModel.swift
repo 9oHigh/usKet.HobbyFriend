@@ -8,8 +8,6 @@
 import UIKit
 import RxRelay
 import RxSwift
-import Realm
-import RealmSwift
 import Firebase
 
 final class MyInfoViewModel {
@@ -45,7 +43,7 @@ final class MyInfoViewModel {
                 onCompletion(false,self.errorMessage)
                 return
             }
-            
+           
             APIService.withdrawUser(idToken: idToken) { statusCode in
                 
                 DispatchQueue.main.async {
@@ -64,7 +62,7 @@ final class MyInfoViewModel {
                                 return
                             }
                             SignupSingleton.shared.registerUserData(userDataType: .FCMtoken, variable: fcmToken)
-                           
+                            
                             onCompletion(true,nil)
                         }
                     } else {
@@ -76,35 +74,70 @@ final class MyInfoViewModel {
         }
     }
     
-    func getUserInfo(onCompletion : @escaping (String?)->Void){
+    func getUserInfo(onCompletion : @escaping (User?,String?)->Void){
         
-        var idToken : String = ""
-        SignupSingleton.shared.getIdToken { id in
-            guard let id = id else {
+        SignupSingleton.shared.getIdToken { idToken in
+            guard let idToken = idToken else {
                 self.errorMessage = "정보를 가지고 오는데 실패했습니다."
                 return
             }
-            idToken = id
+            UserDefaults.standard.set(idToken, forKey: "idToken")
+            APIService.getUser(idToken: idToken) { user, statusCode in
+                
+                guard let statusCode = statusCode else {
+                    return
+                }
+                guard let user = user else {
+                    self.errorMessage = "정보를 가지고 오는데 실패했습니다."
+                    onCompletion(nil,self.errorMessage)
+                    return
+                }
+                if statusCode == 200 {
+                    
+                    onCompletion(user,nil)
+                } else if statusCode == 401 {
+                    
+                    DispatchQueue.main.async {
+                        APIService.updateFCMtoken(idToken: idToken) { checked in
+                            self.errorMessage = checked ? "정보를 갱신중입니다. 다시 요청해주세요." : "정보를 가지고 오는데 실패했습니다."
+                        }
+                    }
+                    onCompletion(nil,self.errorMessage)
+                } else if statusCode == 406 {
+                    
+                    self.errorMessage = "미가입 회원입니다."
+                    SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "onboard")
+                    //뷰에서 루트뷰 온보드로 변경
+                    onCompletion(nil,self.errorMessage)
+                } else {
+                    self.errorMessage = "정보를 가지고 오는데 실패했습니다."
+                    onCompletion(nil,self.errorMessage)
+                }
+            }
         }
-        
-        APIService.getUser(idToken: idToken) { user, statusCode in
-            
-            guard let statusCode = statusCode else {
-                return
-            }
-            guard let user = user else {
-                return
-            }
-
-            if statusCode == 200 {
+    }
+    func myPageUpdate(onCompletion : @escaping (String?)->Void){
+        let idToken = UserDefaults.standard.string(forKey: "idToken")!
+        APIService.myPageUpdate(idToken: idToken) { statusCode in
+            switch statusCode {
+            case 200 :
                 onCompletion(nil)
-               
-            } else if statusCode == 401 {
-               
-                onCompletion(nil)
-            } else {
-                self.errorMessage = "정보를 가지고 오는데 실패했습니다."
+            case 401 :
+                DispatchQueue.main.async {
+                    APIService.updateFCMtoken(idToken: idToken) { checked in
+                        self.errorMessage = checked ? "정보를 갱신중입니다. 다시 요청해주세요." : "정보를 가지고 오는데 실패했습니다."
+                    }
+                }
                 onCompletion(self.errorMessage)
+            case 406 :
+                self.errorMessage = "미가입 회원입니다."
+                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "onboard")
+                //뷰에서 루트뷰 온보드로 변경
+                onCompletion(self.errorMessage)
+            default:
+                self.errorMessage = "오류가 발생했습니다. 다시 시도하세요."
+                onCompletion(self.errorMessage)
+                break
             }
         }
     }

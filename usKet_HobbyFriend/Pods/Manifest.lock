@@ -1,0 +1,16 @@
+PODS:
+  - DoubleSlider (1.0.0)
+
+DEPENDENCIES:
+  - DoubleSlider
+
+SPEC REPOS:
+  trunk:
+    - DoubleSlider
+
+SPEC CHECKSUMS:
+  DoubleSlider: ed3f4ea442dba6fd9df07cab15c25e21875deb81
+
+PODFILE CHECKSUM: 5e30c0f19f527eff45b2650b34c737d71a9481bd
+
+COCOAPODS: 1.11.2

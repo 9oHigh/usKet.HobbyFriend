@@ -21,6 +21,7 @@ enum Endpoint : String{
     case toLogin
     case toWithdraw
     case toRefreshFCM
+    case toUpdateMyInfo
 }
 
 extension Endpoint {
@@ -34,6 +35,8 @@ extension Endpoint {
             return .makeEndpoint("/user/withdraw")
         case .toRefreshFCM :
             return .makeEndpoint("/user/update_fcm_token")
+        case .toUpdateMyInfo:
+            return .makeEndpoint("/user/update/mypage")
         }
     }
 }

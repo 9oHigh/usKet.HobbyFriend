@@ -13,7 +13,9 @@ final class APIService {
     
     static func getUser(idToken : String, completion: @escaping (User?,Int?) -> Void){
         
-        let headers = ["idtoken" : idToken ] as HTTPHeaders
+        let headers = [
+            "idtoken" : idToken,
+            "Content-Type": "application/x-www-form-urlencoded" ] as HTTPHeaders
         
         AF.request(Endpoint.toLogin.url.absoluteString,method: .get, headers: headers).responseDecodable(of: User.self) { response in
             switch response.result {
@@ -87,6 +89,28 @@ final class APIService {
             case .failure:
                 completion(false)
             }
+        }
+    }
+    
+    static func myPageUpdate(idToken: String,completion: @escaping (Int?) -> Void) {
+        let userDefault = UserDefaults.standard
+        
+        let headers = [
+            "idtoken": idToken,
+            "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
+        
+        let parameters : Parameters = [
+            "searchable" : userDefault.integer(forKey: "searchable"),
+              "ageMin" : userDefault.integer(forKey: "ageMin"),
+              "ageMax" : userDefault.integer(forKey: "ageMax"),
+              "gender" : userDefault.integer(forKey: "gender"),
+            "hobby" : userDefault.string(forKey: "hobby")!
+        ]
+        
+        AF.request(Endpoint.toUpdateMyInfo.url.absoluteString,method: .post,parameters: parameters,headers: headers).responseString { response in
+            //상태코드만 전달 -> 에러판별
+            //MARK: 여기서 바로 statusCode가 아니라 성공/ 실패로 나누어서 보내야 하나 고민고민
+            completion(response.response?.statusCode)
         }
     }
 }

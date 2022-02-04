@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DoubleSlider
 
 class MyInfoSpecificView : UIView {
     
@@ -33,6 +34,7 @@ class MyInfoSpecificView : UIView {
         button.setTitleColor(R.color.basicBlack()!, for: .normal)
         button.setTitle("남자", for: .normal)
         button.titleLabel?.font = .toTitleR14
+        button.addTarget(self, action: #selector(genderClicked(_:)), for: .touchUpInside)
         return button
     }()
     let womanButton : UIButton = {
@@ -41,6 +43,7 @@ class MyInfoSpecificView : UIView {
         button.setTitleColor(R.color.basicBlack()!, for: .normal)
         button.setTitle("여자", for: .normal)
         button.titleLabel?.font = .toTitleR14
+        button.addTarget(self, action: #selector(genderClicked(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -52,8 +55,7 @@ class MyInfoSpecificView : UIView {
     }()
     let hobbyTextField : UITextField = {
         let textField = UITextField()
-        textField.placeholder = "아직없어요."
-        textField.isEnabled = false
+        textField.placeholder = "취미를 입력해주세요!"
         textField.fitToLogin(color: R.color.gray3()!)
         return textField
     }()
@@ -83,16 +85,36 @@ class MyInfoSpecificView : UIView {
         label.font = .toTitleR14
         return label
     }()
-    let ageSlider : UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 18
-        slider.maximumValue = 65
+    let ageSlider : DoubleSlider = {
+        let slider = DoubleSlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.trackHighlightTintColor =  R.color.brandGreen()!
+        slider.trackTintColor = R.color.gray6()!
         slider.thumbTintColor = R.color.brandGreen()!
         return slider
+    }()
+    var labels: [String] = {
+        var labels : [String] = []
+        for number in stride(from: 18, to: 65, by: 1) {
+            labels.append("$\(number)")
+        }
+        return labels
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        ageSlider.editingDidEndDelegate = self
+        
+        ageSlider.labelsAreHidden = true
+        ageSlider.smoothStepping = true
+        ageSlider.numberOfSteps = labels.count
+        
+        //값을 받으면 설정할 것
+        ageSlider.lowerValueStepIndex = 0
+        ageSlider.upperValueStepIndex = labels.count - 1
+        
+        agesLabel.text = "\(ageSlider.lowerValueStepIndex + 18) - \(ageSlider.upperValueStepIndex + 19)"
         
         setUI()
         setConstraints()
@@ -101,6 +123,7 @@ class MyInfoSpecificView : UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     func setUI(){
         
@@ -160,7 +183,7 @@ class MyInfoSpecificView : UIView {
         hobbyTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(-5)
-            make.width.equalToSuperview().multipliedBy(0.4)
+            make.width.equalTo(140)
         }
         
         //permit
@@ -186,7 +209,7 @@ class MyInfoSpecificView : UIView {
             make.top.equalTo(views[2].snp.bottom).offset(5)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.95)
-            make.height.equalTo(80)
+            make.height.equalTo(100)
         }
         otherAgesLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview().multipliedBy(0.75)
@@ -198,7 +221,51 @@ class MyInfoSpecificView : UIView {
         }
         ageSlider.snp.makeConstraints { make in
             make.centerY.equalToSuperview().multipliedBy(1.5)
-            make.trailing.leading.equalToSuperview().inset(5)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.4)
+            
         }
+    }
+    
+    @objc
+    func genderClicked(_ sender : UIButton){
+        let userDefaults = UserDefaults.standard
+        if sender == manButton {
+            sender.backgroundColor = sender.backgroundColor == R.color.basicWhite()! ? R.color.brandGreen()! : R.color.basicWhite()!
+            if sender.backgroundColor == R.color.basicWhite()!{
+                sender.setTitleColor(R.color.basicBlack()!, for: .normal)
+                userDefaults.set(-1, forKey: "gender")
+            } else {
+                sender.setTitleColor(R.color.basicWhite()!, for: .normal)
+                userDefaults.set(1, forKey: "gender")
+            }
+            womanButton.backgroundColor = R.color.basicWhite()!
+            womanButton.setTitleColor(R.color.basicBlack()!, for: .normal)
+            
+        } else {
+            sender.backgroundColor = sender.backgroundColor == R.color.basicWhite()! ? R.color.brandGreen()! : R.color.basicWhite()!
+            if sender.backgroundColor == R.color.basicWhite()!{
+                sender.setTitleColor(R.color.basicBlack()!, for: .normal)
+                userDefaults.set(-1, forKey: "gender")
+            } else {
+                sender.setTitleColor(R.color.basicWhite()!, for: .normal)
+                userDefaults.set(0, forKey: "gender")
+            }
+            manButton.backgroundColor = R.color.basicWhite()!
+            manButton.setTitleColor(R.color.basicBlack()!, for: .normal)
+        }
+    }
+}
+extension MyInfoSpecificView : DoubleSliderEditingDidEndDelegate {
+    func editingDidEnd(for doubleSlider: DoubleSlider) {
+        //값이 변환되었을 때 보내주자!
+        let startAge = doubleSlider.lowerValueStepIndex + 18
+        let lastAge = doubleSlider.upperValueStepIndex + 19
+        
+        agesLabel.text = "\(startAge) - \(lastAge)"
+        
+        UserDefaults.standard.set(startAge, forKey: "ageMin")
+        UserDefaults.standard.set(lastAge, forKey: "ageMax")
     }
 }

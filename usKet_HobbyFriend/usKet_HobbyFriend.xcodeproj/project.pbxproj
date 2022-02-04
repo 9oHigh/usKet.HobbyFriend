@@ -49,8 +49,6 @@
 		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
 		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
 		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
-		4C62F7DA27AAA66D004C5BEC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4C62F7D927AAA66D004C5BEC /* Realm */; };
-		4C62F7DC27AAA66D004C5BEC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C62F7DB27AAA66D004C5BEC /* RealmSwift */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
@@ -73,9 +71,12 @@
 		4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */; };
 		4CF7759B27983BB5009CC655 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */; };
 		4CF7759E279877AD009CC655 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7759D279877AD009CC655 /* UIViewController + Extension.swift */; };
+		51295B6CF39E61D9A895D4F3 /* Pods_usKet_HobbyFriend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05833AEF4EA9FD78D726926E /* Pods_usKet_HobbyFriend.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05833AEF4EA9FD78D726926E /* Pods_usKet_HobbyFriend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_usKet_HobbyFriend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		384711D0DB3E1DB032B24F36 /* Pods-usKet_HobbyFriend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-usKet_HobbyFriend.debug.xcconfig"; path = "Target Support Files/Pods-usKet_HobbyFriend/Pods-usKet_HobbyFriend.debug.xcconfig"; sourceTree = "<group>"; };
 		4C0D759E279A734000566CC0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4C0D75A0279A8AAE00566CC0 /* SignupSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSingleton.swift; sourceTree = "<group>"; };
 		4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		4CF77595279834A0009CC655 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		4CF7759D279877AD009CC655 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		8F096AC900D0AB011B455893 /* Pods-usKet_HobbyFriend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-usKet_HobbyFriend.release.xcconfig"; path = "Target Support Files/Pods-usKet_HobbyFriend/Pods-usKet_HobbyFriend.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,20 +145,27 @@
 				4C0D75B0279D623500566CC0 /* Alamofire in Frameworks */,
 				4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */,
 				4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */,
-				4C62F7DC27AAA66D004C5BEC /* RealmSwift in Frameworks */,
 				4C0DBBEF27954762005DBE66 /* FirebaseAuthCombine-Community in Frameworks */,
-				4C62F7DA27AAA66D004C5BEC /* Realm in Frameworks */,
 				4CF7756227970B26009CC655 /* Rswift in Frameworks */,
 				4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */,
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
 				4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */,
 				4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */,
+				51295B6CF39E61D9A895D4F3 /* Pods_usKet_HobbyFriend.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33A8195C3A5DF03CF3D27461 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05833AEF4EA9FD78D726926E /* Pods_usKet_HobbyFriend.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4C0D75B9279ECDEC00566CC0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +257,8 @@
 			children = (
 				4C0DBBD4279529D8005DBE66 /* usKet_HobbyFriend */,
 				4C0DBBD3279529D8005DBE66 /* Products */,
+				C1B0C6FA580D1EB5ABAC1071 /* Pods */,
+				33A8195C3A5DF03CF3D27461 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -375,6 +386,16 @@
 			path = APIService;
 			sourceTree = "<group>";
 		};
+		C1B0C6FA580D1EB5ABAC1071 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				384711D0DB3E1DB032B24F36 /* Pods-usKet_HobbyFriend.debug.xcconfig */,
+				8F096AC900D0AB011B455893 /* Pods-usKet_HobbyFriend.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,10 +403,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0DBBE6279529DA005DBE66 /* Build configuration list for PBXNativeTarget "usKet_HobbyFriend" */;
 			buildPhases = (
+				89D0F19EE5BB280772BC74CE /* [CP] Check Pods Manifest.lock */,
 				4CF7755F27970724009CC655 /* ShellScript */,
 				4C0DBBCE279529D8005DBE66 /* Sources */,
 				4C0DBBCF279529D8005DBE66 /* Frameworks */,
 				4C0DBBD0279529D8005DBE66 /* Resources */,
+				569ECA83EBA24D9521CE6F26 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -407,8 +430,6 @@
 				4C0D75C0279ED72700566CC0 /* RxCocoa */,
 				4C0D75C2279ED72700566CC0 /* RxRelay */,
 				4C0D75C4279ED72700566CC0 /* RxSwift */,
-				4C62F7D927AAA66D004C5BEC /* Realm */,
-				4C62F7DB27AAA66D004C5BEC /* RealmSwift */,
 			);
 			productName = usKet_HobbyFriend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
@@ -441,11 +462,10 @@
 			packageReferences = (
 				4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
+				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift.Library" */,
 				4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				4C0D75AE279D623400566CC0 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -487,11 +507,50 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "rswift generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		569ECA83EBA24D9521CE6F26 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-usKet_HobbyFriend/Pods-usKet_HobbyFriend-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-usKet_HobbyFriend/Pods-usKet_HobbyFriend-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-usKet_HobbyFriend/Pods-usKet_HobbyFriend-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89D0F19EE5BB280772BC74CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-usKet_HobbyFriend-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -679,6 +738,7 @@
 		};
 		4C0DBBE7279529DA005DBE66 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 384711D0DB3E1DB032B24F36 /* Pods-usKet_HobbyFriend.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -707,6 +767,7 @@
 		};
 		4C0DBBE8279529DA005DBE66 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F096AC900D0AB011B455893 /* Pods-usKet_HobbyFriend.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -789,15 +850,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
-		4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+		4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift.Library" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
 			requirement = {
@@ -876,19 +929,9 @@
 			package = 4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		4C62F7D927AAA66D004C5BEC /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		4C62F7DB27AAA66D004C5BEC /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C62F7D827AAA66C004C5BEC /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		4CF7756127970B26009CC655 /* Rswift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */;
+			package = 4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift.Library" */;
 			productName = Rswift;
 		};
 		4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */ = {

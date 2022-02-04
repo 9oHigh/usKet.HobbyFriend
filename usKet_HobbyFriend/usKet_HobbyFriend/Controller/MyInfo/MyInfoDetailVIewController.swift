@@ -40,6 +40,8 @@ class MyInfoDetailViewController : BaseViewController {
             .foregroundColor : UIColor(resource: R.color.basicBlack)!
         ]
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain , target: self, action: #selector(saveMyInfo))
+        
         setConfigure()
         setUI()
         setConstraints()
@@ -49,14 +51,50 @@ class MyInfoDetailViewController : BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //타이틀
+        myinfoView.foldView.titleView.viewModel.user = self.viewModel.user
+        myinfoView.foldView.titleView.collectionView.reloadData()
         monitorNetwork()
     }
     
+    //하 이렇게 짜기 싫은데.. 뷰로만들어서 괴롭네
     override func setConfigure() {
         
         //delegate for CENTER.x
         scrollView.delegate = self
         
+        let user = viewModel.user
+        //이미지 + 새싹
+        myinfoView.backgroundView.background.image = user?.background == 0 ? R.image.sesacbackground1()! : R.image.sesacbackground2()!
+        myinfoView.backgroundView.sesac.image = user?.sesac == 0 ? R.image.sesac_face_1()! : R.image.sesac_face_2()!
+        
+        //리뷰
+        myinfoView.foldView.reviewTextView.text = user!.comment.isEmpty ? "첫 리뷰를 기다리는 중이에요!" : user?.comment[0]
+        
+        //성별
+        switch user?.gender {
+        case 0:
+            specificView.womanButton.backgroundColor = R.color.brandGreen()!
+            specificView.womanButton.setTitleColor(R.color.basicWhite()!, for: .normal)
+        case 1:
+            specificView.manButton.backgroundColor = R.color.brandGreen()!
+            specificView.manButton.setTitleColor(R.color.basicWhite()!, for: .normal)
+        default:
+            break
+        }
+        
+        //취미
+        if user?.hobby != ""{ specificView.hobbyTextField.text = user?.hobby}
+        
+        //검색허용
+        specificView.permitSwitch.isOn = user?.searchable == 0 ? false : true
+        
+        //연령대
+        
+        specificView.ageSlider.lowerValueStepIndex = user!.ageMin - 18
+        specificView.ageSlider.upperValueStepIndex = user!.ageMax - 19
+        specificView.agesLabel.text = "\(user!.ageMin) - \(user!.ageMax)"
+
         //withrawButton
         withdrawButton.backgroundColor = UIColor(resource: R.color.basicWhite)
         withdrawButton.setTitleColor(UIColor(resource: R.color.basicBlack), for: .normal)
@@ -104,7 +142,7 @@ class MyInfoDetailViewController : BaseViewController {
         
         withdrawButton.snp.makeConstraints { make in
             //왜 SpecificView에는 안되는가
-            make.top.equalTo(specificView.agesLabel.snp.bottom).offset(40)
+            make.top.equalTo(specificView.agesLabel.snp.bottom).offset(50)
             make.leading.equalTo(0)
             make.width.equalTo(100)
             make.height.equalTo(60)
@@ -146,6 +184,29 @@ class MyInfoDetailViewController : BaseViewController {
                 self.transViewController(nextType: .present, controller: alertView)
             })
             .disposed(by: self.disposeBag)
+    }
+    @objc
+    func saveMyInfo(){
+        
+        let userDefaults = UserDefaults.standard
+
+        userDefaults.set(specificView.hobbyTextField.text ?? "", forKey: "hobby")
+        
+        specificView.permitSwitch.isOn ?
+        userDefaults.set(1, forKey: "searchable") :userDefaults.set(0, forKey: "searchable")
+        
+        viewModel.myPageUpdate { [weak self] error in
+            guard error == nil else {
+                if error != "미가입 회원입니다."{
+                    self?.showToast(message: error!)
+                } else {
+                    self?.view.window?.rootViewController = OnboardViewController()
+                    self?.view.window?.makeKeyAndVisible()
+                }
+                return
+            }
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     func updateConstraints(isCollapse : Bool){
@@ -192,7 +253,9 @@ class MyInfoDetailViewController : BaseViewController {
 extension MyInfoDetailViewController : UIScrollViewDelegate{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        scrollView.contentOffset.x = 0.0
+        if scrollView.contentOffset.x > 0 {
+            scrollView.contentOffset.x = 0
+        }
     }
 }
+   
