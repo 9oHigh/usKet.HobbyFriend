@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MyInfoViewController : BaseViewController {
+final class MyInfoViewController : BaseViewController {
     
     let tableView = UITableView()
     let viewModel = MyInfoViewModel()

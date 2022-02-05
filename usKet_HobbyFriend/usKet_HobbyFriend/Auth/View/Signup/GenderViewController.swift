@@ -172,10 +172,10 @@ final class GenderViewController : BaseViewController {
                 switch statusCode{
                     
                 case 200 : //회원가입 성공, To home
-                    self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
+                    self.transViewWithAnimation(isNavigation: false, controller: HomeTabViewController())
                     
                 case 201 : //이미 회원가입 되어있는 상태, To home
-                    self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
+                    self.transViewWithAnimation(isNavigation: false, controller: HomeTabViewController())
                     
                 case 202 : //닉네임 오류
                     let nickNameViewController = NicknameViewController()

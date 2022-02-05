@@ -199,6 +199,5 @@ final class BirthViewController : BaseViewController {
     private func toNextPage(_ sender: UIButton){
         
         errorMessage != "" ? self.showToast(message: errorMessage) : self.transViewController(nextType: .push, controller: EmailViewController())
-        
     }
 }

@@ -213,9 +213,9 @@ final class CerMessageViewController : BaseViewController {
                     switch statusCode {
                         
                     case 200: //To Home
-                        self.transViewWithAnimation(isNavigation: false, controller: HomeViewController())
-                        
-                    case 201: //To Nickname
+                        self.transViewWithAnimation(isNavigation: false, controller: HomeTabViewController())
+                    
+                    case 406: //To Nickname
                         self.transViewWithAnimation(isNavigation: true, controller: NicknameViewController())
                         
                     default :

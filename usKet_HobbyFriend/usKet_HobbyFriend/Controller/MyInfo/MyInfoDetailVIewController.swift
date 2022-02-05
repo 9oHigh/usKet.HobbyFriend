@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MyInfoDetailViewController : BaseViewController {
+final class MyInfoDetailViewController : BaseViewController {
     
     let contentView : UIView = {
         let view = UIView()
@@ -200,13 +200,18 @@ class MyInfoDetailViewController : BaseViewController {
                 if error != "미가입 회원입니다."{
                     self?.showToast(message: error!)
                 } else {
-                    self?.view.window?.rootViewController = OnboardViewController()
+                    self?.view.window?.rootViewController = UINavigationController(rootViewController: NicknameViewController())
                     self?.view.window?.makeKeyAndVisible()
                 }
                 return
             }
         }
-        self.navigationController?.popViewController(animated: true)
+        
+        self.showToast(message: "저장완료!",yPosition: UIScreen.main.bounds.height / 2)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func updateConstraints(isCollapse : Bool){

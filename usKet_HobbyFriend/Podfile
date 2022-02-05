@@ -4,7 +4,11 @@
 target 'usKet_HobbyFriend' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+
 pod 'DoubleSlider'
+pod 'RxCocoa', '6.5.0'
+pod 'Moya/RxSwift', '~> 15.0'
+
   # Pods for usKet_HobbyFriend
 
 end

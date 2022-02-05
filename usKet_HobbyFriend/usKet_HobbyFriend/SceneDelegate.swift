@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
-        
         switch toSignUp.userState() {
         //온보딩
         case "onboard" :
@@ -31,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
         //home
         case "home":
-            window?.rootViewController = HomeViewController()
+            window?.rootViewController = HomeTabViewController()
             window?.makeKeyAndVisible()
         //처음 + 오류
         default :

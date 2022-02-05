@@ -16,7 +16,6 @@ final class NicknameViewController : BaseViewController {
     
     private var viewModel = CertificationViewModel()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //닉네임 오류로 넘어왔을 경우

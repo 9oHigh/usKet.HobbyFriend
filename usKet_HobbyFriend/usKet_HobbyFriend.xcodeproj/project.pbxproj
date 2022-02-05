@@ -7,28 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C01D97B27AE584200C039A9 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01D97A27AE584200C039A9 /* Parameters.swift */; };
+		4C01D97D27AE6DFD00C039A9 /* UserTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01D97C27AE6DFD00C039A9 /* UserTarget.swift */; };
+		4C01D98027AE6E6E00C039A9 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01D97F27AE6E6D00C039A9 /* UserAPI.swift */; };
 		4C0D759F279A734000566CC0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D759E279A734000566CC0 /* User.swift */; };
 		4C0D75A1279A8AAE00566CC0 /* SignupSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A0279A8AAE00566CC0 /* SignupSingleton.swift */; };
 		4C0D75A3279AD88600566CC0 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */; };
 		4C0D75A5279AD8F400566CC0 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */; };
 		4C0D75A7279AD90000566CC0 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A6279AD90000566CC0 /* EmailViewController.swift */; };
 		4C0D75A9279AD90E00566CC0 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75A8279AD90E00566CC0 /* GenderViewController.swift */; };
-		4C0D75AB279B0D4100566CC0 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75AA279B0D4100566CC0 /* DateView.swift */; };
+		4C0D75AB279B0D4100566CC0 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75AA279B0D4100566CC0 /* BirthView.swift */; };
 		4C0D75AD279B208300566CC0 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75AC279B208300566CC0 /* Date + Extension.swift */; };
-		4C0D75B0279D623500566CC0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75AF279D623500566CC0 /* Alamofire */; };
-		4C0D75B2279D892A00566CC0 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B1279D892A00566CC0 /* HomeTabViewController.swift */; };
+		4C0D75B2279D892A00566CC0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B1279D892A00566CC0 /* HomeViewController.swift */; };
 		4C0D75B4279D89F200566CC0 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B3279D89F200566CC0 /* ShopViewController.swift */; };
 		4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */; };
 		4C0D75B8279D8A5E00566CC0 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */; };
-		4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C0279ED72700566CC0 /* RxCocoa */; };
-		4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C2279ED72700566CC0 /* RxRelay */; };
-		4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C0D75C4279ED72700566CC0 /* RxSwift */; };
 		4C0D75C7279FF19B00566CC0 /* ProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */; };
 		4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */; };
 		4C0D75CF27A10EB400566CC0 /* MyInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CE27A10EB300566CC0 /* MyInfoViewModel.swift */; };
 		4C0D75D727A123E900566CC0 /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D627A123E800566CC0 /* MyInfoView.swift */; };
 		4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */; };
-		4C0D75E127A1AA1A00566CC0 /* MyInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E027A1AA1900566CC0 /* MyInfoModel.swift */; };
 		4C0D75E427A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */; };
 		4C0D75E627A1B58800566CC0 /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */; };
 		4C0D75EC27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */; };
@@ -63,9 +61,7 @@
 		4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758427982B45009CC655 /* CertificationViewController.swift */; };
 		4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758627982D44009CC655 /* CertificationViewModel.swift */; };
 		4CF7758A27982D87009CC655 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758927982D87009CC655 /* Observable.swift */; };
-		4CF7758E27982EE1009CC655 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758D27982EE1009CC655 /* APIService.swift */; };
-		4CF7759027982EF4009CC655 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758F27982EF4009CC655 /* EndPoint.swift */; };
-		4CF775922798316F009CC655 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF775912798316F009CC655 /* HomeViewController.swift */; };
+		4CF775922798316F009CC655 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF775912798316F009CC655 /* HomeTabViewController.swift */; };
 		4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF77593279831AE009CC655 /* CerMessageViewController.swift */; };
 		4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF77595279834A0009CC655 /* UIButton + Extension.swift */; };
 		4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */; };
@@ -77,15 +73,18 @@
 /* Begin PBXFileReference section */
 		05833AEF4EA9FD78D726926E /* Pods_usKet_HobbyFriend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_usKet_HobbyFriend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384711D0DB3E1DB032B24F36 /* Pods-usKet_HobbyFriend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-usKet_HobbyFriend.debug.xcconfig"; path = "Target Support Files/Pods-usKet_HobbyFriend/Pods-usKet_HobbyFriend.debug.xcconfig"; sourceTree = "<group>"; };
+		4C01D97A27AE584200C039A9 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		4C01D97C27AE6DFD00C039A9 /* UserTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTarget.swift; sourceTree = "<group>"; };
+		4C01D97F27AE6E6D00C039A9 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		4C0D759E279A734000566CC0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4C0D75A0279A8AAE00566CC0 /* SignupSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSingleton.swift; sourceTree = "<group>"; };
 		4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
 		4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		4C0D75A6279AD90000566CC0 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		4C0D75A8279AD90E00566CC0 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
-		4C0D75AA279B0D4100566CC0 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		4C0D75AA279B0D4100566CC0 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		4C0D75AC279B208300566CC0 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
-		4C0D75B1279D892A00566CC0 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
+		4C0D75B1279D892A00566CC0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4C0D75B3279D89F200566CC0 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +93,6 @@
 		4C0D75CE27A10EB300566CC0 /* MyInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewModel.swift; sourceTree = "<group>"; };
 		4C0D75D627A123E800566CC0 /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoFoldView.swift; sourceTree = "<group>"; };
-		4C0D75E027A1AA1900566CC0 /* MyInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoModel.swift; sourceTree = "<group>"; };
 		4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
 		4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTitleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -122,9 +120,7 @@
 		4CF7758427982B45009CC655 /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		4CF7758627982D44009CC655 /* CertificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewModel.swift; sourceTree = "<group>"; };
 		4CF7758927982D87009CC655 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		4CF7758D27982EE1009CC655 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		4CF7758F27982EF4009CC655 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
-		4CF775912798316F009CC655 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4CF775912798316F009CC655 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		4CF77593279831AE009CC655 /* CerMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CerMessageViewController.swift; sourceTree = "<group>"; };
 		4CF77595279834A0009CC655 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		4CF7759A27983BB5009CC655 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
@@ -142,12 +138,8 @@
 				4C0DBBEB27954762005DBE66 /* FirebaseAnalytics in Frameworks */,
 				4C0DBBF727954762005DBE66 /* FirebaseMessaging in Frameworks */,
 				4C0DBBF127954762005DBE66 /* FirebaseCrashlytics in Frameworks */,
-				4C0D75B0279D623500566CC0 /* Alamofire in Frameworks */,
-				4C0D75C5279ED72700566CC0 /* RxSwift in Frameworks */,
-				4C0D75C1279ED72700566CC0 /* RxCocoa in Frameworks */,
 				4C0DBBEF27954762005DBE66 /* FirebaseAuthCombine-Community in Frameworks */,
 				4CF7756227970B26009CC655 /* Rswift in Frameworks */,
-				4C0D75C3279ED72700566CC0 /* RxRelay in Frameworks */,
 				4C0DBBED27954762005DBE66 /* FirebaseAuth in Frameworks */,
 				4C0DBBF527954762005DBE66 /* FirebaseFirestore in Frameworks */,
 				4CF77599279837EA009CC655 /* IQKeyboardManagerSwift in Frameworks */,
@@ -166,10 +158,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4C01D97E27AE6E3800C039A9 /* UserAPI */ = {
+			isa = PBXGroup;
+			children = (
+				4C01D97C27AE6DFD00C039A9 /* UserTarget.swift */,
+				4C01D97F27AE6E6D00C039A9 /* UserAPI.swift */,
+			);
+			path = UserAPI;
+			sourceTree = "<group>";
+		};
 		4C0D75B9279ECDEC00566CC0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4C0D75B1279D892A00566CC0 /* HomeTabViewController.swift */,
+				4C0D75B1279D892A00566CC0 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -195,7 +196,6 @@
 			children = (
 				4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */,
 				4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */,
-				4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -203,12 +203,14 @@
 		4C0D75D027A1154400566CC0 /* UIView + Resusable */ = {
 			isa = PBXGroup;
 			children = (
+				4CF7757F2797FB20009CC655 /* BaseViewController.swift */,
 				4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */,
 				4C62F7D627A40828004C5BEC /* AlertView.swift */,
 				4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */,
 				4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */,
 				4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */,
 				4C0D75D627A123E800566CC0 /* MyInfoView.swift */,
+				4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */,
 			);
 			path = "UIView + Resusable";
 			sourceTree = "<group>";
@@ -224,8 +226,8 @@
 		4C0D75D227A116C700566CC0 /* Certification */ = {
 			isa = PBXGroup;
 			children = (
-				4CF77593279831AE009CC655 /* CerMessageViewController.swift */,
 				4CF7758427982B45009CC655 /* CertificationViewController.swift */,
+				4CF77593279831AE009CC655 /* CerMessageViewController.swift */,
 			);
 			path = Certification;
 			sourceTree = "<group>";
@@ -234,7 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				4C0D75A2279AD88600566CC0 /* NickNameViewController.swift */,
-				4C0D75AA279B0D4100566CC0 /* DateView.swift */,
+				4C0D75AA279B0D4100566CC0 /* BirthView.swift */,
 				4C0D75A4279AD8F400566CC0 /* BirthViewController.swift */,
 				4C0D75A6279AD90000566CC0 /* EmailViewController.swift */,
 				4C0D75A8279AD90E00566CC0 /* GenderViewController.swift */,
@@ -242,14 +244,14 @@
 			path = Signup;
 			sourceTree = "<group>";
 		};
-		4C0D75E227A1AE1C00566CC0 /* view */ = {
+		4C0D75E227A1AE1C00566CC0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */,
 				4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */,
 				4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */,
 			);
-			path = view;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		4C0DBBC9279529D8005DBE66 = {
@@ -279,9 +281,9 @@
 				4C0DBBD5279529D8005DBE66 /* AppDelegate.swift */,
 				4C0DBBD7279529D8005DBE66 /* SceneDelegate.swift */,
 				4CF7756C2797B156009CC655 /* Resource */,
-				4CF7758C27982EBF009CC655 /* APIService */,
 				4CF775762797E78D009CC655 /* Extension */,
 				4CF775752797CD9E009CC655 /* Auth */,
+				4CF7758C27982EBF009CC655 /* APIManager */,
 				4C0DBC032796E53C005DBE66 /* Model */,
 				4C0DBC052796E54C005DBE66 /* Controller */,
 				4C0DBC042796E543005DBE66 /* ViewModel */,
@@ -293,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				4C0D759E279A734000566CC0 /* User.swift */,
-				4C0D75E027A1AA1900566CC0 /* MyInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,10 +311,9 @@
 		4C0DBC052796E54C005DBE66 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4CF7757F2797FB20009CC655 /* BaseViewController.swift */,
-				4CF775912798316F009CC655 /* HomeViewController.swift */,
-				4C0D75E227A1AE1C00566CC0 /* view */,
+				4C0D75E227A1AE1C00566CC0 /* Cell */,
 				4C0D75D027A1154400566CC0 /* UIView + Resusable */,
+				4CF775912798316F009CC655 /* HomeTabViewController.swift */,
 				4C0D75B9279ECDEC00566CC0 /* Home */,
 				4C0D75BA279ECDFF00566CC0 /* Shop */,
 				4C0D75BB279ECE1B00566CC0 /* Friends */,
@@ -325,11 +325,11 @@
 		4CF7756C2797B156009CC655 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4CF7756727970FDC009CC655 /* R.generated.swift */,
 				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
 				4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */,
 				4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */,
 				4CF7756F2797B16A009CC655 /* OFL.txt */,
-				4CF7756727970FDC009CC655 /* R.generated.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -377,13 +377,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		4CF7758C27982EBF009CC655 /* APIService */ = {
+		4CF7758C27982EBF009CC655 /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
-				4CF7758D27982EE1009CC655 /* APIService.swift */,
-				4CF7758F27982EF4009CC655 /* EndPoint.swift */,
+				4C01D97A27AE584200C039A9 /* Parameters.swift */,
+				4C01D97E27AE6E3800C039A9 /* UserAPI */,
 			);
-			path = APIService;
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 		C1B0C6FA580D1EB5ABAC1071 /* Pods */ = {
@@ -392,7 +392,6 @@
 				384711D0DB3E1DB032B24F36 /* Pods-usKet_HobbyFriend.debug.xcconfig */,
 				8F096AC900D0AB011B455893 /* Pods-usKet_HobbyFriend.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -426,10 +425,6 @@
 				4C0DBBFF27955935005DBE66 /* SnapKit */,
 				4CF7756127970B26009CC655 /* Rswift */,
 				4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */,
-				4C0D75AF279D623500566CC0 /* Alamofire */,
-				4C0D75C0279ED72700566CC0 /* RxCocoa */,
-				4C0D75C2279ED72700566CC0 /* RxRelay */,
-				4C0D75C4279ED72700566CC0 /* RxSwift */,
 			);
 			productName = usKet_HobbyFriend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
@@ -462,10 +457,8 @@
 			packageReferences = (
 				4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift.Library" */,
+				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
 				4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
-				4C0D75AE279D623400566CC0 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -507,7 +500,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -562,7 +555,7 @@
 				4C0D75EE27A27AA000566CC0 /* MyInfoCollectionView.swift in Sources */,
 				4C0D75E427A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift in Sources */,
 				4C0D75A3279AD88600566CC0 /* NickNameViewController.swift in Sources */,
-				4C0D75E127A1AA1A00566CC0 /* MyInfoModel.swift in Sources */,
+				4C01D97D27AE6DFD00C039A9 /* UserTarget.swift in Sources */,
 				4CF7757C2797EF15009CC655 /* UIFont + Extension.swift in Sources */,
 				4C0D75AD279B208300566CC0 /* Date + Extension.swift in Sources */,
 				4CF775782797E7B5009CC655 /* UILabel + Extension.swift in Sources */,
@@ -571,7 +564,7 @@
 				4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */,
 				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
 				4C0D75A1279A8AAE00566CC0 /* SignupSingleton.swift in Sources */,
-				4CF775922798316F009CC655 /* HomeViewController.swift in Sources */,
+				4CF775922798316F009CC655 /* HomeTabViewController.swift in Sources */,
 				4C0D75C7279FF19B00566CC0 /* ProfileNameView.swift in Sources */,
 				4C0D75D727A123E900566CC0 /* MyInfoView.swift in Sources */,
 				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
@@ -586,20 +579,20 @@
 				4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */,
 				4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */,
 				4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */,
-				4C0D75AB279B0D4100566CC0 /* DateView.swift in Sources */,
+				4C0D75AB279B0D4100566CC0 /* BirthView.swift in Sources */,
 				4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */,
 				4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */,
-				4C0D75B2279D892A00566CC0 /* HomeTabViewController.swift in Sources */,
+				4C0D75B2279D892A00566CC0 /* HomeViewController.swift in Sources */,
 				4CF7759B27983BB5009CC655 /* UITextField + Extension.swift in Sources */,
 				4C0D75B8279D8A5E00566CC0 /* MyInfoViewController.swift in Sources */,
 				4C0D75B4279D89F200566CC0 /* ShopViewController.swift in Sources */,
-				4CF7758E27982EE1009CC655 /* APIService.swift in Sources */,
+				4C01D97B27AE584200C039A9 /* Parameters.swift in Sources */,
+				4C01D98027AE6E6E00C039A9 /* UserAPI.swift in Sources */,
 				4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */,
 				4CF7757A2797E7CC009CC655 /* UITextView + Extension.swift in Sources */,
 				4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */,
 				4CF7759E279877AD009CC655 /* UIViewController + Extension.swift in Sources */,
 				4C0D75A7279AD90000566CC0 /* EmailViewController.swift in Sources */,
-				4CF7759027982EF4009CC655 /* EndPoint.swift in Sources */,
 				4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */,
 				4C0D759F279A734000566CC0 /* User.swift in Sources */,
 				4CF7756827970FDC009CC655 /* R.generated.swift in Sources */,
@@ -818,22 +811,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C0D75AE279D623400566CC0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -850,7 +827,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift.Library" */ = {
+		4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
 			requirement = {
@@ -869,26 +846,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C0D75AF279D623500566CC0 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C0D75AE279D623400566CC0 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		4C0D75C0279ED72700566CC0 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		4C0D75C2279ED72700566CC0 /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
-		};
-		4C0D75C4279ED72700566CC0 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4C0D75BF279ED72600566CC0 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
 		4C0DBBEA27954762005DBE66 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C0DBBE927954762005DBE66 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -931,7 +888,7 @@
 		};
 		4CF7756127970B26009CC655 /* Rswift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift.Library" */;
+			package = 4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
 		};
 		4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */ = {

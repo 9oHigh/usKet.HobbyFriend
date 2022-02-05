@@ -6,6 +6,23 @@
 //
 
 import Foundation
+import UIKit
+
+// MARK: - MyInfo
+
+struct MyInfo {
+    
+    let image: UIImage
+    let name: String
+}
+
+// MARK: - MyTitle
+
+struct MyTitle {
+    
+    let title : String
+}
+
 
 // MARK: - User
 struct User: Codable {

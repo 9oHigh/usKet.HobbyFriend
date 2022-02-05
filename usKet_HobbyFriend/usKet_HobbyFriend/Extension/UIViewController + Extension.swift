@@ -15,9 +15,9 @@ enum NextType {
 
 extension UIViewController {
     
-    func showToast(message : String , width: CGFloat = UIScreen.main.bounds.width * 0.8, height : CGFloat = 50) {
+    func showToast(message : String , width: CGFloat = UIScreen.main.bounds.width * 0.8, height : CGFloat = 50,yPosition : CGFloat = 50) {
         
-        let toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - width/2, y: 50, width: width, height: height))
+        let toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - width/2, y: yPosition, width: width, height: height))
         
         //Configure
         toastLabel.backgroundColor = UIColor(resource: R.color.basicBlack)?.withAlphaComponent(0.5)
