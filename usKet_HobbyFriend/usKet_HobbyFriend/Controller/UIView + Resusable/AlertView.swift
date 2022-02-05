@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class AlertView : BaseViewController {
+final class AlertView : BaseViewController {
     
     let forwardView = UIView()
     

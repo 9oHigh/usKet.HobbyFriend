@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyInfoFoldView : UIView {
+final class MyInfoFoldView : UIView {
 
     //MARK: Fixed View
     let fixedView : UIView = {

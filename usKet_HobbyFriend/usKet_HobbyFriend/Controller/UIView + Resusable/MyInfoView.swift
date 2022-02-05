@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyInfoView : UIView {
+final class MyInfoView : UIView {
     
     let backgroundView = MyInfoHeaderView()
     let foldView = MyInfoFoldView()

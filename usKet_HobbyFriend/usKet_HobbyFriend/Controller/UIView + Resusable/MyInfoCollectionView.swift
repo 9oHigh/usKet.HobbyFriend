@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MyInfoCollectionVeiw : UIView {
+final class MyInfoCollectionVeiw : UIView {
     
     let collectionView : UICollectionView = {
         

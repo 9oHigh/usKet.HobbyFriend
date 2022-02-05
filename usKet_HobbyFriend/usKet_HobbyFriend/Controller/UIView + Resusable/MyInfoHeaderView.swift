@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyInfoHeaderView : UIView {
+final class MyInfoHeaderView : UIView {
     
     //MARK: ImageView + sesac
     //RxSwift 사용해서 바인딩 해둘것
