@@ -7,32 +7,32 @@
 
 import UIKit
 
-final class MyInfoFoldView : UIView {
+final class MyInfoFoldView: UIView {
 
-    //MARK: Fixed View
-    let fixedView : UIView = {
+    // MARK: Fixed View
+    let fixedView: UIView = {
        let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         return view
     }()
-    let nameLabel = UILabel()   //유저의 닉에임
-    let flipButton = UIButton() //펼치고 접을수 있는 버튼
+    let nameLabel = UILabel()   // 유저의 닉에임
+    let flipButton = UIButton() // 펼치고 접을수 있는 버튼
    
-    //MARK: Hide View
-    let toHideView : UIView = {
+    // MARK: Hide View
+    let toHideView: UIView = {
        let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         return view
     }()
     
-    let titleLabel = UILabel()  //새싹 타이틀
-    let titleView : MyInfoCollectionVeiw = { //리뷰 타이틀 버튼
+    let titleLabel = UILabel()  // 새싹 타이틀
+    let titleView: MyInfoCollectionVeiw = { // 리뷰 타이틀 버튼
            let reviewTitle = MyInfoCollectionVeiw()
             reviewTitle.translatesAutoresizingMaskIntoConstraints = false
             return reviewTitle
         }()
     
-    let reviewLabel = UILabel() //새싹 리뷰
+    let reviewLabel = UILabel() // 새싹 리뷰
     let reviewOpenButton = UIButton() // 리뷰목록으로 이동
     let reviewTextView = UITextView() // 가장 먼저온 리뷰가 보일 곳
     
@@ -48,7 +48,7 @@ final class MyInfoFoldView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUI(){
+    func setUI() {
         
         addSubview(fixedView)
         fixedView.addSubview(nameLabel)
@@ -63,7 +63,7 @@ final class MyInfoFoldView : UIView {
         toHideView.addSubview(reviewTextView)
     }
     
-    func setConfigure(){
+    func setConfigure() {
         
         layer.cornerRadius = 10
         layer.borderWidth = 1
@@ -85,16 +85,16 @@ final class MyInfoFoldView : UIView {
         
         reviewTextView.isEditable = false
         
-        //MARK: RxSwift + TextView
-        //reviewTextView -> RxSwift로
-        //모델 -> 데이터(뷰모델에서 처리) -> 뷰
+        // MARK: RxSwift + TextView
+        // reviewTextView -> RxSwift로
+        // 모델 -> 데이터(뷰모델에서 처리) -> 뷰
         reviewTextView.text = "첫리뷰를 기다리는 중이에요!"
         reviewTextView.textColor = UIColor(resource: R.color.gray6)
     }
     
-    //MARK: 테이블뷰로 할걸!!! 으아아아!!!!
-    func setConstraints(){
-        //Height : 300
+    // MARK: 테이블뷰로 할걸!!! 으아아아!!!!
+    func setConstraints() {
+        // Height : 300
         fixedView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(15)
@@ -108,7 +108,7 @@ final class MyInfoFoldView : UIView {
             make.height.equalTo(240) // 고정높이.. 굉장히 나쁘다그..
         }
         
-        //Fixed View
+        // Fixed View
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(0)
@@ -118,7 +118,7 @@ final class MyInfoFoldView : UIView {
             make.centerY.equalToSuperview()
             make.trailing.equalTo(0)
         }
-        //Hide View
+        // Hide View
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(5)
             make.leading.equalTo(0)

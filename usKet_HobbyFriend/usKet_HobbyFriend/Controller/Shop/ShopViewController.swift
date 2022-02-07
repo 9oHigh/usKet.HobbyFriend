@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ShopViewController : BaseViewController {
+final class ShopViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,20 +18,20 @@ final class ShopViewController : BaseViewController {
         bind()
     }
     
-    override func setConfigure(){
+    override func setConfigure() {
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
     }
     
-    override func setUI(){
+    override func setUI() {
         
     }
     
-    override func setConstraints(){
+    override func setConstraints() {
         
     }
     
-    override func bind(){
+    override func bind() {
         
     }
 }

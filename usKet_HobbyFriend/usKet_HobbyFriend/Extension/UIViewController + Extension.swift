@@ -10,16 +10,16 @@ import UIKit
 import Network
 
 enum NextType {
-    case push,present
+    case push, present
 }
 
 extension UIViewController {
     
-    func showToast(message : String , width: CGFloat = UIScreen.main.bounds.width * 0.8, height : CGFloat = 50,yPosition : CGFloat = 50) {
+    func showToast(message: String, width: CGFloat = UIScreen.main.bounds.width * 0.8, height: CGFloat = 50, yPosition: CGFloat = 50) {
         
         let toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - width/2, y: yPosition, width: width, height: height))
         
-        //Configure
+        // Configure
         toastLabel.backgroundColor = UIColor(resource: R.color.basicBlack)?.withAlphaComponent(0.5)
         toastLabel.textColor = UIColor(resource: R.color.basicWhite)
         toastLabel.numberOfLines = 0
@@ -31,16 +31,16 @@ extension UIViewController {
         toastLabel.clipsToBounds = true
         
         view.addSubview(toastLabel)
-        //Animation
+        // Animation
         UIView.animate(withDuration: 3.0, delay: 0.05, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
         },
-            completion: { Completed in
+            completion: { _ in
             toastLabel.removeFromSuperview()
         })
     }
     
-    func generateAlertView(inform : String, subInform : String) -> AlertView {
+    func generateAlertView(inform: String, subInform: String) -> AlertView {
         
         let alertView = AlertView()
         alertView.modalPresentationStyle = .overFullScreen
@@ -50,7 +50,7 @@ extension UIViewController {
         return alertView
     }
     
-    func transViewController(nextType : NextType, controller : UIViewController){
+    func transViewController(nextType: NextType, controller: UIViewController) {
 
         switch nextType {
             
@@ -66,7 +66,7 @@ extension UIViewController {
         }
     }
     
-    func transViewWithAnimation(isNavigation : Bool,controller : UIViewController){
+    func transViewWithAnimation(isNavigation: Bool, controller: UIViewController) {
         guard let window = self.view.window else {
             return
         }
@@ -80,7 +80,7 @@ extension UIViewController {
         }, completion: nil)
     }
     
-    func monitorNetwork(){
+    func monitorNetwork() {
         
         let monitor = NWPathMonitor()
         
@@ -100,4 +100,3 @@ extension UIViewController {
         monitor.start(queue: queue)
     }
 }
-

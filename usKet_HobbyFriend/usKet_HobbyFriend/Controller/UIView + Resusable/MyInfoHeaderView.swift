@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class MyInfoHeaderView : UIView {
+final class MyInfoHeaderView: UIView {
     
-    //MARK: ImageView + sesac
-    //RxSwift 사용해서 바인딩 해둘것
-    //모델 + 뷰모델 정리되면
+    // MARK: ImageView + sesac
+    // RxSwift 사용해서 바인딩 해둘것
+    // 모델 + 뷰모델 정리되면
     
     let background = UIImageView()
     let sesac = UIImageView()

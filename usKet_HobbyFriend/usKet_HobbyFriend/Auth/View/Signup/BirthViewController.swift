@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class BirthViewController : BaseViewController {
+final class BirthViewController: BaseViewController {
     
     var informationLabel = UILabel()
-    //middle View
+    // middle View
     var dateFieldView = UIView()
-    //스택뷰로 넣어보자 다음에는!
+    // 스택뷰로 넣어보자 다음에는!
     var yearView = DateTextView()
     var monthView = DateTextView()
     var dayView = DateTextView()
@@ -21,12 +21,12 @@ final class BirthViewController : BaseViewController {
     var datePicker = UIDatePicker()
     
     private var viewModel = CertificationViewModel()
-    private var errorMessage : String = ""
+    private var errorMessage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Before bind
-        if let birth = UserDefaults.standard.string(forKey: "birth"){
+        // Before bind
+        if let birth = UserDefaults.standard.string(forKey: "birth") {
             let birthDate = birth.toDate()
             viewModel.validText.value = birthDate.toOriginalString()
             viewModel.birthDate.value = birthDate.toStringEach()
@@ -45,13 +45,13 @@ final class BirthViewController : BaseViewController {
     }
     
     override func setConfigure() {
-        //View
+        // View
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //Information Label
+        // Information Label
         informationLabel.fitToLogin(text: "생년월일을 알려주세요")
         
-        //dateFieldView
+        // dateFieldView
         let date = Date().toStringEach()
         dateFieldView.backgroundColor = UIColor(resource: R.color.basicWhite)
         
@@ -70,10 +70,10 @@ final class BirthViewController : BaseViewController {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         // 입력해 놓은 데이터가 있다면 그 날짜에 피커뷰 맞춰주기
-        datePicker.date = viewModel.birthDate.value == ("","","") ? Date() : viewModel.validText.value.toDate()
+        datePicker.date = viewModel.birthDate.value == ("", "", "") ? Date() : viewModel.validText.value.toDate()
         datePicker.addTarget(self, action: #selector(dateFieldChanged(_:)), for: .valueChanged)
         
-        //Button
+        // Button
         nextButton.fitToLogin(title: "다음")
         nextButton.addTarget(self, action: #selector(toNextPage(_:)), for: .touchUpInside)
     }
@@ -104,7 +104,7 @@ final class BirthViewController : BaseViewController {
             make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(48)
         }
-        //스택뷰로 넣을걸!
+        // 스택뷰로 넣을걸!
         yearView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview()
@@ -148,7 +148,7 @@ final class BirthViewController : BaseViewController {
     override func bind() {
         
         viewModel.validText.bind { [weak self] _ in
-            //유효성 검사는 3개의 필드가 모두 변환되었을 때
+            // 유효성 검사는 3개의 필드가 모두 변환되었을 때
             DispatchQueue.main.async {
                 (self?.viewModel.checkFullDate())! ? self?.viewModel.birthValidate() : ()
             }
@@ -162,8 +162,8 @@ final class BirthViewController : BaseViewController {
             self?.nextButton.isEnabled = sign ? true : false
         }
         
-        viewModel.birthDate.bind { [weak self] (year,month,day) in
-            //각각 색이 바뀌게 만들어버렸다.. 그런거 없었는데.. 멍청..
+        viewModel.birthDate.bind { [weak self] (year, month, day) in
+            // 각각 색이 바뀌게 만들어버렸다.. 그런거 없었는데.. 멍청..
             year != "" ? self?.yearView.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!) : self?.yearView.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
             month != "" ? self?.monthView.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!) : self?.monthView.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
             day != "" ? self?.dayView.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!) : self?.dayView.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
@@ -179,24 +179,24 @@ final class BirthViewController : BaseViewController {
     }
     
     @objc
-    private func dateFieldChanged(_ datePicker : UIDatePicker) {
-        //MARK: 하나로 할 수 있을 것 같은데.. 두개로 할 필요없지 않나
-        //유저디포트에 저장할 값
+    private func dateFieldChanged(_ datePicker: UIDatePicker) {
+        // MARK: 하나로 할 수 있을 것 같은데.. 두개로 할 필요없지 않나
+        // 유저디포트에 저장할 값
         viewModel.validText.value = datePicker.date.toOriginalString()
         
-        //화면에 보여줄 값
+        // 화면에 보여줄 값
         let pickerDate = datePicker.date.toStringEach()
         
         viewModel.prevDate.value.0 != pickerDate.0 ? viewModel.birthDate.value.0 = pickerDate.0 : ()
         viewModel.prevDate.value.1 != pickerDate.1 ? viewModel.birthDate.value.1 = pickerDate.1 : ()
         viewModel.prevDate.value.2 != pickerDate.2 ? viewModel.birthDate.value.2 = pickerDate.2 : ()
 
-        //변경된 값을 넣어주고 다시 비교할 수 있게
+        // 변경된 값을 넣어주고 다시 비교할 수 있게
         viewModel.prevDate.value = pickerDate
     }
     
     @objc
-    private func toNextPage(_ sender: UIButton){
+    private func toNextPage(_ sender: UIButton) {
         
         errorMessage != "" ? self.showToast(message: errorMessage) : self.transViewController(nextType: .push, controller: EmailViewController())
     }

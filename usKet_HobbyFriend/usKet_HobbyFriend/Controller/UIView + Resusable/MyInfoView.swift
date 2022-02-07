@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MyInfoView : UIView {
+final class MyInfoView: UIView {
     
     let backgroundView = MyInfoHeaderView()
     let foldView = MyInfoFoldView()
@@ -27,7 +27,7 @@ final class MyInfoView : UIView {
         foldView.snp.makeConstraints { make in
             make.top.equalTo(backgroundView.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(300) //Total height : 300
+            make.height.equalTo(300) // Total height : 300
         }
     }
     

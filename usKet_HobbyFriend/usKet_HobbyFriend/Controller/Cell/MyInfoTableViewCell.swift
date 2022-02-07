@@ -8,7 +8,6 @@
 import UIKit
 
 class MyInfoTableViewCell: UITableViewCell {
-
     
     static let identifier = "MyInfoTableViewCell"
     
@@ -26,16 +25,16 @@ class MyInfoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConfigure(){
-        //profileView
+    func setConfigure() {
+        // profileView
         profileView.nameLabel.font = .toTitleM16
     }
     
-    func setUI(){
+    func setUI() {
         addSubview(profileView)
     }
     
-    func setConstraints(){
+    func setConstraints() {
         
         profileView.profileImageView.snp.makeConstraints { make in
             
@@ -48,7 +47,7 @@ class MyInfoTableViewCell: UITableViewCell {
         }
     }
     
-    func setUpdate(myInfo : MyInfo){
+    func setUpdate(myInfo: MyInfo) {
         
         profileView.profileImageView.image = myInfo.image
         profileView.nameLabel.text = myInfo.name

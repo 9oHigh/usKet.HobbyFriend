@@ -10,7 +10,7 @@ import UIKit
 
 extension UITextField {
     
-    func addBottomLine(color : UIColor){
+    func addBottomLine(color: UIColor) {
         self.borderStyle = .none
         self.layer.backgroundColor = UIColor.white.cgColor
         
@@ -21,13 +21,12 @@ extension UITextField {
         self.layer.shadowRadius = 0.0
     }
     
-    func fitToLogin(color : UIColor){
+    func fitToLogin(color: UIColor) {
         
         addBottomLine(color: color)
         backgroundColor = UIColor(resource: R.color.basicWhite)
         textColor = .black
         font = UIFont.toTitleR14
     }
-    
     
 }

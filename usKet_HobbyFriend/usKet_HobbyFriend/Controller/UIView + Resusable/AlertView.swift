@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class AlertView : BaseViewController {
+final class AlertView: BaseViewController {
     
     let forwardView = UIView()
     
@@ -28,14 +28,14 @@ final class AlertView : BaseViewController {
     }
     
     override func setConfigure() {
-        //Main
+        // Main
         view.backgroundColor = R.color.basicBlack()!.withAlphaComponent(0.5)
         
-        //Sub
+        // Sub
         forwardView.backgroundColor = R.color.basicWhite()!
         forwardView.layer.cornerRadius = 15
         
-        //label
+        // label
         informLabel.font = .toBodyM16
         informLabel.numberOfLines = 0
         informLabel.textColor = R.color.basicBlack()!
@@ -46,7 +46,7 @@ final class AlertView : BaseViewController {
         subInformLabel.textColor = R.color.basicBlack()!
         subInformLabel.textAlignment = .center
         
-        //buttons
+        // buttons
         cancelButton.titleLabel?.font = .toTitleR14
         cancelButton.setTitle("취소", for: .normal)
         cancelButton.setTitleColor(R.color.basicBlack()!, for: .normal)

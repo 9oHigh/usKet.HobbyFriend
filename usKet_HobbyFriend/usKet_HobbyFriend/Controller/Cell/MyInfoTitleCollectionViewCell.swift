@@ -24,11 +24,11 @@ class MyInfoTitleCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConfigure(){
+    func setConfigure() {
         
-        titleButton.setTitleColor(UIColor(resource:R.color.basicBlack), for: .normal)
+        titleButton.setTitleColor(UIColor(resource: R.color.basicBlack), for: .normal)
         titleButton.setTitle("", for: .normal)
-        titleButton.backgroundColor = UIColor(resource:R.color.basicWhite)
+        titleButton.backgroundColor = UIColor(resource: R.color.basicWhite)
         titleButton.titleLabel?.font = .toTitleR14
         
         titleButton.layer.cornerRadius = 10
@@ -36,19 +36,19 @@ class MyInfoTitleCollectionViewCell: UICollectionViewCell {
         titleButton.layer.borderWidth = 1
     }
     
-    func setUI(){
+    func setUI() {
         
         addSubview(titleButton)
     }
     
-    func setConstraints(){
+    func setConstraints() {
         
         titleButton.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
     
-    func setUpdate(myTitle : MyTitle){
+    func setUpdate(myTitle: MyTitle) {
         
         titleButton.setTitle(myTitle.title, for: .normal)
     }

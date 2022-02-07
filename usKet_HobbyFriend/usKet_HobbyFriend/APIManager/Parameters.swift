@@ -7,9 +7,9 @@
 
 import Foundation
 
-//모델을 이용해 파라미터를 만드는 방법
-//#호성쓰 참고#
-struct SignupParameter : Encodable {
+// 모델을 이용해 파라미터를 만드는 방법
+// #호성쓰 참고#
+struct SignupParameter: Encodable {
     
     var phoneNumber: String
     var FCMtoken: String
@@ -19,7 +19,7 @@ struct SignupParameter : Encodable {
     var gender: Int
 }
 
-struct MypageParameter : Encodable {
+struct MypageParameter: Encodable {
     
     var searchable: Int
     var ageMin: Int
@@ -34,7 +34,7 @@ struct FCMtokenParameter: Encodable {
 
 extension SignupParameter {
     
-    var parameter : SignupParameter {
+    var parameter: SignupParameter {
         
         let FCMtoken = UserDefaults.standard.string(forKey: "FCMtoken") ?? ""
         let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
@@ -54,7 +54,7 @@ extension SignupParameter {
 
 extension MypageParameter {
     
-    var parameter : MypageParameter {
+    var parameter: MypageParameter {
         
         let searchable = UserDefaults.standard.integer(forKey: "searchable")
         let ageMin = UserDefaults.standard.integer(forKey: "ageMin")

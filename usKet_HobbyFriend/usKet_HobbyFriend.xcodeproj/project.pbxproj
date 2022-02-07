@@ -47,6 +47,7 @@
 		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
 		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
 		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
+		4CE0FC0027B11F3700EA1C18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF7756827970FDC009CC655 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7756727970FDC009CC655 /* R.generated.swift */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
@@ -107,6 +108,7 @@
 		4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
 		4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSpecificView.swift; sourceTree = "<group>"; };
 		4C62F7D627A40828004C5BEC /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4CF7756727970FDC009CC655 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		4C0DBBC9279529D8005DBE66 = {
 			isa = PBXGroup;
 			children = (
+				4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */,
 				4C0DBBD4279529D8005DBE66 /* usKet_HobbyFriend */,
 				4C0DBBD3279529D8005DBE66 /* Products */,
 				C1B0C6FA580D1EB5ABAC1071 /* Pods */,
@@ -403,7 +406,7 @@
 			buildConfigurationList = 4C0DBBE6279529DA005DBE66 /* Build configuration list for PBXNativeTarget "usKet_HobbyFriend" */;
 			buildPhases = (
 				89D0F19EE5BB280772BC74CE /* [CP] Check Pods Manifest.lock */,
-				4CF7755F27970724009CC655 /* ShellScript */,
+				4CF7755F27970724009CC655 /* SwiftLint Rswift Script */,
 				4C0DBBCE279529D8005DBE66 /* Sources */,
 				4C0DBBCF279529D8005DBE66 /* Frameworks */,
 				4C0DBBD0279529D8005DBE66 /* Resources */,
@@ -477,6 +480,7 @@
 				4CF775722797B16A009CC655 /* OFL.txt in Resources */,
 				4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */,
 				4C0DBBE2279529DA005DBE66 /* LaunchScreen.storyboard in Resources */,
+				4CE0FC0027B11F3700EA1C18 /* .swiftlint.yml in Resources */,
 				4C0DBBDF279529DA005DBE66 /* Assets.xcassets in Resources */,
 				4C0DBC022796E3D7005DBE66 /* GoogleService-Info.plist in Resources */,
 				4CF775712797B16A009CC655 /* NotoSansKR-Regular.otf in Resources */,
@@ -486,7 +490,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4CF7755F27970724009CC655 /* ShellScript */ = {
+		4CF7755F27970724009CC655 /* SwiftLint Rswift Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 12;
@@ -497,6 +501,7 @@
 			inputPaths = (
 				"$TEMP_DIR/rswift-lastrun",
 			);
+			name = "SwiftLint Rswift Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -504,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rswift generate \"$SRCROOT/R.generated.swift\"\n";
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\nrswift generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		569ECA83EBA24D9521CE6F26 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

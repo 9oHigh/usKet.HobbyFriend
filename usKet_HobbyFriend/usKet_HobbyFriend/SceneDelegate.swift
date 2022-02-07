@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         lazy var toSignUp = SignupSingleton()
@@ -20,19 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
         switch toSignUp.userState() {
-        //온보딩
+        // 온보딩
         case "onboard" :
             window?.rootViewController = OnboardViewController()
             window?.makeKeyAndVisible()
-        //닉네임
+        // 닉네임
         case "nickName":
-            window?.rootViewController = UINavigationController(rootViewController:  NicknameViewController())
+            window?.rootViewController = UINavigationController(rootViewController: NicknameViewController())
             window?.makeKeyAndVisible()
-        //home
+        // home
         case "home":
             window?.rootViewController = HomeTabViewController()
             window?.makeKeyAndVisible()
-        //처음 + 오류
+        // 처음 + 오류
         default :
             window?.rootViewController = OnboardViewController()
             window?.makeKeyAndVisible()
@@ -60,4 +59,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
 }
-

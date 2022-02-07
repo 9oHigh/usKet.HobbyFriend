@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class EmailViewController : BaseViewController {
+final class EmailViewController: BaseViewController {
     
     var informationLabel = UILabel()
     var subInformationLabel = UILabel()
@@ -16,12 +16,12 @@ final class EmailViewController : BaseViewController {
     var nextButton = UIButton()
     
     private var viewModel = CertificationViewModel()
-    private var errorMessage : String = ""
+    private var errorMessage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Befor bind
-        if let email = UserDefaults.standard.string(forKey: "email"){
+        // Befor bind
+        if let email = UserDefaults.standard.string(forKey: "email") {
             viewModel.validText.value = email
         }
         
@@ -38,24 +38,24 @@ final class EmailViewController : BaseViewController {
     }
     
     override func setConfigure() {
-        //View
+        // View
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //Information Label
+        // Information Label
         informationLabel.fitToLogin(text: "이메일을 입력해주세요")
         
-        //subInform
+        // subInform
         subInformationLabel.subfitToLogin(text: "휴대폰 번호 변경시 인증을 위해 사용해요")
         
-        //TextField
+        // TextField
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
         textField.placeholder = "SeSAC@email.com"
         textField.becomeFirstResponder()
         
-        //TextField Target
+        // TextField Target
         textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         
-        //Button
+        // Button
         nextButton.fitToLogin(title: "다음")
         nextButton.addTarget(self, action: #selector(toNextPage), for: .touchUpInside)
     }
@@ -99,11 +99,11 @@ final class EmailViewController : BaseViewController {
     override func bind() {
         
         viewModel.validText.bind { [weak self] email in
-            //유효성검사
+            // 유효성검사
             self?.viewModel.emailValidate()
             
-            //텍스트필드 확인
-            email == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
+            // 텍스트필드 확인
+            email == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!)
             
             self?.textField.text = email
         }
@@ -121,14 +121,13 @@ final class EmailViewController : BaseViewController {
     }
     
     @objc
-    private func textFieldEditingChanged(_ textField : UITextField) {
+    private func textFieldEditingChanged(_ textField: UITextField) {
         guard let email = textField.text else { return }
         viewModel.validText.value = email
     }
     
     @objc
-    private func toNextPage(){
+    private func toNextPage() {
         errorMessage != "" ? self.showToast(message: errorMessage) : self.transViewController(nextType: .push, controller: GenderViewController())
     }
 }
-

@@ -15,24 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        //Firebase
+        // Firebase
         FirebaseApp.configure()
         
-        //Notification
+        // Notification
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
         
         application.registerForRemoteNotifications()
         
-        //Keyboard
+        // Keyboard
         IQKeyboardManager.shared.enable = true
         
-        //UIAppearence - NavigationBar
+        // UIAppearence - NavigationBar
         UINavigationBar.appearance().backIndicatorImage = R.image.letfArrow()
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = R.image.letfArrow()
-        UINavigationBar.appearance().tintColor = UIColor(resource:R.color.basicBlack)
+        UINavigationBar.appearance().tintColor = UIColor(resource: R.color.basicBlack)
         
         return true
     }
@@ -48,16 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    // MARK: 나중에 확인해보기
     /*
-     MARK: 나중에 확인해보기
      func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
          Messaging.messaging().apnsToken = deviceToken
      }
      */
 }
 
-extension AppDelegate : MessagingDelegate{
-    //토큰 받기
+extension AppDelegate: MessagingDelegate {
+    // 토큰 받기
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
         lazy var signup = SignupSingleton()
@@ -70,21 +70,21 @@ extension AppDelegate : MessagingDelegate{
 
     }
     
-    //받은 메세지 처리 메서드 -> 나중에 알림오는 단계에서 해보자.
+    // 받은 메세지 처리 메서드 -> 나중에 알림오는 단계에서 해보자.
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                          fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
             // TODO: Handle data of notification
             completionHandler(UIBackgroundFetchResult.newData)
         }
 }
-//노티수신(Firebase)
-extension AppDelegate : UNUserNotificationCenterDelegate {
+// 노티수신(Firebase)
+extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([ .banner , .badge, .sound])
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([ .banner, .badge, .sound])
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
     }
 }

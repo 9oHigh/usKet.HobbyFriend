@@ -7,14 +7,14 @@
 
 import UIKit
 
-final class CertificationViewController : BaseViewController {
+final class CertificationViewController: BaseViewController {
     
     var informationLabel = UILabel()
     var textField = UITextField()
     var reciveButton = UIButton()
     
     private var viewModel = CertificationViewModel()
-    private var errorMessage : String = ""
+    private var errorMessage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,20 +32,20 @@ final class CertificationViewController : BaseViewController {
     }
     
     override func setConfigure() {
-        //View
+        // View
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //Information Label
+        // Information Label
         informationLabel.fitToLogin(text: "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요")
         
-        //TextField
+        // TextField
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
         textField.placeholder = "휴대전화 번호(-없이 숫자만 입력)"
         
-        //TextField Target
+        // TextField Target
         textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         
-        //Button
+        // Button
         reciveButton.fitToLogin(title: "인증문자 받기")
         reciveButton.addTarget(self, action: #selector(toReciveMessage), for: .touchUpInside)
     }
@@ -82,11 +82,11 @@ final class CertificationViewController : BaseViewController {
     override func bind() {
         
         viewModel.validText.bind { [weak self] phoneNumber in
-            //유효성검사
+            // 유효성검사
             self?.viewModel.phoneValidate()
             
-            //텍스트필드 확인
-            phoneNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
+            // 텍스트필드 확인
+            phoneNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!)
         }
         
         viewModel.validFlag.bind { [weak self] sign in
@@ -102,7 +102,7 @@ final class CertificationViewController : BaseViewController {
     }
     
     @objc
-    private func textFieldEditingChanged(_ textField : UITextField) {
+    private func textFieldEditingChanged(_ textField: UITextField) {
         
         guard let phoneNumber = textField.text else { return }
         
@@ -113,32 +113,31 @@ final class CertificationViewController : BaseViewController {
     }
     
     @objc
-    private func toReciveMessage(){
-        //유효한 형식인가
+    private func toReciveMessage() {
+        // 유효한 형식인가
         switch viewModel.validFlag.value {
-            //유효한 케이스
+            // 유효한 케이스
         case true:
-            //인증문자 메소드 수행
+            // 인증문자 메소드 수행
             viewModel.certificationPhone {
-                //바인딩되어있는 에러메세지가 값이 없다면
+                // 바인딩되어있는 에러메세지가 값이 없다면
                 if self.errorMessage == ""{
                     
                     self.showToast(message: "번호 인증을 시작합니다")
 
                     DispatchQueue.main.async {
-                        //문자인증화면으로 전환
+                        // 문자인증화면으로 전환
                         self.transViewController(nextType: .push, controller: CerMessageViewController())
                     }
                 } else {
-                    //에러 발생
+                    // 에러 발생
                     self.showToast(message: self.errorMessage)
                 }
             }
-            //유효하지 않은 케이스
+            // 유효하지 않은 케이스
         case false:
             self.showToast(message: "잘못된 전화번호 형식입니다")
         }
     }
     
 }
-

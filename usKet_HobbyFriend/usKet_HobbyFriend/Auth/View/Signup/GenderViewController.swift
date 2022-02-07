@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-final class GenderViewController : BaseViewController {
+final class GenderViewController: BaseViewController {
     
     var informationLabel = UILabel()
     var subInformationLabel = UILabel()
@@ -19,12 +19,12 @@ final class GenderViewController : BaseViewController {
     var nextButton = UIButton()
     
     var viewModel = CertificationViewModel()
-    var errorMessage : String = ""
+    var errorMessage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let gender = UserDefaults.standard.string(forKey: "gender"){
+        if let gender = UserDefaults.standard.string(forKey: "gender") {
             viewModel.validText.value = gender
         }
         
@@ -41,19 +41,19 @@ final class GenderViewController : BaseViewController {
     }
     
     override func setConfigure() {
-        //View
+        // View
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //Information Label
+        // Information Label
         informationLabel.fitToLogin(text: "성별을 선택해주세요.")
         
-        //subInform
+        // subInform
         subInformationLabel.subfitToLogin(text: "새싹 찾기 기능을 이용하기 위해서 필요해요!")
         
-        //buttonView
+        // buttonView
         buttonView.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //Gender Buttons
+        // Gender Buttons
         manButton.configuration  = .genderStyle(title: "남자", image: UIImage(resource: R.image.man)!)
         manButton.fitToGenderBorder()
         manButton.addTarget(self, action: #selector(backgourndColorChange(_:)), for: .touchUpInside)
@@ -62,7 +62,7 @@ final class GenderViewController : BaseViewController {
         womanButton.fitToGenderBorder()
         womanButton.addTarget(self, action: #selector(backgourndColorChange(_:)), for: .touchUpInside)
         
-        //Button
+        // Button
         nextButton.fitToLogin(title: "다음")
         nextButton.addTarget(self, action: #selector(toNextPage), for: .touchUpInside)
     }
@@ -148,36 +148,36 @@ final class GenderViewController : BaseViewController {
     }
     
     @objc
-    private func backgourndColorChange(_ sender : UIButton){
+    private func backgourndColorChange(_ sender: UIButton) {
         
         if sender == manButton {
             sender.backgroundColor = sender.backgroundColor == UIColor(resource: R.color.basicWhite) ? UIColor(resource: R.color.brandWhitegreen) : UIColor(resource: R.color.basicWhite)
             womanButton.backgroundColor = UIColor(resource: R.color.basicWhite)
-            //바인딩
+            // 바인딩
             viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "1" : "-1"
         } else {
             sender.backgroundColor = sender.backgroundColor == UIColor(resource: R.color.basicWhite) ? UIColor(resource: R.color.brandWhitegreen) : UIColor(resource: R.color.basicWhite)
             manButton.backgroundColor = UIColor(resource: R.color.basicWhite)
-            //바인딩
+            // 바인딩
             viewModel.validText.value = sender.backgroundColor == UIColor(resource: R.color.brandWhitegreen) ? "0" : "-1"
         }
     }
     
     @objc
-    private func toNextPage(){
+    private func toNextPage() {
         viewModel.signupToSeSAC { statusCode in
             
             DispatchQueue.main.async {
                 
-                switch statusCode{
+                switch statusCode {
                     
-                case 200 : //회원가입 성공, To home
+                case 200 : // 회원가입 성공, To home
                     self.transViewWithAnimation(isNavigation: false, controller: HomeTabViewController())
                     
-                case 201 : //이미 회원가입 되어있는 상태, To home
+                case 201 : // 이미 회원가입 되어있는 상태, To home
                     self.transViewWithAnimation(isNavigation: false, controller: HomeTabViewController())
                     
-                case 202 : //닉네임 오류
+                case 202 : // 닉네임 오류
                     let nickNameViewController = NicknameViewController()
                     nickNameViewController.showToast(message: "다른 닉네임으로 변경해주세요")
                     self.transViewWithAnimation(isNavigation: true, controller: nickNameViewController)

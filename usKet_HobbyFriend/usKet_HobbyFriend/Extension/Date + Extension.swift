@@ -9,7 +9,7 @@ import Foundation
 
 extension Date {
     
-    func toStringEach() -> (String,String,String){
+    func toStringEach() -> (String, String, String) {
         
         let format = DateFormatter()
         
@@ -22,10 +22,10 @@ extension Date {
         format.dateFormat = "d"
         let day = format.string(from: self)
         
-        return (year,month,day)
+        return (year, month, day)
     }
     
-    func toOriginalString() -> String{
+    func toOriginalString() -> String {
         
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

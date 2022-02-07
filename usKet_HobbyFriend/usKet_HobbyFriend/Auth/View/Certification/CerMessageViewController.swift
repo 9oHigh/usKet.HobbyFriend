@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CerMessageViewController : BaseViewController {
+final class CerMessageViewController: BaseViewController {
     
     var centerView = UIView()
     
@@ -21,7 +21,7 @@ final class CerMessageViewController : BaseViewController {
     var resendButton = UIButton()
     
     private var viewModel = CertificationViewModel()
-    private var errorMessage : String = ""
+    private var errorMessage: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ final class CerMessageViewController : BaseViewController {
         bind()
         monitorNetwork()
         
-        //타이머 시작
+        // 타이머 시작
         viewModel.startTimer()
         showToast(message: "인증번호를 보냈습니다.")
     }
@@ -43,10 +43,10 @@ final class CerMessageViewController : BaseViewController {
     }
     
     override func setConfigure() {
-        //centerView
+        // centerView
         centerView.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //Labels
+        // Labels
         informationLabel.fitToLogin(text: "인증번호가 문자로 전송되었어요")
         subInfomationLabel.subfitToLogin(text: "(최대 소모 20초)")
         
@@ -55,15 +55,15 @@ final class CerMessageViewController : BaseViewController {
         timerLabel.font = UIFont.toTitleM14
         timerLabel.text = "01:00"
         
-        //TextField + FirstResponder : 키보드 바로 올라오게
+        // TextField + FirstResponder : 키보드 바로 올라오게
         textField.becomeFirstResponder()
-        textField.textContentType = .oneTimeCode //자동완성
+        textField.textContentType = .oneTimeCode // 자동완성
         textField.keyboardType = .numberPad // 숫자패드
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
         textField.placeholder = "인증번호 입력"
         textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         
-        //Buttons
+        // Buttons
         certiButton.fitToLogin(title: "인증하고 시작하기")
         certiButton.addTarget(self, action: #selector(toHomeOrSign(_:)), for: .touchUpInside)
         
@@ -136,13 +136,13 @@ final class CerMessageViewController : BaseViewController {
     override func bind() {
         
         viewModel.validText.bind { [weak self] validNumber in
-            //바뀔때 마다 유효성 검사 -> 버튼
+            // 바뀔때 마다 유효성 검사 -> 버튼
             self?.viewModel.cerValidate()
             
-            //텍스트필드 확인
+            // 텍스트필드 확인
             self?.textField.text = validNumber
             
-            validNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
+            validNumber == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!)
         }
         
         viewModel.validFlag.bind { [weak self] sign in
@@ -153,13 +153,12 @@ final class CerMessageViewController : BaseViewController {
         }
         
         viewModel.timer.bind { [weak self] time in
-            //타이머 라벨
+            // 타이머 라벨
             if time == 0 {
                 self?.timerLabel.text = "00:00"
                 self?.showToast(message: "전화번호 인증 실패")
                 self?.timerLabel.isHidden = true
-            }
-            else {
+            } else {
                 self?.timerLabel.text = "00:\(time)"
             }
         }
@@ -171,20 +170,20 @@ final class CerMessageViewController : BaseViewController {
     }
     
     @objc
-    private func textFieldEditingChanged(_ textField : UITextField) {
+    private func textFieldEditingChanged(_ textField: UITextField) {
         guard let certiText = textField.text else { return }
         viewModel.validText.value = certiText.toCertiPattern(pattern: "######", replacmentCharacter: "#")
     }
     
-    //이런 addTarget같은 것들은 MVVM에서 사용하는게 맞는건가
-    //클릭이벤트 자체를 MVVM 패턴으로 활용할 수 있을까 그래서 RxSwift가 필요한건가 흐뮤뮤..
+    // 이런 addTarget같은 것들은 MVVM에서 사용하는게 맞는건가
+    // 클릭이벤트 자체를 MVVM 패턴으로 활용할 수 있을까 그래서 RxSwift가 필요한건가 흐뮤뮤..
     @objc
-    private func resendMessage(_ sender : UIButton){
+    private func resendMessage(_ sender: UIButton) {
         
         viewModel.certificationPhone {
             
             if self.errorMessage == ""{
-                //타이머 재시작
+                // 타이머 재시작
                 self.viewModel.timer.value = 60
                 self.viewModel.startTimer()
                 self.viewModel.validText.value = ""
@@ -192,15 +191,15 @@ final class CerMessageViewController : BaseViewController {
                 self.showToast(message: "인증번호를 재전송합니다")
     
             } else {
-                //에러 발생
+                // 에러 발생
                 self.showToast(message: self.errorMessage)
             }
         }
     }
     
     @objc
-    private func toHomeOrSign(_ sender : UIButton){
-        //MARK: ID토큰을 요청 -> (성공, 실패) / 성공시 서버에서 정보확인에 대해 성공과 미회원가입 처리
+    private func toHomeOrSign(_ sender: UIButton) {
+        // MARK: ID토큰을 요청 -> (성공, 실패) / 성공시 서버에서 정보확인에 대해 성공과 미회원가입 처리
         viewModel.loginToFIR { success in
             
             guard success != nil else {
@@ -212,10 +211,10 @@ final class CerMessageViewController : BaseViewController {
                 DispatchQueue.main.async {
                     switch statusCode {
                         
-                    case 200: //To Home
+                    case 200: // To Home
                         self.transViewWithAnimation(isNavigation: false, controller: HomeTabViewController())
                     
-                    case 406: //To Nickname
+                    case 406: // To Nickname
                         self.transViewWithAnimation(isNavigation: true, controller: NicknameViewController())
                         
                     default :

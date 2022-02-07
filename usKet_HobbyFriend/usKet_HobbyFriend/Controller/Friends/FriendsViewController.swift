@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FriendsViewController : BaseViewController {
+final class FriendsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,21 +18,21 @@ final class FriendsViewController : BaseViewController {
         bind()
     }
     
-    override func setConfigure(){
+    override func setConfigure() {
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
     }
     
-    override func setUI(){
+    override func setUI() {
         
     }
     
-    override func setConstraints(){
+    override func setConstraints() {
         
     }
     
-    override func bind(){
+    override func bind() {
         
     }
 }

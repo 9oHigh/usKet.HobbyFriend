@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class MyInfoDetailViewController : BaseViewController {
+final class MyInfoDetailViewController: BaseViewController {
     
-    let contentView : UIView = {
+    let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = R.color.basicWhite()!
         return view
@@ -29,18 +29,18 @@ final class MyInfoDetailViewController : BaseViewController {
     
     let viewModel = MyInfoViewModel()
     let disposeBag = DisposeBag()
-    var isCollapse : Bool = false //흠.. 뷰모델에서 만들어서 해야하나
+    var isCollapse: Bool = false // 흠.. 뷰모델에서 만들어서 해야하나
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "정보 관리"
         navigationController?.navigationBar.titleTextAttributes = [
-            .font : UIFont.toTitleM14!,
-            .foregroundColor : UIColor(resource: R.color.basicBlack)!
+            .font: UIFont.toTitleM14!,
+            .foregroundColor: UIColor(resource: R.color.basicBlack)!
         ]
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain , target: self, action: #selector(saveMyInfo))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveMyInfo))
         
         setConfigure()
         setUI()
@@ -51,27 +51,27 @@ final class MyInfoDetailViewController : BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //타이틀
+        // 타이틀
         myinfoView.foldView.titleView.viewModel.user = self.viewModel.user
         myinfoView.foldView.titleView.collectionView.reloadData()
         monitorNetwork()
     }
     
-    //하 이렇게 짜기 싫은데.. 뷰로만들어서 괴롭네
+    // 하 이렇게 짜기 싫은데.. 뷰로만들어서 괴롭네
     override func setConfigure() {
         
-        //delegate for CENTER.x
+        // delegate for CENTER.x
         scrollView.delegate = self
         
         let user = viewModel.user
-        //이미지 + 새싹
+        // 이미지 + 새싹
         myinfoView.backgroundView.background.image = user?.background == 0 ? R.image.sesacbackground1()! : R.image.sesacbackground2()!
         myinfoView.backgroundView.sesac.image = user?.sesac == 0 ? R.image.sesac_face_1()! : R.image.sesac_face_2()!
         
-        //리뷰
+        // 리뷰
         myinfoView.foldView.reviewTextView.text = user!.comment.isEmpty ? "첫 리뷰를 기다리는 중이에요!" : user?.comment[0]
         
-        //성별
+        // 성별
         switch user?.gender {
         case 0:
             specificView.womanButton.backgroundColor = R.color.brandGreen()!
@@ -83,19 +83,19 @@ final class MyInfoDetailViewController : BaseViewController {
             break
         }
         
-        //취미
+        // 취미
         if user?.hobby != ""{ specificView.hobbyTextField.text = user?.hobby}
         
-        //검색허용
+        // 검색허용
         specificView.permitSwitch.isOn = user?.searchable == 0 ? false : true
         
-        //연령대
+        // 연령대
         
         specificView.ageSlider.lowerValueStepIndex = user!.ageMin - 18
         specificView.ageSlider.upperValueStepIndex = user!.ageMax - 19
         specificView.agesLabel.text = "\(user!.ageMin) - \(user!.ageMax)"
 
-        //withrawButton
+        // withrawButton
         withdrawButton.backgroundColor = UIColor(resource: R.color.basicWhite)
         withdrawButton.setTitleColor(UIColor(resource: R.color.basicBlack), for: .normal)
         withdrawButton.setTitle("회원탈퇴", for: .normal)
@@ -133,7 +133,7 @@ final class MyInfoDetailViewController : BaseViewController {
         }
         
         specificView.snp.makeConstraints { make in
-            //왜 MyInfoView에는 안되는가
+            // 왜 MyInfoView에는 안되는가
             make.top.equalTo(myinfoView.foldView.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.95)
@@ -141,7 +141,7 @@ final class MyInfoDetailViewController : BaseViewController {
         }
         
         withdrawButton.snp.makeConstraints { make in
-            //왜 SpecificView에는 안되는가
+            // 왜 SpecificView에는 안되는가
             make.top.equalTo(specificView.agesLabel.snp.bottom).offset(50)
             make.leading.equalTo(0)
             make.width.equalTo(100)
@@ -153,7 +153,7 @@ final class MyInfoDetailViewController : BaseViewController {
         
         myinfoView.foldView.flipButton.rx.tap
             .asDriver()
-            .drive(){ [weak self] _ in
+            .drive { [weak self] _ in
                 self?.isCollapse = !self!.isCollapse
                 self?.updateConstraints(isCollapse: self!.isCollapse)
             }
@@ -168,7 +168,7 @@ final class MyInfoDetailViewController : BaseViewController {
                 alertView.okButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ [weak self] _ in
-                        self?.viewModel.resetUserInfo { status,message in
+                        self?.viewModel.resetUserInfo { status, message in
                             status ? self?.transViewWithAnimation(isNavigation: false, controller: OnboardViewController()) : self?.showToast(message: message!)
                         }
                     })
@@ -186,7 +186,7 @@ final class MyInfoDetailViewController : BaseViewController {
             .disposed(by: self.disposeBag)
     }
     @objc
-    func saveMyInfo(){
+    func saveMyInfo() {
         
         let userDefaults = UserDefaults.standard
 
@@ -207,23 +207,23 @@ final class MyInfoDetailViewController : BaseViewController {
             }
         }
         
-        self.showToast(message: "저장완료!",yPosition: UIScreen.main.bounds.height / 2)
+        self.showToast(message: "저장완료!", yPosition: UIScreen.main.bounds.height / 2)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.navigationController?.popViewController(animated: true)
         }
     }
     
-    func updateConstraints(isCollapse : Bool){
+    func updateConstraints(isCollapse: Bool) {
         
         isCollapse ? self.foldView() : self.unFoldView()
     }
     
-    func foldView(){
-        //왜 moreArrow랑 noMoreArrow는 R로 안될까
+    func foldView() {
+        // 왜 moreArrow랑 noMoreArrow는 R로 안될까
         myinfoView.foldView.flipButton.setImage(UIImage(named: "moreArrow.svg"), for: .normal)
         
-        self.myinfoView.foldView.titleView.snp.updateConstraints{ make in
+        self.myinfoView.foldView.titleView.snp.updateConstraints { make in
             make.height.equalTo(0)
         }
         self.myinfoView.foldView.toHideView.snp.updateConstraints { make in
@@ -237,7 +237,7 @@ final class MyInfoDetailViewController : BaseViewController {
         }
     }
     
-    func unFoldView(){
+    func unFoldView() {
         
         myinfoView.foldView.flipButton.setImage(UIImage(named: "noMoreArrow.svg"), for: .normal)
         
@@ -247,7 +247,7 @@ final class MyInfoDetailViewController : BaseViewController {
         self.myinfoView.foldView.toHideView.snp.updateConstraints { make in
             make.height.equalTo(240)
         }
-        self.myinfoView.foldView.titleView.snp.updateConstraints{ make in
+        self.myinfoView.foldView.titleView.snp.updateConstraints { make in
             make.height.equalTo(120)
         }
         UIView.animate(withDuration: 0.5) {
@@ -255,7 +255,7 @@ final class MyInfoDetailViewController : BaseViewController {
         }
     }
 }
-extension MyInfoDetailViewController : UIScrollViewDelegate{
+extension MyInfoDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x > 0 {

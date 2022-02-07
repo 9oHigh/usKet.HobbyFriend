@@ -20,9 +20,8 @@ struct MyInfo {
 
 struct MyTitle {
     
-    let title : String
+    let title: String
 }
-
 
 // MARK: - User
 struct User: Codable {

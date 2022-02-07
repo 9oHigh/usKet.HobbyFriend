@@ -5,10 +5,9 @@
 //  Created by 이경후 on 2022/01/22.
 //
 
-
 import UIKit
 
-class DateTextView : UIView {
+class DateTextView: UIView {
 
     var textField = UITextField()
     var dateLabel = UILabel()
@@ -25,7 +24,7 @@ class DateTextView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConfigure(){
+    func setConfigure() {
         
         backgroundColor = UIColor(resource: R.color.basicWhite)
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
@@ -37,13 +36,13 @@ class DateTextView : UIView {
         dateLabel.textAlignment = .center
     }
     
-    func setUI(){
+    func setUI() {
         
         addSubview(textField)
         addSubview(dateLabel)
     }
     
-    func setConstraints(){
+    func setConstraints() {
         
         textField.snp.makeConstraints { make in
             

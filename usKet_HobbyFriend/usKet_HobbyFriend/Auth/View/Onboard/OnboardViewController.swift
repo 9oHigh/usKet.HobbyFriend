@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-final class OnboardViewController : UIViewController {
+final class OnboardViewController: UIViewController {
     
     lazy var signup = SignupSingleton()
     
-    lazy var locationView : UIView = {
-        //반환할 뷰
+    lazy var locationView: UIView = {
+        // 반환할 뷰
         let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
@@ -45,7 +45,7 @@ final class OnboardViewController : UIViewController {
         return view
     }()
     
-    lazy var hobbyView : UIView = {
+    lazy var hobbyView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
@@ -77,7 +77,7 @@ final class OnboardViewController : UIViewController {
         return view
     }()
     
-    lazy var friendView : UIView = {
+    lazy var friendView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
@@ -107,17 +107,17 @@ final class OnboardViewController : UIViewController {
         return view
     }()
     
-    //첫번째, 두번째 그리고 세번째 뷰를 담는 배열
-    lazy var onboardViews = [locationView,hobbyView,friendView]
+    // 첫번째, 두번째 그리고 세번째 뷰를 담는 배열
+    lazy var onboardViews = [locationView, hobbyView, friendView]
     
-    lazy var scrollView : UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         
         let scrollView = UIScrollView()
-        scrollView.showsHorizontalScrollIndicator = false //페이지로 만들기 위해서
+        scrollView.showsHorizontalScrollIndicator = false // 페이지로 만들기 위해서
         scrollView.isPagingEnabled = true // To Page scroll
         scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(onboardViews.count), height: view.frame.height)
         
-        //분리된 뷰컨트롤러라기 보다는 가로가 긴 뷰컨을 나누어서 보여주기 위한 것
+        // 분리된 뷰컨트롤러라기 보다는 가로가 긴 뷰컨을 나누어서 보여주기 위한 것
         for item in 0...onboardViews.count - 1 {
             scrollView.addSubview(onboardViews[item])
             onboardViews[item].frame = CGRect(x: view.frame.width * CGFloat(item), y: 0, width: view.frame.width, height: view.frame.height)
@@ -128,7 +128,7 @@ final class OnboardViewController : UIViewController {
         return scrollView
     }()
     
-    lazy var pageControl : UIPageControl = {
+    lazy var pageControl: UIPageControl = {
         
         let pageControl = UIPageControl()
         pageControl.numberOfPages = onboardViews.count
@@ -141,7 +141,7 @@ final class OnboardViewController : UIViewController {
         return pageControl
     }()
     
-    lazy var startButton : UIButton = {
+    lazy var startButton: UIButton = {
         
        let button = UIButton()
         
@@ -158,7 +158,7 @@ final class OnboardViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //온보딩 저장 - 필요없지만 확실한 구분을 위해 해두기
+        // 온보딩 저장 - 필요없지만 확실한 구분을 위해 해두기
         signup.registerUserData(userDataType: .startPosition, variable: "onboard")
         
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
@@ -185,12 +185,12 @@ final class OnboardViewController : UIViewController {
     }
     
     @objc
-    func pageControlTapHandler(sender: UIPageControl){
+    func pageControlTapHandler(sender: UIPageControl) {
         scrollView.scrollTo(horizontalPage: sender.currentPage, animated: true)
     }
     
     @objc
-    func toLoginPage(_ sender : UIButton){
+    func toLoginPage(_ sender: UIButton) {
         
         let loginVC = CertificationViewController()
         
@@ -200,20 +200,20 @@ final class OnboardViewController : UIViewController {
         }, completion: nil)
     }
 }
-extension OnboardViewController : UIScrollViewDelegate {
+extension OnboardViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //스크롤 할때 해당 페이지의 페이지컨트롤 표시하기 위해
+        // 스크롤 할때 해당 페이지의 페이지컨트롤 표시하기 위해
         let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
 }
 
 extension UIScrollView {
-    //스크롤 할 수 있게 만들어주는 메서드
-    func scrollTo(horizontalPage: Int? = 0, verticalPage: Int? = 0,animated: Bool? = true){
+    // 스크롤 할 수 있게 만들어주는 메서드
+    func scrollTo(horizontalPage: Int? = 0, verticalPage: Int? = 0, animated: Bool? = true) {
         
-        var frame : CGRect = self.frame
+        var frame: CGRect = self.frame
         frame.origin.x = frame.size.width * CGFloat(horizontalPage ?? 0)
         frame.origin.y = frame.size.height * CGFloat(verticalPage ?? 0)
         

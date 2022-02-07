@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-public class BaseViewController : UIViewController {
+public class BaseViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,19 +17,19 @@ public class BaseViewController : UIViewController {
         
     }
     
-    public func setConfigure(){
+    public func setConfigure() {
         
     }
     
-    public func setUI(){
+    public func setUI() {
         
     }
     
-    public func setConstraints(){
+    public func setConstraints() {
         
     }
     
-    public func bind(){
+    public func bind() {
         
     }
 }

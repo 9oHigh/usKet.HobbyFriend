@@ -8,10 +8,10 @@
 import UIKit
 
 extension UITextView {
-    //MARK: 페센트로 바꿔주기
+    // MARK: 페센트로 바꿔주기
     func getLineHeight(text: String?, lineHeight: CGFloat) {
         
-        guard let text = text,let font = self.font else {
+        guard let text = text, let font = self.font else {
             return
         }
         

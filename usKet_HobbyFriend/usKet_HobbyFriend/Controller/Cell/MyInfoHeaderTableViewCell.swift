@@ -5,10 +5,9 @@
 //  Created by 이경후 on 2022/01/27.
 //
 
-
 import UIKit
 
-class MyInfoHeaderTableViewCell : UITableViewCell {
+class MyInfoHeaderTableViewCell: UITableViewCell {
     
     static let identifier = "MyInfoHeaderTableViewCell"
     
@@ -27,23 +26,23 @@ class MyInfoHeaderTableViewCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConfigure(){
+    func setConfigure() {
         
-        //profileView
+        // profileView
         profileView.nameLabel.font = .toTitleM16
         
-        //nextButton
+        // nextButton
         nextButton.setImage(R.image.rightArrow(), for: .normal)
         nextButton.setTitle("", for: .normal)
     }
     
-    func setUI(){
+    func setUI() {
         
         addSubview(profileView)
         addSubview(nextButton)
     }
     
-    func setConstraints(){
+    func setConstraints() {
      
         profileView.snp.makeConstraints { make in
             
@@ -63,7 +62,7 @@ class MyInfoHeaderTableViewCell : UITableViewCell {
         }
     }
     
-    func setUpdate(myInfo : MyInfo){
+    func setUpdate(myInfo: MyInfo) {
         
         profileView.profileImageView.image = myInfo.image
         profileView.nameLabel.text = myInfo.name

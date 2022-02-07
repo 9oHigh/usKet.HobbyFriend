@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileNameView : UIView {
+final class ProfileNameView: UIView {
     
     var profileImageView = UIImageView()
     var nameLabel = UILabel()
@@ -24,11 +24,11 @@ final class ProfileNameView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConfigure(){
-        //SELF
+    func setConfigure() {
+        // SELF
         backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //ImageView
+        // ImageView
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.clipsToBounds = true
         profileImageView.isUserInteractionEnabled = true
@@ -37,13 +37,13 @@ final class ProfileNameView : UIView {
         nameLabel.numberOfLines = 0
     }
     
-    func setUI(){
+    func setUI() {
         
         addSubview(profileImageView)
         addSubview(nameLabel)
     }
     
-    func setConstraints(){
+    func setConstraints() {
         
         profileImageView.snp.makeConstraints { make in
             
@@ -59,7 +59,7 @@ final class ProfileNameView : UIView {
         }
     }
 
-    func imageReSize(height: CGFloat, width: CGFloat){
+    func imageReSize(height: CGFloat, width: CGFloat) {
         
         profileImageView.snp.makeConstraints { make in
             

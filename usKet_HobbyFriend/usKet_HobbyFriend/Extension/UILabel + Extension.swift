@@ -9,8 +9,8 @@ import UIKit
 
 extension UILabel {
     
-    //MARK: multiple 적용
-    func getLineHeightMultiple(text: String?, lineHeight: CGFloat, multiple : CGFloat) {
+    // MARK: multiple 적용
+    func getLineHeightMultiple(text: String?, lineHeight: CGFloat, multiple: CGFloat) {
         
         guard let text = text else {
             return
@@ -31,14 +31,14 @@ extension UILabel {
         self.attributedText = attrString
     }
     
-    func toColored(text : String, target : String,color : UIColor){
+    func toColored(text: String, target: String, color: UIColor) {
         
         let attributtedString = NSMutableAttributedString(string: text)
         attributtedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: (text as NSString).range(of: target))
         self.attributedText = attributtedString
     }
     
-    func fitToLogin(text : String){
+    func fitToLogin(text: String) {
         
         self.numberOfLines = 0
         self.text = text
@@ -47,7 +47,7 @@ extension UILabel {
         self.font = UIFont.DisplayR20
     }
     
-    func subfitToLogin(text: String){
+    func subfitToLogin(text: String) {
         
         self.numberOfLines = 0
         self.text = text

@@ -1,0 +1,16 @@
+disabled_rules:
+  - line_length
+  - trailing_whitespace
+  - force_cast
+  - force_unwrapping
+included:
+excluded:
+  - Pods
+  - Packages
+  - usKet_HobbyFriend/Resource/R.generated.swift
+analyzer_rules:
+  - unused_declaration
+  - unused_import
+opt_in_rules:
+  - empty_count
+  - empty_string

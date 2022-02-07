@@ -7,18 +7,18 @@
 
 import UIKit
 
-final class NicknameViewController : BaseViewController {
+final class NicknameViewController: BaseViewController {
     
     var informationLabel = UILabel()
     var textField = UITextField()
     var nextButton = UIButton()
-    var errorMessage : String = ""
+    var errorMessage: String = ""
     
     private var viewModel = CertificationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //닉네임 오류로 넘어왔을 경우
+        // 닉네임 오류로 넘어왔을 경우
         errorMessage != "" ? self.showToast(message: errorMessage) : ()
         
         setConfigure()
@@ -35,22 +35,22 @@ final class NicknameViewController : BaseViewController {
     
     override func setConfigure() {
         
-        //View
+        // View
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
         
-        //Information Label
+        // Information Label
         informationLabel.fitToLogin(text: "닉네임을 입력해주세요")
         
-        //TextField
+        // TextField
         textField.becomeFirstResponder()
         textField.delegate = self
         textField.fitToLogin(color: UIColor(resource: R.color.gray3)!)
         textField.placeholder = "10자 이내로 입력"
         
-        //TextField Target
+        // TextField Target
         textField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         
-        //Button
+        // Button
         nextButton.fitToLogin(title: "다음")
         nextButton.addTarget(self, action: #selector(toNextPage(_:)), for: .touchUpInside)
     }
@@ -87,10 +87,10 @@ final class NicknameViewController : BaseViewController {
     override func bind() {
         
         viewModel.validText.bind { [weak self] nickName in
-            //유효성검사
+            // 유효성검사
             self?.viewModel.nickValidate()
-            //텍스트필드 확인
-            nickName == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource:R.color.basicBlack)!)
+            // 텍스트필드 확인
+            nickName == "" ?  self?.textField.fitToLogin(color: UIColor(resource: R.color.gray3)!) : self?.textField.fitToLogin(color: UIColor(resource: R.color.basicBlack)!)
         }
         
         viewModel.validFlag.bind { [weak self] sign in
@@ -105,19 +105,19 @@ final class NicknameViewController : BaseViewController {
     }
     
     @objc
-    private func textFieldEditingChanged(_ textField : UITextField) {
+    private func textFieldEditingChanged(_ textField: UITextField) {
         guard let nickName = textField.text else { return }
         viewModel.validText.value = nickName
     }
     
     @objc
-    private func toNextPage(_ sender: UIButton){
+    private func toNextPage(_ sender: UIButton) {
         errorMessage != "" ? self.showToast(message: errorMessage) : self.transViewController(nextType: .push, controller: BirthViewController())
     }
 }
 
-extension NicknameViewController : UITextFieldDelegate {
-    //10자 제한
+extension NicknameViewController: UITextFieldDelegate {
+    // 10자 제한
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let maxLength = (textField.text?.count)! + string.count - range.length
         return !(maxLength > 10)

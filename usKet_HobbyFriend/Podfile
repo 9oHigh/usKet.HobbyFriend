@@ -8,6 +8,7 @@ target 'usKet_HobbyFriend' do
 pod 'DoubleSlider'
 pod 'RxCocoa', '6.5.0'
 pod 'Moya/RxSwift', '~> 15.0'
+pod 'SwiftLint'
 
   # Pods for usKet_HobbyFriend
 

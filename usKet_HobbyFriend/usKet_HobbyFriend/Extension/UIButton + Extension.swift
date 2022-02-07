@@ -5,12 +5,11 @@
 //  Created by 이경후 on 2022/01/19.
 //
 
-
 import UIKit
 
 extension UIButton {
         
-    func fitToLogin(title : String){
+    func fitToLogin(title: String) {
 
         tintColor = UIColor(resource: R.color.basicWhite)
         backgroundColor = UIColor(resource: R.color.gray6)
@@ -19,7 +18,7 @@ extension UIButton {
         layer.cornerRadius = 10
     }
     
-    func fitToGenderBorder(){
+    func fitToGenderBorder() {
         
         layer.cornerRadius = 10
         layer.borderWidth = 1
@@ -33,7 +32,7 @@ extension UIButton {
 
 extension UIButton.Configuration {
     
-    static func genderStyle(title : String, image : UIImage) -> UIButton.Configuration {
+    static func genderStyle(title: String, image: UIImage) -> UIButton.Configuration {
         var config = UIButton.Configuration.plain()
         
         config.title = title
