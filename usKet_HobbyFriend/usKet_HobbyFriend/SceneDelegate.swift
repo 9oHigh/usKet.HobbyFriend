@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -29,6 +30,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
         // home
         case "home":
+            UserAPI.getUser(idToken: SignupSingleton.shared.putIdToken()) { user, _ in
+                
+                guard let user = user else {
+                    return
+                }
+                // 만약 기존의 FCM토큰과 다르다면 갱신해줘야해 홈으로 갈때마다!
+                let parm = FCMtokenParm(FCMtoken: "").parameter
+                if user.fcMtoken != parm.FCMtoken {
+                    UserAPI.updateFCMToken(idToken: SignupSingleton.shared.putIdToken(), parameter: parm, onCompletion: { _ in })
+                }
+            }
             window?.rootViewController = HomeTabViewController()
             window?.makeKeyAndVisible()
         // 처음 + 오류

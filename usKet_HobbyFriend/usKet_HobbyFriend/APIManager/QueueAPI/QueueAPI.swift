@@ -33,6 +33,7 @@ final class QueueAPI {
                 }
             }
     }
+    
     static func questSurround(idToken: String, parm: QuestSurroundParm, onCompletion : @escaping (Friends?, Int?) -> Void) {
         provider.request(.questSurround(idToken: idToken, parm)) { result in
                 switch result {
@@ -44,6 +45,7 @@ final class QueueAPI {
             }
         
     }
+    
     static func requestFriend(idToken: String, parm: RequestFriendParm, onCompletion: @escaping (Int?) -> Void) {
         provider.request(.stopFinding(idToken: idToken)) { result in
                 switch result {
@@ -55,6 +57,7 @@ final class QueueAPI {
             }
         
     }
+    
     static func acceptFriend(idToken: String, parm: AcceptFriendParm, onCompletion: @escaping (Int?) -> Void) {
         provider.request(.stopFinding(idToken: idToken)) { result in
                 switch result {
@@ -66,6 +69,7 @@ final class QueueAPI {
             }
         
     }
+    
     static func userCheckMatch(idToken: String, onCompletion: @escaping (Match?, Int?) -> Void) {
         provider.request(.stopFinding(idToken: idToken)) { result in
                 switch result {

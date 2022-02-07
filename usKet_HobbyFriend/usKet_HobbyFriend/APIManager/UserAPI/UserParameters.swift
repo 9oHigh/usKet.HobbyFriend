@@ -72,7 +72,7 @@ extension MypageParm {
 
 extension FCMtokenParm {
     
-    var toDomain: FCMtokenParm {
+    var parameter: FCMtokenParm {
         
           let FCMtoken = UserDefaults.standard.string(forKey: "FCMToken") ?? ""
           return FCMtokenParm(FCMtoken: FCMtoken)
