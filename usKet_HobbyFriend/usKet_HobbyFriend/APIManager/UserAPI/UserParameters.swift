@@ -9,7 +9,7 @@ import Foundation
 
 // 모델을 이용해 파라미터를 만드는 방법
 // #호성쓰 참고#
-struct SignupParameter: Encodable {
+struct SignupParm: Encodable {
     
     var phoneNumber: String
     var FCMtoken: String
@@ -19,7 +19,7 @@ struct SignupParameter: Encodable {
     var gender: Int
 }
 
-struct MypageParameter: Encodable {
+struct MypageParm: Encodable {
     
     var searchable: Int
     var ageMin: Int
@@ -28,13 +28,13 @@ struct MypageParameter: Encodable {
     var hobby: String
 }
 
-struct FCMtokenParameter: Encodable {
+struct FCMtokenParm: Encodable {
     var FCMtoken: String
 }
 
-extension SignupParameter {
+extension SignupParm {
     
-    var parameter: SignupParameter {
+    var parameter: SignupParm {
         
         let FCMtoken = UserDefaults.standard.string(forKey: "FCMtoken") ?? ""
         let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
@@ -43,7 +43,7 @@ extension SignupParameter {
         let email = UserDefaults.standard.string(forKey: "email") ?? ""
         let gender = UserDefaults.standard.integer(forKey: "gender")
         
-        return SignupParameter(phoneNumber: phoneNumber,
+        return SignupParm(phoneNumber: phoneNumber,
                                FCMtoken: FCMtoken,
                                nick: nick,
                                birth: birth,
@@ -52,9 +52,9 @@ extension SignupParameter {
     }
 }
 
-extension MypageParameter {
+extension MypageParm {
     
-    var parameter: MypageParameter {
+    var parameter: MypageParm {
         
         let searchable = UserDefaults.standard.integer(forKey: "searchable")
         let ageMin = UserDefaults.standard.integer(forKey: "ageMin")
@@ -62,7 +62,7 @@ extension MypageParameter {
         let gender = UserDefaults.standard.integer(forKey: "gender")
         let hobby = UserDefaults.standard.string(forKey: "hobby") ?? ""
         
-        return MypageParameter(searchable: searchable,
+        return MypageParm(searchable: searchable,
                              ageMin: ageMin,
                              ageMax: ageMax,
                              gender: gender,
@@ -70,11 +70,11 @@ extension MypageParameter {
     }
 }
 
-extension FCMtokenParameter {
+extension FCMtokenParm {
     
-    var toDomain: FCMtokenParameter {
+    var toDomain: FCMtokenParm {
         
           let FCMtoken = UserDefaults.standard.string(forKey: "FCMToken") ?? ""
-          return FCMtokenParameter(FCMtoken: FCMtoken)
+          return FCMtokenParm(FCMtoken: FCMtoken)
       }
 }

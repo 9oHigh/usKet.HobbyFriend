@@ -97,7 +97,7 @@ final class MyInfoViewModel {
     func myPageUpdate(onCompletion : @escaping (String?) -> Void) {
         
         let idToken: String = SignupSingleton.shared.putIdToken()
-        let parameter = MypageParameter(searchable: 0, ageMin: 0, ageMax: 0, gender: 0, hobby: "").parameter
+        let parameter = MypageParm(searchable: 0, ageMin: 0, ageMax: 0, gender: 0, hobby: "").parameter
         
         UserAPI.updateMypage(idToken: idToken, parameter: parameter) { statusCode in
             switch statusCode {

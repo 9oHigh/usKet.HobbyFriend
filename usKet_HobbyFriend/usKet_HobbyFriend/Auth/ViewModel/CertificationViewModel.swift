@@ -292,7 +292,7 @@ class CertificationViewModel {
     func signupToSeSAC(onCompletion : @escaping (Int) -> Void ) {
         
         let idToken = SignupSingleton.shared.putIdToken()
-        let parameter = SignupParameter(phoneNumber: "", FCMtoken: "", nick: "", birth: "", email: "", gender: 0).parameter
+        let parameter = SignupParm(phoneNumber: "", FCMtoken: "", nick: "", birth: "", email: "", gender: 0).parameter
         
         UserAPI.signupUser(idToken: idToken, parameter: parameter) { statusCode in
             switch statusCode {

@@ -5,24 +5,15 @@
 //  Created by 이경후 on 2022/02/05.
 //
 
-import Foundation
 import Moya
 
-// FCM 토큰 갱신, 유저정보확인은 회원가입 플로우, 상세정보등에서 가져가야하므로
-// 만들어질 타겟에 대해 디폴트로 넣어주면 좋을 것 같음
-private protocol DefaultTarget {
-    // 반환을 자기 자신으로 해주어야 Enum에서 case로 분리 가능
-    static func updateFCMToken(idToken: String, _ parameter: FCMtokenParameter) -> Self
-    static func getUser(idToken: String) -> Self
-}
-
-enum UserTarget: DefaultTarget {
+enum UserTarget {
     
     case getUser(idToken: String)
-    case signupUser(idToken: String, SignupParameter)
+    case signupUser(idToken: String, SignupParm)
     case withdrawUser(idToken: String)
-    case updateMypage(idToken: String, MypageParameter)
-    case updateFCMToken(idToken: String, FCMtokenParameter)
+    case updateMypage(idToken: String, MypageParm)
+    case updateFCMToken(idToken: String, FCMtokenParm)
 }
 
 // TargetType 프로토콜을 채택할 경우 다음과같이 프로퍼티들이 생성된다.
