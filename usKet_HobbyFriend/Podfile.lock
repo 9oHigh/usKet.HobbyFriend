@@ -13,12 +13,14 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SwiftLint (0.46.2)
+  - Then (2.7.0)
 
 DEPENDENCIES:
   - DoubleSlider
   - Moya/RxSwift (~> 15.0)
   - RxCocoa (= 6.5.0)
   - SwiftLint
+  - Then
 
 SPEC REPOS:
   trunk:
@@ -29,6 +31,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SwiftLint
+    - Then
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -38,7 +41,8 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SwiftLint: 6bc52a21f0fd44cab9aa2dc8e534fb9f5e3ec507
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 10e4eb8e1f87276dbd51072bc40566667533fa5a
+PODFILE CHECKSUM: f4cfa440174f8bbf6e69a1a9205cae0f9962b2dc
 
 COCOAPODS: 1.11.2

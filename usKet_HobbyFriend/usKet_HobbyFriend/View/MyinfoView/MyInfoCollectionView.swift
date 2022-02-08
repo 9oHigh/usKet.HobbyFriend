@@ -7,7 +7,7 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
+ import RxCocoa
 
 final class MyInfoCollectionVeiw: UIView {
     
@@ -23,6 +23,7 @@ final class MyInfoCollectionVeiw: UIView {
         
         return collectionView
     }()
+    
     let disposeBag = DisposeBag()
     let viewModel = MyInfoViewModel()
     

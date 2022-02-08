@@ -29,7 +29,7 @@ extension UserTarget: TargetType {
 
         case .getUser : return "user"
         case .signupUser : return "user"
-        case .withdrawUser : return "user/withraw"
+        case .withdrawUser : return "user/withdraw"
         case .updateMypage : return "user/update/mypage"
         case .updateFCMToken : return "user/update_fcm_token"
         }

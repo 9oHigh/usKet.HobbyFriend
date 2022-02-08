@@ -15,9 +15,6 @@ final class MyInfoViewModel {
     var errorMessage = ""
     var user: User?
     
-    // BehaviorSubject는 초기값을 가지고 있는 subject
-    // +subscribe가 발생하면, 발생한 시점 이전에 발생한 이벤트 중 가장 최신의 이벤트를 전달받는다. (다시 말하면 지속적으로 이벤트를 하나이상은 가지고 있게 되는 케이스)
-    // 사실 이렇게 사용하는 경우는 드물 듯, 데이터를 받아와서 적용하니..
     var myInfoMenu = BehaviorSubject<[MyInfo]>(value: [
         MyInfo(image: R.image.profileImg()!, name: UserDefaults.standard.string(forKey: "nick")!),
         MyInfo(image: R.image.notice()!, name: "공지사항"),
@@ -38,12 +35,12 @@ final class MyInfoViewModel {
     
     func resetUserInfo(onCompletion : @escaping (Bool, String?) -> Void) {
         
-        let idToken = SignupSingleton.shared.putIdToken()
+        let idToken = Helper.shared.putIdToken()
         
         UserAPI.withdrawUser(idToken: idToken) { statusCode in
             if statusCode == 200 {
-                SignupSingleton.shared.userReset()
-                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "onboard")
+                Helper.shared.userReset()
+                Helper.shared.registerUserData(userDataType: .startPosition, variable: "onboard")
                 onCompletion(true, nil)
             } else {
                 self.errorMessage = "회원탈퇴에 실패했습니다."
@@ -54,24 +51,17 @@ final class MyInfoViewModel {
     
     func getUserInfo(onCompletion : @escaping (User?, String?) -> Void) {
         
-        let idToken: String = SignupSingleton.shared.putIdToken()
+        let idToken: String = Helper.shared.putIdToken()
         
         UserAPI.getUser(idToken: idToken) { user, statusCode in
+            
             guard let statusCode = statusCode else {
                 return
             }
-            guard let user = user else {
-                self.errorMessage = "정보를 가지고 오는데 실패했습니다."
-                onCompletion(nil, self.errorMessage)
-                return
-            }
             
-            if statusCode == 200 {
-                onCompletion(user, nil)
-                
-            } else if statusCode == 401 {
-                DispatchQueue.main.async {
-                    SignupSingleton.shared.getIdToken { newIdToken in
+            guard let user = user else {
+                if statusCode == 401 {
+                    Helper.shared.getIdToken { newIdToken in
                         guard newIdToken != nil else {
                             self.errorMessage = "정보를 갱신중입니다. 다시 요청해주세요."
                             onCompletion(nil, self.errorMessage)
@@ -80,15 +70,31 @@ final class MyInfoViewModel {
                         self.errorMessage = "정보를 가지고 오는데 실패했습니다."
                         onCompletion(nil, self.errorMessage)
                     }
+                } else {
+                    self.errorMessage = "정보를 가지고 오는데 실패했습니다."
+                    onCompletion(nil, self.errorMessage)
                 }
-                onCompletion(nil, self.errorMessage)
-            } else if statusCode == 406 {
-                
+                return
+            }
+            switch statusCode {
+            case 200:
+                onCompletion(user, nil)
+            case 401:
+                Helper.shared.getIdToken { newIdToken in
+                    guard newIdToken != nil else {
+                        self.errorMessage = "정보를 갱신중입니다. 다시 요청해주세요."
+                        onCompletion(nil, self.errorMessage)
+                        return
+                    }
+                    self.errorMessage = "정보를 가지고 오는데 실패했습니다."
+                    onCompletion(nil, self.errorMessage)
+                }
+            case 406:
                 self.errorMessage = "미가입 회원입니다."
-                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
+                Helper.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
                 // 뷰에서 루트뷰 온보드로 변경
                 onCompletion(nil, self.errorMessage)
-            } else {
+            default :
                 self.errorMessage = "정보를 가지고 오는데 실패했습니다."
                 onCompletion(nil, self.errorMessage)
             }
@@ -96,7 +102,7 @@ final class MyInfoViewModel {
     }
     func myPageUpdate(onCompletion : @escaping (String?) -> Void) {
         
-        let idToken: String = SignupSingleton.shared.putIdToken()
+        let idToken: String = Helper.shared.putIdToken()
         let parameter = MypageParm(searchable: 0, ageMin: 0, ageMax: 0, gender: 0, hobby: "").parameter
         
         UserAPI.updateMypage(idToken: idToken, parameter: parameter) { statusCode in
@@ -105,7 +111,7 @@ final class MyInfoViewModel {
                 onCompletion(nil)
             case 401 :
                 DispatchQueue.main.async {
-                    SignupSingleton.shared.getIdToken { newIdToken in
+                    Helper.shared.getIdToken { newIdToken in
                         guard newIdToken != nil else {
                             self.errorMessage = "정보를 갱신중입니다. 다시 요청해주세요."
                             onCompletion(self.errorMessage)
@@ -117,7 +123,7 @@ final class MyInfoViewModel {
                 }
             case 406 :
                 self.errorMessage = "미가입 회원입니다."
-                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
+                Helper.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
                 // 뷰에서 루트뷰 온보드로 변경
                 onCompletion(self.errorMessage)
             default:

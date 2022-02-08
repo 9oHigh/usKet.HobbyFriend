@@ -10,7 +10,7 @@ import SnapKit
 
 final class OnboardViewController: UIViewController {
     
-    lazy var signup = SignupSingleton()
+    lazy var signup = Helper()
     
     lazy var locationView: UIView = {
         // 반환할 뷰

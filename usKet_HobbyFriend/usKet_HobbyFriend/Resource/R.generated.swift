@@ -416,8 +416,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 4 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
+    /// Resource file `.swiftlint.yml`.
+    static let swiftlintYml = Rswift.FileResource(bundle: R.hostingBundle, name: ".swiftlint", pathExtension: "yml")
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
     /// Resource file `NotoSansKR-Medium.otf`.
@@ -426,6 +428,12 @@ struct R: Rswift.Validatable {
     static let notoSansKRRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "NotoSansKR-Regular", pathExtension: "otf")
     /// Resource file `OFL.txt`.
     static let oflTxt = Rswift.FileResource(bundle: R.hostingBundle, name: "OFL", pathExtension: "txt")
+
+    /// `bundle.url(forResource: ".swiftlint", withExtension: "yml")`
+    static func swiftlintYml(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.swiftlintYml
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
     static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
@@ -479,7 +487,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 42 images.
+  /// This `R.image` struct is generated, and contains static references to 48 images.
   struct image {
     /// Image `Friends`.
     static let friends = Rswift.ImageResource(bundle: R.hostingBundle, name: "Friends")
@@ -489,6 +497,8 @@ struct R: Rswift.Validatable {
     static let seSAC = Rswift.ImageResource(bundle: R.hostingBundle, name: "SeSAC")
     /// Image `addFriend`.
     static let addFriend = Rswift.ImageResource(bundle: R.hostingBundle, name: "addFriend")
+    /// Image `annotation`.
+    static let annotation = Rswift.ImageResource(bundle: R.hostingBundle, name: "annotation")
     /// Image `bell`.
     static let bell = Rswift.ImageResource(bundle: R.hostingBundle, name: "bell")
     /// Image `cancelMatch`.
@@ -505,12 +515,18 @@ struct R: Rswift.Validatable {
     static let letfArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "letfArrow")
     /// Image `man`.
     static let man = Rswift.ImageResource(bundle: R.hostingBundle, name: "man")
+    /// Image `matched`.
+    static let matched = Rswift.ImageResource(bundle: R.hostingBundle, name: "matched")
     /// Image `message`.
     static let message = Rswift.ImageResource(bundle: R.hostingBundle, name: "message")
+    /// Image `moreArrow`.
+    static let moreArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "moreArrow")
     /// Image `more`.
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "more")
     /// Image `newBadge`.
     static let newBadge = Rswift.ImageResource(bundle: R.hostingBundle, name: "newBadge")
+    /// Image `noMoreArrow`.
+    static let noMoreArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "noMoreArrow")
     /// Image `notice`.
     static let notice = Rswift.ImageResource(bundle: R.hostingBundle, name: "notice")
     /// Image `onboardFirst`.
@@ -529,8 +545,12 @@ struct R: Rswift.Validatable {
     static let profileImg = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileImg")
     /// Image `qna`.
     static let qna = Rswift.ImageResource(bundle: R.hostingBundle, name: "qna")
+    /// Image `readyMatching`.
+    static let readyMatching = Rswift.ImageResource(bundle: R.hostingBundle, name: "readyMatching")
     /// Image `rightArrow`.
     static let rightArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "rightArrow")
+    /// Image `searchHobby`.
+    static let searchHobby = Rswift.ImageResource(bundle: R.hostingBundle, name: "searchHobby")
     /// Image `search`.
     static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
     /// Image `sesac_face_1`.
@@ -595,6 +615,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "annotation", bundle: ..., traitCollection: ...)`
+    static func annotation(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.annotation, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "bell", bundle: ..., traitCollection: ...)`
     static func bell(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.bell, compatibleWith: traitCollection)
@@ -651,6 +678,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "matched", bundle: ..., traitCollection: ...)`
+    static func matched(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.matched, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "message", bundle: ..., traitCollection: ...)`
     static func message(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.message, compatibleWith: traitCollection)
@@ -665,9 +699,23 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "moreArrow", bundle: ..., traitCollection: ...)`
+    static func moreArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.moreArrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "newBadge", bundle: ..., traitCollection: ...)`
     static func newBadge(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.newBadge, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "noMoreArrow", bundle: ..., traitCollection: ...)`
+    static func noMoreArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.noMoreArrow, compatibleWith: traitCollection)
     }
     #endif
 
@@ -735,6 +783,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "readyMatching", bundle: ..., traitCollection: ...)`
+    static func readyMatching(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.readyMatching, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "rightArrow", bundle: ..., traitCollection: ...)`
     static func rightArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.rightArrow, compatibleWith: traitCollection)
@@ -745,6 +800,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "search", bundle: ..., traitCollection: ...)`
     static func search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.search, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "searchHobby", bundle: ..., traitCollection: ...)`
+    static func searchHobby(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.searchHobby, compatibleWith: traitCollection)
     }
     #endif
 

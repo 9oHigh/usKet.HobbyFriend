@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        lazy var toSignUp = SignupSingleton()
+        lazy var toSignUp = Helper()
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
         // home
         case "home":
-            UserAPI.getUser(idToken: SignupSingleton.shared.putIdToken()) { user, _ in
+            UserAPI.getUser(idToken: Helper.shared.putIdToken()) { user, _ in
                 
                 guard let user = user else {
                     return
@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 // 만약 기존의 FCM토큰과 다르다면 갱신해줘야해 홈으로 갈때마다!
                 let parm = FCMtokenParm(FCMtoken: "").parameter
                 if user.fcMtoken != parm.FCMtoken {
-                    UserAPI.updateFCMToken(idToken: SignupSingleton.shared.putIdToken(), parameter: parm, onCompletion: { _ in })
+                    UserAPI.updateFCMToken(idToken: Helper.shared.putIdToken(), parameter: parm, onCompletion: { _ in })
                 }
             }
             window?.rootViewController = HomeTabViewController()

@@ -18,16 +18,17 @@ enum UserDataType: String {
     case gender
     case idToken
     case startPosition
+    
+    case locationAuth
+    case startLocation
 }
 
-class SignupSingleton {
+class Helper {
     
     // 싱글톤 - 유저디포트도 싱글톤이니까 싱싱글톤! 익스텐션으로 만들면 더 좋으려나
-    static let shared = SignupSingleton()
+    static let shared = Helper()
     
-    // 성별, 시작 포지션의 경우 Int값을 가지고 있으므로 -> 넘길 때 Int로 넘겨주자..
-    func registerUserData(userDataType: UserDataType, variable: String ) {
-        
+    func registerUserData(userDataType: UserDataType, variable: String ) {    
         UserDefaults.standard.set(variable, forKey: userDataType.rawValue)
     }
     
@@ -44,7 +45,6 @@ class SignupSingleton {
     func userReset() {
         
         UserDefaults.standard.removeObject(forKey: "phoneNumber")
-        UserDefaults.standard.removeObject(forKey: "FCMtoken")
         UserDefaults.standard.removeObject(forKey: "nick")
         UserDefaults.standard.removeObject(forKey: "birth")
         UserDefaults.standard.removeObject(forKey: "email")
@@ -66,7 +66,7 @@ class SignupSingleton {
             guard let idToken = idToken else {
                 return
             }
-            SignupSingleton.shared.registerUserData(userDataType: .idToken, variable: idToken)
+            Helper.shared.registerUserData(userDataType: .idToken, variable: idToken)
             onCompletion(idToken)
         }
     }
@@ -74,4 +74,5 @@ class SignupSingleton {
     func putIdToken() -> String {
         return UserDefaults.standard.string(forKey: "idToken")!
     }
+    
 }

@@ -60,7 +60,7 @@ extension AppDelegate: MessagingDelegate {
     // 토큰 받기
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
-        lazy var signup = SignupSingleton()
+        lazy var signup = Helper()
         
         guard let fcmToken = fcmToken else {
             signup.registerUserData(userDataType: .FCMtoken, variable: "None")

@@ -36,7 +36,7 @@ class CertificationViewModel {
         let startIdx: String.Index = number.index(number.startIndex, offsetBy: 1)
         let phone = "+82" + number[startIdx...]
         
-        result ? SignupSingleton.shared.registerUserData(userDataType: .phoneNumber, variable: phone) : SignupSingleton.shared.registerUserData(userDataType: .phoneNumber, variable: "None")
+        result ? Helper.shared.registerUserData(userDataType: .phoneNumber, variable: phone) : Helper.shared.registerUserData(userDataType: .phoneNumber, variable: "None")
     }
     
     // 휴대폰 인증문자 받기, 바인딩 시켜서 사용해보기로 함.
@@ -142,7 +142,7 @@ class CertificationViewModel {
     // Firebase idToken
     func getIdToken(onCompletion : @escaping (Int) -> Void) {
         
-        SignupSingleton.shared.getIdToken { idToken in
+        Helper.shared.getIdToken { idToken in
             
             guard let idToken = idToken else {
                 self.errorMessage.value = "오류 발생, 다시 시도해주세요."
@@ -155,20 +155,20 @@ class CertificationViewModel {
                     switch statusCode {
                     case 401 :
                         DispatchQueue.main.async {
-                            SignupSingleton.shared.getIdToken { newIdToken in
+                            Helper.shared.getIdToken { newIdToken in
                                 guard let newIdToken = newIdToken else {
                                     self.errorMessage.value = "토큰 갱신에 실패했습니다. 다시 시도하세요"
                                     onCompletion(401)
                                     return
                                 }
-                                SignupSingleton.shared.registerUserData(userDataType: .idToken, variable: newIdToken)
+                                Helper.shared.registerUserData(userDataType: .idToken, variable: newIdToken)
                                 self.errorMessage.value = "토큰 갱신이 완료되었습니다. 다시 시도하세요"
                                 onCompletion(401)
                             }
                         }
                         return
                     case 406 :
-                        SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
+                        Helper.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
                         onCompletion(406)
                         return
                     default :
@@ -177,8 +177,8 @@ class CertificationViewModel {
                     return
                 }
                 
-                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "home")
-                SignupSingleton.shared.registerUserData(userDataType: .nick, variable: user.nick) // userdefault를 이용해서..
+                Helper.shared.registerUserData(userDataType: .startPosition, variable: "home")
+                Helper.shared.registerUserData(userDataType: .nick, variable: user.nick) // userdefault를 이용해서..
                 onCompletion(200)
             }
         }
@@ -197,7 +197,7 @@ class CertificationViewModel {
         
         validFlag.value = result
         self.errorMessage.value = result ? "" : "1자이상 10자이내로 입력해주세요"
-        result ? SignupSingleton.shared.registerUserData(userDataType: .nick, variable: validText.value) : ()
+        result ? Helper.shared.registerUserData(userDataType: .nick, variable: validText.value) : ()
     }
     
     // MARK: Birth
@@ -214,7 +214,7 @@ class CertificationViewModel {
         if westernAge(age: age, birthMonth: Int(birthDate.value.1)!, birthDay: Int(birthDate.value.2)!) {
             
             self.errorMessage.value = ""
-            SignupSingleton.shared.registerUserData(userDataType: .birth, variable: self.validText.value)
+            Helper.shared.registerUserData(userDataType: .birth, variable: self.validText.value)
         } else {
             
             self.errorMessage.value = "만 17세 이상만 가입가능합니다."
@@ -272,7 +272,7 @@ class CertificationViewModel {
         validFlag.value = result
         
         self.errorMessage.value = result ? "" : "형식이 옳바르지 않습니다"
-        SignupSingleton.shared.registerUserData(userDataType: .email, variable: validText.value)
+        Helper.shared.registerUserData(userDataType: .email, variable: validText.value)
     }
     
     // MARK: Gender
@@ -280,10 +280,10 @@ class CertificationViewModel {
     func genderValidate() {
         
         if validText.value != "" && validText.value != "-1"{
-            SignupSingleton.shared.registerUserData(userDataType: .gender, variable: validText.value)
+            Helper.shared.registerUserData(userDataType: .gender, variable: validText.value)
             validFlag.value = true
         } else {
-            SignupSingleton.shared.registerUserData(userDataType: .gender, variable: validText.value)
+            Helper.shared.registerUserData(userDataType: .gender, variable: validText.value)
             validFlag.value = false
         }
     }
@@ -291,34 +291,34 @@ class CertificationViewModel {
     // MARK: Signup
     func signupToSeSAC(onCompletion : @escaping (Int) -> Void ) {
         
-        let idToken = SignupSingleton.shared.putIdToken()
+        let idToken = Helper.shared.putIdToken()
         let parameter = SignupParm(phoneNumber: "", FCMtoken: "", nick: "", birth: "", email: "", gender: 0).parameter
         
         UserAPI.signupUser(idToken: idToken, parameter: parameter) { statusCode in
             switch statusCode {
             case 200 :
-                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "home")
+                Helper.shared.registerUserData(userDataType: .startPosition, variable: "home")
                 onCompletion(statusCode!)
                 return
             case 201 :
-                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "home")
+                Helper.shared.registerUserData(userDataType: .startPosition, variable: "home")
                 self.errorMessage.value = "이미 가입이 완료되었습니다"
                 onCompletion(statusCode!)
                 return
             case 202 :
-                SignupSingleton.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
+                Helper.shared.registerUserData(userDataType: .startPosition, variable: "nickName")
                 self.errorMessage.value = "사용할 수 없는 닉네임입니다"
                 onCompletion(statusCode!)
                 return
             case 401 :
                 DispatchQueue.main.async {
-                    SignupSingleton.shared.getIdToken { newIdToken in
+                    Helper.shared.getIdToken { newIdToken in
                         guard newIdToken != nil else {
                             self.errorMessage.value = "갱신에 실패했습니다. 다시 시도하세요"
                             onCompletion(401)
                             return
                         }
-                        self.errorMessage.value = "토큰이 갱시되었습니다. 다시 시도해주세요"
+                        self.errorMessage.value = "토큰이 갱신되었습니다. 다시 시도해주세요"
                         onCompletion(401)
                     }
                 }

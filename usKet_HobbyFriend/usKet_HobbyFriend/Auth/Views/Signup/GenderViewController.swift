@@ -182,9 +182,6 @@ final class GenderViewController: BaseViewController {
                     nickNameViewController.showToast(message: "다른 닉네임으로 변경해주세요")
                     self.transViewWithAnimation(isNavigation: true, controller: nickNameViewController)
                     
-                case 401 :
-                    self.showToast(message: self.errorMessage)
-                    
                 default :
                     self.showToast(message: "오류 발생, 다시 시도해주세요.")
                 }
