@@ -142,7 +142,7 @@ class CertificationViewModel {
     // Firebase idToken
     func getIdToken(onCompletion : @escaping (Int) -> Void) {
         
-        Helper.shared.getIdToken { idToken in
+        Helper.shared.getIdToken(refresh: false) { idToken in
             
             guard let idToken = idToken else {
                 self.errorMessage.value = "오류 발생, 다시 시도해주세요."
@@ -155,7 +155,7 @@ class CertificationViewModel {
                     switch statusCode {
                     case 401 :
                         DispatchQueue.main.async {
-                            Helper.shared.getIdToken { newIdToken in
+                            Helper.shared.getIdToken(refresh: true) { newIdToken in
                                 guard let newIdToken = newIdToken else {
                                     self.errorMessage.value = "토큰 갱신에 실패했습니다. 다시 시도하세요"
                                     onCompletion(401)
@@ -312,7 +312,7 @@ class CertificationViewModel {
                 return
             case 401 :
                 DispatchQueue.main.async {
-                    Helper.shared.getIdToken { newIdToken in
+                    Helper.shared.getIdToken(refresh: true) { newIdToken in
                         guard newIdToken != nil else {
                             self.errorMessage.value = "갱신에 실패했습니다. 다시 시도하세요"
                             onCompletion(401)

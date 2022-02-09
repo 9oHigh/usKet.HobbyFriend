@@ -23,7 +23,7 @@ final class MyInfoViewController: BaseViewController {
             .font: UIFont.toTitleM14!,
             .foregroundColor: UIColor(resource: R.color.basicBlack)!
         ]
-        Helper.shared.getIdToken { idToken in
+        Helper.shared.getIdToken(refresh: false) { idToken in
             guard idToken != nil else {
                 self.showToast(message: "정보를 가지고 올 수 없습니다.", yPosition: 150)
                 return

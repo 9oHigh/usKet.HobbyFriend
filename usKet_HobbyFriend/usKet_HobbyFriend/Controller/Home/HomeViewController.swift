@@ -5,13 +5,20 @@
 //  Created by 이경후 on 2022/01/23.
 //
 
-import UIKit
 import MapKit
+import RxSwift
+import RxCocoa
+
+enum FriendType: Int {
+    case all = 2
+    case man = 1
+    case woman = 0
+}
 
 final class HomeViewController: BaseViewController {
     
     let homeView = HomeView()
-
+    
     lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -20,21 +27,35 @@ final class HomeViewController: BaseViewController {
         return manager
     }()
     
+    var friends: [FromQueueDB] = []
+    var surroundType = FriendType.all
+    
+    let viewModel = HomeViewModel()
+    let disposeBag = DisposeBag()
+    
     override func loadView() {
         self.view = homeView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 초기위치
+        homeView.mapView.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationAuth() ? setInitialPosition("current") : setInitialPosition("campus")
+        centerLocation(type: surroundType)
         
-        setLocation(UserDefaults.standard.string(forKey: "startLocation") ?? "")
         setConfigure()
         bind()
+        monitorNetwork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        centerLocation(type: self.surroundType)
+        homeView.mapView.showsUserLocation = true
+        locationManager.startUpdatingLocation()
+        monitorNetwork()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,116 +65,220 @@ final class HomeViewController: BaseViewController {
     
     override func setConfigure() {
         
-        // mapView
         homeView.mapView.mapType = .standard
-        homeView.mapView.showsUserLocation = true
-        homeView.mapView.setUserTrackingMode(.follow, animated: true)
-        
+        homeView.mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: AnnotationView.identifier)
+        homeView.gpsButton.addTarget(self, action: #selector(findMyLocation), for: .touchUpInside)
     }
     
     override func bind() {
         
+        homeView.allButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ _ in
+                self.centerLocation(type: .all)
+                self.surroundType = .all
+            })
+            .disposed(by: disposeBag)
+        
+        homeView.manButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ _ in
+                self.centerLocation(type: .man)
+                self.surroundType = .man
+            })
+            .disposed(by: disposeBag)
+        
+        homeView.womanButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ _ in
+                self.centerLocation(type: .woman)
+                self.surroundType = .woman
+            })
+            .disposed(by: disposeBag)
     }
     
-    private func isAllowedLocation() -> Bool {
-        
-        switch locationManager.authorizationStatus {
-        case .notDetermined, .restricted, .denied:
-            Helper.shared.registerUserData(userDataType: .locationAuth, variable: "notAllowed")
-            
-            return false
-        case .authorizedAlways, .authorizedWhenInUse, .authorized:
-            Helper.shared.registerUserData(userDataType: .locationAuth, variable: "allowed")
-            return true
-        @unknown default:
-            return false
-        }
-    }
-    
-    private func setLocation(_ positon: String) {
-        
+    private func setInitialPosition(_ positon: String) {
+        print(#function)
         switch positon {
         case "campus":
             campusStart()
         case "current":
-            self.homeView.mapView.showsUserLocation = true
+            homeView.mapView.showsUserLocation = true
+            locationManager.startUpdatingLocation()
             currentStart()
         default :
             campusStart()
         }
     }
     
-    // 임시
+    private func locationAuth() -> Bool {
+        print(#function)
+        switch locationManager.authorizationStatus {
+        case .notDetermined, .restricted, .denied:
+            locationManager.requestWhenInUseAuthorization()
+            return false
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            return true
+            // 맨처음
+        @unknown default:
+            locationManager.requestWhenInUseAuthorization()
+            return false
+        }
+    }
+    
     private func campusStart() {
-        self.homeView.mapView.setRegion(MKCoordinateRegion(center: .init(latitude: 37.517819364682694, longitude: 126.88647317074734), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+        let coordinate = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
+        let region = MKCoordinateRegion(center: coordinate,
+                                        latitudinalMeters: 700,
+                                        longitudinalMeters: 700)
+        homeView.mapView.setRegion(region, animated: true)
     }
     
-    // 임시
     private func currentStart() {
-        self.homeView.mapView.setRegion(MKCoordinateRegion(center: self.locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location,
+                                                 latitudinalMeters: 700,
+                                                 longitudinalMeters: 700)
+            homeView.mapView.setRegion(region, animated: true)
+        }
     }
     
-    // 위치권한이 설정되어있지 않다면 영등포 캠퍼스로 위치 초기화
-    // 자신의 위치찾기 클릭시 권한 설정이 되어있지 않다면 ALert를 띄우고
-    // 설정창의 url 생성한 뒤 설정화면으로 이동시키기
+    private func centerLocation(type: FriendType = .all) {
+        let lat = homeView.mapView.centerCoordinate.latitude
+        let long = homeView.mapView.centerCoordinate.longitude
+        let region = computedRegion(lat: lat, long: long)
+        
+        // 0.8초
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            self.questSurround(region: region, lat: lat, long: long, by: type)
+        }
+    }
     
-    // guard let url = URL(string: UIApplication.openSettingURLString) else { return }
-    // 열 수 있는 url 이라면, 이동
-    // if UIApplication.shared.canOpenURL(url) {
-    //      UIApplication.shared.opne(url)
-    // }
+    private func questSurround(region: Int, lat: Double, long: Double, by: FriendType = .all) {
+        
+        viewModel.questSurround(region: region, lat: lat, long: long) { friends, _, error in
+            guard error == nil else {
+                self.showToast(message: error!, yPosition: 150)
+                return
+            }
+            
+            guard let friends = friends else {
+                self.showToast(message: "친구들의 위치 정보를 가지고 오는데 실패했어요.", yPosition: 150)
+                return
+            }
+            
+            self.friends = friends.fromQueueDB
+            print(self.friends)
+            let annotations = self.homeView.mapView.annotations
+            self.homeView.mapView.removeAnnotations(annotations)
+            
+            for friend in self.friends {
+                let friendCoordinate = CLLocationCoordinate2D(latitude: friend.lat, longitude: friend.long)
+                let friendsAnnotation = MKPointAnnotation()
+                
+                if friend.gender == by.rawValue && by != .all {
+                    friendsAnnotation.coordinate = friendCoordinate
+                    self.homeView.mapView.addAnnotation(friendsAnnotation)
+                } else if by == .all {
+                    friendsAnnotation.coordinate = friendCoordinate
+                    self.homeView.mapView.addAnnotation(friendsAnnotation)
+                }
+            }
+        }
+    }
     
+    private func computedRegion(lat: Double, long: Double) -> Int {
+        
+        var forward: String = String(90 + lat)
+        var backward: String = String(180 + long)
+        
+        forward = forward.replacingOccurrences(of: ".", with: "")
+        backward = backward.replacingOccurrences(of: ".", with: "")
+        
+        let endIdxForward: String.Index = forward.index(forward.startIndex, offsetBy: 4)
+        let endIdxBackward: String.Index = forward.index(backward.startIndex, offsetBy: 4)
+        
+        forward = String(forward[...endIdxForward])
+        backward = String(backward[...endIdxBackward])
+        
+        return Int(forward + backward)!
+    }
+    
+    @objc
+    private func findMyLocation() {
+
+        if CLLocationManager.locationServicesEnabled() && locationAuth() {
+            if let location = locationManager.location?.coordinate {
+                homeView.mapView.setRegion(.init(center: location, latitudinalMeters: 700, longitudinalMeters: 700), animated: true)
+            }
+        } else {
+            let alertView = self.generateAlertView(inform: "위치 권한 설정", subInform: "위치권한이 설정되어있지 않아요.\n설정으로 이동하시겠습니까?")
+            
+            alertView.cancelButton.rx.tap
+                .observe(on: MainScheduler.instance)
+                .subscribe({ _ in
+                    alertView.dismiss(animated: true, completion: nil)
+                })
+                .disposed(by: disposeBag)
+            alertView.okButton.rx.tap
+                .observe(on: MainScheduler.instance)
+                .subscribe({ _ in
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    }
+                    alertView.dismiss(animated: true, completion: nil)
+                })
+                .disposed(by: disposeBag)
+            self.transViewController(nextType: .present, controller: alertView)
+        }
+    }
 }
 extension HomeViewController: CLLocationManagerDelegate {
- 
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         switch status {
             
         case .authorizedAlways, .authorizedWhenInUse:
-            Helper.shared.registerUserData(userDataType: .locationAuth, variable: "allowed")
-            Helper.shared.registerUserData(userDataType: .startLocation, variable: "current")
+            homeView.mapView.showsUserLocation = true
+            locationManager.startUpdatingLocation()
         case .restricted, .notDetermined:
-            Helper.shared.registerUserData(userDataType: .locationAuth, variable: "notAllowed")
-            Helper.shared.registerUserData(userDataType: .startLocation, variable: "campus")
-            DispatchQueue.main.async {
-                self.locationManager.requestWhenInUseAuthorization()
-            }
+            locationManager.requestWhenInUseAuthorization()
         case .denied:
-            Helper.shared.registerUserData(userDataType: .locationAuth, variable: "notAllowed")
-            Helper.shared.registerUserData(userDataType: .startLocation, variable: "campus")
-            DispatchQueue.main.async {
-                self.locationManager.requestWhenInUseAuthorization()
-            }
+            locationManager.requestWhenInUseAuthorization()
         default:
-            break
+            locationManager.requestWhenInUseAuthorization()
         }
     }
 }
 
-// extension HomeViewController: MKMapViewDelegate {
-//    // 어노테이션을 찍는 함수
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard !annotation.isKind(of: MKUserLocation.self) else { //
-//            return nil
-//        }
-//        var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "Custom")
-//
-//        if annotationView == nil { // 없으면 하나 만들어 주시고
-//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Custom")
-//            annotationView?.canShowCallout = true
-//            // callOutView를 통해서 추가적인 액션을 더해줄수도 있겠죠! 와 무지 간편합니다!
-//            let miniButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-//            miniButton.setImage(UIImage(systemName: "person"), for: .normal)
-//            miniButton.tintColor = .blue
-//            annotationView?.rightCalloutAccessoryView = miniButton
-//
-//        } else { // 있으면 등록된 걸 쓰시면 됩니다.
-//                annotationView?.annotation = annotation
-//
-//        }
-//        annotationView?.image = UIImage(named: "Circle") // 상황에 따라 다른 annotationView를 리턴하게 하면 여러가지 모양을 쓸 수도 있겠죠?
-//        return annotationView
-//
-//    }
-// }
+extension HomeViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard !(annotation is MKUserLocation) else { return nil }
+        
+        var annotationView = homeView.mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationView.identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: AnnotationView.identifier)
+            annotationView?.canShowCallout = false
+            annotationView?.contentMode = .scaleAspectFit
+        } else {
+            annotationView?.annotation = annotation
+        }
+        //이미지 분기처리 고민..
+        //호출 때마다 변경
+        annotationView?.image = R.image.sesac_face_1()!
+        
+        return annotationView
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        centerLocation(type: self.surroundType)
+    }
+}

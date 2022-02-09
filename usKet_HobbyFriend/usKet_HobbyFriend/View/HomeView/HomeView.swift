@@ -153,7 +153,6 @@ final class HomeView: UIView {
     
     @objc
     private func coloredButton(_ sender: UIButton) {
-        print(#function)
         [allButton, manButton, womanButton].forEach { isSelected in
             
             if isSelected == sender {

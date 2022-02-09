@@ -18,8 +18,7 @@ enum UserDataType: String {
     case gender
     case idToken
     case startPosition
-    
-    case locationAuth
+    // MapView
     case startLocation
 }
 
@@ -53,11 +52,10 @@ class Helper {
         UserDefaults.standard.removeObject(forKey: "startPosition")
     }
     // 유저 디포트에 바로 저장해주자.
-    func getIdToken(onCompletion : @escaping (String?) -> Void) {
-        
+    func getIdToken(refresh: Bool, onCompletion : @escaping (String?) -> Void) {
         let currentUser = Auth.auth().currentUser
         
-        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+        currentUser?.getIDTokenForcingRefresh(refresh) { idToken, error in
             
             guard error == nil else {
                 onCompletion(nil)
@@ -69,7 +67,9 @@ class Helper {
             Helper.shared.registerUserData(userDataType: .idToken, variable: idToken)
             onCompletion(idToken)
         }
+        
     }
+
     // 유저디포트에서 가져다주자.
     func putIdToken() -> String {
         return UserDefaults.standard.string(forKey: "idToken")!

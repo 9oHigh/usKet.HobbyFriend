@@ -61,7 +61,7 @@ final class MyInfoViewModel {
             
             guard let user = user else {
                 if statusCode == 401 {
-                    Helper.shared.getIdToken { newIdToken in
+                    Helper.shared.getIdToken(refresh: true) { newIdToken in
                         guard newIdToken != nil else {
                             self.errorMessage = "정보를 갱신중입니다. 다시 요청해주세요."
                             onCompletion(nil, self.errorMessage)
@@ -80,7 +80,7 @@ final class MyInfoViewModel {
             case 200:
                 onCompletion(user, nil)
             case 401:
-                Helper.shared.getIdToken { newIdToken in
+                Helper.shared.getIdToken(refresh: true) { newIdToken in
                     guard newIdToken != nil else {
                         self.errorMessage = "정보를 갱신중입니다. 다시 요청해주세요."
                         onCompletion(nil, self.errorMessage)
@@ -111,7 +111,7 @@ final class MyInfoViewModel {
                 onCompletion(nil)
             case 401 :
                 DispatchQueue.main.async {
-                    Helper.shared.getIdToken { newIdToken in
+                    Helper.shared.getIdToken(refresh: true) { newIdToken in
                         guard newIdToken != nil else {
                             self.errorMessage = "정보를 갱신중입니다. 다시 요청해주세요."
                             onCompletion(self.errorMessage)
