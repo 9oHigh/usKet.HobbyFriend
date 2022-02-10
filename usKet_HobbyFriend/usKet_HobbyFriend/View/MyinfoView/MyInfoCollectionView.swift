@@ -24,8 +24,9 @@ final class MyInfoCollectionVeiw: UIView {
         return collectionView
     }()
     
-    let disposeBag = DisposeBag()
     let viewModel = MyInfoViewModel()
+    let disposeBag = DisposeBag()
+    var reputation: [Int] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,9 +71,15 @@ final class MyInfoCollectionVeiw: UIView {
         viewModel.myInfoTitle
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items(cellIdentifier: MyInfoTitleCollectionViewCell.identifier, cellType: MyInfoTitleCollectionViewCell.self)) { _, item, cell in
-                self.viewModel.user?.reputation.forEach({ color in
+                if self.viewModel.user != nil {
+                    self.viewModel.user?.reputation.forEach({ color in
                     cell.backgroundColor = color == 0 ? R.color.basicWhite()! : R.color.brandGreen()!
-                })
+                    })
+                } else {
+                    self.reputation.forEach { color in
+                        cell.backgroundColor = color == 0 ? R.color.basicWhite()! : R.color.brandGreen()!
+                    }
+                }
                 // item은 모델이 날라오는거 -> 따라서 모델에 컬러가 있어야 겠고 그 컬러는
                 // API 통신에서 숫자로 true/false로 저장해두자
                 // 여기서는 조건만 달아서 색 변경

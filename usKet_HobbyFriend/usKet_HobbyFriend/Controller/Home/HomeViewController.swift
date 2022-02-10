@@ -13,6 +13,7 @@ enum FriendType: Int {
     case all = 2
     case man = 1
     case woman = 0
+    case unkowned = -1
 }
 
 final class HomeViewController: BaseViewController {
@@ -40,10 +41,10 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // 초기위치
-        homeView.mapView.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationAuth() ? setInitialPosition("current") : setInitialPosition("campus")
         centerLocation(type: surroundType)
+        checkUserStatus(UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue))
         
         setConfigure()
         bind()
@@ -52,6 +53,7 @@ final class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkUserStatus(UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue))
         centerLocation(type: self.surroundType)
         homeView.mapView.showsUserLocation = true
         locationManager.startUpdatingLocation()
@@ -65,40 +67,42 @@ final class HomeViewController: BaseViewController {
     
     override func setConfigure() {
         
+        homeView.mapView.delegate = self
         homeView.mapView.mapType = .standard
         homeView.mapView.register(AnnotationView.self, forAnnotationViewWithReuseIdentifier: AnnotationView.identifier)
         homeView.gpsButton.addTarget(self, action: #selector(findMyLocation), for: .touchUpInside)
+        homeView.navigatorButton.addTarget(self, action: #selector(matchingFriends), for: .touchUpInside)
     }
     
     override func bind() {
         
         homeView.allButton.rx.tap
             .observe(on: MainScheduler.instance)
-            .subscribe({ _ in
-                self.centerLocation(type: .all)
-                self.surroundType = .all
+            .subscribe({ [weak self] _ in
+                self?.centerLocation(type: .all)
+                self?.surroundType = .all
             })
             .disposed(by: disposeBag)
         
         homeView.manButton.rx.tap
             .observe(on: MainScheduler.instance)
-            .subscribe({ _ in
-                self.centerLocation(type: .man)
-                self.surroundType = .man
+            .subscribe({ [weak self] _ in
+                self?.centerLocation(type: .man)
+                self?.surroundType = .man
             })
             .disposed(by: disposeBag)
         
         homeView.womanButton.rx.tap
             .observe(on: MainScheduler.instance)
-            .subscribe({ _ in
-                self.centerLocation(type: .woman)
-                self.surroundType = .woman
+            .subscribe({ [weak self] _ in
+                self?.centerLocation(type: .woman)
+                self?.surroundType = .woman
             })
             .disposed(by: disposeBag)
     }
     
     private func setInitialPosition(_ positon: String) {
-        print(#function)
+        
         switch positon {
         case "campus":
             campusStart()
@@ -112,7 +116,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func locationAuth() -> Bool {
-        print(#function)
+
         switch locationManager.authorizationStatus {
         case .notDetermined, .restricted, .denied:
             locationManager.requestWhenInUseAuthorization()
@@ -145,6 +149,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func centerLocation(type: FriendType = .all) {
+        
         let lat = homeView.mapView.centerCoordinate.latitude
         let long = homeView.mapView.centerCoordinate.longitude
         let region = computedRegion(lat: lat, long: long)
@@ -169,7 +174,7 @@ final class HomeViewController: BaseViewController {
             }
             
             self.friends = friends.fromQueueDB
-            print(self.friends)
+
             let annotations = self.homeView.mapView.annotations
             self.homeView.mapView.removeAnnotations(annotations)
             
@@ -205,9 +210,25 @@ final class HomeViewController: BaseViewController {
         return Int(forward + backward)!
     }
     
+    private func checkUserStatus(_ isMatch: String?) {
+        guard let isMatch = isMatch else {
+            return
+        }
+        switch isMatch {
+        case MatchStatus.nothing.rawValue:
+            homeView.navigatorButton.setImage(R.image.searchHobby()!, for: .normal)
+        case MatchStatus.matching.rawValue:
+            homeView.navigatorButton.setImage(R.image.readyMatching()!, for: .normal)
+        case MatchStatus.matched.rawValue:
+            homeView.navigatorButton.setImage(R.image.matched()!, for: .normal)
+        default :
+            homeView.navigatorButton.setImage(R.image.searchHobby()!, for: .normal)
+        }
+    }
+    
     @objc
     private func findMyLocation() {
-
+        
         if CLLocationManager.locationServicesEnabled() && locationAuth() {
             if let location = locationManager.location?.coordinate {
                 homeView.mapView.setRegion(.init(center: location, latitudinalMeters: 700, longitudinalMeters: 700), animated: true)
@@ -232,6 +253,35 @@ final class HomeViewController: BaseViewController {
                 })
                 .disposed(by: disposeBag)
             self.transViewController(nextType: .present, controller: alertView)
+        }
+    }
+    @objc
+    private func matchingFriends() {
+        
+        if locationAuth() {
+            
+            viewModel.getUserInfo { [weak self] user, _, error in
+                guard error == nil else {
+                    self?.showToast(message: error!)
+                    return
+                }
+                guard let user = user else {
+                    self?.showToast(message: "다시 시도해주세요.", yPosition: 150)
+                    return
+                }
+                if user.gender == FriendType.unkowned.rawValue {
+                    self?.showToast(message: "성별을 선택해야 매칭이 가능합니다.\n내정보로 이동합니다.", yPosition: 150)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self?.tabBarController?.selectedIndex = 3
+                    }
+                } else {
+                    self?.transViewController(nextType: .push, controller: InputHobbyViewController())
+                }
+            }
+        } else {
+            findMyLocation()
+            return
         }
     }
 }
@@ -264,21 +314,30 @@ extension HomeViewController: MKMapViewDelegate {
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: AnnotationView.identifier)
-            annotationView?.canShowCallout = false
+            annotationView?.canShowCallout = true
             annotationView?.contentMode = .scaleAspectFit
         } else {
+            annotationView?.canShowCallout = true
             annotationView?.annotation = annotation
         }
-        //이미지 분기처리 고민..
-        //호출 때마다 변경
-        annotationView?.image = R.image.sesac_face_1()!
         
+        // 이미지 사이즈를 조절하는 방법
+        let pinImage = R.image.sesac_face_1()!
+        let size = CGSize(width: 80, height: 80)
+        UIGraphicsBeginImageContext(size) // bitmap-based
+        
+        pinImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotationView?.image = resizedImage
+        
+        // 이미지 분기처리 고민..
+        // 호출 때마다 변경
         return annotationView
-        
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        centerLocation(type: self.surroundType)
+        centerLocation(type: surroundType)
     }
 }

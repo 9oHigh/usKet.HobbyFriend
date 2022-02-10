@@ -14,12 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        lazy var toSignUp = Helper()
+        // 임시
+        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
-        switch toSignUp.userState() {
+        
+        switch Helper.shared.userState() {
         // 온보딩
         case "onboard" :
             window?.rootViewController = OnboardViewController()
@@ -50,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
     }
-    
+    // MARK: - 여기서도 MatchStatus 값을 조정할 수 있을까
     func sceneDidDisconnect(_ scene: UIScene) {
      
     }

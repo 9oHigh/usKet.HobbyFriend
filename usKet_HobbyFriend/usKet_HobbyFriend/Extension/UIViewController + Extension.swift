@@ -40,6 +40,10 @@ extension UIViewController {
         })
     }
     
+    func showUserDetails() {
+        
+    }
+    
     func generateAlertView(inform: String, subInform: String) -> AlertView {
         
         let alertView = AlertView()

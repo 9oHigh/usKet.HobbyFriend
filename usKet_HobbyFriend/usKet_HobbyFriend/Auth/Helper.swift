@@ -8,6 +8,12 @@
 import UIKit
 import Firebase
 
+enum MatchStatus: String {
+    case nothing
+    case matching
+    case matched
+}
+
 enum UserDataType: String {
     
     case phoneNumber
@@ -20,6 +26,8 @@ enum UserDataType: String {
     case startPosition
     // MapView
     case startLocation
+    // Matching status
+    case isMatch
 }
 
 class Helper {
