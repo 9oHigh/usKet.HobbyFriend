@@ -6,11 +6,5 @@
 //
 
  class InputHobbyViewModel {
-
-     var validText: Observable<String> = Observable("")
      
-     func characterValid() {
-         
-     }
-
  }

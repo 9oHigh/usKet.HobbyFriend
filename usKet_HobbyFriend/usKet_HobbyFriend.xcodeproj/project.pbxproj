@@ -47,7 +47,9 @@
 		4C5F577D27B3E6C800F6DFA3 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F577C27B3E6C800F6DFA3 /* AnnotationView.swift */; };
 		4C5F578127B562B300F6DFA3 /* InputHobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F578027B562B300F6DFA3 /* InputHobbyViewController.swift */; };
 		4C5F578327B56CE600F6DFA3 /* InputHobbyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F578227B56CE600F6DFA3 /* InputHobbyViewModel.swift */; };
-		4C5F578527B5730700F6DFA3 /* InputHobbytableViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F578427B5730700F6DFA3 /* InputHobbytableViewCellTableViewCell.swift */; };
+		4C5F578527B5730700F6DFA3 /* InputHobbytableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F578427B5730700F6DFA3 /* InputHobbytableViewCell.swift */; };
+		4C5F578927B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F578827B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift */; };
+		4C5F578D27B6D79D00F6DFA3 /* CollectionSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F578C27B6D79D00F6DFA3 /* CollectionSectionHeader.swift */; };
 		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
 		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
 		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
@@ -119,7 +121,9 @@
 		4C5F577C27B3E6C800F6DFA3 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		4C5F578027B562B300F6DFA3 /* InputHobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHobbyViewController.swift; sourceTree = "<group>"; };
 		4C5F578227B56CE600F6DFA3 /* InputHobbyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHobbyViewModel.swift; sourceTree = "<group>"; };
-		4C5F578427B5730700F6DFA3 /* InputHobbytableViewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHobbytableViewCellTableViewCell.swift; sourceTree = "<group>"; };
+		4C5F578427B5730700F6DFA3 /* InputHobbytableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHobbytableViewCell.swift; sourceTree = "<group>"; };
+		4C5F578827B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHobbyCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C5F578C27B6D79D00F6DFA3 /* CollectionSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionSectionHeader.swift; sourceTree = "<group>"; };
 		4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
 		4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSpecificView.swift; sourceTree = "<group>"; };
 		4C62F7D627A40828004C5BEC /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -231,6 +235,8 @@
 			children = (
 				4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */,
 				4C62F7D627A40828004C5BEC /* AlertView.swift */,
+				4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */,
+				4C5F578C27B6D79D00F6DFA3 /* CollectionSectionHeader.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -270,7 +276,8 @@
 				4C0D75E327A1AE9900566CC0 /* MyInfoHeaderTableViewCell.swift */,
 				4C0D75E527A1B58800566CC0 /* MyInfoTableViewCell.swift */,
 				4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */,
-				4C5F578427B5730700F6DFA3 /* InputHobbytableViewCellTableViewCell.swift */,
+				4C5F578427B5730700F6DFA3 /* InputHobbytableViewCell.swift */,
+				4C5F578827B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -362,7 +369,6 @@
 		4CC2E44327B2ADC500D25311 /* MyinfoView */ = {
 			isa = PBXGroup;
 			children = (
-				4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */,
 				4C0D75D827A1266600566CC0 /* MyInfoFoldView.swift */,
 				4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */,
 				4C0D75D627A123E800566CC0 /* MyInfoView.swift */,
@@ -470,8 +476,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C0DBBE6279529DA005DBE66 /* Build configuration list for PBXNativeTarget "usKet_HobbyFriend" */;
 			buildPhases = (
-				4CF7755F27970724009CC655 /* SwiftLint Rswift Script */,
 				89D0F19EE5BB280772BC74CE /* [CP] Check Pods Manifest.lock */,
+				4CF7755F27970724009CC655 /* SwiftLint Rswift Script */,
 				4C0DBBCE279529D8005DBE66 /* Sources */,
 				4C0DBBCF279529D8005DBE66 /* Frameworks */,
 				4C0DBBD0279529D8005DBE66 /* Resources */,
@@ -634,7 +640,7 @@
 				4CC2E44127B29A2400D25311 /* R.generated.swift in Sources */,
 				4C0D75CF27A10EB400566CC0 /* MyInfoViewModel.swift in Sources */,
 				4CE0FC0E27B1537C00EA1C18 /* Friends.swift in Sources */,
-				4C5F578527B5730700F6DFA3 /* InputHobbytableViewCellTableViewCell.swift in Sources */,
+				4C5F578527B5730700F6DFA3 /* InputHobbytableViewCell.swift in Sources */,
 				4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */,
 				4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */,
 				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
@@ -655,6 +661,7 @@
 				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
 				4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */,
 				4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */,
+				4C5F578D27B6D79D00F6DFA3 /* CollectionSectionHeader.swift in Sources */,
 				4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */,
 				4C0D75AB279B0D4100566CC0 /* BirthView.swift in Sources */,
 				4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */,
@@ -664,6 +671,7 @@
 				4C0D75B8279D8A5E00566CC0 /* MyInfoViewController.swift in Sources */,
 				4C0D75B4279D89F200566CC0 /* ShopViewController.swift in Sources */,
 				4CE0FC0C27B152D200EA1C18 /* Match.swift in Sources */,
+				4C5F578927B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift in Sources */,
 				4CE0FC0A27B151FE00EA1C18 /* QueueAPI.swift in Sources */,
 				4CE0FC1427B2669500EA1C18 /* HomeView.swift in Sources */,
 				4C01D97B27AE584200C039A9 /* UserParameters.swift in Sources */,

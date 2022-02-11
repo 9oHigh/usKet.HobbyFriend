@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.4)
+  - Differentiator (5.0.0)
   - DoubleSlider (1.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
@@ -9,6 +10,10 @@ PODS:
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
@@ -19,15 +24,18 @@ DEPENDENCIES:
   - DoubleSlider
   - Moya/RxSwift (~> 15.0)
   - RxCocoa (= 6.5.0)
+  - RxDataSources
   - SwiftLint
   - Then
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - DoubleSlider
     - Moya
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
     - SwiftLint
@@ -35,14 +43,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DoubleSlider: ed3f4ea442dba6fd9df07cab15c25e21875deb81
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SwiftLint: 6bc52a21f0fd44cab9aa2dc8e534fb9f5e3ec507
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: f4cfa440174f8bbf6e69a1a9205cae0f9962b2dc
+PODFILE CHECKSUM: 3217926db155e1749c0ceb697c463f8095a47ead
 
 COCOAPODS: 1.11.2

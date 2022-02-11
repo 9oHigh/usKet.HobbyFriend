@@ -28,6 +28,17 @@ extension UIButton {
         titleLabel?.font = UIFont.toTitleR16
         backgroundColor = UIColor(resource: R.color.basicWhite)
     }
+    
+    func fitToInputHobby(title: String) {
+
+        layer.borderColor = R.color.brandGreen()!.cgColor
+        layer.borderWidth = 0.75
+        layer.cornerRadius = 5
+        
+        setTitle("\(title) X", for: .normal)
+        setTitleColor(R.color.brandGreen()!, for: .normal)
+        
+    }
 }
 
 extension UIButton.Configuration {

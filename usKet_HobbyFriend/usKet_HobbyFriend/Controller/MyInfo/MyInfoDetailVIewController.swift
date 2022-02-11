@@ -253,6 +253,7 @@ final class MyInfoDetailViewController: BaseViewController {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
+        
     }
 }
 extension MyInfoDetailViewController: UIScrollViewDelegate {

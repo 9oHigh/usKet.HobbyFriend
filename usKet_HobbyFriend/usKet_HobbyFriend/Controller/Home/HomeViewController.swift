@@ -53,6 +53,9 @@ final class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
+        
         checkUserStatus(UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue))
         centerLocation(type: self.surroundType)
         homeView.mapView.showsUserLocation = true
