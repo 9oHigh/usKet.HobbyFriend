@@ -16,20 +16,12 @@ final class InputHobbyViewController: BaseViewController {
     
     let collectionView: UICollectionView = {
         
-        let layout = UICollectionViewFlowLayout()
+        let layout = LeftAlignedCollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: LeftAlignedCollectionViewFlowLayout())
-        
-        collectionView.register(InputHobbyCollectionViewCell.self, forCellWithReuseIdentifier: InputHobbyCollectionViewCell.identifier)
-        
-        collectionView.register(CollectionSectionHeader.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: CollectionSectionHeader.identifier
-        )
-        collectionView.backgroundColor = UIColor(resource: R.color.basicWhite)
-        
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = R.color.basicWhite()!
         return collectionView
     }()
     
@@ -40,7 +32,7 @@ final class InputHobbyViewController: BaseViewController {
         $0.titleLabel?.font = .toBodyR14
         $0.layer.cornerRadius = 10
     }
-    
+    var toggles: Bool = true
     let viewModel = InputHobbyViewModel()
     let disposeBag = DisposeBag()
     
@@ -55,6 +47,7 @@ final class InputHobbyViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         addKeyBoardListener()
+        collectionView.reloadData()
     }
     override func setConfigure() {
         
@@ -67,6 +60,13 @@ final class InputHobbyViewController: BaseViewController {
         // collectionView
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        collectionView.register(InputHobbyCollectionViewCell.self, forCellWithReuseIdentifier: InputHobbyCollectionViewCell.identifier)
+        
+        collectionView.register(CollectionSectionHeader.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: CollectionSectionHeader.identifier
+        )
     }
     
     override func setUI() {
@@ -78,7 +78,10 @@ final class InputHobbyViewController: BaseViewController {
     override func setConstraints() {
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(120)
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.9)
         }
         
         findButton.snp.makeConstraints { make in
@@ -161,42 +164,67 @@ final class InputHobbyViewController: BaseViewController {
 extension InputHobbyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return 3
+        return 2
     }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        print(collectionView)
+        print(kind)
+        print("IndexPath: ", indexPath)
+        print("Section: ", indexPath.section)
+        
+        let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionSectionHeader.identifier, for: indexPath) as! CollectionSectionHeader
+        
+        sectionHeader.snp.makeConstraints { make in
+            make.leading.equalTo(0)
+            make.top.bottom.equalTo(0)
+        }
+        
+        sectionHeader.sectionHeaderlabel.text = indexPath.section == 0 ? "지금 주변에는" : "내가 하고싶은"
+      
+        return sectionHeader
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InputHobbyCollectionViewCell.identifier, for: indexPath) as! InputHobbyCollectionViewCell
-        
-        cell.hobbyButton.fitToInputHobby(title: "바보")
-        
+        if toggles {
+            cell.hobbyLabel.text = "멍청이 입니당 X"
+        } else {
+            cell.hobbyLabel.text = "바보 XXXX"
+        }
+        toggles.toggle()
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        print("왜지")
-        let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionSectionHeader.identifier, for: indexPath) as! CollectionSectionHeader
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        // MARK: 왜 한번만 호출되는 거지 섹션은 3갠데...?
-        sectionHeader.sectionHeaderlabel.text = indexPath.section == 0 ? "지금 주변에는" : "내가 하고싶은"
-        
-        return sectionHeader
+        let label = UILabel()
+        if toggles {
+            label.text = "멍청이 입니당 X"
+        } else {
+            label.text = "바보 XXXX"
+        }
+        toggles.toggle()
+        return label.intrinsicContentSize
     }
-
 }
 extension InputHobbyViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = 35
+        let height: CGFloat = 30
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
         return UIEdgeInsets.init(top: 0, left: 0, bottom: 15, right: 0)
     }
 }

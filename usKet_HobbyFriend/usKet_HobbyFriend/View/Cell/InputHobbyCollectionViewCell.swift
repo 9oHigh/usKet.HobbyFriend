@@ -10,15 +10,16 @@ import UIKit
 final class InputHobbyCollectionViewCell: UICollectionViewCell {
     
     static var identifier = "InputHobbyCollectionViewCell"
-    let hobbyButton = UIButton()
+    let hobbyLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(hobbyButton)
+        addSubview(hobbyLabel)
         
-        hobbyButton.snp.makeConstraints { make in
+        hobbyLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+            
         }
     }
     

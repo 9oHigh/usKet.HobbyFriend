@@ -11,9 +11,9 @@ import Then
 class CollectionSectionHeader: UICollectionReusableView {
     
     static let identifier = "CollectionSectionHeader"
+    
     let sectionHeaderlabel = UILabel().then {
         $0.font = .toTitleR12
-        $0.textAlignment = .left
     }
     
     override init(frame: CGRect) {
@@ -22,8 +22,7 @@ class CollectionSectionHeader: UICollectionReusableView {
         addSubview(sectionHeaderlabel)
         
         sectionHeaderlabel.snp.makeConstraints { make in
-            make.leading.equalTo(0)
-            make.top.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
