@@ -227,6 +227,7 @@ final class InputHobbyViewController: BaseViewController {
                 return
             }
             // 새싹찾기
+            Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.matching.rawValue)
             self.transViewController(nextType: .push, controller: FindFriendsViewController())
         }
     }
