@@ -64,6 +64,7 @@ final class FindFriendsViewController: TabmanViewController {
         // View
         title = "새싹찾기"
         self.view.backgroundColor = R.color.basicWhite()
+        self.tabBarController?.tabBar.isHidden = true
         
         // backToHome
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.letfArrow()!, style: .plain, target: self, action: #selector(backToInitial(sender:)))
@@ -134,6 +135,7 @@ final class FindFriendsViewController: TabmanViewController {
                 self.showToast(message: error!)
                 return
             }
+            Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
             let controllers: Array = self.navigationController!.viewControllers
             self.navigationController!.popToViewController(controllers[0], animated: true)
         }
