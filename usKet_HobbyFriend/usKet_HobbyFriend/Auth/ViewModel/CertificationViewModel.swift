@@ -13,9 +13,9 @@ import FirebaseAuth
 class CertificationViewModel {
     
     // 전화번호, 인증번호, 닉네임, 이메일, 생년월일, 성별
-    var validText: Observable<String> = Observable("")
-    var validFlag: Observable<Bool> = Observable(false)
-    var errorMessage: Observable<String> = Observable("")
+    var validText: USObservable<String> = USObservable("")
+    var validFlag: USObservable<Bool> = USObservable(false)
+    var errorMessage: USObservable<String> = USObservable("")
     
     // MARK: Phone
     // 전화번호 유효성
@@ -66,7 +66,7 @@ class CertificationViewModel {
     
     // MARK: Certification
     // Timer 변수 추가
-    var timer: Observable<Int> = Observable(60)
+    var timer: USObservable<Int> = USObservable(60)
     
     // 인증번호 유효성
     func cerValidate() {
@@ -202,8 +202,8 @@ class CertificationViewModel {
     
     // MARK: Birth
     // 추가 변수 3개 ( 년, 월, 일 )
-    var prevDate: Observable<(String, String, String)> = Observable((Date().toStringEach().0, Date().toStringEach().1, Date().toStringEach().2))
-    var birthDate: Observable<(String, String, String)> = Observable(("", "", ""))
+    var prevDate: USObservable<(String, String, String)> = USObservable((Date().toStringEach().0, Date().toStringEach().1, Date().toStringEach().2))
+    var birthDate: USObservable<(String, String, String)> = USObservable(("", "", ""))
     
     // 생일 유효성
     func birthValidate() {

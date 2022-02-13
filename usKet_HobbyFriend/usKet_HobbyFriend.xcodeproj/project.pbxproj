@@ -53,6 +53,7 @@
 		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
 		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
 		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
+		4CB79A2B27B92494002EA75B /* FindFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */; };
 		4CC2E44127B29A2400D25311 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC2E44027B29A2400D25311 /* R.generated.swift */; };
 		4CE0FC0027B11F3700EA1C18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */; };
 		4CE0FC0427B13B1100EA1C18 /* QueueTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */; };
@@ -74,7 +75,7 @@
 		4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7757F2797FB20009CC655 /* BaseViewController.swift */; };
 		4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758427982B45009CC655 /* CertificationViewController.swift */; };
 		4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758627982D44009CC655 /* CertificationViewModel.swift */; };
-		4CF7758A27982D87009CC655 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758927982D87009CC655 /* Observable.swift */; };
+		4CF7758A27982D87009CC655 /* USObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7758927982D87009CC655 /* USObservable.swift */; };
 		4CF775922798316F009CC655 /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF775912798316F009CC655 /* HomeTabViewController.swift */; };
 		4CF77594279831AE009CC655 /* CerMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF77593279831AE009CC655 /* CerMessageViewController.swift */; };
 		4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF77595279834A0009CC655 /* UIButton + Extension.swift */; };
@@ -127,6 +128,7 @@
 		4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
 		4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSpecificView.swift; sourceTree = "<group>"; };
 		4C62F7D627A40828004C5BEC /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsViewController.swift; sourceTree = "<group>"; };
 		4CC2E44027B29A2400D25311 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTarget.swift; sourceTree = "<group>"; };
@@ -147,7 +149,7 @@
 		4CF7757F2797FB20009CC655 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4CF7758427982B45009CC655 /* CertificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewController.swift; sourceTree = "<group>"; };
 		4CF7758627982D44009CC655 /* CertificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificationViewModel.swift; sourceTree = "<group>"; };
-		4CF7758927982D87009CC655 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		4CF7758927982D87009CC655 /* USObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USObservable.swift; sourceTree = "<group>"; };
 		4CF775912798316F009CC655 /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		4CF77593279831AE009CC655 /* CerMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CerMessageViewController.swift; sourceTree = "<group>"; };
 		4CF77595279834A0009CC655 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				4C0D75B1279D892A00566CC0 /* HomeViewController.swift */,
 				4C5F578027B562B300F6DFA3 /* InputHobbyViewController.swift */,
+				4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -334,7 +337,7 @@
 		4C0DBC042796E543005DBE66 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4CF7758927982D87009CC655 /* Observable.swift */,
+				4CF7758927982D87009CC655 /* USObservable.swift */,
 				4C0D75CE27A10EB300566CC0 /* MyInfoViewModel.swift */,
 				4CE0FC1127B18E2600EA1C18 /* HomeViewModel.swift */,
 				4C5F578227B56CE600F6DFA3 /* InputHobbyViewModel.swift */,
@@ -635,6 +638,7 @@
 				4CE0FC1227B18E2600EA1C18 /* HomeViewModel.swift in Sources */,
 				4C01D97D27AE6DFD00C039A9 /* UserTarget.swift in Sources */,
 				4CF7757C2797EF15009CC655 /* UIFont + Extension.swift in Sources */,
+				4CB79A2B27B92494002EA75B /* FindFriendsViewController.swift in Sources */,
 				4C0D75AD279B208300566CC0 /* Date + Extension.swift in Sources */,
 				4CF775782797E7B5009CC655 /* UILabel + Extension.swift in Sources */,
 				4CC2E44127B29A2400D25311 /* R.generated.swift in Sources */,
@@ -643,7 +647,7 @@
 				4C5F578527B5730700F6DFA3 /* InputHobbytableViewCell.swift in Sources */,
 				4C0DBBD6279529D8005DBE66 /* AppDelegate.swift in Sources */,
 				4CF7758727982D44009CC655 /* CertificationViewModel.swift in Sources */,
-				4CF7758A27982D87009CC655 /* Observable.swift in Sources */,
+				4CF7758A27982D87009CC655 /* USObservable.swift in Sources */,
 				4CE0FC0427B13B1100EA1C18 /* QueueTarget.swift in Sources */,
 				4C0D75A1279A8AAE00566CC0 /* Helper.swift in Sources */,
 				4CF775922798316F009CC655 /* HomeTabViewController.swift in Sources */,
@@ -834,6 +838,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -863,6 +868,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -35,7 +35,7 @@ class Helper {
     // 싱글톤 - 유저디포트도 싱글톤이니까 싱싱글톤! 익스텐션으로 만들면 더 좋으려나
     static let shared = Helper()
     
-    func registerUserData(userDataType: UserDataType, variable: String ) {    
+    func registerUserData(userDataType: UserDataType, variable: String ) {
         UserDefaults.standard.set(variable, forKey: userDataType.rawValue)
     }
     
@@ -77,7 +77,7 @@ class Helper {
         }
         
     }
-
+    
     // 유저디포트에서 가져다주자.
     func putIdToken() -> String {
         return UserDefaults.standard.string(forKey: "idToken")!
@@ -87,21 +87,23 @@ class Helper {
 
 // leftAligned
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attributes = super.layoutAttributesForElements(in: rect)
-
+        
         var leftMargin = sectionInset.left
         var maxY: CGFloat = -1.0
         attributes?.forEach { layoutAttribute in
-            if layoutAttribute.frame.origin.y >= maxY {
-                leftMargin = sectionInset.left
+            if layoutAttribute.representedElementKind == nil {
+                if layoutAttribute.frame.origin.y >= maxY {
+                    leftMargin = sectionInset.left
+                }
+                
+                layoutAttribute.frame.origin.x = leftMargin
+                
+                leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+                maxY = max(layoutAttribute.frame.maxY, maxY)
             }
-
-            layoutAttribute.frame.origin.x = leftMargin
-
-            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
-            maxY = max(layoutAttribute.frame.maxY, maxY)
         }
         return attributes
     }

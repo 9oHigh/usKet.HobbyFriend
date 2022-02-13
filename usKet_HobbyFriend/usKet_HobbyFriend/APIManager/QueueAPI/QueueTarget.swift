@@ -70,7 +70,7 @@ extension QueueTarget: TargetType {
                 "long": parm.long,
                 "lat": parm.lat,
                 "hf": parm.hf
-            ], encoding: URLEncoding.default)
+            ], encoding: URLEncoding(arrayEncoding: .noBrackets))
             
         case .stopFinding:
             return .requestPlain

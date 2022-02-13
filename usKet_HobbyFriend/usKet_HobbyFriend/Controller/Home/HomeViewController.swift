@@ -28,6 +28,9 @@ final class HomeViewController: BaseViewController {
         return manager
     }()
     
+    var passFriends: Friends?
+    var passLocation: [Any] = []
+    
     var friends: [FromQueueDB] = []
     var surroundType = FriendType.all
     
@@ -119,7 +122,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func locationAuth() -> Bool {
-
+        
         switch locationManager.authorizationStatus {
         case .notDetermined, .restricted, .denied:
             locationManager.requestWhenInUseAuthorization()
@@ -156,7 +159,9 @@ final class HomeViewController: BaseViewController {
         let lat = homeView.mapView.centerCoordinate.latitude
         let long = homeView.mapView.centerCoordinate.longitude
         let region = computedRegion(lat: lat, long: long)
-        
+        [region, long, lat].forEach { item in
+            self.passLocation.append(item)
+        }
         // 0.8초
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             self.questSurround(region: region, lat: lat, long: long, by: type)
@@ -177,7 +182,8 @@ final class HomeViewController: BaseViewController {
             }
             
             self.friends = friends.fromQueueDB
-
+            self.passFriends = friends
+            
             let annotations = self.homeView.mapView.annotations
             self.homeView.mapView.removeAnnotations(annotations)
             
@@ -279,7 +285,11 @@ final class HomeViewController: BaseViewController {
                         self?.tabBarController?.selectedIndex = 3
                     }
                 } else {
-                    self?.transViewController(nextType: .push, controller: InputHobbyViewController())
+
+                    let viewController = InputHobbyViewController()
+                    viewController.viewModel.friends = self?.passFriends
+                    viewController.viewModel.location = self!.passLocation
+                    self?.transViewController(nextType: .push, controller: viewController)
                 }
             }
         } else {

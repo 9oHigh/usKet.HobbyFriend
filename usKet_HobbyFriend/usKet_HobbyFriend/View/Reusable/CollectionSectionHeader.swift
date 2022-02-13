@@ -22,7 +22,7 @@ class CollectionSectionHeader: UICollectionReusableView {
         addSubview(sectionHeaderlabel)
         
         sectionHeaderlabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(10)
         }
     }
     
