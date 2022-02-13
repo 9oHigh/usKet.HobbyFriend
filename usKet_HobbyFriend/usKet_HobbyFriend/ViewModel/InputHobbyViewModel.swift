@@ -33,10 +33,8 @@ final class InputHobbyViewModel {
     var wantItems: [String] = []
     var userItems: [Hobby] = []
     var searchItems: [String] = []
-    var location: [Any] = []
     
     var errorMessage: String = ""
-    
     // 최초
     func getUserHobbies() {
         
@@ -60,7 +58,9 @@ final class InputHobbyViewModel {
     func findFriends(onCompletion: @escaping (String?, Bool?) -> Void) {
         
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-        let parm = FindFriendParm(type: 2, region: location[0] as! Int, long: location[1] as! Double, lat: location[2] as! Double, hf: wantItems)
+        let myLocation = Helper.shared.myLocation
+        
+        let parm = FindFriendParm(type: 2, region: myLocation.region, long: myLocation.long, lat: myLocation.lat, hf: wantItems)
         
         QueueAPI.findFriend(idToken: idToken, parm: parm) { statusCode in
 

@@ -11,6 +11,7 @@ pod 'RxDataSources'
 pod 'Moya/RxSwift', '~> 15.0'
 pod 'SwiftLint'
 pod 'Then'
+pod 'Tabman'
 
   # Pods for usKet_HobbyFriend
 

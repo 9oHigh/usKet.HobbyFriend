@@ -29,7 +29,6 @@ final class HomeViewController: BaseViewController {
     }()
     
     var passFriends: Friends?
-    var passLocation: [Any] = []
     
     var friends: [FromQueueDB] = []
     var surroundType = FriendType.all
@@ -159,9 +158,8 @@ final class HomeViewController: BaseViewController {
         let lat = homeView.mapView.centerCoordinate.latitude
         let long = homeView.mapView.centerCoordinate.longitude
         let region = computedRegion(lat: lat, long: long)
-        [region, long, lat].forEach { item in
-            self.passLocation.append(item)
-        }
+        
+        Helper.shared.myLocation = MyLocation(region: region, lat: lat, long: long)
         // 0.8초
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             self.questSurround(region: region, lat: lat, long: long, by: type)
@@ -268,28 +266,36 @@ final class HomeViewController: BaseViewController {
     private func matchingFriends() {
         
         if locationAuth() {
-            
-            viewModel.getUserInfo { [weak self] user, _, error in
-                guard error == nil else {
-                    self?.showToast(message: error!)
-                    return
-                }
-                guard let user = user else {
-                    self?.showToast(message: "다시 시도해주세요.", yPosition: 150)
-                    return
-                }
-                if user.gender == FriendType.unkowned.rawValue {
-                    self?.showToast(message: "성별을 선택해야 매칭이 가능합니다.\n내정보로 이동합니다.", yPosition: 150)
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        self?.tabBarController?.selectedIndex = 3
-                    }
-                } else {
+            if UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matching.rawValue {
 
-                    let viewController = InputHobbyViewController()
-                    viewController.viewModel.friends = self?.passFriends
-                    viewController.viewModel.location = self!.passLocation
-                    self?.transViewController(nextType: .push, controller: viewController)
+                self.transViewController(nextType: .push, controller: FindFriendsViewController())
+                
+            } else if UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matched.rawValue {
+                // MARK: - 채팅시작하면 바꾸기
+                self.transViewController(nextType: .push, controller: FindFriendsViewController())
+            } else {
+                viewModel.getUserInfo { [weak self] user, _, error in
+                    guard error == nil else {
+                        self?.showToast(message: error!)
+                        return
+                    }
+                    guard let user = user else {
+                        self?.showToast(message: "다시 시도해주세요.", yPosition: 150)
+                        return
+                    }
+                    if user.gender == FriendType.unkowned.rawValue {
+                        self?.showToast(message: "성별을 선택해야 매칭이 가능합니다.\n내정보로 이동합니다.", yPosition: 150)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self?.tabBarController?.selectedIndex = 3
+                        }
+                    } else {
+                        
+                        let viewController = InputHobbyViewController()
+                        viewController.viewModel.friends = self?.passFriends
+                        
+                        self?.transViewController(nextType: .push, controller: viewController)
+                    }
                 }
             }
         } else {

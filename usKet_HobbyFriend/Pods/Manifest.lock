@@ -7,6 +7,7 @@ PODS:
   - Moya/RxSwift (15.0.0):
     - Moya/Core
     - RxSwift (~> 6.0)
+  - Pageboy (3.6.2)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -18,6 +19,8 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SwiftLint (0.46.2)
+  - Tabman (2.11.1):
+    - Pageboy (~> 3.6.0)
   - Then (2.7.0)
 
 DEPENDENCIES:
@@ -26,6 +29,7 @@ DEPENDENCIES:
   - RxCocoa (= 6.5.0)
   - RxDataSources
   - SwiftLint
+  - Tabman
   - Then
 
 SPEC REPOS:
@@ -34,11 +38,13 @@ SPEC REPOS:
     - Differentiator
     - DoubleSlider
     - Moya
+    - Pageboy
     - RxCocoa
     - RxDataSources
     - RxRelay
     - RxSwift
     - SwiftLint
+    - Tabman
     - Then
 
 SPEC CHECKSUMS:
@@ -46,13 +52,15 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DoubleSlider: ed3f4ea442dba6fd9df07cab15c25e21875deb81
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  Pageboy: cf121b9dd48c63f3f281b2a9ec93d02e0f23879b
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SwiftLint: 6bc52a21f0fd44cab9aa2dc8e534fb9f5e3ec507
+  Tabman: 792ac76fd1ec95af175c93db880a3c47cabedc91
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 3217926db155e1749c0ceb697c463f8095a47ead
+PODFILE CHECKSUM: b8addaf857c1befa7e6e045b83d27ceab734dd0a
 
 COCOAPODS: 1.11.2

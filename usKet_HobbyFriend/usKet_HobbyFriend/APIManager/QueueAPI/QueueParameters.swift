@@ -29,3 +29,10 @@ struct RequestFriendParm: Codable {
 struct AcceptFriendParm: Codable {
     let otheruid: String
 }
+
+// MARK: - Location
+struct MyLocation {
+    var region: Int
+    var lat: Double
+    var long: Double
+}

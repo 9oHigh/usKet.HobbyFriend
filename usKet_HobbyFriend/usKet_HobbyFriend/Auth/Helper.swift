@@ -30,10 +30,11 @@ enum UserDataType: String {
     case isMatch
 }
 
-class Helper {
+final class Helper {
     
     // 싱글톤 - 유저디포트도 싱글톤이니까 싱싱글톤! 익스텐션으로 만들면 더 좋으려나
     static let shared = Helper()
+    var myLocation =  MyLocation(region: 0, lat: 0, long: 0)
     
     func registerUserData(userDataType: UserDataType, variable: String ) {
         UserDefaults.standard.set(variable, forKey: userDataType.rawValue)
