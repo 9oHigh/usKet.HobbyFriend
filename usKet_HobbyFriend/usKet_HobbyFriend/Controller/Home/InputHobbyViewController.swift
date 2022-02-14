@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 
 enum SearchErrorType: String {
+    
     case notAllowed = "최소 한 자 이상, 최대 8글자까지 작성 가능합니다"
     case alreadyInput = "이미 등록된 취미입니다"
     case alreadyFull = "이미 8개의 취미가 등록되어있습니다."
@@ -226,8 +227,8 @@ final class InputHobbyViewController: BaseViewController {
                 }
                 return
             }
-            // 새싹찾기
             Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.matching.rawValue)
+            
             self.transViewController(nextType: .push, controller: FindFriendsViewController())
         }
     }

@@ -86,9 +86,9 @@ final class Helper {
     
 }
 
-// leftAligned
+// Left Aligned
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-    
+
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attributes = super.layoutAttributesForElements(in: rect)
         

@@ -66,6 +66,7 @@
 		4CE0FC1227B18E2600EA1C18 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC1127B18E2600EA1C18 /* HomeViewModel.swift */; };
 		4CE0FC1427B2669500EA1C18 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC1327B2669500EA1C18 /* HomeView.swift */; };
 		4CE8E88327B955D9008DEA9D /* FindFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E88227B955D9008DEA9D /* FindFriendsViewModel.swift */; };
+		4CE8E88627BAA32C008DEA9D /* NoFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E88527BAA32B008DEA9D /* NoFriendsView.swift */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
 		4CF775712797B16A009CC655 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */; };
@@ -144,6 +145,7 @@
 		4CE0FC1127B18E2600EA1C18 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4CE0FC1327B2669500EA1C18 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4CE8E88227B955D9008DEA9D /* FindFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsViewModel.swift; sourceTree = "<group>"; };
+		4CE8E88527BAA32B008DEA9D /* NoFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFriendsView.swift; sourceTree = "<group>"; };
 		4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		4CF7756F2797B16A009CC655 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../Downloads/Noto_Sans_KR/OFL.txt; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				4C62F7D627A40828004C5BEC /* AlertView.swift */,
 				4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */,
 				4C5F578C27B6D79D00F6DFA3 /* CollectionSectionHeader.swift */,
+				4CE8E88527BAA32B008DEA9D /* NoFriendsView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				4C5F577D27B3E6C800F6DFA3 /* AnnotationView.swift in Sources */,
 				4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */,
 				4CF7759E279877AD009CC655 /* UIViewController + Extension.swift in Sources */,
+				4CE8E88627BAA32C008DEA9D /* NoFriendsView.swift in Sources */,
 				4CE0FC0827B13CDF00EA1C18 /* QueueParameters.swift in Sources */,
 				4C0D75A7279AD90000566CC0 /* EmailViewController.swift in Sources */,
 				4CF77596279834A0009CC655 /* UIButton + Extension.swift in Sources */,

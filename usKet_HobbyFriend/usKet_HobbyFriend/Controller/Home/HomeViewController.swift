@@ -170,6 +170,11 @@ final class HomeViewController: BaseViewController {
         
         viewModel.questSurround(region: region, lat: lat, long: long) { friends, _, error in
             guard error == nil else {
+                if error! == "토큰 갱신에 성공했습니다. 다시 시도해주세요."{
+                    // 토큰 갱신에 성공시 -> 재요청!
+                    self.centerLocation()
+                    return
+                }
                 self.showToast(message: error!, yPosition: 150)
                 return
             }

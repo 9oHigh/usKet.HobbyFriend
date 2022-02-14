@@ -14,7 +14,7 @@ final class HomeViewModel {
     
     func getUserInfo(onCompletion: @escaping (User?, Int?, String?) -> Void) {
         
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        let idToken = Helper.shared.putIdToken()
         
         UserAPI.getUser(idToken: idToken) { user, statusCode in
             switch statusCode {
@@ -38,7 +38,7 @@ final class HomeViewModel {
     }
     
     func questSurround(region: Int, lat: Double, long: Double, onCompletion: @escaping (Friends?, Int?, String?) -> Void) {
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        let idToken = Helper.shared.putIdToken()
         let parm = QuestSurroundParm(region: region, lat: lat, long: long)
         
         QueueAPI.questSurround(idToken: idToken, parm: parm) { friends, statusCode in

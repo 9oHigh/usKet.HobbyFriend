@@ -9,6 +9,8 @@ import UIKit
 import Tabman
 import Pageboy
 import Then
+import RxSwift
+import RxCocoa
 
 //https://developer-p.tistory.com/161 참고
 
@@ -30,7 +32,6 @@ final class FindFriendsViewController: TabmanViewController {
         $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 0.5
         $0.layer.borderColor = R.color.brandGreen()!.cgColor
-        
     }
     
     let backView = UIView().then {
@@ -38,10 +39,11 @@ final class FindFriendsViewController: TabmanViewController {
     }
     
     let viewModel = FindFriendsViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let arroundViewController = ArroundViewController()
         let recievedViewController = RecievedViewController()
         
@@ -52,6 +54,7 @@ final class FindFriendsViewController: TabmanViewController {
         setConfigure()
         setUI()
         setConstraints()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,18 +112,38 @@ final class FindFriendsViewController: TabmanViewController {
         }
         
         changeHobbiesBtn.snp.makeConstraints { make in
-            make.height.equalToSuperview().multipliedBy(0.8)
+            make.height.equalToSuperview().multipliedBy(0.75)
             make.width.equalToSuperview().multipliedBy(0.75)
             make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview().multipliedBy(0.75)
+            make.centerX.equalToSuperview().multipliedBy(0.775)
         }
         
         refreshBtn.snp.makeConstraints { make in
             make.height.equalToSuperview().multipliedBy(0.8)
             make.width.equalToSuperview().multipliedBy(0.2)
             make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview().multipliedBy(1.75)
+            make.centerX.equalToSuperview().multipliedBy(1.775)
         }
+    }
+    
+    private func bind() {
+        
+        refreshBtn.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ _ in
+                // onqueue -> 저장
+            })
+            .disposed(by: disposeBag)
+        
+        changeHobbiesBtn.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ [weak self]_ in
+                
+                Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc

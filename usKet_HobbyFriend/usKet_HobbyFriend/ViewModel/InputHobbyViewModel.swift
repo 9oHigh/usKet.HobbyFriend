@@ -57,7 +57,7 @@ final class InputHobbyViewModel {
     
     func findFriends(onCompletion: @escaping (String?, Bool?) -> Void) {
         
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        let idToken = Helper.shared.putIdToken()
         let myLocation = Helper.shared.myLocation
         
         let parm = FindFriendParm(type: 2, region: myLocation.region, long: myLocation.long, lat: myLocation.lat, hf: wantItems)
