@@ -58,4 +58,30 @@ final class FindFriendsViewModel {
             }
         }
     }
+    
+    func checkUserMatch(onCompletion: @escaping (Int?, String?, Bool?) -> Void) {
+        
+        let idToken = Helper.shared.putIdToken()
+        
+        QueueAPI.userCheckMatch(idToken: idToken) { match, statusCode in
+            
+            guard let match = match else {
+                onCompletion(nil, "오류가 발생했어요.\n다시 시도해 주세요.", nil)
+                return
+            }
+            
+            switch statusCode {
+            case 200 :
+                onCompletion(match.matched, match.matchedNick, nil)
+            case 201 :
+                onCompletion(nil, "오랜 시간 동안 매칭 되지 않아 새싹 친구 찾기를 그만둡니다", true)
+            case 401:
+                Helper.shared.getIdToken(refresh: true) { _ in
+                    onCompletion(nil, "토큰 갱신을 완료했습니다", nil)
+                }
+            default:
+                onCompletion(nil, "", nil)
+            }
+        }
+    }
 }

@@ -67,6 +67,8 @@
 		4CE0FC1427B2669500EA1C18 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC1327B2669500EA1C18 /* HomeView.swift */; };
 		4CE8E88327B955D9008DEA9D /* FindFriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E88227B955D9008DEA9D /* FindFriendsViewModel.swift */; };
 		4CE8E88627BAA32C008DEA9D /* NoFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E88527BAA32B008DEA9D /* NoFriendsView.swift */; };
+		4CE8E88827BAD672008DEA9D /* FindFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E88727BAD672008DEA9D /* FindFriendsTableViewCell.swift */; };
+		4CE8E88A27BAD74A008DEA9D /* FindFriendsTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E88927BAD74A008DEA9D /* FindFriendsTabViewModel.swift */; };
 		4CF7756227970B26009CC655 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF7756127970B26009CC655 /* Rswift */; };
 		4CF775702797B16A009CC655 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */; };
 		4CF775712797B16A009CC655 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */; };
@@ -146,6 +148,8 @@
 		4CE0FC1327B2669500EA1C18 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4CE8E88227B955D9008DEA9D /* FindFriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsViewModel.swift; sourceTree = "<group>"; };
 		4CE8E88527BAA32B008DEA9D /* NoFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFriendsView.swift; sourceTree = "<group>"; };
+		4CE8E88727BAD672008DEA9D /* FindFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		4CE8E88927BAD74A008DEA9D /* FindFriendsTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsTabViewModel.swift; sourceTree = "<group>"; };
 		4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../Downloads/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		4CF7756F2797B16A009CC655 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../Downloads/Noto_Sans_KR/OFL.txt; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 				4C0D75EB27A27A3E00566CC0 /* MyInfoTitleCollectionViewCell.swift */,
 				4C5F578427B5730700F6DFA3 /* InputHobbytableViewCell.swift */,
 				4C5F578827B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift */,
+				4CE8E88727BAD672008DEA9D /* FindFriendsTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				4CE0FC1127B18E2600EA1C18 /* HomeViewModel.swift */,
 				4C5F578227B56CE600F6DFA3 /* InputHobbyViewModel.swift */,
 				4CE8E88227B955D9008DEA9D /* FindFriendsViewModel.swift */,
+				4CE8E88927BAD74A008DEA9D /* FindFriendsTabViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 				4C5F578D27B6D79D00F6DFA3 /* CollectionSectionHeader.swift in Sources */,
 				4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */,
 				4C0D75AB279B0D4100566CC0 /* BirthView.swift in Sources */,
+				4CE8E88A27BAD74A008DEA9D /* FindFriendsTabViewModel.swift in Sources */,
 				4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */,
 				4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */,
 				4C0D75B2279D892A00566CC0 /* HomeViewController.swift in Sources */,
@@ -703,6 +710,7 @@
 				4CE0FC1427B2669500EA1C18 /* HomeView.swift in Sources */,
 				4C01D97B27AE584200C039A9 /* UserParameters.swift in Sources */,
 				4C01D98027AE6E6E00C039A9 /* UserAPI.swift in Sources */,
+				4CE8E88827BAD672008DEA9D /* FindFriendsTableViewCell.swift in Sources */,
 				4C0DBBD8279529D8005DBE66 /* SceneDelegate.swift in Sources */,
 				4CF7757A2797E7CC009CC655 /* UITextView + Extension.swift in Sources */,
 				4C5F577D27B3E6C800F6DFA3 /* AnnotationView.swift in Sources */,

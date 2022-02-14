@@ -15,7 +15,6 @@ enum QueueTarget {
     case requestFriend(idToken: String, RequestFriendParm)
     case acceptFriend(idToken: String, AcceptFriendParm)
     case userCheckMatch(idToken: String)
-    
 }
 
 extension QueueTarget: TargetType {

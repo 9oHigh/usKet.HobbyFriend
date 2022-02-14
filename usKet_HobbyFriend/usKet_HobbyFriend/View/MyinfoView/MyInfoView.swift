@@ -11,6 +11,7 @@ final class MyInfoView: UIView {
     
     let backgroundView = MyInfoHeaderView()
     let foldView = MyInfoFoldView()
+    let button = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,5 +34,22 @@ final class MyInfoView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setBtnColor(title: String, color: UIColor) {
+        
+        backgroundView.addSubview(button)
+        
+        button.snp.makeConstraints { make in
+            make.top.equalTo(10)
+            make.trailing.equalTo(10)
+            make.height.equalTo(60)
+            make.width.equalTo(80)
+        }
+        
+        button.layer.cornerRadius = 10
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(R.color.basicWhite()!, for: .normal)
+        button.backgroundColor = color
     }
 }

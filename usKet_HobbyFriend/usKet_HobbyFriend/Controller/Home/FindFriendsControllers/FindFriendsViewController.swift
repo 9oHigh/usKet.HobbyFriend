@@ -40,10 +40,15 @@ final class FindFriendsViewController: TabmanViewController {
     
     let viewModel = FindFriendsViewModel()
     let disposeBag = DisposeBag()
+    var apiTimer = Timer.scheduledTimer(timeInterval: 5,
+                                     target: self,
+                                     selector: #selector(FindFriendsViewController.updateUserMatchStatus),
+                                     userInfo: nil,
+                                     repeats: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let arroundViewController = ArroundViewController()
         let recievedViewController = RecievedViewController()
         
@@ -70,7 +75,7 @@ final class FindFriendsViewController: TabmanViewController {
         self.tabBarController?.tabBar.isHidden = true
         
         // backToHome
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.letfArrow()!, style: .plain, target: self, action: #selector(backToInitial(sender:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.letfArrow()!, style: .plain, target: self, action: #selector(backToInitial))
         
         // Stop Finding
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "찾기 중단", style: .plain, target: self, action: #selector(stopSearching))
@@ -131,7 +136,7 @@ final class FindFriendsViewController: TabmanViewController {
         refreshBtn.rx.tap
             .observe(on: MainScheduler.instance)
             .subscribe({ _ in
-                // onqueue -> 저장
+                // MARK: - onqueue -> 저장
             })
             .disposed(by: disposeBag)
         
@@ -146,12 +151,46 @@ final class FindFriendsViewController: TabmanViewController {
             .disposed(by: disposeBag)
     }
     
+    @objc func updateUserMatchStatus() {
+        
+        viewModel.checkUserMatch { matched, inform, isTooLong in
+            
+            guard matched != nil else {
+                
+                if isTooLong != nil, isTooLong == true {
+                    Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                    self.showToast(message: inform!)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.backToInitial()
+                    }
+                } else {
+                    self.showToast(message: inform!)
+                }
+                return
+            }
+            
+            if matched == 1 {
+                
+                Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.matched.rawValue)
+                
+                self.showToast(message: "\(inform!)님과 매칭되셨습니다.\n잠시 후 채팅방으로 이동합니다")
+                
+                // 호출 종료
+                self.apiTimer.invalidate()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    // MARK: - 매칭이 된 상태 -> 채팅화면으로 이동
+                }
+            }
+        }
+    }
+    
     @objc
-    func backToInitial(sender: AnyObject) {
+    func backToInitial() {
         let controllers: Array = self.navigationController!.viewControllers
         self.navigationController!.popToViewController(controllers[0], animated: true)
     }
-    // 중단 로직
+    
     @objc func stopSearching() {
         viewModel.stopFindingFriend { error in
             guard error == nil else {
