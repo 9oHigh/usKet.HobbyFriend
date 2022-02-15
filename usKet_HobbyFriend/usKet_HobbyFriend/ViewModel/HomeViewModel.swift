@@ -49,11 +49,11 @@ final class HomeViewModel {
             case 401:
                 Helper.shared.getIdToken(refresh: true) { idToken in
                     guard idToken != nil else {
-                        self.errorMessage = "토큰 갱신에 실패했어요. 다시 시도해주세요."
+                        self.errorMessage = "토큰을 갱신중입니다."
                         onCompletion(nil, statusCode, self.errorMessage)
                         return
                     }
-                    self.errorMessage = "토큰 갱신에 성공했습니다. 다시 시도해주세요."
+                    self.errorMessage = "토큰 갱신에 성공했습니다."
                     onCompletion(nil, statusCode, self.errorMessage)
                 }
             default:

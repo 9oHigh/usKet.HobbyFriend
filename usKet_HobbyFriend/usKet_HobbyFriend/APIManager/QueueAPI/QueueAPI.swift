@@ -47,7 +47,7 @@ final class QueueAPI {
     }
     
     static func requestFriend(idToken: String, parm: RequestFriendParm, onCompletion: @escaping (Int?) -> Void) {
-        provider.request(.stopFinding(idToken: idToken)) { result in
+        provider.request(.requestFriend(idToken: idToken, parm)) { result in
                 switch result {
                 case .success(let response):
                     onCompletion(response.statusCode)
@@ -59,7 +59,7 @@ final class QueueAPI {
     }
     
     static func acceptFriend(idToken: String, parm: AcceptFriendParm, onCompletion: @escaping (Int?) -> Void) {
-        provider.request(.stopFinding(idToken: idToken)) { result in
+        provider.request(.acceptFriend(idToken: idToken, parm)) { result in
                 switch result {
                 case .success(let response):
                     onCompletion(response.statusCode)
@@ -71,7 +71,7 @@ final class QueueAPI {
     }
     
     static func userCheckMatch(idToken: String, onCompletion: @escaping (Match?, Int?) -> Void) {
-        provider.request(.stopFinding(idToken: idToken)) { result in
+        provider.request(.userCheckMatch(idToken: idToken)) { result in
                 switch result {
                 case .success(let response):
                     onCompletion(try? response.map(Match.self), response.statusCode)

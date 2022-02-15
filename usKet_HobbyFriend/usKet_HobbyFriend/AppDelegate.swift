@@ -70,12 +70,20 @@ extension AppDelegate: MessagingDelegate {
 
     }
     
-    // 받은 메세지 처리 메서드 -> 나중에 알림오는 단계에서 해보자.
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                          fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-            // TODO: Handle data of notification
+    
             completionHandler(UIBackgroundFetchResult.newData)
         }
+    // 앱이 종료되는 시점에서 StopFinding + 매치 상태 조정
+    func applicationWillTerminate(_ application: UIApplication) {
+        print(#function)
+        let idToken = Helper.shared.putIdToken()
+        
+        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+        
+        QueueAPI.stopFinding(idToken: idToken) { _ in }
+    }
 }
 // 노티수신(Firebase)
 extension AppDelegate: UNUserNotificationCenterDelegate {

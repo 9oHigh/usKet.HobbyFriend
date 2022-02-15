@@ -10,5 +10,5 @@ import Foundation
 // MARK: - Match
 struct Match: Codable {
     let dodged, matched, reviewed: Int
-    let matchedNick, matchedUid: String
+    let matchedNick, matchedUid: String?
 }

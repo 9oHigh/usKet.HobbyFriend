@@ -40,11 +40,7 @@ final class FindFriendsViewController: TabmanViewController {
     
     let viewModel = FindFriendsViewModel()
     let disposeBag = DisposeBag()
-    var apiTimer = Timer.scheduledTimer(timeInterval: 5,
-                                     target: self,
-                                     selector: #selector(FindFriendsViewController.updateUserMatchStatus),
-                                     userInfo: nil,
-                                     repeats: true)
+    var apiTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +52,11 @@ final class FindFriendsViewController: TabmanViewController {
             viewControllers.append(viewController)
         }
         
+        apiTimer = Timer.scheduledTimer(timeInterval: 5,
+                                        target: self,
+                                        selector: #selector(updateUserMatchStatus(sender:)),
+                                        userInfo: nil,
+                                        repeats: true)
         setConfigure()
         setUI()
         setConstraints()
@@ -151,7 +152,7 @@ final class FindFriendsViewController: TabmanViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc func updateUserMatchStatus() {
+    @objc func updateUserMatchStatus(sender: Timer) {
         
         viewModel.checkUserMatch { matched, inform, isTooLong in
             
@@ -159,7 +160,11 @@ final class FindFriendsViewController: TabmanViewController {
                 
                 if isTooLong != nil, isTooLong == true {
                     Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                    
                     self.showToast(message: inform!)
+                    // 그만두기때문에 Timer 멈추기
+                    self.apiTimer.invalidate()
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         self.backToInitial()
                     }
@@ -194,10 +199,22 @@ final class FindFriendsViewController: TabmanViewController {
     @objc func stopSearching() {
         viewModel.stopFindingFriend { error in
             guard error == nil else {
+                if error! == "앗! 누군가가 나의 취미 함께 하기를 수락하였어요!" {
+                    self.showToast(message: error!)
+                    self.apiTimer.invalidate()
+                    Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.matched.rawValue)
+                    // MARK: - 채팅화면
+                    
+                    return
+                }
                 self.showToast(message: error!)
                 return
             }
             Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+            
+            // 여기서도 타이머 종료해야한다. 홈에서 작동되는 것을 확인.
+            self.apiTimer.invalidate()
+            
             let controllers: Array = self.navigationController!.viewControllers
             self.navigationController!.popToViewController(controllers[0], animated: true)
         }

@@ -10,6 +10,7 @@ import Foundation
 final class FindFriendsViewModel {
     
     var errorMessage: String = ""
+    var friends: Friends?
     
     func stopFindingFriend(onComletion: @escaping (String?) -> Void) {
         let idToken = Helper.shared.putIdToken()
@@ -19,7 +20,7 @@ final class FindFriendsViewModel {
             case 200:
                 onComletion(nil)
             case 201:
-                onComletion("누군가와 취미를 함께하기로 약속하셨어요!")
+                onComletion("앗! 누군가가 나의 취미 함께 하기를 수락하였어요!")
             case 401:
                 Helper.shared.getIdToken(refresh: true) { _ in
                     onComletion("정보 갱신중입니다.다시 시도해주세요!")
@@ -49,7 +50,7 @@ final class FindFriendsViewModel {
                         onCompletion(nil, statusCode, self.errorMessage)
                         return
                     }
-                    self.errorMessage = "토큰 갱신에 성공했습니다. 다시 시도해주세요."
+                    self.errorMessage = "토큰 갱신에 성공했습니다."
                     onCompletion(nil, statusCode, self.errorMessage)
                 }
             default:
@@ -77,7 +78,7 @@ final class FindFriendsViewModel {
                 onCompletion(nil, "오랜 시간 동안 매칭 되지 않아 새싹 친구 찾기를 그만둡니다", true)
             case 401:
                 Helper.shared.getIdToken(refresh: true) { _ in
-                    onCompletion(nil, "토큰 갱신을 완료했습니다", nil)
+                    onCompletion(nil, "토큰을 갱신을 갱신합니다.", nil)
                 }
             default:
                 onCompletion(nil, "", nil)

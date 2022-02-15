@@ -45,6 +45,7 @@ final class HomeViewController: BaseViewController {
         // 초기위치
         locationManager.requestWhenInUseAuthorization()
         locationAuth() ? setInitialPosition("current") : setInitialPosition("campus")
+    
         centerLocation(type: surroundType)
         checkUserStatus(UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue))
         
@@ -59,7 +60,9 @@ final class HomeViewController: BaseViewController {
         self.tabBarController?.tabBar.isHidden = false
         
         checkUserStatus(UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue))
-        centerLocation(type: self.surroundType)
+        // 매칭을 시작하고 뒤로가기로 왔을 경우, 위치에 변화는 없어야함 ( 위치를 변경하더라도 )
+        UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matching.rawValue || UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matched.rawValue ? () : centerLocation(type: self.surroundType)
+        
         homeView.mapView.showsUserLocation = true
         locationManager.startUpdatingLocation()
         monitorNetwork()
@@ -361,7 +364,7 @@ extension HomeViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
-        centerLocation(type: surroundType)
+        // 매칭을 시작하고 뒤로가기로 왔을 경우, 위치에 변화는 없어야함 ( 위치를 변경하더라도 )
+        UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matching.rawValue || UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matched.rawValue ? () : centerLocation(type: self.surroundType)
     }
 }

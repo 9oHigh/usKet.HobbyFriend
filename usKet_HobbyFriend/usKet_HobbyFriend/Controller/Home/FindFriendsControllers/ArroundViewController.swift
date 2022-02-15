@@ -20,6 +20,10 @@ final class ArroundViewController: BaseViewController {
         setConfigure()
         setUI()
         setConstraints()
+    
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         monitorNetwork()
     }
     
