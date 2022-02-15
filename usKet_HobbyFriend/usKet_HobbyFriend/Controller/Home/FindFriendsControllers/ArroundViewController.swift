@@ -12,7 +12,7 @@ final class ArroundViewController: BaseViewController {
     lazy var noOnewView = NoFriendsView()
     var tableView = UITableView()
     
-    let viewModel = FindFriendsViewModel()
+    let viewModel = FindFriendsTabViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,38 +20,41 @@ final class ArroundViewController: BaseViewController {
         setConfigure()
         setUI()
         setConstraints()
-    
+        viewModel.friends.isEmpty ? setNoFriends() : setFriends()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
+        viewModel.friends.isEmpty ? setNoFriends() : setFriends()
     }
     
     override func setConfigure() {
         // View
         view.backgroundColor = R.color.basicWhite()!
+    }
+    
+    func setFriends() {
         
-        // TableView
+        noOnewView.removeFromSuperview()
         tableView.backgroundColor = R.color.basicWhite()!
         tableView.register(FindFriendsTableViewCell.self, forCellReuseIdentifier: FindFriendsTableViewCell.identifier)
-        tableView.separatorStyle = .none
-        tableView.separatorInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.rowHeight = 530
         
-    }
-    
-    override func setUI() {
+        tableView.delegate = self
+        tableView.dataSource = self
         
         view.addSubview(tableView)
-    }
-    
-    override func setConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        tableView.reloadData()
     }
     
     func setNoFriends() {
-        
+        tableView.removeFromSuperview()
         noOnewView.informLabel.text = "아쉽게도 주변에 새싹이 없어요 ㅠㅜ"
         
         view.addSubview(noOnewView)
@@ -65,24 +68,31 @@ final class ArroundViewController: BaseViewController {
         }
     }
     
-    func removeNoFriends() {
-        
-        noOnewView.removeFromSuperview()
+    private func requestFriend(_ otheruid: String) {
+        print("요청할겜")
     }
     
-    private func requestFriend(_ otheruid: String) {
-        
-    }
 }
 extension ArroundViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return viewModel.friends.count
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendsTableViewCell.identifier, for: indexPath) as! FindFriendsTableViewCell
-        
-        cell.infoView.setBtnColor(title: "요청하기", color: UIColor.red)
+        cell.selectionStyle = .none
+        cell.infoView.setBtnColor(title: "요청하기", color: R.color.systemError()!)
+        cell.infoView.foldView.nameLabel.text = viewModel.friends[indexPath.row].nick
+        if viewModel.friends[indexPath.row].reviews.isEmpty {
+            cell.infoView.foldView.reviewOpenButton.isHidden = true
+        } else {
+            cell.infoView.foldView.reviewOpenButton.isHidden = false
+            cell.infoView.foldView.reviewTextView.text = viewModel.friends[indexPath.row].reviews[0]
+        }
+        cell.infoView.foldView.titleView.reputation = viewModel.friends[indexPath.row].reputation
         cell.buttonAction = {
             self.requestFriend("")
         }

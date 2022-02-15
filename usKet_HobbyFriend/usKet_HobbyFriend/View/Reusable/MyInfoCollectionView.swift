@@ -26,7 +26,11 @@ final class MyInfoCollectionVeiw: UIView {
     
     let viewModel = MyInfoViewModel()
     let disposeBag = DisposeBag()
-    var reputation: [Int] = []
+    var reputation: [Int] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,11 +77,19 @@ final class MyInfoCollectionVeiw: UIView {
             .bind(to: collectionView.rx.items(cellIdentifier: MyInfoTitleCollectionViewCell.identifier, cellType: MyInfoTitleCollectionViewCell.self)) { _, item, cell in
                 if self.viewModel.user != nil {
                     self.viewModel.user?.reputation.forEach({ color in
-                    cell.backgroundColor = color == 0 ? R.color.basicWhite()! : R.color.brandGreen()!
+                        if color == 0 {} else {
+                            cell.titleButton.setTitleColor(R.color.basicWhite(), for: .normal)
+                            cell.titleButton.backgroundColor = R.color.brandGreen()!
+                        }
+                        
                     })
                 } else {
                     self.reputation.forEach { color in
-                        cell.backgroundColor = color == 0 ? R.color.basicWhite()! : R.color.brandGreen()!
+                       
+                        if color == 0 {} else {
+                            cell.titleButton.setTitleColor(R.color.basicWhite(), for: .normal)
+                            cell.titleButton.backgroundColor = R.color.brandGreen()!
+                        }
                     }
                 }
                 // item은 모델이 날라오는거 -> 따라서 모델에 컬러가 있어야 겠고 그 컬러는

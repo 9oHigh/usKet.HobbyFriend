@@ -21,13 +21,15 @@ final class MyInfoView: UIView {
         
         backgroundView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
             make.bottom.equalTo(foldView.snp.top)
         }
         
         foldView.snp.makeConstraints { make in
             make.top.equalTo(backgroundView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
             make.height.equalTo(300) // Total height : 300
         }
     }
@@ -41,15 +43,16 @@ final class MyInfoView: UIView {
         backgroundView.addSubview(button)
         
         button.snp.makeConstraints { make in
-            make.top.equalTo(10)
-            make.trailing.equalTo(10)
-            make.height.equalTo(60)
-            make.width.equalTo(80)
+            make.top.equalTo(15)
+            make.trailing.equalTo(-15)
+            make.height.equalTo(44)
+            make.width.equalTo(88)
         }
         
         button.layer.cornerRadius = 10
         button.setTitle(title, for: .normal)
         button.setTitleColor(R.color.basicWhite()!, for: .normal)
+        button.titleLabel?.font = .toTitleM14
         button.backgroundColor = color
     }
 }

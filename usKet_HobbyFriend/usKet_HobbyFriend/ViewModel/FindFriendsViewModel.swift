@@ -42,11 +42,12 @@ final class FindFriendsViewModel {
             
             switch statusCode {
             case 200:
+                self.friends = friends
                 onCompletion(friends, statusCode, nil)
             case 401:
                 Helper.shared.getIdToken(refresh: true) { idToken in
                     guard idToken != nil else {
-                        self.errorMessage = "토큰 갱신에 실패했어요. 다시 시도해주세요."
+                        self.errorMessage = "토큰을 갱신중입니다."
                         onCompletion(nil, statusCode, self.errorMessage)
                         return
                     }
@@ -65,14 +66,13 @@ final class FindFriendsViewModel {
         let idToken = Helper.shared.putIdToken()
         
         QueueAPI.userCheckMatch(idToken: idToken) { match, statusCode in
-            
-            guard let match = match else {
-                onCompletion(nil, "오류가 발생했어요.\n다시 시도해 주세요.", nil)
-                return
-            }
-            
+            print(statusCode)
             switch statusCode {
             case 200 :
+                guard let match = match else {
+                    onCompletion(nil, "오류가 발생했어요.\n다시 시도해 주세요.", nil)
+                    return
+                }
                 onCompletion(match.matched, match.matchedNick, nil)
             case 201 :
                 onCompletion(nil, "오랜 시간 동안 매칭 되지 않아 새싹 친구 찾기를 그만둡니다", true)

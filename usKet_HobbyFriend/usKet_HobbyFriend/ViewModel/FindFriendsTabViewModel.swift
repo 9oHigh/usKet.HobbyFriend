@@ -8,5 +8,6 @@
 class FindFriendsTabViewModel {
     
     var errorMessage: String = ""
+    var friends: [FromQueueDB] = []
     
 }

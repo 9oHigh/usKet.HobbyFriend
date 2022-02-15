@@ -125,8 +125,8 @@ final class MyInfoDetailViewController: BaseViewController {
         
         myinfoView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.9)
+            make.centerX.equalToSuperview()
             // 고정높이 MyInfoView.foldview.height = 300
             // 따라서 MyInfoView.bacground.height = 200
             make.height.equalTo(500)

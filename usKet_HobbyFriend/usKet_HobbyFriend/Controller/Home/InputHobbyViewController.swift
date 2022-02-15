@@ -120,11 +120,11 @@ final class InputHobbyViewController: BaseViewController {
                 hobbies.forEach {
                     
                     if $0.count > 8 {
-                        self?.showToast(message: SearchErrorType.notAllowed.rawValue)
+                        self?.showToast(message: SearchErrorType.notAllowed.rawValue, yPosition: 150)
                     } else if self!.viewModel.wantItems.contains($0) {
-                        self?.showToast(message: SearchErrorType.alreadyInput.rawValue)
+                        self?.showToast(message: SearchErrorType.alreadyInput.rawValue, yPosition: 150)
                     } else if self!.viewModel.wantItems.count > 8 {
-                        self?.showToast(message: SearchErrorType.alreadyFull.rawValue)
+                        self?.showToast(message: SearchErrorType.alreadyFull.rawValue, yPosition: 150)
                     }
                 }
             })
@@ -134,16 +134,16 @@ final class InputHobbyViewController: BaseViewController {
             .subscribe(onNext: {
                 var texts: [String] = []
                 guard let text = self.searchBar.text else {
-                    self.showToast(message: "취미를 입력해주세요.")
+                    self.showToast(message: "취미를 입력해주세요.", yPosition: 150)
                     return
                 }
                 texts = text.components(separatedBy: " ")
                 
                 texts.forEach { item in
                     if self.viewModel.wantItems.contains(item) {
-                        self.showToast(message: SearchErrorType.alreadyInput.rawValue)
+                        self.showToast(message: SearchErrorType.alreadyInput.rawValue, yPosition: 150)
                     } else if self.viewModel.wantItems.count > 8 {
-                        self.showToast(message: SearchErrorType.alreadyFull.rawValue)
+                        self.showToast(message: SearchErrorType.alreadyFull.rawValue, yPosition: 150)
                     } else {
                         self.viewModel.wantItems.append(item)
                         DispatchQueue.main.async {
@@ -219,7 +219,7 @@ final class InputHobbyViewController: BaseViewController {
     private func findFriends() {
         viewModel.findFriends { error, isNavigation in
             guard error == nil else {
-                self.showToast(message: error!)
+                self.showToast(message: error!, yPosition: 150)
                 if isNavigation != nil && isNavigation! {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         self.tabBarController?.selectedIndex = 3
@@ -289,9 +289,9 @@ extension InputHobbyViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if viewModel.wantItems.count >= 8 {
-                self.showToast(message: SearchErrorType.alreadyFull.rawValue)
+                self.showToast(message: SearchErrorType.alreadyFull.rawValue, yPosition: 150)
             } else if viewModel.wantItems.contains(viewModel.userItems[indexPath.row].hobby) {
-                self.showToast(message: SearchErrorType.alreadyInput.rawValue)
+                self.showToast(message: SearchErrorType.alreadyInput.rawValue, yPosition: 150)
             } else {
                 viewModel.wantItems.append(viewModel.userItems[indexPath.row].hobby)
                 collectionView.reloadData()

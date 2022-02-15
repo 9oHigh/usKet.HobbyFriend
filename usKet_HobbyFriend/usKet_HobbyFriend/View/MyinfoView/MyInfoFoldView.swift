@@ -97,14 +97,16 @@ final class MyInfoFoldView: UIView {
         // Height : 300
         fixedView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(15)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
             make.height.equalTo(60) // 고정높이.. 괴장히 나쁜..
             make.bottom.equalTo(toHideView.snp.top)
         }
         
         toHideView.snp.makeConstraints { make in
             make.top.equalTo(fixedView.snp.bottom)
-            make.leading.trailing.equalToSuperview().inset(15)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
             make.height.equalTo(240) // 고정높이.. 굉장히 나쁘다그..
         }
         
