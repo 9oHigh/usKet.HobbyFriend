@@ -1,4 +1,4 @@
-# 새싹 프렌즈 🌱
+# 새싹 프렌즈🌱 [ 진행중 ]
 #### - 위치기반의 취미 공유 애플리케이션 
 #### - [프로토타입✨](https://www.figma.com/file/lr65iNqhERfPv7SGp267KB/SeSAC?node-id=27%3A1397)
 ### 주요 기술 스택
@@ -117,5 +117,4 @@
 [1] [UICollectionView의 Cell을 왼쪽 정렬하기](https://pooh-footprints.tistory.com/43)
 
 [2] [SnapKit updateConstraint 적용](https://pooh-footprints.tistory.com/44)
-
   
