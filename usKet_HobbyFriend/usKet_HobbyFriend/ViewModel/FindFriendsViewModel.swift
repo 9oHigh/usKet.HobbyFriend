@@ -66,7 +66,7 @@ final class FindFriendsViewModel {
         let idToken = Helper.shared.putIdToken()
         
         QueueAPI.userCheckMatch(idToken: idToken) { match, statusCode in
-            print(statusCode)
+
             switch statusCode {
             case 200 :
                 guard let match = match else {

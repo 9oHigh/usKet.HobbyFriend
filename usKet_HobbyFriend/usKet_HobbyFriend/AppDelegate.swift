@@ -34,6 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = R.image.letfArrow()
         UINavigationBar.appearance().tintColor = UIColor(resource: R.color.basicBlack)
         
+        let appearance = UINavigationBarAppearance()
+        let navigationBar = UINavigationBar()
+        
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+        navigationBar.standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
         return true
     }
     
@@ -51,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: 나중에 확인해보기
     /*
      func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-         Messaging.messaging().apnsToken = deviceToken
+     Messaging.messaging().apnsToken = deviceToken
      }
      */
 }
@@ -67,14 +75,14 @@ extension AppDelegate: MessagingDelegate {
             return
         }
         signup.registerUserData(userDataType: .FCMtoken, variable: fcmToken)
-
+        
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    
-            completionHandler(UIBackgroundFetchResult.newData)
-        }
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
     // 앱이 종료되는 시점에서 StopFinding + 매치 상태 조정
     func applicationWillTerminate(_ application: UIApplication) {
         print(#function)

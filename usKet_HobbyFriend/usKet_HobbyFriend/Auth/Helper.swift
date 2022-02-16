@@ -59,6 +59,7 @@ final class Helper {
         UserDefaults.standard.removeObject(forKey: "gender")
         UserDefaults.standard.removeObject(forKey: "idToken")
         UserDefaults.standard.removeObject(forKey: "startPosition")
+        
     }
     // 유저 디포트에 바로 저장해주자.
     func getIdToken(refresh: Bool, onCompletion : @escaping (String?) -> Void) {

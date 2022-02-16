@@ -16,21 +16,14 @@ final class ArroundViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setConfigure()
-        setUI()
-        setConstraints()
-        viewModel.friends.isEmpty ? setNoFriends() : setFriends()
+    
+        view.backgroundColor = R.color.basicWhite()!
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
         viewModel.friends.isEmpty ? setNoFriends() : setFriends()
-    }
-    
-    override func setConfigure() {
-        // View
-        view.backgroundColor = R.color.basicWhite()!
     }
     
     func setFriends() {
@@ -47,14 +40,17 @@ final class ArroundViewController: BaseViewController {
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(-(Double(view.frame.height) * 0.1))
         }
         
         tableView.reloadData()
     }
     
     func setNoFriends() {
+        
         tableView.removeFromSuperview()
+        
         noOnewView.informLabel.text = "아쉽게도 주변에 새싹이 없어요 ㅠㅜ"
         
         view.addSubview(noOnewView)

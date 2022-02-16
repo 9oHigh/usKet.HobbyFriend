@@ -67,7 +67,8 @@ final class FindFriendsViewController: TabmanViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
+        self.navigationController?.navigationBar.isHidden = false
         monitorNetwork()
         fetchFriends()
     }
@@ -101,6 +102,7 @@ final class FindFriendsViewController: TabmanViewController {
             button.selectedTintColor =  R.color.brandGreen()
             button.tintColor = R.color.gray6()
         }
+      
     }
     
     private func setUI() {
@@ -108,7 +110,6 @@ final class FindFriendsViewController: TabmanViewController {
         view.addSubview(backView)
         backView.addSubview(changeHobbiesBtn)
         backView.addSubview(refreshBtn)
-        
     }
     
     private func setConstraints() {
@@ -133,6 +134,7 @@ final class FindFriendsViewController: TabmanViewController {
             make.centerY.equalToSuperview().multipliedBy(0.95)
             make.centerX.equalToSuperview().multipliedBy(1.775)
         }
+        
     }
     
     private func bind() {
@@ -163,20 +165,19 @@ final class FindFriendsViewController: TabmanViewController {
             .observe(on: MainScheduler.instance)
             .subscribe({ _ in
                 // MARK: - onqueue -> 저장
-                print("클릭됨2")
+                
                 self.fetchFriends()
             })
             .disposed(by: disposeBag)
     }
     
     @objc func updateUserMatchStatus(sender: Timer) {
-        
+        print(#function)
         viewModel.checkUserMatch { matched, inform, isTooLong in
             
             guard matched != nil else {
                 
                 if isTooLong != nil, isTooLong == true {
-                    print(inform)
                     Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
                     
                     self.showToast(message: inform!, yPosition: 150)
@@ -222,17 +223,30 @@ final class FindFriendsViewController: TabmanViewController {
             self.arroundViewController.viewModel.friends = friends.fromQueueDB
             self.recievedViewController.viewModel.friends = friends.fromQueueDBRequested
             
+            // 값이 있어? -> Reload
+            if friends.fromQueueDB.isEmpty {
+                self.arroundViewController.setNoFriends()
+            } else {
+                self.arroundViewController.setFriends()
+            }
+            
+            if friends.fromQueueDBRequested.isEmpty {
+                self.recievedViewController.setNoFriends()
+            } else {
+                self.recievedViewController.setFriends()
+            }
         }
     }
     
     @objc
     func backToInitial() {
+
         let controllers: Array = self.navigationController!.viewControllers
         self.navigationController!.popToViewController(controllers[0], animated: true)
     }
     
     @objc func stopSearching() {
-        
+        print(#function)
         viewModel.stopFindingFriend { error in
             guard error == nil else {
                 if error! == "앗! 누군가가 나의 취미 함께 하기를 수락하였어요!" {
