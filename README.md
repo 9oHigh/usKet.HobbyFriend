@@ -117,4 +117,7 @@
 [1] [UICollectionView의 Cell을 왼쪽 정렬하기](https://pooh-footprints.tistory.com/43)
 
 [2] [SnapKit updateConstraint 적용](https://pooh-footprints.tistory.com/44)
-  
+
+[3] [유저의 매칭상태를 확인하기 위한 API 반복호출](https://pooh-footprints.tistory.com/45)
+
+[4] [셀안의 버튼에 이벤트주기](https://pooh-footprints.tistory.com/46)
