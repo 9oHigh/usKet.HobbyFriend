@@ -27,6 +27,7 @@ final class RecievedViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         monitorNetwork()
         viewModel.friends.isEmpty ? setNoFriends() : setFriends()
     }

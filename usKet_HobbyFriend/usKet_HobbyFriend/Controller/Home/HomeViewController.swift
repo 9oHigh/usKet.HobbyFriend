@@ -303,7 +303,9 @@ final class HomeViewController: BaseViewController {
                         
                         let viewController = InputHobbyViewController()
                         viewController.viewModel.friends = self?.passFriends
-                        
+//                        
+//                        let controllers: Array = self!.navigationController!.viewControllers
+//                        self?.navigationController!.pushViewController(controllers[2], animated: true)
                         self?.transViewController(nextType: .push, controller: viewController)
                     }
                 }

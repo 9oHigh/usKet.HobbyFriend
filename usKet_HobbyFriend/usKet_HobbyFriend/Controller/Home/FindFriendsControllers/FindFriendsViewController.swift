@@ -158,7 +158,13 @@ final class FindFriendsViewController: TabmanViewController {
                 })
                 self?.apiTimer.invalidate()
                 
+                // 분기처리 필요
+                // 네비 스택이 쌓이면서 왔을 경우
                 self?.navigationController?.popViewController(animated: true)
+                
+//                let controllers: Array = self!.navigationController!.viewControllers
+//                self?.navigationController!.popToViewController(controllers[1], animated: true)
+        
             })
             .disposed(by: disposeBag)
         
@@ -205,6 +211,7 @@ final class FindFriendsViewController: TabmanViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     // MARK: - 매칭이 된 상태 -> 채팅화면으로 이동
+                    print("연결되었수다~")
                 }
             }
         }
@@ -241,7 +248,9 @@ final class FindFriendsViewController: TabmanViewController {
     
     @objc
     func backToInitial() {
-
+        // 순회
+        // 타입클래스 찾아서
+        // 백버튼 타겟변경
         let controllers: Array = self.navigationController!.viewControllers
         self.navigationController!.popToViewController(controllers[0], animated: true)
     }
@@ -294,7 +303,7 @@ extension FindFriendsViewController: PageboyViewControllerDataSource, TMBarDataS
     }
     
     func viewController(for pageboyViewController: PageboyViewController, at index: PageboyViewController.PageIndex) -> UIViewController? {
-        
+        viewControllers[index].viewWillAppear(true)
         return viewControllers[index]
     }
     
