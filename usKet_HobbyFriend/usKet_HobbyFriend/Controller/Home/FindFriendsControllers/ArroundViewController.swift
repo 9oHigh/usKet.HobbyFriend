@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ArroundViewController: BaseViewController {
     
@@ -13,10 +15,11 @@ final class ArroundViewController: BaseViewController {
     var tableView = UITableView()
     
     let viewModel = FindFriendsTabViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         view.backgroundColor = R.color.basicWhite()!
     }
     
@@ -65,9 +68,60 @@ final class ArroundViewController: BaseViewController {
     }
     
     private func requestFriend(_ otheruid: String) {
-        print("요청할겜")
+        
+        let alertView = self.generateAlertView(inform: "취미 같이 하기를 요청할게요!", subInform: "요청이 수락되면 30분후에 리뷰를 남길 수 있어요.")
+        
+        alertView.okButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ [ weak self ] _ in
+                self?.viewModel.requestFriend(parm: otheruid) { message, isMatched in
+                    
+                    guard isMatched == true else {
+                        // 401
+                        if message! == "토큰을 갱신중입니다."{
+                            self?.requestFriend(otheruid)
+                            return
+                        }
+                        // 200,202,else
+                        alertView.dismiss(animated: true, completion: nil)
+                        self?.showToast(message: message!, yPosition: 150)
+                        return
+                    }
+                    // 201
+                    // 여기서 200 이면 -> 토스트 + 채팅
+                    alertView.dismiss(animated: true, completion: nil)
+                    self?.showToast(message: message!)
+
+                    DispatchQueue.main.async {
+                        self?.viewModel.acceptFriend(parm: otheruid) { acceptMessage, acceptMatched in
+                            guard acceptMatched == true else {
+                                if acceptMessage! == "앗! 누군가가 나의 취미 함께 하기를 수락하였어요!" {
+                                    // MARK: - 분기처리
+                                    self?.viewModel.userCheckIsMatch(onCompletion: { _, _, _ in })
+                                    self?.showToast(message: acceptMessage!)
+                                }
+                                self?.showToast(message: acceptMessage!)
+                                return
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                // MARK: - 채팅화면
+                            }
+                        }
+                    }
+                    
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        alertView.cancelButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ _ in
+                alertView.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        self.present(alertView, animated: true, completion: nil)
     }
-    
 }
 extension ArroundViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -79,21 +133,28 @@ extension ArroundViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendsTableViewCell.identifier, for: indexPath) as! FindFriendsTableViewCell
-        cell.selectionStyle = .none
+        
         cell.infoView.setBtnColor(title: "요청하기", color: R.color.systemError()!)
         cell.infoView.foldView.nameLabel.text = viewModel.friends[indexPath.row].nick
+        
         if viewModel.friends[indexPath.row].reviews.isEmpty {
+            
             cell.infoView.foldView.reviewOpenButton.isHidden = true
         } else {
+            
             cell.infoView.foldView.reviewOpenButton.isHidden = false
             cell.infoView.foldView.reviewTextView.text = viewModel.friends[indexPath.row].reviews[0]
         }
+        
         cell.infoView.foldView.titleView.reputation = viewModel.friends[indexPath.row].reputation
+        
         cell.buttonAction = {
-            self.requestFriend("")
+            self.requestFriend(self.viewModel.friends[indexPath.row].uid)
         }
         
-        // MARK: - 사람별로 데이터 넣어주기
+        if viewModel.friends.count == indexPath.row + 1 {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
+        }
         
         return cell
     }

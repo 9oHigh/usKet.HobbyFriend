@@ -82,7 +82,7 @@ final class InputHobbyViewModel {
                     onCompletion(FindError.noneIdToken.rawValue, nil)
                 }
             default:
-                self.errorMessage = "오류가 발생했어요.\n다시 시도해주세요."
+                self.errorMessage = "하고 싶은 취미를 선택 / 입력해주세요!"
                 onCompletion(self.errorMessage, nil)
             }
             return

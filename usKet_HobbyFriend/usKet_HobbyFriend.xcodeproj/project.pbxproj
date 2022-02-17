@@ -440,7 +440,6 @@
 		4CF775752797CD9E009CC655 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				4C0D75A0279A8AAE00566CC0 /* Helper.swift */,
 				4CF7758127982A83009CC655 /* Views */,
 				4CF7758327982AA6009CC655 /* ViewModel */,
 			);
@@ -450,6 +449,7 @@
 		4CF775762797E78D009CC655 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4C0D75A0279A8AAE00566CC0 /* Helper.swift */,
 				4CF775772797E7B5009CC655 /* UILabel + Extension.swift */,
 				4CF7757B2797EF15009CC655 /* UIFont + Extension.swift */,
 				4CF775792797E7CB009CC655 /* UITextView + Extension.swift */,

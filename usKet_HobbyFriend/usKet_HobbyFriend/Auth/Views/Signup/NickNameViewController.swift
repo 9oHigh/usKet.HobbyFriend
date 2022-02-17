@@ -31,6 +31,7 @@ final class NicknameViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
+        self.hiddenNavBar()
     }
     
     override func setConfigure() {

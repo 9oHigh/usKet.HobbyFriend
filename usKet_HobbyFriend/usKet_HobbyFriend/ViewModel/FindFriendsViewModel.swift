@@ -81,7 +81,7 @@ final class FindFriendsViewModel {
                     onCompletion(nil, "토큰을 갱신을 갱신합니다.", nil)
                 }
             default:
-                onCompletion(nil, "", nil)
+                onCompletion(nil, "알 수 없는 오류가 발생했어요", nil)
             }
         }
     }

@@ -115,8 +115,11 @@ final class MyInfoDetailViewController: BaseViewController {
     
     override func setConstraints() {
         
+        let height = navigationController?.navigationBar.frame.maxY
+        
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(height ?? 50 + 10)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         contentView.snp.makeConstraints { make in

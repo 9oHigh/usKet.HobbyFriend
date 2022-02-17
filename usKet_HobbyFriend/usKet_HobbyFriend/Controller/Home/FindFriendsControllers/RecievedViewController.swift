@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class RecievedViewController: BaseViewController {
     
@@ -13,6 +15,7 @@ final class RecievedViewController: BaseViewController {
     var tableView = UITableView()
     
     let viewModel = FindFriendsTabViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,10 +71,42 @@ final class RecievedViewController: BaseViewController {
         }
     }
     
-    private func requestFriend(_ otheruid: String) {
-        print("요청할겜")
+    private func acceptFriend(_ otheruid: String) {
+        
+        let alertView = self.generateAlertView(inform: "취미 같이 하기를 수락할까요?", subInform: "요청이 수락되면 채팅창에서 대화를 나눌 수 있어요")
+        
+        alertView.okButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ [ weak self ] _ in
+                self?.showToast(message: "")
+                self?.viewModel.acceptFriend(parm: otheruid, onCompletion: { message, isMatched in
+                    
+                    guard isMatched != nil else {
+                        if message == "앗! 누군가가 나의 취미 함께 하기를 수락하였어요!"{
+                            self?.showToast(message: message!)
+                            // MARK: - 분기처리
+                            self?.viewModel.userCheckIsMatch(onCompletion: { _, _, _ in })
+                            return
+                        }
+                        self?.showToast(message: message!)
+                        return
+                    }
+                    // 매칭 성공
+                    alertView.dismiss(animated: true, completion: nil)
+                    // MARK: - 채팅화면
+                })
+            })
+            .disposed(by: disposeBag)
+        
+        alertView.cancelButton.rx.tap
+            .observe(on: MainScheduler.instance)
+            .subscribe({ _ in
+                alertView.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        self.present(alertView, animated: true, completion: nil)
     }
-    
 }
 extension RecievedViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -83,22 +118,28 @@ extension RecievedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendsTableViewCell.identifier, for: indexPath) as! FindFriendsTableViewCell
-        cell.selectionStyle = .none
+        
         cell.infoView.setBtnColor(title: "수락하기", color: R.color.systemSuccess()!)
         cell.infoView.foldView.nameLabel.text = viewModel.friends[indexPath.row].nick
+        cell.infoView.foldView.titleView.reputation = viewModel.friends[indexPath.row].reputation
+        
         if viewModel.friends[indexPath.row].reviews.isEmpty {
+            
             cell.infoView.foldView.reviewOpenButton.isHidden = true
         } else {
+            
             cell.infoView.foldView.reviewOpenButton.isHidden = false
             cell.infoView.foldView.reviewTextView.text = viewModel.friends[indexPath.row].reviews[0]
         }
-        cell.infoView.foldView.titleView.reputation = viewModel.friends[indexPath.row].reputation
+
         cell.buttonAction = {
-            self.requestFriend("")
+            self.acceptFriend(self.viewModel.friends[indexPath.row].uid)
         }
         
-        // MARK: - 사람별로 데이터 넣어주기
-        
+        if viewModel.friends.count == indexPath.row + 1 {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
+        }
+      
         return cell
     }
 }

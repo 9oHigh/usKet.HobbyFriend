@@ -80,7 +80,7 @@ final class MyInfoFoldView: UIView {
         reviewLabel.font = .toTitleR12
         reviewLabel.text = "새싹 리뷰"
         
-        reviewOpenButton.setImage(UIImage(named: "noMoreArrow.svg")!, for: .normal)
+        reviewOpenButton.setImage(R.image.rightArrow()!, for: .normal)
         reviewOpenButton.isHidden = true
         
         reviewTextView.isEditable = false

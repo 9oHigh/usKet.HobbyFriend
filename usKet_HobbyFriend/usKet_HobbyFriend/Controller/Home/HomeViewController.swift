@@ -57,6 +57,7 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.hiddenNavBar()
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
 
@@ -285,7 +286,7 @@ final class HomeViewController: BaseViewController {
             } else {
                 viewModel.getUserInfo { [weak self] user, _, error in
                     guard error == nil else {
-                        self?.showToast(message: error!)
+                        self?.showToast(message: error!, yPosition: 150)
                         return
                     }
                     guard let user = user else {

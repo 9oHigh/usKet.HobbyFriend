@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let appearance = UINavigationBarAppearance()
         let navigationBar = UINavigationBar()
-        
+
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
         navigationBar.standardAppearance = appearance

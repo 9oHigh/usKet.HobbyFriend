@@ -28,6 +28,7 @@ final class CertificationViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.hiddenNavBar()
         monitorNetwork()
     }
     

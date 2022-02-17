@@ -69,32 +69,33 @@ final class MyInfoCollectionVeiw: UIView {
             .setDelegate(self)
             .disposed(by: disposeBag)
         
-        // 바로 셀을 등록하고 사용할 수 있음
-        // 받아오는 모델이 String이 아닌 숫자이므로
-        // MARK: 모델 개선 + 뷰모델 컬러 부여 고민
         viewModel.myInfoTitle
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items(cellIdentifier: MyInfoTitleCollectionViewCell.identifier, cellType: MyInfoTitleCollectionViewCell.self)) { _, item, cell in
+                
                 if self.viewModel.user != nil {
+                    
                     self.viewModel.user?.reputation.forEach({ color in
-                        if color == 0 {} else {
+                        if color == 0 {
+                            cell.titleButton.setTitleColor(R.color.basicBlack(), for: .normal)
+                            cell.titleButton.backgroundColor = R.color.basicWhite()!
+                        } else {
                             cell.titleButton.setTitleColor(R.color.basicWhite(), for: .normal)
                             cell.titleButton.backgroundColor = R.color.brandGreen()!
                         }
-                        
                     })
                 } else {
+                    
                     self.reputation.forEach { color in
-                       
-                        if color == 0 {} else {
+                        if color == 0 {
+                            cell.titleButton.setTitleColor(R.color.basicBlack(), for: .normal)
+                            cell.titleButton.backgroundColor = R.color.basicWhite()!
+                        } else {
                             cell.titleButton.setTitleColor(R.color.basicWhite(), for: .normal)
                             cell.titleButton.backgroundColor = R.color.brandGreen()!
                         }
                     }
                 }
-                // item은 모델이 날라오는거 -> 따라서 모델에 컬러가 있어야 겠고 그 컬러는
-                // API 통신에서 숫자로 true/false로 저장해두자
-                // 여기서는 조건만 달아서 색 변경
                 cell.setUpdate(myTitle: item)
             }
             .disposed(by: disposeBag)

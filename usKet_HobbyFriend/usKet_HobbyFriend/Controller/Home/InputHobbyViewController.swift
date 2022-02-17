@@ -55,20 +55,23 @@ final class InputHobbyViewController: BaseViewController {
         setConstraints()
         bind()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
+        
+        self.hiddenNavBar(false)
         monitorNetwork()
         addKeyBoardListener()
         collectionView.reloadData()
     }
-    
+  
     override func setConfigure() {
-        
-        self.tabBarController?.tabBar.isHidden = true
-        
+
         // SearchBar
         searchBar.placeholder = "띄어쓰기로 복수입력이 가능해요!"
+        self.hideKeyboardWhenTappedAround()
+        
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBar)
         
         // collectionView
@@ -91,7 +94,6 @@ final class InputHobbyViewController: BaseViewController {
         view.addSubview(collectionView)
         view.addSubview(findButton)
     }
-    
     override func setConstraints() {
         
         collectionView.snp.makeConstraints { make in
@@ -114,9 +116,9 @@ final class InputHobbyViewController: BaseViewController {
         searchBar.rx.text.orEmpty
             .debounce(RxTimeInterval.microseconds(5), scheduler: MainScheduler.instance) // 0.5초 기다림
             .subscribe(onNext: { [weak self] hobby in
-                
-                let hobbies = hobby.components(separatedBy: " ")
 
+                let hobbies = hobby.components(separatedBy: " ")
+                
                 hobbies.forEach {
                     
                     if $0.count > 8 {
@@ -153,9 +155,11 @@ final class InputHobbyViewController: BaseViewController {
                 }
                 self.viewModel.searchItems.removeAll()
                 self.searchBar.text = nil
+                self.searchBar.resignFirstResponder()
             })
             .disposed(by: disposeBag)
     }
+    
     // 키보드 노티
     private func addKeyBoardListener() {
         
@@ -188,6 +192,8 @@ final class InputHobbyViewController: BaseViewController {
         
         self.findButton.layer.cornerRadius = 0
         
+        self.findButton.addTarget(self, action: #selector(findFriends), for: .touchUpInside)
+        
         self.findButton.snp.updateConstraints { make in
             
             make.width.equalTo(self.view.snp.width)
@@ -217,6 +223,7 @@ final class InputHobbyViewController: BaseViewController {
     
     @objc
     private func findFriends() {
+        
         viewModel.findFriends { error, isNavigation in
             guard error == nil else {
                 self.showToast(message: error!, yPosition: 150)

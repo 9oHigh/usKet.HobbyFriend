@@ -27,7 +27,10 @@ class FindFriendsTableViewCell: UITableViewCell {
         
         infoView.backgroundView.background.layer.cornerRadius = 15
         infoView.button.addTarget(self, action: #selector(requestFriend), for: .touchUpInside)
+        
+        selectionStyle = .none
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
 

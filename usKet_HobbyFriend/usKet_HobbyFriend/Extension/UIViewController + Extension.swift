@@ -35,13 +35,19 @@ extension UIViewController {
         UIView.animate(withDuration: 3.0, delay: 0.05, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
         },
-            completion: { _ in
+                       completion: { _ in
             toastLabel.removeFromSuperview()
         })
     }
     
-    func showUserDetails() {
-        
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func generateAlertView(inform: String, subInform: String) -> AlertView {
@@ -55,7 +61,7 @@ extension UIViewController {
     }
     
     func transViewController(nextType: NextType, controller: UIViewController) {
-
+        
         switch nextType {
             
         case .push:
@@ -78,7 +84,7 @@ extension UIViewController {
             if isNavigation {
                 self.view.window?.rootViewController = UINavigationController(rootViewController: controller)
             } else {
-            self.view.window?.rootViewController = controller
+                self.view.window?.rootViewController = controller
             }
             self.view.window?.makeKeyAndVisible()
         }, completion: nil)
@@ -102,5 +108,9 @@ extension UIViewController {
         }
         let queue = DispatchQueue(label: "Network")
         monitor.start(queue: queue)
+    }
+    
+    func hiddenNavBar(_ isOn: Bool = true) {
+        self.navigationController?.navigationBar.isHidden = isOn
     }
 }
