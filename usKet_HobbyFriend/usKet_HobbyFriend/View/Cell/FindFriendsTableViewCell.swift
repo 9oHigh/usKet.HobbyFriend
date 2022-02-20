@@ -12,6 +12,7 @@ class FindFriendsTableViewCell: UITableViewCell {
     static let identifier = "FindFriendsTableViewCell"
     let infoView = MyInfoView()
     var buttonAction : (() -> Void) = {}
+    var reviewAction : (() -> Void) = {}
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,6 +29,7 @@ class FindFriendsTableViewCell: UITableViewCell {
         infoView.backgroundView.background.layer.cornerRadius = 15
         infoView.foldView.reviewTextView.textContainer.maximumNumberOfLines = 2
         infoView.button.addTarget(self, action: #selector(requestFriend), for: .touchUpInside)
+        infoView.foldView.reviewOpenButton.addTarget(self, action: #selector(checkReview), for: .touchUpInside)
         
         selectionStyle = .none
     }
@@ -47,4 +49,8 @@ class FindFriendsTableViewCell: UITableViewCell {
         buttonAction()
     }
     
+    @objc
+    func checkReview() {
+        reviewAction()
+    }
 }

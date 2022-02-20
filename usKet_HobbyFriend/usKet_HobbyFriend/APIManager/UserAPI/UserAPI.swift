@@ -72,4 +72,16 @@ final class UserAPI {
                 }
             }
     }
+    
+    static func reportUser(idToken: String, parameter: Evaluation, onCompletion: @escaping (Int?) -> Void) {
+        
+        provider.request(.reportUser(idToken: idToken, parameter)) { result in
+            switch result {
+            case .success(let response):
+                onCompletion(response.statusCode)
+            case.failure(let error):
+                onCompletion(error.response?.statusCode)
+            }
+        }
+    }
 }

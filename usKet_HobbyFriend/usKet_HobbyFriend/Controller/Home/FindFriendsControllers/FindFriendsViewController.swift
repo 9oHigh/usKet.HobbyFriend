@@ -167,11 +167,10 @@ final class FindFriendsViewController: TabmanViewController {
                 if controllers[1] is InputHobbyViewController {
                     self?.viewModel.questSurround { friends, _, _ in
                         hobbyViewController?.viewModel.friends = friends
+                        controllers[1] = hobbyViewController!
+                        self?.navigationController!.popToViewController(controllers[1], animated: true)
                     }
                 }
-                controllers[1] = hobbyViewController!
-                self?.navigationController!.popToViewController(controllers[1], animated: true)
-                
             })
             .disposed(by: disposeBag)
         
@@ -185,7 +184,7 @@ final class FindFriendsViewController: TabmanViewController {
     }
     
     @objc func updateUserMatchStatus(sender: Timer) {
-        print(#function)
+        
         viewModel.checkUserMatch { matched, inform, isTooLong in
             
             guard matched != nil else {
@@ -242,14 +241,15 @@ final class FindFriendsViewController: TabmanViewController {
             // 값이 있어? -> Reload
             if friends.fromQueueDB.isEmpty {
                 self.arroundViewController.setNoFriends()
-                
             } else {
+                self.arroundViewController.tableView.removeFromSuperview()
                 self.arroundViewController.setFriends()
             }
             
             if friends.fromQueueDBRequested.isEmpty {
                 self.recievedViewController.setNoFriends()
             } else {
+                self.arroundViewController.tableView.removeFromSuperview()
                 self.recievedViewController.setFriends()
             }
         }
@@ -257,7 +257,11 @@ final class FindFriendsViewController: TabmanViewController {
     
     @objc
     func backToInitial() {
-        self.navigationController!.popToRootViewController(animated: true)
+        guard let navigationController = navigationController else {
+            return
+        }
+        let controllers = navigationController.viewControllers
+        self.navigationController?.popToViewController(controllers[0], animated: true)
     }
     
     @objc func stopSearching() {
@@ -318,5 +322,4 @@ extension FindFriendsViewController: PageboyViewControllerDataSource, TMBarDataS
         
         return .at(index: 0)
     }
-    
 }

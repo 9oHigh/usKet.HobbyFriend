@@ -9,6 +9,7 @@ final class FindFriendsTabViewModel {
     
     var errorMessage: String = ""
     var friends: [FromQueueDB] = []
+    var reviews: [String] = []
     
     func requestFriend(parm: String, onCompletion: @escaping (String?, Bool?) -> Void) {
         

@@ -14,6 +14,7 @@ enum UserTarget {
     case withdrawUser(idToken: String)
     case updateMypage(idToken: String, MypageParm)
     case updateFCMToken(idToken: String, FCMtokenParm)
+    case reportUser(idToken: String, Evaluation)
 }
 
 // TargetType 프로토콜을 채택할 경우 다음과같이 프로퍼티들이 생성된다.
@@ -32,6 +33,7 @@ extension UserTarget: TargetType {
         case .withdrawUser : return "user/withdraw"
         case .updateMypage : return "user/update/mypage"
         case .updateFCMToken : return "user/update_fcm_token"
+        case .reportUser : return "user/report"
         }
     }
 
@@ -43,6 +45,7 @@ extension UserTarget: TargetType {
         case .withdrawUser: return .post
         case .updateMypage: return .post
         case .updateFCMToken: return .put
+        case .reportUser : return .post
         }
     }
 
@@ -78,6 +81,13 @@ extension UserTarget: TargetType {
             return .requestParameters(parameters: [
                 "FCMtoken": parameter.FCMtoken
             ], encoding: URLEncoding.default)
+        case .reportUser(_, let parameter):
+            return .requestParameters(parameters: [
+                "otheruid": parameter.otheruid,
+                "reportedReputation": parameter.reportedReputation,
+                "comment": parameter.comment
+            ], encoding: URLEncoding.default)
+            
         }
     }
 
@@ -103,6 +113,11 @@ extension UserTarget: TargetType {
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
         case .updateMypage(let idToken, _):
+            return [
+                "idtoken": idToken,
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+        case .reportUser(idToken: let idToken, _):
             return [
                 "idtoken": idToken,
                 "Content-Type": "application/x-www-form-urlencoded"

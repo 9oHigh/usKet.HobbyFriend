@@ -32,11 +32,25 @@ extension UIButton {
 
 extension UIButton.Configuration {
     
-    static func genderStyle(title: String, image: UIImage) -> UIButton.Configuration {
+    static func menuStyle(title: String, image: UIImage) -> UIButton.Configuration {
         var config = UIButton.Configuration.plain()
         
         config.title = title
-        config.baseForegroundColor = UIColor(resource: R.color.basicBlack)
+        config.baseForegroundColor = R.color.basicBlack()!
+        config.titleAlignment = .center
+        
+        config.image = image
+        config.imagePlacement = .top
+        
+        return config
+    }
+    
+    static func genderStyle(title: String, image: UIImage) -> UIButton.Configuration {
+        
+        var config = UIButton.Configuration.plain()
+        
+        config.title = title
+        config.baseForegroundColor = R.color.basicBlack()!
         config.titleAlignment = .center
         
         config.image = image

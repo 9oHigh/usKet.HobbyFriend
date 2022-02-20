@@ -15,6 +15,8 @@ enum QueueTarget {
     case requestFriend(idToken: String, RequestFriendParm)
     case acceptFriend(idToken: String, AcceptFriendParm)
     case userCheckMatch(idToken: String)
+    case rateUser(idToken: String, Evaluation, userId: String)
+    case dodgeMatching(idToken: String, otherUid)
 }
 
 extension QueueTarget: TargetType {
@@ -37,7 +39,10 @@ extension QueueTarget: TargetType {
             return "queue/hobbyaccept"
         case .userCheckMatch:
             return "queue/myQueueState"
-        
+        case .rateUser(_, _, let userId):
+            return "queue/rate/\(userId)"
+        case .dodgeMatching:
+            return "queue/dodge"
         }
     }
     
@@ -55,7 +60,10 @@ extension QueueTarget: TargetType {
             return .post
         case .userCheckMatch:
             return .get
-        
+        case .rateUser:
+            return .post
+        case .dodgeMatching:
+            return .post
         }
     }
     
@@ -93,6 +101,18 @@ extension QueueTarget: TargetType {
             
         case .userCheckMatch:
             return .requestPlain
+            
+        case .rateUser(_, let parm, _):
+            return .requestParameters(parameters: [
+                "otheruid": parm.otheruid,
+                "reportedReputation": parm.reportedReputation,
+                "comment": parm.comment
+                
+            ], encoding: URLEncoding.default)
+        case .dodgeMatching(_, let parm):
+            return .requestParameters(parameters: [
+               "otheruid": parm.otheruid
+            ], encoding: URLEncoding.default)
         }
     }
     
@@ -123,6 +143,15 @@ extension QueueTarget: TargetType {
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
         case .userCheckMatch(let idToken):
+            return [
+                "idtoken": idToken
+            ]
+        case .rateUser(idToken: let idToken, _, _):
+            return [
+                "idtoken": idToken,
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+        case .dodgeMatching(idToken: let idToken, _):
             return [
                 "idtoken": idToken
             ]

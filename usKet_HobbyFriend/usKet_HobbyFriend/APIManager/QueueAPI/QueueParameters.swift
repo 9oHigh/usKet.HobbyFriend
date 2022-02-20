@@ -20,6 +20,7 @@ struct QuestSurroundParm: Codable {
     let lat, long: Double
 }
 
+// 지금보니까 중복이군 나중에 리팩토링
 // MARK: - RequestFriendParm
 struct RequestFriendParm: Codable {
     let otheruid: String
@@ -27,6 +28,11 @@ struct RequestFriendParm: Codable {
 
 // MARK: - AcceptFriendParm
 struct AcceptFriendParm: Codable {
+    let otheruid: String
+}
+
+// MARK: - AcceptFriendParm
+struct otherUid: Codable {
     let otheruid: String
 }
 

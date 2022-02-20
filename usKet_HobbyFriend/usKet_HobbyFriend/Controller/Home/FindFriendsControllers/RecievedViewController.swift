@@ -108,6 +108,13 @@ final class RecievedViewController: BaseViewController {
         
         self.present(alertView, animated: true, completion: nil)
     }
+    
+    private func fetchReviews(reviews: [String]) {
+        let reviews = reviews
+        let reviewViewController = ReviewViewController()
+        reviewViewController.viewModel.reviews = reviews
+        self.navigationController?.pushViewController(reviewViewController, animated: true)
+    }
 }
 extension RecievedViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -127,14 +134,28 @@ extension RecievedViewController: UITableViewDelegate, UITableViewDataSource {
         if viewModel.friends[indexPath.row].reviews.isEmpty {
             
             cell.infoView.foldView.reviewOpenButton.isHidden = true
-        } else {
+            
+        } else if viewModel.friends[indexPath.row].reviews.count > 1 { // 한개초과
             
             cell.infoView.foldView.reviewOpenButton.isHidden = false
+            cell.infoView.foldView.reviewTextView.textColor = R.color.basicBlack()!
+            cell.infoView.foldView.reviewTextView.text = viewModel.friends[indexPath.row].reviews[0]
+            cell.reviewAction = {
+                self.fetchReviews(reviews: self.viewModel.friends[indexPath.row].reviews)
+            }
+        } else { // 한개
+            
+            cell.infoView.foldView.reviewOpenButton.isHidden = true
+            cell.infoView.foldView.reviewTextView.textColor = R.color.basicBlack()!
             cell.infoView.foldView.reviewTextView.text = viewModel.friends[indexPath.row].reviews[0]
         }
 
         cell.buttonAction = {
             self.acceptFriend(self.viewModel.friends[indexPath.row].uid)
+        }
+        
+        cell.reviewAction = {
+            self.fetchReviews(reviews: self.viewModel.friends[indexPath.row].reviews)
         }
         
         if viewModel.friends.count == indexPath.row + 1 {

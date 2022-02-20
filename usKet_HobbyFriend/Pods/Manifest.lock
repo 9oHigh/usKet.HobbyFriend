@@ -18,6 +18,9 @@ PODS:
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
+  - Socket.IO-Client-Swift (16.0.1):
+    - Starscream (~> 4.0)
+  - Starscream (4.0.4)
   - SwiftLint (0.46.2)
   - Tabman (2.11.1):
     - Pageboy (~> 3.6.0)
@@ -28,6 +31,7 @@ DEPENDENCIES:
   - Moya/RxSwift (~> 15.0)
   - RxCocoa (= 6.5.0)
   - RxDataSources
+  - Socket.IO-Client-Swift
   - SwiftLint
   - Tabman
   - Then
@@ -43,6 +47,8 @@ SPEC REPOS:
     - RxDataSources
     - RxRelay
     - RxSwift
+    - Socket.IO-Client-Swift
+    - Starscream
     - SwiftLint
     - Tabman
     - Then
@@ -57,10 +63,12 @@ SPEC CHECKSUMS:
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  Socket.IO-Client-Swift: c116d6dc9fd6be9c259bacfe143f8725bce7d79e
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   SwiftLint: 6bc52a21f0fd44cab9aa2dc8e534fb9f5e3ec507
   Tabman: 792ac76fd1ec95af175c93db880a3c47cabedc91
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: b8addaf857c1befa7e6e045b83d27ceab734dd0a
+PODFILE CHECKSUM: 47ecd2b146f0af29376a82d4ae77792cdbebf443
 
 COCOAPODS: 1.11.2

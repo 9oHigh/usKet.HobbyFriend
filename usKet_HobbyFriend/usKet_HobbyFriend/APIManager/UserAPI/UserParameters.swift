@@ -28,6 +28,12 @@ struct MypageParm: Encodable {
     var hobby: String
 }
 
+struct Evaluation: Codable {
+    let otheruid: String
+    let reportedReputation: [Int]
+    let comment: String
+}
+
 struct FCMtokenParm: Encodable {
     var FCMtoken: String
 }
