@@ -39,7 +39,6 @@ final class FindFriendsViewModel {
         let parm = QuestSurroundParm(region: location.region, lat: location.lat, long: location.long)
         
         QueueAPI.questSurround(idToken: idToken, parm: parm) { friends, statusCode in
-            
             switch statusCode {
             case 200:
                 self.friends = friends

@@ -39,6 +39,7 @@ final class MyInfoViewModel {
         
         UserAPI.withdrawUser(idToken: idToken) { statusCode in
             if statusCode == 200 {
+                
                 Helper.shared.userReset()
                 Helper.shared.registerUserData(userDataType: .startPosition, variable: "onboard")
                 onCompletion(true, nil)

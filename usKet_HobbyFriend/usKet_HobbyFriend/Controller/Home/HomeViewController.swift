@@ -274,21 +274,28 @@ final class HomeViewController: BaseViewController {
     }
     @objc
     private func matchingFriends() {
-        
+
         if locationAuth() {
             if UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matching.rawValue {
-
-                self.transViewController(nextType: .push, controller: FindFriendsViewController())
+                
+                let hobbyViewController = InputHobbyViewController()
+                let findFriendsViewController = FindFriendsViewController()
+                guard let navigationController = navigationController else {
+                    return
+                }
+                navigationController.pushViewController(findFriendsViewController, animated: true)
+                navigationController.setViewControllers([self, hobbyViewController, findFriendsViewController], animated: true)
                 
             } else if UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matched.rawValue {
                 // MARK: - 채팅시작하면 바꾸기
-                self.transViewController(nextType: .push, controller: FindFriendsViewController())
+
             } else {
                 viewModel.getUserInfo { [weak self] user, _, error in
                     guard error == nil else {
                         self?.showToast(message: error!, yPosition: 150)
                         return
                     }
+                    
                     guard let user = user else {
                         self?.showToast(message: "다시 시도해주세요.", yPosition: 150)
                         return
@@ -303,9 +310,7 @@ final class HomeViewController: BaseViewController {
                         
                         let viewController = InputHobbyViewController()
                         viewController.viewModel.friends = self?.passFriends
-//                        
-//                        let controllers: Array = self!.navigationController!.viewControllers
-//                        self?.navigationController!.pushViewController(controllers[2], animated: true)
+                        
                         self?.transViewController(nextType: .push, controller: viewController)
                     }
                 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import RxSwift
 
 enum MatchStatus: String {
     case nothing
@@ -14,8 +15,9 @@ enum MatchStatus: String {
     case matched
 }
 
-enum UserDataType: String {
+enum UserDataType: String, CaseIterable {
     
+    // signup
     case phoneNumber
     case FCMtoken
     case nick
@@ -24,16 +26,36 @@ enum UserDataType: String {
     case gender
     case idToken
     case startPosition
+    
     // MapView
     case startLocation
+    
     // Matching status
     case isMatch
+    
+    // Myinfo
+    case startAge
+    case lastAge
+    case hobby
+    case searchable
+    
+    func reset() {
+        
+        for item in UserDataType.allCases {
+            if item == .FCMtoken {
+                continue
+            } else {
+                UserDefaults.standard.removeObject(forKey: item.rawValue)
+            }
+        }
+    }
 }
 
 final class Helper {
     
     // 싱글톤 - 유저디포트도 싱글톤이니까 싱싱글톤! 익스텐션으로 만들면 더 좋으려나
     static let shared = Helper()
+    var apiTimer: Timer?
     var myLocation =  MyLocation(region: 0, lat: 0, long: 0)
     
     func registerUserData(userDataType: UserDataType, variable: String ) {
@@ -49,17 +71,9 @@ final class Helper {
         return startPosition
     }
     
-    // 회원탈퇴시 모든 값을 제거
     func userReset() {
         
-        UserDefaults.standard.removeObject(forKey: "phoneNumber")
-        UserDefaults.standard.removeObject(forKey: "nick")
-        UserDefaults.standard.removeObject(forKey: "birth")
-        UserDefaults.standard.removeObject(forKey: "email")
-        UserDefaults.standard.removeObject(forKey: "gender")
-        UserDefaults.standard.removeObject(forKey: "idToken")
-        UserDefaults.standard.removeObject(forKey: "startPosition")
-        
+        UserDataType.idToken.reset()
     }
     // 유저 디포트에 바로 저장해주자.
     func getIdToken(refresh: Bool, onCompletion : @escaping (String?) -> Void) {
@@ -89,7 +103,7 @@ final class Helper {
 
 // Left Aligned
 class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attributes = super.layoutAttributesForElements(in: rect)
         

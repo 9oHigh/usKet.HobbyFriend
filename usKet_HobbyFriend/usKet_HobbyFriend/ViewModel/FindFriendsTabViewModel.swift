@@ -15,7 +15,7 @@ final class FindFriendsTabViewModel {
         let requestUid = RequestFriendParm(otheruid: parm)
         
         QueueAPI.requestFriend(idToken: Helper.shared.putIdToken(), parm: requestUid) { statusCode in
-            print("요청: ", statusCode)
+
             switch statusCode {
             case 200 :
                 onCompletion("취미 함께 하기 요청을 보냈습니다", false)
@@ -39,7 +39,7 @@ final class FindFriendsTabViewModel {
         let acceptUid = AcceptFriendParm(otheruid: parm)
         
         QueueAPI.acceptFriend(idToken: Helper.shared.putIdToken(), parm: acceptUid) { statusCode in
-            print("수락", statusCode)
+
             switch statusCode {
             case 200:
                 Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.matched.rawValue)

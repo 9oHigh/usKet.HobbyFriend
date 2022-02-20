@@ -26,6 +26,7 @@ class FindFriendsTableViewCell: UITableViewCell {
         }
         
         infoView.backgroundView.background.layer.cornerRadius = 15
+        infoView.foldView.reviewTextView.textContainer.maximumNumberOfLines = 2
         infoView.button.addTarget(self, action: #selector(requestFriend), for: .touchUpInside)
         
         selectionStyle = .none
