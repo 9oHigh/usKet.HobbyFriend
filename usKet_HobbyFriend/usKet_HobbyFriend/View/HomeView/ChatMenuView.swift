@@ -31,6 +31,7 @@ class ChatMenuView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = R.color.basicWhite()!
         setUI()
         setConstraints()
     }
@@ -45,21 +46,24 @@ class ChatMenuView: UIView {
     func setConstraints() {
         
         reportButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().multipliedBy(0.5)
+            make.centerX.equalToSuperview().multipliedBy(0.4)
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(75)
+            make.width.equalTo(90)
+            make.height.equalTo(75)
         }
         
         cancelButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(75)
+            make.width.equalTo(90)
+            make.height.equalTo(75)
         }
         
         reviewButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().multipliedBy(1.5)
+            make.centerX.equalToSuperview().multipliedBy(1.6)
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(75)
+            make.width.equalTo(90)
+            make.height.equalTo(75)
         }
     }
     

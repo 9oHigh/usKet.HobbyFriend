@@ -56,9 +56,12 @@
 		4CB79A2B27B92494002EA75B /* FindFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */; };
 		4CB79A2E27B93806002EA75B /* ArroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2D27B93806002EA75B /* ArroundViewController.swift */; };
 		4CB79A3027B9382A002EA75B /* RecievedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2F27B9382A002EA75B /* RecievedViewController.swift */; };
-		4CB79A3227B93F50002EA75B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A3127B93F50002EA75B /* R.generated.swift */; };
 		4CDEE36827C2AA01001EF015 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4CDEE36727C2AA01001EF015 /* FirebaseAuth */; };
 		4CDEE36A27C2AA01001EF015 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 4CDEE36927C2AA01001EF015 /* FirebaseMessaging */; };
+		4CDEE36C27C399B5001EF015 /* ChattingViewMyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE36B27C399B5001EF015 /* ChattingViewMyCell.swift */; };
+		4CDEE37027C3CCE6001EF015 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE36F27C3CCE6001EF015 /* R.generated.swift */; };
+		4CDEE37227C41382001EF015 /* ChattingViewYourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37127C41382001EF015 /* ChattingViewYourCell.swift */; };
+		4CDEE37427C4234D001EF015 /* ShowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37327C4234D001EF015 /* ShowDetailView.swift */; };
 		4CE0FC0027B11F3700EA1C18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */; };
 		4CE0FC0427B13B1100EA1C18 /* QueueTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */; };
 		4CE0FC0827B13CDF00EA1C18 /* QueueParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC0727B13CDF00EA1C18 /* QueueParameters.swift */; };
@@ -146,7 +149,10 @@
 		4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsViewController.swift; sourceTree = "<group>"; };
 		4CB79A2D27B93806002EA75B /* ArroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArroundViewController.swift; sourceTree = "<group>"; };
 		4CB79A2F27B9382A002EA75B /* RecievedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecievedViewController.swift; sourceTree = "<group>"; };
-		4CB79A3127B93F50002EA75B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		4CDEE36B27C399B5001EF015 /* ChattingViewMyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewMyCell.swift; sourceTree = "<group>"; };
+		4CDEE36F27C3CCE6001EF015 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		4CDEE37127C41382001EF015 /* ChattingViewYourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewYourCell.swift; sourceTree = "<group>"; };
+		4CDEE37327C4234D001EF015 /* ShowDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailView.swift; sourceTree = "<group>"; };
 		4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTarget.swift; sourceTree = "<group>"; };
 		4CE0FC0727B13CDF00EA1C18 /* QueueParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueParameters.swift; sourceTree = "<group>"; };
@@ -257,7 +263,7 @@
 				4C0D75ED27A27AA000566CC0 /* MyInfoCollectionView.swift */,
 				4C5F578C27B6D79D00F6DFA3 /* CollectionSectionHeader.swift */,
 				4CE8E88527BAA32B008DEA9D /* NoFriendsView.swift */,
-				4C33568727C2934900F1A990 /* ChatMenuView.swift */,
+				4CDEE37327C4234D001EF015 /* ShowDetailView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -300,6 +306,8 @@
 				4C5F578427B5730700F6DFA3 /* InputHobbytableViewCell.swift */,
 				4C5F578827B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift */,
 				4CE8E88727BAD672008DEA9D /* FindFriendsTableViewCell.swift */,
+				4CDEE36B27C399B5001EF015 /* ChattingViewMyCell.swift */,
+				4CDEE37127C41382001EF015 /* ChattingViewYourCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -429,6 +437,7 @@
 			children = (
 				4CE0FC1327B2669500EA1C18 /* HomeView.swift */,
 				4C5F577C27B3E6C800F6DFA3 /* AnnotationView.swift */,
+				4C33568727C2934900F1A990 /* ChatMenuView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -446,7 +455,7 @@
 		4CF7756C2797B156009CC655 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				4CB79A3127B93F50002EA75B /* R.generated.swift */,
+				4CDEE36F27C3CCE6001EF015 /* R.generated.swift */,
 				4C0DBBDE279529DA005DBE66 /* Assets.xcassets */,
 				4CF7756D2797B16A009CC655 /* NotoSansKR-Medium.otf */,
 				4CF7756E2797B16A009CC655 /* NotoSansKR-Regular.otf */,
@@ -678,6 +687,7 @@
 				4CE0FC1227B18E2600EA1C18 /* HomeViewModel.swift in Sources */,
 				4C33567B27C2011700F1A990 /* ReviewViewController.swift in Sources */,
 				4C01D97D27AE6DFD00C039A9 /* UserTarget.swift in Sources */,
+				4CDEE37227C41382001EF015 /* ChattingViewYourCell.swift in Sources */,
 				4CF7757C2797EF15009CC655 /* UIFont + Extension.swift in Sources */,
 				4C33568627C2838400F1A990 /* ChatViewModel.swift in Sources */,
 				4CE8E88327B955D9008DEA9D /* FindFriendsViewModel.swift in Sources */,
@@ -710,10 +720,12 @@
 				4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */,
 				4C33568227C265C800F1A990 /* ChatParameters.swift in Sources */,
 				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
+				4CDEE37427C4234D001EF015 /* ShowDetailView.swift in Sources */,
 				4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */,
 				4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */,
 				4C5F578D27B6D79D00F6DFA3 /* CollectionSectionHeader.swift in Sources */,
 				4C0D75D927A1266600566CC0 /* MyInfoFoldView.swift in Sources */,
+				4CDEE37027C3CCE6001EF015 /* R.generated.swift in Sources */,
 				4C0D75AB279B0D4100566CC0 /* BirthView.swift in Sources */,
 				4CE8E88A27BAD74A008DEA9D /* FindFriendsTabViewModel.swift in Sources */,
 				4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */,
@@ -725,8 +737,8 @@
 				4C0D75B4279D89F200566CC0 /* ShopViewController.swift in Sources */,
 				4CE0FC0C27B152D200EA1C18 /* Match.swift in Sources */,
 				4C5F578927B5918F00F6DFA3 /* InputHobbyCollectionViewCell.swift in Sources */,
+				4CDEE36C27C399B5001EF015 /* ChattingViewMyCell.swift in Sources */,
 				4CE0FC0A27B151FE00EA1C18 /* QueueAPI.swift in Sources */,
-				4CB79A3227B93F50002EA75B /* R.generated.swift in Sources */,
 				4CE0FC1427B2669500EA1C18 /* HomeView.swift in Sources */,
 				4C01D97B27AE584200C039A9 /* UserParameters.swift in Sources */,
 				4C01D98027AE6E6E00C039A9 /* UserAPI.swift in Sources */,

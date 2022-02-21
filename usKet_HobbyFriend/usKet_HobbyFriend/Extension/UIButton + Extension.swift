@@ -41,6 +41,7 @@ extension UIButton.Configuration {
         
         config.image = image
         config.imagePlacement = .top
+        config.imagePadding = 5
         
         return config
     }

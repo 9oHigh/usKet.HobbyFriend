@@ -104,9 +104,9 @@ final class InputHobbyViewController: BaseViewController {
         }
         
         findButton.snp.makeConstraints { make in
-            make.bottom.equalTo(-25)
+            make.bottom.equalTo(-30)
             make.centerX.equalToSuperview()
-            make.width.equalTo(view.snp.width).inset(30)
+            make.width.equalTo(view.snp.width).inset(20)
             make.height.equalTo(50)
         }
     }
@@ -236,7 +236,7 @@ final class InputHobbyViewController: BaseViewController {
             }
             Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.matching.rawValue)
             
-            self.transViewController(nextType: .push, controller: FindFriendsViewController())
+            self.transViewController(nextType: .push, controller: ChattingViewController())
         }
     }
 }

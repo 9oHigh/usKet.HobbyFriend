@@ -288,6 +288,7 @@ final class HomeViewController: BaseViewController {
                 
             } else if UserDefaults.standard.string(forKey: UserDataType.isMatch.rawValue) == MatchStatus.matched.rawValue {
                 // MARK: - 채팅시작하면 바꾸기
+                self.transViewController(nextType: .push, controller: ChattingViewController())
 
             } else {
                 viewModel.getUserInfo { [weak self] user, _, error in

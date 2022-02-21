@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
-        
+
         switch Helper.shared.userState() {
         // 온보딩
         case "onboard" :
@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // home
         case "home":
             UserAPI.getUser(idToken: Helper.shared.putIdToken()) { user, _ in
-                
+
                 guard let user = user else {
                     return
                 }

@@ -33,6 +33,15 @@ final class MyInfoViewModel {
         MyTitle(title: "유익한 시간")
     ])
     
+    var reportUser = BehaviorSubject<[MyTitle]>(value: [
+        MyTitle(title: "불법/사기"),
+        MyTitle(title: "불편한 언행"),
+        MyTitle(title: "노쇼"),
+        MyTitle(title: "선정성"),
+        MyTitle(title: "인신공격"),
+        MyTitle(title: "기타")
+    ])
+    
     func resetUserInfo(onCompletion : @escaping (Bool, String?) -> Void) {
         
         let idToken = Helper.shared.putIdToken()

@@ -487,7 +487,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 49 images.
+  /// This `R.image` struct is generated, and contains static references to 51 images.
   struct image {
     /// Image `Friends`.
     static let friends = Rswift.ImageResource(bundle: R.hostingBundle, name: "Friends")
@@ -555,6 +555,10 @@ struct R: Rswift.Validatable {
     static let searchHobby = Rswift.ImageResource(bundle: R.hostingBundle, name: "searchHobby")
     /// Image `search`.
     static let search = Rswift.ImageResource(bundle: R.hostingBundle, name: "search")
+    /// Image `send`.
+    static let send = Rswift.ImageResource(bundle: R.hostingBundle, name: "send")
+    /// Image `sendfill`.
+    static let sendfill = Rswift.ImageResource(bundle: R.hostingBundle, name: "sendfill")
     /// Image `sesac_face_1`.
     static let sesac_face_1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac_face_1")
     /// Image `sesac_face_2`.
@@ -816,6 +820,20 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "searchHobby", bundle: ..., traitCollection: ...)`
     static func searchHobby(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.searchHobby, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "send", bundle: ..., traitCollection: ...)`
+    static func send(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.send, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sendfill", bundle: ..., traitCollection: ...)`
+    static func sendfill(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sendfill, compatibleWith: traitCollection)
     }
     #endif
 

@@ -83,15 +83,6 @@ extension AppDelegate: MessagingDelegate {
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
-    // 앱이 종료되는 시점에서 StopFinding + 매치 상태 조정
-    func applicationWillTerminate(_ application: UIApplication) {
-        print(#function)
-        let idToken = Helper.shared.putIdToken()
-        
-        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
-        
-        QueueAPI.stopFinding(idToken: idToken) { _ in }
-    }
 }
 // 노티수신(Firebase)
 extension AppDelegate: UNUserNotificationCenterDelegate {
