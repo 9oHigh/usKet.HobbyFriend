@@ -39,7 +39,7 @@ class ChattingViewMyCell: UITableViewCell {
         contentView.addSubview(date)
         
         messageBox.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(5)
+            make.trailing.equalToSuperview().inset(15)
             make.width.equalToSuperview().multipliedBy(0.75)
             make.bottom.equalToSuperview().inset(5)
             make.centerY.equalToSuperview()

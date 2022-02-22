@@ -125,7 +125,7 @@ final class ArroundViewController: BaseViewController {
     }
     
     private func fetchReviews(reviews: [String]) {
-        print(reviews)
+        
         let reviews = reviews
         let reviewViewController = ReviewViewController()
         reviewViewController.viewModel.reviews = reviews
