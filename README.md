@@ -123,3 +123,5 @@
 [4] [셀안의 버튼에 이벤트주기](https://pooh-footprints.tistory.com/46)
 
 [5] [NavigationController의 SetViewController](https://pooh-footprints.tistory.com/47)
+
+[6] [intrinsicContentSize를 이용해 셀의 크기를 동적으로 사용하기](https://pooh-footprints.tistory.com/50)
