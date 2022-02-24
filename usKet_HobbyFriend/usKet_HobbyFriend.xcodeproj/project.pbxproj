@@ -20,7 +20,6 @@
 		4C0D75AD279B208300566CC0 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75AC279B208300566CC0 /* Date + Extension.swift */; };
 		4C0D75B2279D892A00566CC0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B1279D892A00566CC0 /* HomeViewController.swift */; };
 		4C0D75B4279D89F200566CC0 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B3279D89F200566CC0 /* ShopViewController.swift */; };
-		4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */; };
 		4C0D75B8279D8A5E00566CC0 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */; };
 		4C0D75C7279FF19B00566CC0 /* ProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */; };
 		4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */; };
@@ -53,6 +52,8 @@
 		4C62F7D327A2E143004C5BEC /* MyInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */; };
 		4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */; };
 		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
+		4C81F06E27C54F8B003355C4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4C81F06D27C54F8B003355C4 /* Realm */; };
+		4C81F07027C54F8B003355C4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C81F06F27C54F8B003355C4 /* RealmSwift */; };
 		4CB79A2B27B92494002EA75B /* FindFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */; };
 		4CB79A2E27B93806002EA75B /* ArroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2D27B93806002EA75B /* ArroundViewController.swift */; };
 		4CB79A3027B9382A002EA75B /* RecievedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2F27B9382A002EA75B /* RecievedViewController.swift */; };
@@ -62,6 +63,7 @@
 		4CDEE37027C3CCE6001EF015 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE36F27C3CCE6001EF015 /* R.generated.swift */; };
 		4CDEE37227C41382001EF015 /* ChattingViewYourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37127C41382001EF015 /* ChattingViewYourCell.swift */; };
 		4CDEE37427C4234D001EF015 /* ShowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37327C4234D001EF015 /* ShowDetailView.swift */; };
+		4CDEE37827C54973001EF015 /* ChatRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37727C54973001EF015 /* ChatRealmModel.swift */; };
 		4CE0FC0027B11F3700EA1C18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */; };
 		4CE0FC0427B13B1100EA1C18 /* QueueTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */; };
 		4CE0FC0827B13CDF00EA1C18 /* QueueParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC0727B13CDF00EA1C18 /* QueueParameters.swift */; };
@@ -112,7 +114,6 @@
 		4C0D75AC279B208300566CC0 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		4C0D75B1279D892A00566CC0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4C0D75B3279D89F200566CC0 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
-		4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		4C0D75B7279D8A5E00566CC0 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		4C0D75C6279FF19B00566CC0 /* ProfileNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameView.swift; sourceTree = "<group>"; };
 		4C0D75CC27A0432E00566CC0 /* MyInfoDetailVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDetailVIewController.swift; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		4CDEE36F27C3CCE6001EF015 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		4CDEE37127C41382001EF015 /* ChattingViewYourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewYourCell.swift; sourceTree = "<group>"; };
 		4CDEE37327C4234D001EF015 /* ShowDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailView.swift; sourceTree = "<group>"; };
+		4CDEE37727C54973001EF015 /* ChatRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRealmModel.swift; sourceTree = "<group>"; };
 		4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTarget.swift; sourceTree = "<group>"; };
 		4CE0FC0727B13CDF00EA1C18 /* QueueParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueParameters.swift; sourceTree = "<group>"; };
@@ -190,6 +192,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C81F07027C54F8B003355C4 /* RealmSwift in Frameworks */,
+				4C81F06E27C54F8B003355C4 /* Realm in Frameworks */,
 				4CDEE36A27C2AA01001EF015 /* FirebaseMessaging in Frameworks */,
 				4C0DBC0027955935005DBE66 /* SnapKit in Frameworks */,
 				4CDEE36827C2AA01001EF015 /* FirebaseAuth in Frameworks */,
@@ -236,14 +240,6 @@
 				4C0D75B3279D89F200566CC0 /* ShopViewController.swift */,
 			);
 			path = Shop;
-			sourceTree = "<group>";
-		};
-		4C0D75BB279ECE1B00566CC0 /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				4C0D75B5279D8A1900566CC0 /* FriendsViewController.swift */,
-			);
-			path = Friends;
 			sourceTree = "<group>";
 		};
 		4C0D75BC279ECE2300566CC0 /* MyInfo */ = {
@@ -357,6 +353,7 @@
 				4C0D759E279A734000566CC0 /* User.swift */,
 				4CE0FC0B27B152D200EA1C18 /* Match.swift */,
 				4CE0FC0D27B1537C00EA1C18 /* Friends.swift */,
+				4CDEE37727C54973001EF015 /* ChatRealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,7 +379,6 @@
 				4CF775912798316F009CC655 /* HomeTabViewController.swift */,
 				4C0D75B9279ECDEC00566CC0 /* Home */,
 				4C0D75BA279ECDFF00566CC0 /* Shop */,
-				4C0D75BB279ECE1B00566CC0 /* Friends */,
 				4C0D75BC279ECE2300566CC0 /* MyInfo */,
 			);
 			path = Controller;
@@ -551,6 +547,8 @@
 				4CF77598279837EA009CC655 /* IQKeyboardManagerSwift */,
 				4CDEE36727C2AA01001EF015 /* FirebaseAuth */,
 				4CDEE36927C2AA01001EF015 /* FirebaseMessaging */,
+				4C81F06D27C54F8B003355C4 /* Realm */,
+				4C81F06F27C54F8B003355C4 /* RealmSwift */,
 			);
 			productName = usKet_HobbyFriend;
 			productReference = 4C0DBBD2279529D8005DBE66 /* usKet_HobbyFriend.app */;
@@ -585,6 +583,7 @@
 				4CF7756027970B26009CC655 /* XCRemoteSwiftPackageReference "R.swift" */,
 				4CF77597279837EA009CC655 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				4CDEE36627C2AA01001EF015 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4C81F06C27C54F8B003355C4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 4C0DBBD3279529D8005DBE66 /* Products */;
 			projectDirPath = "";
@@ -719,6 +718,7 @@
 				4C0D75A9279AD90E00566CC0 /* GenderViewController.swift in Sources */,
 				4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */,
 				4C33568227C265C800F1A990 /* ChatParameters.swift in Sources */,
+				4CDEE37827C54973001EF015 /* ChatRealmModel.swift in Sources */,
 				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
 				4CDEE37427C4234D001EF015 /* ShowDetailView.swift in Sources */,
 				4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */,
@@ -728,7 +728,6 @@
 				4CDEE37027C3CCE6001EF015 /* R.generated.swift in Sources */,
 				4C0D75AB279B0D4100566CC0 /* BirthView.swift in Sources */,
 				4CE8E88A27BAD74A008DEA9D /* FindFriendsTabViewModel.swift in Sources */,
-				4C0D75B6279D8A1900566CC0 /* FriendsViewController.swift in Sources */,
 				4C33567D27C23FDC00F1A990 /* ChattingViewController.swift in Sources */,
 				4CF7758527982B45009CC655 /* CertificationViewController.swift in Sources */,
 				4C0D75B2279D892A00566CC0 /* HomeViewController.swift in Sources */,
@@ -979,6 +978,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4C81F06C27C54F8B003355C4 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 10.18.0;
+			};
+		};
 		4CDEE36627C2AA01001EF015 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1010,6 +1017,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4C0DBBFE27955935005DBE66 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4C81F06D27C54F8B003355C4 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C81F06C27C54F8B003355C4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		4C81F06F27C54F8B003355C4 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C81F06C27C54F8B003355C4 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		4CDEE36727C2AA01001EF015 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

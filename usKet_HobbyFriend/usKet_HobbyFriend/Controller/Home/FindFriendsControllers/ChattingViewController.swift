@@ -63,7 +63,7 @@ final class ChattingViewController: BaseViewController {
     }
     
     override func setConfigure() {
-       
+        // View
         title = viewModel.otherNick
         self.hiddenNavBar(false)
         self.tabBarController?.tabBar.isHidden = true
@@ -137,7 +137,7 @@ final class ChattingViewController: BaseViewController {
                 self.resetMenu()
                 let reviewController = ShowDetailView()
                 // 유저 아이디설정
-                reviewController.setUpViewController(main: "리뷰 등록", sub: "\(self.viewModel.otherNick)님과의 취미활동은 어떠셨나요?", type: 0, btnTitle: "리뷰 등록하기")
+                reviewController.setUpViewController(main: "리뷰 등록", sub: "\(self.viewModel.otherNick ?? "새싹")님과의 취미활동은 어떠셨나요?", type: 0, btnTitle: "리뷰 등록하기")
                 reviewController.modalPresentationStyle = .overCurrentContext
                 self.present(reviewController, animated: true, completion: nil)
                 
