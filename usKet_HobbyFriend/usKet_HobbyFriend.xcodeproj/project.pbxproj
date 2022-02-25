@@ -64,7 +64,6 @@
 		4CDEE37027C3CCE6001EF015 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE36F27C3CCE6001EF015 /* R.generated.swift */; };
 		4CDEE37227C41382001EF015 /* ChattingViewYourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37127C41382001EF015 /* ChattingViewYourCell.swift */; };
 		4CDEE37427C4234D001EF015 /* ShowDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37327C4234D001EF015 /* ShowDetailView.swift */; };
-		4CDEE37827C54973001EF015 /* ChatRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDEE37727C54973001EF015 /* ChatRealmModel.swift */; };
 		4CE0FC0027B11F3700EA1C18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */; };
 		4CE0FC0427B13B1100EA1C18 /* QueueTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */; };
 		4CE0FC0827B13CDF00EA1C18 /* QueueParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0FC0727B13CDF00EA1C18 /* QueueParameters.swift */; };
@@ -156,7 +155,6 @@
 		4CDEE36F27C3CCE6001EF015 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = usKet_HobbyFriend/Resource/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		4CDEE37127C41382001EF015 /* ChattingViewYourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewYourCell.swift; sourceTree = "<group>"; };
 		4CDEE37327C4234D001EF015 /* ShowDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailView.swift; sourceTree = "<group>"; };
-		4CDEE37727C54973001EF015 /* ChatRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRealmModel.swift; sourceTree = "<group>"; };
 		4CE0FBFF27B11F3700EA1C18 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		4CE0FC0327B13B1100EA1C18 /* QueueTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTarget.swift; sourceTree = "<group>"; };
 		4CE0FC0727B13CDF00EA1C18 /* QueueParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueParameters.swift; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 				4C0D759E279A734000566CC0 /* User.swift */,
 				4CE0FC0B27B152D200EA1C18 /* Match.swift */,
 				4CE0FC0D27B1537C00EA1C18 /* Friends.swift */,
-				4CDEE37727C54973001EF015 /* ChatRealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -722,7 +719,6 @@
 				4C0D75A9279AD90E00566CC0 /* GenderViewController.swift in Sources */,
 				4CF775802797FB20009CC655 /* BaseViewController.swift in Sources */,
 				4C33568227C265C800F1A990 /* ChatParameters.swift in Sources */,
-				4CDEE37827C54973001EF015 /* ChatRealmModel.swift in Sources */,
 				4CF7757E2797F19E009CC655 /* String + Extension.swift in Sources */,
 				4CDEE37427C4234D001EF015 /* ShowDetailView.swift in Sources */,
 				4C62F7D527A2F138004C5BEC /* MyInfoSpecificView.swift in Sources */,

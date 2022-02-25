@@ -41,7 +41,8 @@ final class ChattingViewController: BaseViewController {
     let viewModel = ChatViewModel()
     let disposeBag = DisposeBag()
     
-    var myToggle: Bool = true
+    var defaultDate: String = "2000-01-01T00:00:00.000Z"
+    let placeholder: String = "메세지를 입력하세요"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,9 @@ final class ChattingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
+        // Socket
         SocketIOManager.shared.establishConnection()
+        NotificationCenter.default.addObserver(self, selector: #selector(getMessage(push:)), name: NSNotification.Name("getMessage"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,7 +84,7 @@ final class ChattingViewController: BaseViewController {
         tableView.dataSource = self
         tableView.register(ChattingViewMyCell.self, forCellReuseIdentifier: ChattingViewMyCell.identifier)
         tableView.register(ChattingViewYourCell.self, forCellReuseIdentifier: ChattingViewYourCell.identifier)
-        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList?.count ?? 0, section: 0), at: .bottom, animated: false)
+        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = R.color.basicWhite()!
@@ -94,6 +97,8 @@ final class ChattingViewController: BaseViewController {
         
         // showMenu
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.more()!, style: .plain, target: self, action: #selector(setMenu))
+        
+        self.sendButton.addTarget(self, action: #selector(sendMessage(_:)), for: .touchUpInside)
         
         // messageView
         messageTextView.delegate = self
@@ -160,7 +165,7 @@ final class ChattingViewController: BaseViewController {
                                 self.navigationController?.popToRootViewController(animated: true)
                                 return
                             }
-                            self.showToast(message: error)
+                            self.showToast(message: error, yPosition: 150)
                         }
                     })
                     .disposed(by: self.disposeBag)
@@ -187,7 +192,7 @@ final class ChattingViewController: BaseViewController {
                             guard let error = error else {
                                 return
                             }
-                            self.showToast(message: error)
+                            self.showToast(message: error, yPosition: 150)
                         }
                         reviewController.dismiss(animated: true, completion: nil)
                         self.navigationController?.popToRootViewController(animated: true)
@@ -224,7 +229,7 @@ final class ChattingViewController: BaseViewController {
                                 self.navigationController?.popToRootViewController(animated: true)
                                 return
                             }
-                            self.showToast(message: error)
+                            self.showToast(message: error, yPosition: 150)
                         }
                     })
                     .disposed(by: self.disposeBag)
@@ -244,16 +249,60 @@ final class ChattingViewController: BaseViewController {
                     self?.viewModel.userCheckIsMatch { _, _ in }
                 }
             } else {
-                self?.showToast(message: error)
+                self?.showToast(message: error, yPosition: 150)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 guard toHome != nil else {
                     return
                 }
-                
-                self?.navigationController?.popToRootViewController(animated: true)
+                self?.showToast(message: error, yPosition: 150)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
             }
         }
+        
+        viewModel.fetchChat(userUid: self.viewModel.otherUid ?? "", lastchatDate: self.defaultDate) { error in
+            guard let error = error else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                return
+            }
+            if error == "토큰"{
+                self.viewModel.fetchChat(userUid: self.viewModel.otherUid ?? "", lastchatDate: self.defaultDate) { error in
+                    guard let error = error else {
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+                        }
+                        return
+                    }
+                    self.showToast(message: error, yPosition: 150)
+                }
+            } else {
+                self.showToast(message: error, yPosition: 150)
+            }
+        }
+    }
+    @objc func getMessage(push: NSNotification) {
+        
+        let from = push.userInfo!["from"] as! String
+        let to = push.userInfo!["to"] as! String
+        let chat = push.userInfo!["chat"] as! String
+        let id = push.userInfo!["_id"] as! String
+        let createdAt = push.userInfo!["createdAt"] as! String
+        let v = push.userInfo!["__v"] as! Int
+        
+        let chatting = Payload(id: id, v: v, to: to, from: from, chat: chat, createdAt: createdAt)
+        
+        self.viewModel.chatList.append(chatting)
+        
+        self.tableView.reloadData()
+        
+        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+        
     }
     
     @objc
@@ -290,6 +339,35 @@ final class ChattingViewController: BaseViewController {
         let controllers = navigationController.viewControllers
         self.navigationController?.popToViewController(controllers[0], animated: true)
     }
+    
+    @objc
+    func sendMessage(_ sender: UIButton) {
+        if messageTextView.text != self.placeholder && messageTextView.text != nil {
+            guard let text = messageTextView.text else {
+                return
+            }
+            viewModel.sendChat(userUid: self.viewModel.otherUid ?? "", chat: text) { error in
+                guard let error = error else {
+                    self.tableView.reloadData()
+                    self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+                    return
+                }
+                if error == "토큰"{
+                    self.viewModel.sendChat(userUid: self.viewModel.otherUid ?? "", chat: text) { _ in }
+                } else {
+                    self.showToast(message: error, yPosition: 150)
+                    if error == "약속이 종료되어 채팅을 보낼 수 없습니다" {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
+                    }
+                }
+            }
+        } else {
+            self.showToast(message: "내용을 입력해주세요", yPosition: 150)
+        }
+    }
 }
 extension ChattingViewController: UITextViewDelegate {
     
@@ -324,29 +402,31 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return viewModel.chatList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if myToggle {
+        // 나
+        if viewModel.chatList[indexPath.row].id == UserDefaults.standard.string(forKey: "uid") {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingViewMyCell.identifier, for: indexPath) as? ChattingViewMyCell else {
                 return UITableViewCell()
             }
-            cell.messageBox.text = "바보는 멍청이고 멍청이는 바보야,바보는 멍청이고 멍청이는 바보야,바보는 멍청이고 멍청이는 바보야"
+            cell.messageBox.text = viewModel.chatList[indexPath.row].chat
+            let renewDate = viewModel.chatList[indexPath.row].createdAt.toDate().toTimeString()
             
-            cell.date.text = "12.01"
-            myToggle.toggle()
+            cell.date.text = renewDate
+            
             return cell
-            
-        } else {
+        } else { // 너
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingViewYourCell.identifier, for: indexPath) as? ChattingViewYourCell else {
                 return UITableViewCell()
             }
-            cell.messageBox.text = "홀라때 홀라때 홀라때 홀라때 홀라때 홀라때 홀라때 홀라때 홀라때 홀라때"
+            cell.messageBox.text = viewModel.chatList[indexPath.row].chat
+            let renewDate = viewModel.chatList[indexPath.row].createdAt.toDate().toTimeString()
             
-            cell.date.text = "12.01"
-            myToggle.toggle()
+            cell.date.text = renewDate
+            
             return cell
         }
     }
@@ -366,7 +446,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             $0.font = .toTitleM14
             $0.textColor = R.color.basicBlack()!
             $0.textAlignment = .center
-            $0.text = "달콩님과 매칭되었습니다"
+            $0.text = "\(self.viewModel.otherNick ?? "새싹")님과 매칭되었습니다"
         }
         
         let informLabel = UILabel().then {

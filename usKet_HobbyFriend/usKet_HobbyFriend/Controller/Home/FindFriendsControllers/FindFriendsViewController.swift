@@ -12,8 +12,6 @@ import Then
 import RxSwift
 import RxCocoa
 
-//https://developer-p.tistory.com/161 참고
-
 final class FindFriendsViewController: TabmanViewController {
     
     private var viewControllers: [UIViewController] = []
@@ -79,7 +77,6 @@ final class FindFriendsViewController: TabmanViewController {
         
         // View
         title = "새싹찾기"
-        self.tabBarController?.tabBar.isHidden = true
         
         // backToHome
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.letfArrow()!, style: .plain, target: self, action: #selector(backToInitial))

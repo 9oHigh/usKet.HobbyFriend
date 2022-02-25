@@ -236,7 +236,7 @@ final class InputHobbyViewController: BaseViewController {
             }
             Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.matching.rawValue)
             
-            self.transViewController(nextType: .push, controller: ChattingViewController())
+            self.transViewController(nextType: .push, controller: FindFriendsViewController())
         }
     }
 }
