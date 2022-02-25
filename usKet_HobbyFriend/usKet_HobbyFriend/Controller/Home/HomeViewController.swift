@@ -301,6 +301,9 @@ final class HomeViewController: BaseViewController {
                         self?.showToast(message: "다시 시도해주세요.", yPosition: 150)
                         return
                     }
+                    
+                    Helper.shared.registerUserData(userDataType: .uid, variable: user.uid)
+                    
                     if user.gender == FriendType.unkowned.rawValue {
                         self?.showToast(message: "성별을 선택해야 매칭이 가능합니다.\n내정보로 이동합니다.", yPosition: 150)
                         

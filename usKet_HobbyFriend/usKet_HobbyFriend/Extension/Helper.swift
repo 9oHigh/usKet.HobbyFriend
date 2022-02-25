@@ -26,6 +26,7 @@ enum UserDataType: String, CaseIterable {
     case gender
     case idToken
     case startPosition
+    case uid
     
     // MapView
     case startLocation
@@ -72,9 +73,10 @@ final class Helper {
     }
     
     func userReset() {
-        
+
         UserDataType.idToken.reset()
     }
+    
     // 유저 디포트에 바로 저장해주자.
     func getIdToken(refresh: Bool, onCompletion : @escaping (String?) -> Void) {
         let currentUser = Auth.auth().currentUser
@@ -110,7 +112,7 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         var leftMargin = sectionInset.left
         var maxY: CGFloat = -1.0
         attributes?.forEach { layoutAttribute in
-            if layoutAttribute.representedElementKind == nil {
+            if layoutAttribute.representedElementKind == nil { // 섹션헤더 제외
                 if layoutAttribute.frame.origin.y >= maxY {
                     leftMargin = sectionInset.left
                 }

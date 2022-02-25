@@ -9,6 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Then
+import SocketIO
 
 final class ChattingViewController: BaseViewController {
     
@@ -55,6 +56,12 @@ final class ChattingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
+        SocketIOManager.shared.establishConnection()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        SocketIOManager.shared.closeConnection()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -74,6 +81,7 @@ final class ChattingViewController: BaseViewController {
         tableView.dataSource = self
         tableView.register(ChattingViewMyCell.self, forCellReuseIdentifier: ChattingViewMyCell.identifier)
         tableView.register(ChattingViewYourCell.self, forCellReuseIdentifier: ChattingViewYourCell.identifier)
+        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList?.count ?? 0, section: 0), at: .bottom, animated: false)
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = R.color.basicWhite()!
@@ -112,7 +120,7 @@ final class ChattingViewController: BaseViewController {
             make.bottom.equalTo(messageTextView.snp.top).offset(-5)
             
         }
-        
+        // FlexLayout
         messageTextView.snp.makeConstraints { make in
             
             make.width.equalToSuperview().inset(15)
@@ -144,10 +152,16 @@ final class ChattingViewController: BaseViewController {
                 reviewController.checkButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
-                        // (POST, /queue/rate/{id}) 호출
-                        // 성공시 홈으로 이동
-                        reviewController.dismiss(animated: true, completion: nil)
-                        self.navigationController?.popToRootViewController(animated: true)
+                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                        let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reportedReputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
+                        self.viewModel.requestReview(parameter: parm) { error in
+                            guard let error = error else {
+                                reviewController.dismiss(animated: true, completion: nil)
+                                self.navigationController?.popToRootViewController(animated: true)
+                                return
+                            }
+                            self.showToast(message: error)
+                        }
                     })
                     .disposed(by: self.disposeBag)
             })
@@ -167,9 +181,16 @@ final class ChattingViewController: BaseViewController {
                 reviewController.checkButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
-                        // (POST, /user/report) 호출
-                        // dismiss
+                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                        let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reportedReputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
+                        self.viewModel.requestReport(parameter: parm) { error in
+                            guard let error = error else {
+                                return
+                            }
+                            self.showToast(message: error)
+                        }
                         reviewController.dismiss(animated: true, completion: nil)
+                        self.navigationController?.popToRootViewController(animated: true)
                     })
                     .disposed(by: self.disposeBag)
             })
@@ -195,10 +216,16 @@ final class ChattingViewController: BaseViewController {
                 alertView.okButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
-                        // (POST, /queue/dodge) 호출
-                        
-                        alertView.dismiss(animated: true, completion: nil)
-                        self.navigationController?.popToRootViewController(animated: true)
+                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                        let parm = otherUid(otheruid: self.viewModel.otherUid ?? "")
+                        self.viewModel.dodgeMatch(otherUid: parm) { error in
+                            guard let error = error else {
+                                alertView.dismiss(animated: true, completion: nil)
+                                self.navigationController?.popToRootViewController(animated: true)
+                                return
+                            }
+                            self.showToast(message: error)
+                        }
                     })
                     .disposed(by: self.disposeBag)
             })
@@ -208,23 +235,24 @@ final class ChattingViewController: BaseViewController {
     
     func fetchDatas() {
         // view
-        viewModel.userCheckIsMatch {  error, toHome in
+        viewModel.userCheckIsMatch { [weak self]  error, toHome in
             guard let error = error else {
                 return
             }
             if error == "토큰"{
                 DispatchQueue.main.async {
-                    self.viewModel.userCheckIsMatch { _, _ in }
+                    self?.viewModel.userCheckIsMatch { _, _ in }
                 }
             } else {
-                self.showToast(message: error)
+                self?.showToast(message: error)
             }
-            
-            guard toHome != nil else {
-                return
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                guard toHome != nil else {
+                    return
+                }
+                
+                self?.navigationController?.popToRootViewController(animated: true)
             }
-            
-            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     

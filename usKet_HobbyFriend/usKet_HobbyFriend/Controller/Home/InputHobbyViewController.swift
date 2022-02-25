@@ -257,6 +257,7 @@ extension InputHobbyViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        // 섹션헤더
         
         let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionSectionHeader.identifier, for: indexPath) as! CollectionSectionHeader
         
@@ -277,6 +278,8 @@ extension InputHobbyViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.hobbyLabel.text = viewModel.userItems[indexPath.row].hobby
             
         } else {
+            // 여기서 저는
+        // 버튼으로 안하고 그냥 X...
             cell.matchMyColor()
             cell.hobbyLabel.text = viewModel.wantItems[indexPath.row] + "  X"
         }
@@ -287,9 +290,9 @@ extension InputHobbyViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let label = UILabel()
-        
+      
         label.text = indexPath.section == 0 ? viewModel.userItems[indexPath.row].hobby : viewModel.wantItems[indexPath.row] + "  X"
-        
+      
         return CGSize(width: label.intrinsicContentSize.width + 10, height: label.intrinsicContentSize.height + 10)
     }
     

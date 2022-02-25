@@ -54,6 +54,7 @@
 		4C62F7D727A40828004C5BEC /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62F7D627A40828004C5BEC /* AlertView.swift */; };
 		4C81F06E27C54F8B003355C4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4C81F06D27C54F8B003355C4 /* Realm */; };
 		4C81F07027C54F8B003355C4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4C81F06F27C54F8B003355C4 /* RealmSwift */; };
+		4C81F07227C7DEFC003355C4 /* SocketManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C81F07127C7DEFC003355C4 /* SocketManger.swift */; };
 		4CB79A2B27B92494002EA75B /* FindFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */; };
 		4CB79A2E27B93806002EA75B /* ArroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2D27B93806002EA75B /* ArroundViewController.swift */; };
 		4CB79A3027B9382A002EA75B /* RecievedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79A2F27B9382A002EA75B /* RecievedViewController.swift */; };
@@ -147,6 +148,7 @@
 		4C62F7D227A2E143004C5BEC /* MyInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderView.swift; sourceTree = "<group>"; };
 		4C62F7D427A2F138004C5BEC /* MyInfoSpecificView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSpecificView.swift; sourceTree = "<group>"; };
 		4C62F7D627A40828004C5BEC /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		4C81F07127C7DEFC003355C4 /* SocketManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManger.swift; sourceTree = "<group>"; };
 		4CB79A2A27B92494002EA75B /* FindFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsViewController.swift; sourceTree = "<group>"; };
 		4CB79A2D27B93806002EA75B /* ArroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArroundViewController.swift; sourceTree = "<group>"; };
 		4CB79A2F27B9382A002EA75B /* RecievedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecievedViewController.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 		4CF7758C27982EBF009CC655 /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				4C81F07127C7DEFC003355C4 /* SocketManger.swift */,
 				4C01D97E27AE6E3800C039A9 /* UserAPI */,
 				4CE0FC0227B13ACE00EA1C18 /* QueueAPI */,
 				4C33567E27C2653B00F1A990 /* ChatAPI */,
@@ -705,6 +708,7 @@
 				4CF775922798316F009CC655 /* HomeTabViewController.swift in Sources */,
 				4C0D75C7279FF19B00566CC0 /* ProfileNameView.swift in Sources */,
 				4C0D75D727A123E900566CC0 /* MyInfoView.swift in Sources */,
+				4C81F07227C7DEFC003355C4 /* SocketManger.swift in Sources */,
 				4CF775742797CD8F009CC655 /* OnboardViewController.swift in Sources */,
 				4C0D75CD27A0432E00566CC0 /* MyInfoDetailVIewController.swift in Sources */,
 				4C33568027C2655600F1A990 /* ChatTarget.swift in Sources */,

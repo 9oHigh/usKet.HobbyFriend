@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 final class ChatViewModel {
     
     var otherNick: String?
     var otherUid: String?
+    var chatList: [String]?
+    var errorMessage: String = ""
 
     let reviewUser: [MyTitle] = [
         MyTitle(title: "좋은 매너"),
@@ -110,6 +113,57 @@ final class ChatViewModel {
                 onCompletion("다시 시도해주세요")
             }
             
+        }
+    }
+    
+    func requestReport(parameter: Evaluation, onCompletion : @escaping (String?) -> Void ) {
+        
+        UserAPI.reportUser(idToken: Helper.shared.putIdToken(), parameter: parameter) { statusCode in
+            
+            switch statusCode {
+            case 200:
+                onCompletion(nil)
+            case 201:
+                onCompletion("이미 신고접수된 유저입니다")
+            case 401:
+                Helper.shared.getIdToken(refresh: true) { _ in
+                    onCompletion("다시 시도해주세요")
+                }
+            default:
+                onCompletion("다시 시도해주세요")
+            }
+        }
+    }
+    
+    func requestReview(parameter: Evaluation, onCompletion: @escaping (String?) -> Void) {
+        QueueAPI.rateUser(idToken: Helper.shared.putIdToken(), parm: parameter, userId: parameter.otheruid) { statusCode in
+            switch statusCode {
+            case 200:
+                onCompletion(nil) // to home
+            case 401:
+                Helper.shared.getIdToken(refresh: true) { _ in
+                    onCompletion("다시 시도해주세요")
+                }
+            default:
+                onCompletion("다시 시도해주세요")
+            }
+        }
+    }
+    
+    func dodgeMatch(otherUid: otherUid, onCompletion: @escaping (String?) -> Void) {
+        QueueAPI.dodgeMatch(idToken: Helper.shared.putIdToken(), parm: otherUid) { statusCode in
+            switch statusCode {
+            case 200:
+                onCompletion(nil)
+            case 201:
+                onCompletion("다시 시도해주세요")
+            case 401:
+                Helper.shared.getIdToken(refresh: true) { _ in
+                    onCompletion("다시 시도해주세요")
+                }
+            default:
+                onCompletion("다시 시도해주세요")
+            }
         }
     }
 }
