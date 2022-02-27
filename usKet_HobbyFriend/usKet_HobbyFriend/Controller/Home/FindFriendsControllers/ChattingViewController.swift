@@ -47,19 +47,26 @@ final class ChattingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ChattingViewMyCell.self, forCellReuseIdentifier: ChattingViewMyCell.identifier)
+        tableView.register(ChattingViewYourCell.self, forCellReuseIdentifier: ChattingViewYourCell.identifier)
+        
         fetchDatas()
         setConfigure()
         setUI()
         setConstraints()
         bind()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
-        // Socket
-        SocketIOManager.shared.establishConnection()
+
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage(push:)), name: NSNotification.Name("getMessage"), object: nil)
+        
+        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,17 +81,14 @@ final class ChattingViewController: BaseViewController {
     
     override func setConfigure() {
         // View
-        title = viewModel.otherNick
         self.hiddenNavBar(false)
         self.tabBarController?.tabBar.isHidden = true
         self.hideKeyboardWhenTappedAround()
         
         // tableView
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ChattingViewMyCell.self, forCellReuseIdentifier: ChattingViewMyCell.identifier)
-        tableView.register(ChattingViewYourCell.self, forCellReuseIdentifier: ChattingViewYourCell.identifier)
-        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+        if self.viewModel.chatList.count > 0 {
+            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+        }
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = R.color.basicWhite()!
@@ -242,6 +246,7 @@ final class ChattingViewController: BaseViewController {
         // view
         viewModel.userCheckIsMatch { [weak self]  error, toHome in
             guard let error = error else {
+                self?.title = self?.viewModel.otherNick
                 return
             }
             if error == "토큰"{
@@ -265,6 +270,8 @@ final class ChattingViewController: BaseViewController {
         
         viewModel.fetchChat(userUid: self.viewModel.otherUid ?? "", lastchatDate: self.defaultDate) { error in
             guard let error = error else {
+                // Socket
+                SocketIOManager.shared.establishConnection()
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -275,7 +282,9 @@ final class ChattingViewController: BaseViewController {
                     guard let error = error else {
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
-                            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+                            if self.viewModel.chatList.count > 0 {
+                                self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+                            }
                         }
                         return
                     }
@@ -298,6 +307,7 @@ final class ChattingViewController: BaseViewController {
         let chatting = Payload(id: id, v: v, to: to, from: from, chat: chat, createdAt: createdAt)
         
         self.viewModel.chatList.append(chatting)
+        print("getMessage: ", self.viewModel.chatList)
         
         self.tableView.reloadData()
         
@@ -347,6 +357,7 @@ final class ChattingViewController: BaseViewController {
                 return
             }
             viewModel.sendChat(userUid: self.viewModel.otherUid ?? "", chat: text) { error in
+                print("SEND MESSAGE:", self.viewModel.otherUid)
                 guard let error = error else {
                     self.tableView.reloadData()
                     self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)

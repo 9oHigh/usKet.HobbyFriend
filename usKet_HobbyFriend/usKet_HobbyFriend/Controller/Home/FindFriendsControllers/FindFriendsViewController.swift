@@ -182,7 +182,7 @@ final class FindFriendsViewController: TabmanViewController {
     }
     
     @objc func updateUserMatchStatus(sender: Timer) {
-        
+        print(#function)
         viewModel.checkUserMatch { matched, inform, isTooLong in
             
             guard matched != nil else {
@@ -247,7 +247,7 @@ final class FindFriendsViewController: TabmanViewController {
             if friends.fromQueueDBRequested.isEmpty {
                 self.recievedViewController.setNoFriends()
             } else {
-                self.arroundViewController.tableView.removeFromSuperview()
+                self.recievedViewController.tableView.removeFromSuperview()
                 self.recievedViewController.setFriends()
             }
         }

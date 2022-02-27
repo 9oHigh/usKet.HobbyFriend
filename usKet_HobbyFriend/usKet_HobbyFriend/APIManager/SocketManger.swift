@@ -30,8 +30,13 @@ class SocketIOManager: NSObject {
         socket = manager.defaultSocket // "/"로 된 룸 생성
         
         // 소켓 연결 메소드 , 연결 통로 만들기
-        socket.on(clientEvent: .connect) { _, _ in
-            self.socket.emit("changesocketid", UserDefaults.standard.string(forKey: "uid")!)
+        socket.on(clientEvent: .connect) { data, ack in
+            
+            print("IS CONNECTED", data, ack)
+            
+            self.socket.emit("changesocketid", UserDefaults.standard.string(forKey: "uid")!, completion: nil)
+            
+            print("UserDefault:", UserDefaults.standard.string(forKey: "uid")!)
         }
         
         // 소켓 연결 해제 메소드

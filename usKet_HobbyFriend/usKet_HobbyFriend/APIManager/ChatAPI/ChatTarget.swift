@@ -46,7 +46,7 @@ extension ChatTarget: TargetType {
         case .sendChat(_, _, let sendChat):
             return .requestParameters(parameters: [
                 "chat": sendChat.chat
-            ], encoding: URLEncoding.queryString)
+            ], encoding: URLEncoding.default)
         }
     }
     
@@ -54,11 +54,13 @@ extension ChatTarget: TargetType {
         switch self {
         case .requestChatContent(let idToken, _, _):
             return [
-                "idtoken": idToken
+                "idtoken": idToken,
+                "Content-Type": "application/x-www-form-urlencoded"
             ]
         case .sendChat(let idToken, _, _):
             return [
-                "idtoken": idToken
+                "idtoken": idToken,
+                "Content-Type": "application/x-www-form-urlencoded"
             ]
         }
     }

@@ -14,6 +14,7 @@ final class ChatAPI {
     static func sendChat(idToken: String, userUid: String, parm: SendChat, onCompletion : @escaping (Payload?, Int?) -> Void) {
         
         provider.request(.sendChat(idToken: idToken, userUid: userUid, parm)) { result in
+            print("CHAT Send RESULT", result)
             switch result {
             case .success(let response):
                 onCompletion(try? response.map(Payload.self), response.statusCode)
@@ -26,6 +27,7 @@ final class ChatAPI {
     static func fetchChat(idToken: String, userUid: String, lastchatDate: String, onCompletion: @escaping (Chat?, Int?) -> Void) {
         
         provider.request(.requestChatContent(idToken: idToken, from: userUid, lastchatDate: lastchatDate)) { result in
+            print("CHAT Fetch RESULT", result)
             switch result {
             case .success(let response):
                 onCompletion(try? response.map(Chat.self), response.statusCode)
