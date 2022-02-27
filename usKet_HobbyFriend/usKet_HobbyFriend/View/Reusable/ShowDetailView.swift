@@ -62,7 +62,7 @@ final class ShowDetailView: BaseViewController {
         $0.layer.cornerRadius = 10
     }
     
-    let viewModel = ChatViewModel()
+    let viewModel = ChatViewModel.shared
     let disposeBag = DisposeBag()
     var cellType: Int = 0
     

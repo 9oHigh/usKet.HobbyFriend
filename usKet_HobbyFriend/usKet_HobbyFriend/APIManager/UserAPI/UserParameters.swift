@@ -30,7 +30,7 @@ struct MypageParm: Encodable {
 
 struct Evaluation: Codable {
     let otheruid: String
-    let reportedReputation: [Int]
+    let reputation: [Int]
     let comment: String
 }
 

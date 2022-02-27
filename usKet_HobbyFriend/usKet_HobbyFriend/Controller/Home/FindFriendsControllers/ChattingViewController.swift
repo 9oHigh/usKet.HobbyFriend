@@ -38,7 +38,7 @@ final class ChattingViewController: BaseViewController {
     let chatMenu = ChatMenuView()
     let tableView = UITableView(frame: .zero, style: .grouped)
     
-    let viewModel = ChatViewModel()
+    let viewModel = ChatViewModel.shared
     let disposeBag = DisposeBag()
     
     var defaultDate: String = "2000-01-01T00:00:00.000Z"
@@ -52,7 +52,7 @@ final class ChattingViewController: BaseViewController {
         tableView.register(ChattingViewMyCell.self, forCellReuseIdentifier: ChattingViewMyCell.identifier)
         tableView.register(ChattingViewYourCell.self, forCellReuseIdentifier: ChattingViewYourCell.identifier)
         
-        fetchDatas()
+        setUp()
         setConfigure()
         setUI()
         setConstraints()
@@ -63,7 +63,8 @@ final class ChattingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         monitorNetwork()
-
+        // Socket
+        SocketIOManager.shared.establishConnection()
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage(push:)), name: NSNotification.Name("getMessage"), object: nil)
         
         self.tableView.reloadData()
@@ -83,11 +84,10 @@ final class ChattingViewController: BaseViewController {
         // View
         self.hiddenNavBar(false)
         self.tabBarController?.tabBar.isHidden = true
-        self.hideKeyboardWhenTappedAround()
         
         // tableView
         if self.viewModel.chatList.count > 0 {
-            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
         }
         
         tableView.rowHeight = UITableView.automaticDimension
@@ -127,7 +127,6 @@ final class ChattingViewController: BaseViewController {
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(messageTextView.snp.top).offset(-5)
-            
         }
         // FlexLayout
         messageTextView.snp.makeConstraints { make in
@@ -161,10 +160,13 @@ final class ChattingViewController: BaseViewController {
                 reviewController.checkButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
-                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
-                        let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reportedReputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
+                        
+                        let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
+                        print(parm.otheruid, parm.reputation, parm.comment)
                         self.viewModel.requestReview(parameter: parm) { error in
                             guard let error = error else {
+                                Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                                SocketIOManager.shared.closeConnection()
                                 reviewController.dismiss(animated: true, completion: nil)
                                 self.navigationController?.popToRootViewController(animated: true)
                                 return
@@ -190,14 +192,15 @@ final class ChattingViewController: BaseViewController {
                 reviewController.checkButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
-                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
-                        let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reportedReputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
+                        let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
                         self.viewModel.requestReport(parameter: parm) { error in
                             guard let error = error else {
                                 return
                             }
                             self.showToast(message: error, yPosition: 150)
                         }
+                        SocketIOManager.shared.closeConnection()
+                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
                         reviewController.dismiss(animated: true, completion: nil)
                         self.navigationController?.popToRootViewController(animated: true)
                     })
@@ -225,10 +228,11 @@ final class ChattingViewController: BaseViewController {
                 alertView.okButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
-                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
                         let parm = otherUid(otheruid: self.viewModel.otherUid ?? "")
                         self.viewModel.dodgeMatch(otherUid: parm) { error in
                             guard let error = error else {
+                                SocketIOManager.shared.closeConnection()
+                                Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
                                 alertView.dismiss(animated: true, completion: nil)
                                 self.navigationController?.popToRootViewController(animated: true)
                                 return
@@ -242,11 +246,12 @@ final class ChattingViewController: BaseViewController {
         
     }
     
-    func fetchDatas() {
+    private func setUp() {
         // view
         viewModel.userCheckIsMatch { [weak self]  error, toHome in
             guard let error = error else {
                 self?.title = self?.viewModel.otherNick
+                self?.fetchDatas()
                 return
             }
             if error == "토큰"{
@@ -267,11 +272,11 @@ final class ChattingViewController: BaseViewController {
                 }
             }
         }
+    }
+    private func fetchDatas() {
         
         viewModel.fetchChat(userUid: self.viewModel.otherUid ?? "", lastchatDate: self.defaultDate) { error in
             guard let error = error else {
-                // Socket
-                SocketIOManager.shared.establishConnection()
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -295,6 +300,7 @@ final class ChattingViewController: BaseViewController {
             }
         }
     }
+    
     @objc func getMessage(push: NSNotification) {
         
         let from = push.userInfo!["from"] as! String
@@ -311,7 +317,7 @@ final class ChattingViewController: BaseViewController {
         
         self.tableView.reloadData()
         
-        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
         
     }
     
@@ -357,10 +363,10 @@ final class ChattingViewController: BaseViewController {
                 return
             }
             viewModel.sendChat(userUid: self.viewModel.otherUid ?? "", chat: text) { error in
-                print("SEND MESSAGE:", self.viewModel.otherUid)
                 guard let error = error else {
                     self.tableView.reloadData()
-                    self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+                    self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
+                    self.messageTextView.text = self.placeholder
                     return
                 }
                 if error == "토큰"{
@@ -384,7 +390,7 @@ extension ChattingViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         resetMenu()
-        if textView.text == "메세지를 입력하세요" {
+        if textView.text == self.placeholder {
             textView.text = nil
             textView.textColor = R.color.basicBlack()!
             sendButton.setImage(R.image.sendfill()!, for: .normal)
@@ -394,7 +400,7 @@ extension ChattingViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = "메세지를 입력하세요"
+            textView.text = self.placeholder
             textView.textColor = R.color.gray4()!
             sendButton.setImage(R.image.send()!, for: .normal)
         }
@@ -417,9 +423,9 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         // 나
-        if viewModel.chatList[indexPath.row].id == UserDefaults.standard.string(forKey: "uid") {
+        if viewModel.chatList[indexPath.row].from == UserDefaults.standard.string(forKey: "uid") {
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingViewMyCell.identifier, for: indexPath) as? ChattingViewMyCell else {
                 return UITableViewCell()
             }
@@ -429,7 +435,9 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.date.text = renewDate
             
             return cell
+            
         } else { // 너
+
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingViewYourCell.identifier, for: indexPath) as? ChattingViewYourCell else {
                 return UITableViewCell()
             }
@@ -453,7 +461,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             $0.tintColor = R.color.basicBlack()!
         }
         
-        let matchLabel = UILabel().then {
+        lazy var matchLabel = UILabel().then {
             $0.font = .toTitleM14
             $0.textColor = R.color.basicBlack()!
             $0.textAlignment = .center
@@ -477,9 +485,9 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         imageView.snp.makeConstraints { make in
-            make.height.equalToSuperview().multipliedBy(0.9)
+            make.height.equalToSuperview().multipliedBy(0.8)
             make.width.equalTo(imageView.snp.height)
-            make.leading.equalTo(-20)
+            make.leading.equalTo(-25)
             make.centerY.equalToSuperview()
         }
         

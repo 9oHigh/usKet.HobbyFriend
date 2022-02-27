@@ -10,6 +10,8 @@ import RxSwift
 
 final class ChatViewModel {
     
+    static var shared = ChatViewModel()
+    
     var otherNick: String?
     var otherUid: String?
     var chatList: [Payload] = []
@@ -73,14 +75,12 @@ final class ChatViewModel {
         
         ChatAPI.sendChat(idToken: idToken, userUid: userUid, parm: parm) { chatting, statusCode in
             
-            guard let chatting = chatting else {
-                onCompletion("오류가 발생했습니다")
-                return
-            }
-            
-            // DB에 저장을 여기서 처리
             switch statusCode {
             case 200 :
+                guard let chatting = chatting else {
+                    onCompletion("오류가 발생했습니다")
+                    return
+                }
                 self.chatList.append(chatting)
                 onCompletion(nil)
             case 201 :
@@ -88,7 +88,6 @@ final class ChatViewModel {
             case 401 :
                 Helper.shared.getIdToken(refresh: true) { _ in
                     onCompletion("토큰")
-                    // 재시도
                 }
             default:
                 onCompletion("다시 시도해주세요")
@@ -103,14 +102,13 @@ final class ChatViewModel {
         
         ChatAPI.fetchChat(idToken: idToken, userUid: userUid, lastchatDate: lastchatDate) { chatData, statusCode in
             
-            guard let chatData = chatData else {
-                onCompletion("오류가 발생했습니다")
-                return
-            }
-
-            // DB에 여기서 저장
+            // DB에 여기서 저장!
             switch statusCode {
             case 200 :
+                guard let chatData = chatData else {
+                    onCompletion("오류가 발생했습니다")
+                    return
+                }
                 chatData.payload.forEach { data in
                     self.chatList.append(data)
                 }
@@ -128,7 +126,6 @@ final class ChatViewModel {
     func requestReport(parameter: Evaluation, onCompletion : @escaping (String?) -> Void ) {
         
         UserAPI.reportUser(idToken: Helper.shared.putIdToken(), parameter: parameter) { statusCode in
-            
             switch statusCode {
             case 200:
                 onCompletion(nil)
@@ -145,7 +142,8 @@ final class ChatViewModel {
     }
     
     func requestReview(parameter: Evaluation, onCompletion: @escaping (String?) -> Void) {
-        QueueAPI.rateUser(idToken: Helper.shared.putIdToken(), parm: parameter, userId: parameter.otheruid) { statusCode in
+        
+        QueueAPI.rateUser(idToken: Helper.shared.putIdToken(), parm: parameter, userId: self.otherUid ?? "") { statusCode in
             switch statusCode {
             case 200:
                 onCompletion(nil) // to home

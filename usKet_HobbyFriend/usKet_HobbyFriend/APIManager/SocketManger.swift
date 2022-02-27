@@ -30,13 +30,9 @@ class SocketIOManager: NSObject {
         socket = manager.defaultSocket // "/"로 된 룸 생성
         
         // 소켓 연결 메소드 , 연결 통로 만들기
-        socket.on(clientEvent: .connect) { data, ack in
-            
-            print("IS CONNECTED", data, ack)
-            
+        socket.on(clientEvent: .connect) { _, _ in
+
             self.socket.emit("changesocketid", UserDefaults.standard.string(forKey: "uid")!, completion: nil)
-            
-            print("UserDefault:", UserDefaults.standard.string(forKey: "uid")!)
         }
         
         // 소켓 연결 해제 메소드
@@ -46,6 +42,7 @@ class SocketIOManager: NSObject {
         // 데이터 수신 -> 디코딩 -> 모델에 추가 -> 갱신
         socket.on("chat") { dataArr, _ in
             // guard 구문써라 나중에
+
             let data = dataArr[0] as! NSDictionary
             let from = data["from"] as! String
             let to = data["to"] as! String
@@ -53,6 +50,10 @@ class SocketIOManager: NSObject {
             let createdAt = data["createdAt"] as! String
             let id = data["_id"] as! String
             let v = data["__v"] as! Int
+            
+            if from == UserDefaults.standard.string(forKey: "uid") {
+                UserDefaults.standard.set(to, forKey: "otherUid")
+            }
             
             NotificationCenter.default.post(name: NSNotification.Name("getMessage"), object: self, userInfo: [
                 "from": from,

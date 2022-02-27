@@ -16,12 +16,17 @@ struct Chat: Codable {
 struct Payload: Codable {
     let id: String
     let v: Int
-    let to, from, chat, createdAt: String
+    let to: String
+    let from: String
+    let chat: String
+    let createdAt: String
 
     enum CodingKeys: String, CodingKey {
+        case from, to
+        case chat
         case id = "_id"
+        case createdAt
         case v = "__v"
-        case to, from, chat, createdAt
     }
 }
 

@@ -84,7 +84,7 @@ extension UserTarget: TargetType {
         case .reportUser(_, let parameter):
             return .requestParameters(parameters: [
                 "otheruid": parameter.otheruid,
-                "reportedReputation": parameter.reportedReputation,
+                "reportedReputation": parameter.reputation,
                 "comment": parameter.comment
             ], encoding: URLEncoding.default)
             

@@ -105,10 +105,10 @@ extension QueueTarget: TargetType {
         case .rateUser(_, let parm, _):
             return .requestParameters(parameters: [
                 "otheruid": parm.otheruid,
-                "reportedReputation": parm.reportedReputation,
+                "reputation": parm.reputation,
                 "comment": parm.comment
-                
-            ], encoding: URLEncoding.default)
+            ], encoding: URLEncoding(arrayEncoding: .noBrackets))
+            
         case .dodgeMatching(_, let parm):
             return .requestParameters(parameters: [
                "otheruid": parm.otheruid
@@ -153,7 +153,8 @@ extension QueueTarget: TargetType {
             ]
         case .dodgeMatching(idToken: let idToken, _):
             return [
-                "idtoken": idToken
+                "idtoken": idToken,
+                "Content-Type": "application/x-www-form-urlencoded"
             ]
         }
     }

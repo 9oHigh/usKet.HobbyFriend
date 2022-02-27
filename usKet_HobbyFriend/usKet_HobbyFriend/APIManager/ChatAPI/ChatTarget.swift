@@ -40,8 +40,10 @@ extension ChatTarget: TargetType {
     var task: Task {
         
         switch self {
-        case .requestChatContent:
-            return .requestPlain
+        case .requestChatContent(_, _, let date):
+            return .requestParameters(parameters: [
+                "lastchatDate": date
+            ], encoding: URLEncoding.queryString)
             
         case .sendChat(_, _, let sendChat):
             return .requestParameters(parameters: [

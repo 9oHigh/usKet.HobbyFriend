@@ -11,6 +11,7 @@ import Then
 class ChattingViewMyCell: UITableViewCell {
     
     static let identifier = "ChattingViewCell"
+//    var myId: String?
     
     let messageBox = UITextView().then {
         $0.translatesAutoresizingMaskIntoConstraints = true
@@ -18,7 +19,7 @@ class ChattingViewMyCell: UITableViewCell {
         $0.isScrollEnabled = false
         $0.isEditable = false
         $0.backgroundColor = R.color.brandWhitegreen()!
-        $0.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        $0.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         $0.layer.cornerRadius = 10
         $0.font = .toBodyR14
     }
@@ -40,8 +41,9 @@ class ChattingViewMyCell: UITableViewCell {
         
         messageBox.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(15)
-            make.width.equalToSuperview().multipliedBy(0.75)
-            make.bottom.equalToSuperview().inset(5)
+            make.top.bottom.equalToSuperview()
+            make.height.greaterThanOrEqualTo(45)
+            make.width.lessThanOrEqualTo(255)
             make.centerY.equalToSuperview()
         }
         
