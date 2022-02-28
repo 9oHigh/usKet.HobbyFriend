@@ -74,7 +74,7 @@ final class MyInfoCollectionVeiw: UIView {
             .bind(to: collectionView.rx.items(cellIdentifier: MyInfoTitleCollectionViewCell.identifier, cellType: MyInfoTitleCollectionViewCell.self)) { _, item, cell in
                 
                 if self.viewModel.user != nil {
-                    
+
                     self.viewModel.user?.reputation.forEach({ color in
                         if color == 0 {
                             cell.titleButton.setTitleColor(R.color.basicBlack(), for: .normal)
@@ -85,7 +85,7 @@ final class MyInfoCollectionVeiw: UIView {
                         }
                     })
                 } else {
-                    
+
                     self.reputation.forEach { color in
                         if color == 0 {
                             cell.titleButton.setTitleColor(R.color.basicBlack(), for: .normal)

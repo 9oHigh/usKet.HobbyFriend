@@ -62,17 +62,20 @@ final class ChattingViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         monitorNetwork()
-        // Socket
-        SocketIOManager.shared.establishConnection()
+
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage(push:)), name: NSNotification.Name("getMessage"), object: nil)
         
-        self.tableView.reloadData()
+        if self.viewModel.chatList.count > 0 {
+            autoScrolling()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SocketIOManager.shared.closeConnection()
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("getMessage"), object: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,11 +87,6 @@ final class ChattingViewController: BaseViewController {
         // View
         self.hiddenNavBar(false)
         self.tabBarController?.tabBar.isHidden = true
-        
-        // tableView
-        if self.viewModel.chatList.count > 0 {
-            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
-        }
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = R.color.basicWhite()!
@@ -128,7 +126,7 @@ final class ChattingViewController: BaseViewController {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(messageTextView.snp.top).offset(-5)
         }
-        // FlexLayout
+        
         messageTextView.snp.makeConstraints { make in
             
             make.width.equalToSuperview().inset(15)
@@ -137,7 +135,7 @@ final class ChattingViewController: BaseViewController {
         }
         
         sendButton.snp.makeConstraints { make in
-            // 후...위치 조정이 왜 안될까..
+            
             make.leading.equalTo(self.view.frame.width - 60)
             make.centerY.equalToSuperview()
             make.height.equalTo(20)
@@ -150,9 +148,10 @@ final class ChattingViewController: BaseViewController {
         chatMenu.reviewButton.rx.tap
             .observe(on: MainScheduler.instance)
             .subscribe({ _ in
+                // 상단 메뉴 접기
                 self.resetMenu()
+                // 리뷰 뷰컨틀롤러 특정
                 let reviewController = ShowDetailView()
-                // 유저 아이디설정
                 reviewController.setUpViewController(main: "리뷰 등록", sub: "\(self.viewModel.otherNick ?? "새싹")님과의 취미활동은 어떠셨나요?", type: 0, btnTitle: "리뷰 등록하기")
                 reviewController.modalPresentationStyle = .overCurrentContext
                 self.present(reviewController, animated: true, completion: nil)
@@ -162,16 +161,21 @@ final class ChattingViewController: BaseViewController {
                     .subscribe({ _ in
                         
                         let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
-                        print(parm.otheruid, parm.reputation, parm.comment)
-                        self.viewModel.requestReview(parameter: parm) { error in
+                        
+                        self.viewModel.requestReview(parameter: parm) { [weak self] error in
                             guard let error = error else {
+                                // 매칭상태 : Nothing
                                 Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                                // 소켓 연결 해제
                                 SocketIOManager.shared.closeConnection()
+                                // 싱글톤으로 관리 : 모두 제거 필요
+                                self?.viewModel.resetDatas()
+                                
                                 reviewController.dismiss(animated: true, completion: nil)
-                                self.navigationController?.popToRootViewController(animated: true)
+                                self?.navigationController?.popToRootViewController(animated: true)
                                 return
                             }
-                            self.showToast(message: error, yPosition: 150)
+                            self?.showToast(message: error, yPosition: 150)
                         }
                     })
                     .disposed(by: self.disposeBag)
@@ -181,28 +185,34 @@ final class ChattingViewController: BaseViewController {
         chatMenu.reportButton.rx.tap
             .observe(on: MainScheduler.instance)
             .subscribe({ _ in
+                // 상단 메뉴 초기화
                 self.resetMenu()
-                
+                // 뷰컨트롤러 특정
                 let reviewController = ShowDetailView()
                 reviewController.setUpViewController(main: "새싹 신고", sub: "다시는 해당 새싹과 매칭되지 않습니다", type: 1, btnTitle: "신고 하기")
                 reviewController.modalPresentationStyle = .overCurrentContext
-                
                 self.present(reviewController, animated: true, completion: nil)
                 
                 reviewController.checkButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
+                        
                         let parm = Evaluation(otheruid: self.viewModel.otherUid ?? "", reputation: self.viewModel.colors + [0, 0, 0], comment: reviewController.textView.text ?? "")
-                        self.viewModel.requestReport(parameter: parm) { error in
+                        self.viewModel.requestReport(parameter: parm) { [weak self ] error in
                             guard let error = error else {
+                                // 소켓 해제
+                                SocketIOManager.shared.closeConnection()
+                                // 매칭상태 : Nothing
+                                Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                                // 값 모두 제거
+                                self?.viewModel.resetDatas()
+                                
+                                reviewController.dismiss(animated: true, completion: nil)
+                                self?.navigationController?.popToRootViewController(animated: true)
                                 return
                             }
-                            self.showToast(message: error, yPosition: 150)
+                            self?.showToast(message: error, yPosition: 150)
                         }
-                        SocketIOManager.shared.closeConnection()
-                        Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
-                        reviewController.dismiss(animated: true, completion: nil)
-                        self.navigationController?.popToRootViewController(animated: true)
                     })
                     .disposed(by: self.disposeBag)
             })
@@ -211,11 +221,11 @@ final class ChattingViewController: BaseViewController {
         chatMenu.cancelButton.rx.tap
             .observe(on: MainScheduler.instance)
             .subscribe({ _ in
+                
                 self.resetMenu()
                 
                 let alertView = self.generateAlertView(inform: "약속을 취소하시겠습니까?", subInform: "약속을 취소하시면 패널티가 부과됩니다")
                 alertView.modalPresentationStyle = .overCurrentContext
-                
                 self.present(alertView, animated: true, completion: nil)
                 
                 alertView.cancelButton.rx.tap
@@ -228,16 +238,22 @@ final class ChattingViewController: BaseViewController {
                 alertView.okButton.rx.tap
                     .observe(on: MainScheduler.instance)
                     .subscribe({ _ in
+                        
                         let parm = otherUid(otheruid: self.viewModel.otherUid ?? "")
-                        self.viewModel.dodgeMatch(otherUid: parm) { error in
+                        self.viewModel.dodgeMatch(otherUid: parm) { [weak self] error in
                             guard let error = error else {
+                                
                                 SocketIOManager.shared.closeConnection()
+                                
                                 Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                                
+                                self?.viewModel.resetDatas()
+                                
                                 alertView.dismiss(animated: true, completion: nil)
-                                self.navigationController?.popToRootViewController(animated: true)
+                                self?.navigationController?.popToRootViewController(animated: true)
                                 return
                             }
-                            self.showToast(message: error, yPosition: 150)
+                            self?.showToast(message: error, yPosition: 150)
                         }
                     })
                     .disposed(by: self.disposeBag)
@@ -247,38 +263,73 @@ final class ChattingViewController: BaseViewController {
     }
     
     private func setUp() {
-        // view
+        
         viewModel.userCheckIsMatch { [weak self]  error, toHome in
             guard let error = error else {
+                // 성공시 타이틀 설정 + 데이터 가지고 오기
                 self?.title = self?.viewModel.otherNick
                 self?.fetchDatas()
                 return
             }
             if error == "토큰"{
                 DispatchQueue.main.async {
-                    self?.viewModel.userCheckIsMatch { _, _ in }
+                    self?.viewModel.userCheckIsMatch { [ weak self ]error, _ in
+                        guard let error = error else {
+                            // 성공시 타이틀 설정 + 데이터 가지고 오기
+                            self?.title = self?.viewModel.otherNick
+                            self?.fetchDatas()
+                            return
+                        }
+                        self?.showToast(message: error, yPosition: 150)
+                    }
                 }
             } else {
+                
                 self?.showToast(message: error, yPosition: 150)
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            // 홈으로 가야하는지 확인
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                
                 guard toHome != nil else {
                     return
                 }
+                
                 self?.showToast(message: error, yPosition: 150)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    
                     Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                    
+                    SocketIOManager.shared.closeConnection()
+                    
+                    self?.viewModel.resetDatas()
+                    
                     self?.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }
     }
+    
+    private func autoScrolling() {
+        // Auto Scrolling
+        let numberOfRows = tableView.numberOfRows(inSection: 0) - 1
+        let indexPath = NSIndexPath(row: numberOfRows, section: 0)
+        
+        self.tableView.scrollToRow(at: indexPath as IndexPath,
+                                          at: UITableView.ScrollPosition.middle, animated: true)
+        self.tableView.reloadData()
+    }
+    
     private func fetchDatas() {
         
         viewModel.fetchChat(userUid: self.viewModel.otherUid ?? "", lastchatDate: self.defaultDate) { error in
             guard let error = error else {
                 DispatchQueue.main.async {
+                    SocketIOManager.shared.establishConnection()
                     self.tableView.reloadData()
+                    if self.viewModel.chatList.count > 0 {
+                        self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
+                    }
                 }
                 return
             }
@@ -286,9 +337,10 @@ final class ChattingViewController: BaseViewController {
                 self.viewModel.fetchChat(userUid: self.viewModel.otherUid ?? "", lastchatDate: self.defaultDate) { error in
                     guard let error = error else {
                         DispatchQueue.main.async {
+                            SocketIOManager.shared.establishConnection()
                             self.tableView.reloadData()
                             if self.viewModel.chatList.count > 0 {
-                                self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count, section: 0), at: .bottom, animated: false)
+                                self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
                             }
                         }
                         return
@@ -313,14 +365,13 @@ final class ChattingViewController: BaseViewController {
         let chatting = Payload(id: id, v: v, to: to, from: from, chat: chat, createdAt: createdAt)
         
         self.viewModel.chatList.append(chatting)
-        print("getMessage: ", self.viewModel.chatList)
         
         self.tableView.reloadData()
         
         self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
-        
     }
     
+    // MARK: - Menu Animation
     @objc
     private func setMenu() {
         
@@ -358,30 +409,46 @@ final class ChattingViewController: BaseViewController {
     
     @objc
     func sendMessage(_ sender: UIButton) {
+        
         if messageTextView.text != self.placeholder && messageTextView.text != nil {
+            
             guard let text = messageTextView.text else {
                 return
             }
+            
             viewModel.sendChat(userUid: self.viewModel.otherUid ?? "", chat: text) { error in
+                
                 guard let error = error else {
+                    // 성공시
                     self.tableView.reloadData()
                     self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.chatList.count - 1, section: 0), at: .bottom, animated: false)
-                    self.messageTextView.text = self.placeholder
+                    self.messageTextView.text = nil
+                    self.sendButton.setImage(R.image.send()!, for: .normal)
+                    
                     return
                 }
+                
                 if error == "토큰"{
+                    
                     self.viewModel.sendChat(userUid: self.viewModel.otherUid ?? "", chat: text) { _ in }
+                    
                 } else {
+                    
                     self.showToast(message: error, yPosition: 150)
+                    
                     if error == "약속이 종료되어 채팅을 보낼 수 없습니다" {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             Helper.shared.registerUserData(userDataType: .isMatch, variable: MatchStatus.nothing.rawValue)
+                            
+                            self.viewModel.resetDatas()
+                            
                             self.navigationController?.popToRootViewController(animated: true)
                         }
                     }
                 }
             }
         } else {
+            
             self.showToast(message: "내용을 입력해주세요", yPosition: 150)
         }
     }
@@ -389,7 +456,9 @@ final class ChattingViewController: BaseViewController {
 extension ChattingViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        
         resetMenu()
+        
         if textView.text == self.placeholder {
             textView.text = nil
             textView.textColor = R.color.basicBlack()!
@@ -437,7 +506,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         } else { // 너
-
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingViewYourCell.identifier, for: indexPath) as? ChattingViewYourCell else {
                 return UITableViewCell()
             }

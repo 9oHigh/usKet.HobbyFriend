@@ -29,7 +29,7 @@ final class MyInfoDetailViewController: BaseViewController {
     
     let viewModel = MyInfoViewModel()
     let disposeBag = DisposeBag()
-    var isCollapse: Bool = false // 흠.. 뷰모델에서 만들어서 해야하나
+    var isCollapse: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -263,6 +263,8 @@ extension MyInfoDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x > 0 {
+            scrollView.contentOffset.x = 0
+        } else if scrollView.contentOffset.x < 0 {
             scrollView.contentOffset.x = 0
         }
     }

@@ -16,7 +16,6 @@ final class ChatViewModel {
     var otherUid: String?
     var chatList: [Payload] = []
     var colors: [Int] = [0, 0, 0, 0, 0, 0]
-    var errorMessage: String = ""
 
     let reviewUser: [MyTitle] = [
         MyTitle(title: "좋은 매너"),
@@ -172,5 +171,12 @@ final class ChatViewModel {
                 onCompletion("다시 시도해주세요")
             }
         }
+    }
+    
+    func resetDatas() {
+        otherNick = nil
+        otherUid = nil
+        chatList = []
+        colors = [0, 0, 0, 0, 0, 0]
     }
 }

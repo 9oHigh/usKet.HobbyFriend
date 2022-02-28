@@ -23,7 +23,7 @@ final class MyInfoViewModel {
         MyInfo(image: R.image.setting_alarm()!, name: "알림 설정"),
         MyInfo(image: R.image.permit()!, name: "이용 약관")
     ])
-    // 너는 고정이라 필요없지만 일단 가져간다! 고쳐줄게!
+    
     var myInfoTitle = BehaviorSubject<[MyTitle]>(value: [
         MyTitle(title: "좋은 매너"),
         MyTitle(title: "정확한 시간 약속"),
