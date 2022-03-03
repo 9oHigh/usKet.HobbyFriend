@@ -127,3 +127,5 @@
 [6] [intrinsicContentSize를 이용해 셀의 크기를 동적으로 사용하기](https://pooh-footprints.tistory.com/50)
 
 [7] [DropDownView를 구현하는 방법, UI](https://pooh-footprints.tistory.com/55)
+
+[8] [Chatting UI를 구성하는 방법 1](https://pooh-footprints.tistory.com/56)
