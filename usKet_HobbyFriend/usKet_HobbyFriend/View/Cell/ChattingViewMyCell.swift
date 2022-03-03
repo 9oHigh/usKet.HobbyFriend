@@ -8,13 +8,12 @@
 import UIKit
 import Then
 
-class ChattingViewMyCell: UITableViewCell {
+final class ChattingViewMyCell: UITableViewCell {
     
     static let identifier = "ChattingViewCell"
-//    var myId: String?
     
     let messageBox = UITextView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = true
+//        $0.translatesAutoresizingMaskIntoConstraints = true
         $0.sizeToFit()
         $0.isScrollEnabled = false
         $0.isEditable = false

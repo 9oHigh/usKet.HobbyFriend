@@ -8,10 +8,9 @@
 import UIKit
 import Then
 
-class ChattingViewYourCell: UITableViewCell {
+final class ChattingViewYourCell: UITableViewCell {
     
     static let identifier = "ChattingViewYourCell"
-//    var myId : String?
     
     let messageBox = UITextView().then {
         $0.translatesAutoresizingMaskIntoConstraints = true

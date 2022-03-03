@@ -8,7 +8,7 @@
 import UIKit
 import Then
 
-class ChatMenuView: UIView {
+final class ChatMenuView: UIView {
     
     let reportButton = UIButton().then {
         $0.configuration = .menuStyle(title: "새싹 신고", image: R.image.siren()!)

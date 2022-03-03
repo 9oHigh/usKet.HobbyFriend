@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Tabman
+import Pageboy
 
 final class ShopViewController: BaseViewController {
+    
+    var myImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +24,9 @@ final class ShopViewController: BaseViewController {
     
     override func setConfigure() {
         
+        title = "새싹샵"
         view.backgroundColor = UIColor(resource: R.color.basicWhite)
+        
     }
     
     override func setUI() {
