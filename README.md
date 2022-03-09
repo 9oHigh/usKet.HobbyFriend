@@ -112,7 +112,7 @@
 <br></br>
 
 
-## ✔️ 개발 이슈 및 해결
+## ✔️ 개발 이슈 및 요구사항 해결
 
 [1] [UICollectionView의 Cell을 왼쪽 정렬하기](https://pooh-footprints.tistory.com/43)
 
@@ -129,3 +129,5 @@
 [7] [DropDownView를 구현하는 방법, UI](https://pooh-footprints.tistory.com/55)
 
 [8] [Chatting UI를 구성하는 방법 1](https://pooh-footprints.tistory.com/56)
+
+[9] [Chatting UI를 구성하는 방법 2](https://pooh-footprints.tistory.com/57) 
