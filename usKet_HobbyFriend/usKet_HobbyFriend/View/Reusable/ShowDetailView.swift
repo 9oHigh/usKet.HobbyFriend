@@ -172,7 +172,7 @@ final class ShowDetailView: BaseViewController {
     }
     
     private func changeColor(_ isColored: Int, _ indexPath: Int) {
-        print(#function)
+        
         if viewModel.colors[indexPath] == 0 {
             viewModel.colors[indexPath] = 1
         } else {
@@ -198,7 +198,7 @@ extension ShowDetailView: UICollectionViewDelegate, UICollectionViewDelegateFlow
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(#function)
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyInfoTitleCollectionViewCell.identifier, for: indexPath) as? MyInfoTitleCollectionViewCell else {
             return UICollectionViewCell()
         }

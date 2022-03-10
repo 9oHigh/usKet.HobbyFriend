@@ -43,7 +43,7 @@ final class FindFriendsViewController: TabmanViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)
+        
         view.backgroundColor = R.color.basicWhite()!
         
         [arroundViewController, recievedViewController].forEach { viewController in
@@ -182,7 +182,7 @@ final class FindFriendsViewController: TabmanViewController {
     }
     
     @objc func updateUserMatchStatus(sender: Timer) {
-        print(#function)
+        
         viewModel.checkUserMatch { matched, inform, isTooLong in
             
             guard matched != nil else {
@@ -263,7 +263,6 @@ final class FindFriendsViewController: TabmanViewController {
     }
     
     @objc func stopSearching() {
-        print(#function)
         
         viewModel.stopFindingFriend { error in
             guard error == nil else {
